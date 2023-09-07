@@ -4,68 +4,73 @@ import java.util.Date;
 
 public class MovieDto {
 
-	private int movie_no;
+	private int movie_number;
 	private String movie_title;
 	private String movie_summary;
-	private Date movie_reldate;
+	private Date movie_release_date;
 	private String movie_runtime;
 	private int movie_price;
 	private String movie_poster;
 	private String movie_preview;
 	
-	private int director_no;
+	private int director_number;
 	private String director_name;
 	
-	private int cast_no;
-	
-	private int actor_no;
+	private int actor_number;
 	private String actor_name;
 	
-	private int rating_no;
+	private int rating_number;
 	private int rating_grade;
 	
-	private int review_no;
-	private String review_context;
-	private String review_id;
+	private int line_review_number;
+	private String line_review_context;
+	private String user_id;
 	
-	private int user_no;
+	private int order_history_number;
+	private Date order_history_time;
+	private int user_number;
+	
+	private int basket_number;
 
 	public MovieDto() {
 		super();
 	}
 
-	public MovieDto(int movie_no, String movie_title, String movie_summary, Date movie_reldate, String movie_runtime,
-			int movie_price, String movie_poster, String movie_preview, int director_no, String director_name,
-			int cast_no, int actor_no, String actor_name, int rating_no, int rating_grade, int review_no,
-			String review_context, String review_id, int user_no) {
+	public MovieDto(int movie_number, String movie_title, String movie_summary, Date movie_release_date,
+			String movie_runtime, int movie_price, String movie_poster, String movie_preview, int director_number,
+			String director_name, int actor_number, String actor_name, int rating_number, int rating_grade,
+			int line_review_number, String line_review_context, String user_id, int order_history_number,
+			Date order_history_time, int user_number, int basket_number) {
 		super();
-		this.movie_no = movie_no;
+		this.movie_number = movie_number;
 		this.movie_title = movie_title;
 		this.movie_summary = movie_summary;
-		this.movie_reldate = movie_reldate;
+		this.movie_release_date = movie_release_date;
 		this.movie_runtime = movie_runtime;
 		this.movie_price = movie_price;
 		this.movie_poster = movie_poster;
 		this.movie_preview = movie_preview;
-		this.director_no = director_no;
+		this.director_number = director_number;
 		this.director_name = director_name;
-		this.cast_no = cast_no;
-		this.actor_no = actor_no;
+		this.actor_number = actor_number;
 		this.actor_name = actor_name;
-		this.rating_no = rating_no;
+		this.rating_number = rating_number;
 		this.rating_grade = rating_grade;
-		this.review_no = review_no;
-		this.review_context = review_context;
-		this.review_id = review_id;
-		this.user_no = user_no;
+		this.line_review_number = line_review_number;
+		this.line_review_context = line_review_context;
+		this.user_id = user_id;
+		this.order_history_number = order_history_number;
+		this.order_history_time = order_history_time;
+		this.user_number = user_number;
+		this.basket_number = basket_number;
 	}
 
-	public int getMovie_no() {
-		return movie_no;
+	public int getMovie_number() {
+		return movie_number;
 	}
 
-	public void setMovie_no(int movie_no) {
-		this.movie_no = movie_no;
+	public void setMovie_number(int movie_number) {
+		this.movie_number = movie_number;
 	}
 
 	public String getMovie_title() {
@@ -84,12 +89,12 @@ public class MovieDto {
 		this.movie_summary = movie_summary;
 	}
 
-	public Date getMovie_reldate() {
-		return movie_reldate;
+	public Date getMovie_release_date() {
+		return movie_release_date;
 	}
 
-	public void setMovie_reldate(Date movie_reldate) {
-		this.movie_reldate = movie_reldate;
+	public void setMovie_release_date(Date movie_release_date) {
+		this.movie_release_date = movie_release_date;
 	}
 
 	public String getMovie_runtime() {
@@ -124,12 +129,12 @@ public class MovieDto {
 		this.movie_preview = movie_preview;
 	}
 
-	public int getDirector_no() {
-		return director_no;
+	public int getDirector_number() {
+		return director_number;
 	}
 
-	public void setDirector_no(int director_no) {
-		this.director_no = director_no;
+	public void setDirector_number(int director_number) {
+		this.director_number = director_number;
 	}
 
 	public String getDirector_name() {
@@ -140,20 +145,12 @@ public class MovieDto {
 		this.director_name = director_name;
 	}
 
-	public int getCast_no() {
-		return cast_no;
+	public int getActor_number() {
+		return actor_number;
 	}
 
-	public void setCast_no(int cast_no) {
-		this.cast_no = cast_no;
-	}
-
-	public int getActor_no() {
-		return actor_no;
-	}
-
-	public void setActor_no(int actor_no) {
-		this.actor_no = actor_no;
+	public void setActor_number(int actor_number) {
+		this.actor_number = actor_number;
 	}
 
 	public String getActor_name() {
@@ -164,12 +161,12 @@ public class MovieDto {
 		this.actor_name = actor_name;
 	}
 
-	public int getRating_no() {
-		return rating_no;
+	public int getRating_number() {
+		return rating_number;
 	}
 
-	public void setRating_no(int rating_no) {
-		this.rating_no = rating_no;
+	public void setRating_number(int rating_number) {
+		this.rating_number = rating_number;
 	}
 
 	public int getRating_grade() {
@@ -180,47 +177,73 @@ public class MovieDto {
 		this.rating_grade = rating_grade;
 	}
 
-	public int getReview_no() {
-		return review_no;
+	public int getLine_review_number() {
+		return line_review_number;
 	}
 
-	public void setReview_no(int review_no) {
-		this.review_no = review_no;
+	public void setLine_review_number(int line_review_number) {
+		this.line_review_number = line_review_number;
 	}
 
-	public String getReview_context() {
-		return review_context;
+	public String getLine_review_context() {
+		return line_review_context;
 	}
 
-	public void setReview_context(String review_context) {
-		this.review_context = review_context;
+	public void setLine_review_context(String line_review_context) {
+		this.line_review_context = line_review_context;
 	}
 
-	public String getReview_id() {
-		return review_id;
+	public String getUser_id() {
+		return user_id;
 	}
 
-	public void setReview_id(String review_id) {
-		this.review_id = review_id;
+	public void setUser_id(String user_id) {
+		this.user_id = user_id;
 	}
 
-	public int getUser_no() {
-		return user_no;
+	public int getOrder_history_number() {
+		return order_history_number;
 	}
 
-	public void setUser_no(int user_no) {
-		this.user_no = user_no;
+	public void setOrder_history_number(int order_history_number) {
+		this.order_history_number = order_history_number;
+	}
+
+	public Date getOrder_history_time() {
+		return order_history_time;
+	}
+
+	public void setOrder_history_time(Date order_history_time) {
+		this.order_history_time = order_history_time;
+	}
+
+	public int getUser_number() {
+		return user_number;
+	}
+
+	public void setUser_number(int user_number) {
+		this.user_number = user_number;
+	}
+
+	public int getBasket_number() {
+		return basket_number;
+	}
+
+	public void setBasket_number(int basket_number) {
+		this.basket_number = basket_number;
 	}
 
 	@Override
 	public String toString() {
-		return "MovieDto [movie_no=" + movie_no + ", movie_title=" + movie_title + ", movie_summary=" + movie_summary
-				+ ", movie_reldate=" + movie_reldate + ", movie_runtime=" + movie_runtime + ", movie_price="
-				+ movie_price + ", movie_poster=" + movie_poster + ", movie_preview=" + movie_preview + ", director_no="
-				+ director_no + ", director_name=" + director_name + ", cast_no=" + cast_no + ", actor_no=" + actor_no
-				+ ", actor_name=" + actor_name + ", rating_no=" + rating_no + ", rating_grade=" + rating_grade
-				+ ", review_no=" + review_no + ", review_context=" + review_context + ", review_id=" + review_id
-				+ ", user_no=" + user_no + "]";
+		return "MovieDto [movie_number=" + movie_number + ", movie_title=" + movie_title + ", movie_summary="
+				+ movie_summary + ", movie_release_date=" + movie_release_date + ", movie_runtime=" + movie_runtime
+				+ ", movie_price=" + movie_price + ", movie_poster=" + movie_poster + ", movie_preview=" + movie_preview
+				+ ", director_number=" + director_number + ", director_name=" + director_name + ", actor_number="
+				+ actor_number + ", actor_name=" + actor_name + ", rating_number=" + rating_number + ", rating_grade="
+				+ rating_grade + ", line_review_number=" + line_review_number + ", line_review_context="
+				+ line_review_context + ", user_id=" + user_id + ", order_history_number=" + order_history_number
+				+ ", order_history_time=" + order_history_time + ", user_number=" + user_number + ", basket_number="
+				+ basket_number + "]";
 	}
-
+	
 }
