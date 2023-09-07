@@ -30,4 +30,12 @@ private static final Logger log = LoggerFactory.getLogger(MemberController.class
 		return "/auth/LoginForm";
 	}
 	
+	@RequestMapping(value = "/member/add.do", method = RequestMethod.GET)
+	public String memberAdd(Model model) {
+		
+		log.debug("Welcome MemberController memberAdd!");
+		
+		return "member/MemberForm";
+	}
+	
 }
