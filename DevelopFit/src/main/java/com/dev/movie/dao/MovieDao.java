@@ -1,40 +1,27 @@
 package com.dev.movie.dao;
 
-public interface MovieDao {
+import java.util.List;
+import java.util.Map;
 
+import com.dev.movie.dto.MovieDto;
+
+public interface MovieDao {
 	
+	List<MovieDto> movieSelectList(int start, int end);
+
+	public int movieInsertOne(MovieDto movieDto);
+	public MovieDto movieSelectOne(int movieNumber);
+	public int movieUpdateOne(MovieDto movieDto);
+	public int movieDeleteOne(int movieNumber);
 	
+	public int movieSelectTotalCount();
+
+	public void insertFile(Map<String, Object> map);
+
+	List<Map<String, Object>> fileSelectList(int movieNumber);
+
+	public Map<String, Object> fileSelectStoredFileName(int parentSeq);
 	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-//	List<MemberDto> memberSelectList(int start, int end);
-//
-//	public MemberDto memberExist(String email, String password);
-//	public int memberInsertOne(MemberDto memberDto);
-//	public MemberDto memberSelectOne(int no);
-//	public int memberUpdateOne(MemberDto memberDto);
-//	public int memberDeleteOne(int no);
-//
-//	public int memberSelectTotalCount();
-//	
-//	public void insertFile(Map<String, Object> map);
-//
-//	List<Map<String, Object>> fileSelectList(int no);
-//
-//	Map<String, Object> fileSelectStoredFileName(int parentSeq);
-//
-//	int fileDelete(int parentSeq);
-	
+	public int fileDelete(int parentSeq);
 	
 }

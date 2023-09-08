@@ -4,368 +4,368 @@ import java.util.Date;
 
 public class MovieDto {
 	
-	private int actor_number;
-	private String actor_name;
+	private int actorNumber;
+	private String actorName;
 	
-	private int basket_number;
+	private int basketNumber;
 	
-	private int cast_member_number;
+	private int castMemberNumber;
 
-	private int director_number;
-	private String director_name;
+	private int directorNumber;
+	private String directorName;
 	
-	private int genre_number;
-	private String genre_name;
+	private int genreNumber;
+	private String genreName;
 	
-	private int heart_number;
-	private String heart_check;
+	private int heartNumber;
+	private String heartCheck;
 	
-	private int line_review_number;
-	private String line_review_context;
+	private int lineReviewNumber;
+	private String lineReviewContext;
 		
-	private int movie_number;
-	private String movie_title;
-	private String movie_summary;
-	private Date movie_release_date;
-	private String movie_runtime;
-	private int movie_price;
-	private String movie_poster;
-	private String movie_preview;
+	private int movieNumber;
+	private String movieTitle;
+	private String movieSummary;
+	private Date movieReleaseDate;
+	private String movieRuntime;
+	private int moviePrice;
+	private String moviePoster;
+	private String moviePreview;
 	
-	private int order_history_number;
-	private Date order_history_time;
+	private int orderHistoryNumber;
+	private Date orderHistoryTime;
 	
-	private int prefer_genre_number;
-	private String prefer_genre_first;
-	private String prefer_genre_second;
-	private String prefer_genre_third;
+	private int preferGenreNumber;
+	private String preferGenreFirst;
+	private String preferGenreSecond;
+	private String preferGenreThird;
 	
-	private int rating_number;
-	private int rating_grade;
+	private int ratingNumber;
+	private int ratingGrade;
 	
-	private int watch_number;
-	private String watch_check;
+	private int watchNumber;
+	private String watchCheck;
 	
-	private int member_number;
-	private String member_id;
+	private int memberNumber;
+	private String memberId;
 	
 	public MovieDto() {
 		super();
 	}
 
-	public MovieDto(int actor_number, String actor_name, int basket_number, int cast_member_number, int director_number,
-			String director_name, int genre_number, String genre_name, int heart_number, String heart_check,
-			int line_review_number, String line_review_context, int movie_number, String movie_title,
-			String movie_summary, Date movie_release_date, String movie_runtime, int movie_price, String movie_poster,
-			String movie_preview, int order_history_number, Date order_history_time, int prefer_genre_number,
-			String prefer_genre_first, String prefer_genre_second, String prefer_genre_third, int rating_number,
-			int rating_grade, int watch_number, String watch_check, int member_number, String member_id) {
+	public MovieDto(int actorNumber, String actorName, int basketNumber, int castMemberNumber, int directorNumber,
+			String directorName, int genreNumber, String genreName, int heartNumber, String heartCheck,
+			int lineReviewNumber, String lineReviewContext, int movieNumber, String movieTitle, String movieSummary,
+			Date movieReleaseDate, String movieRuntime, int moviePrice, String moviePoster, String moviePreview,
+			int orderHistoryNumber, Date orderHistoryTime, int preferGenreNumber, String preferGenreFirst,
+			String preferGenreSecond, String preferGenreThird, int ratingNumber, int ratingGrade, int watchNumber,
+			String watchCheck, int memberNumber, String memberId) {
 		super();
-		this.actor_number = actor_number;
-		this.actor_name = actor_name;
-		this.basket_number = basket_number;
-		this.cast_member_number = cast_member_number;
-		this.director_number = director_number;
-		this.director_name = director_name;
-		this.genre_number = genre_number;
-		this.genre_name = genre_name;
-		this.heart_number = heart_number;
-		this.heart_check = heart_check;
-		this.line_review_number = line_review_number;
-		this.line_review_context = line_review_context;
-		this.movie_number = movie_number;
-		this.movie_title = movie_title;
-		this.movie_summary = movie_summary;
-		this.movie_release_date = movie_release_date;
-		this.movie_runtime = movie_runtime;
-		this.movie_price = movie_price;
-		this.movie_poster = movie_poster;
-		this.movie_preview = movie_preview;
-		this.order_history_number = order_history_number;
-		this.order_history_time = order_history_time;
-		this.prefer_genre_number = prefer_genre_number;
-		this.prefer_genre_first = prefer_genre_first;
-		this.prefer_genre_second = prefer_genre_second;
-		this.prefer_genre_third = prefer_genre_third;
-		this.rating_number = rating_number;
-		this.rating_grade = rating_grade;
-		this.watch_number = watch_number;
-		this.watch_check = watch_check;
-		this.member_number = member_number;
-		this.member_id = member_id;
+		this.actorNumber = actorNumber;
+		this.actorName = actorName;
+		this.basketNumber = basketNumber;
+		this.castMemberNumber = castMemberNumber;
+		this.directorNumber = directorNumber;
+		this.directorName = directorName;
+		this.genreNumber = genreNumber;
+		this.genreName = genreName;
+		this.heartNumber = heartNumber;
+		this.heartCheck = heartCheck;
+		this.lineReviewNumber = lineReviewNumber;
+		this.lineReviewContext = lineReviewContext;
+		this.movieNumber = movieNumber;
+		this.movieTitle = movieTitle;
+		this.movieSummary = movieSummary;
+		this.movieReleaseDate = movieReleaseDate;
+		this.movieRuntime = movieRuntime;
+		this.moviePrice = moviePrice;
+		this.moviePoster = moviePoster;
+		this.moviePreview = moviePreview;
+		this.orderHistoryNumber = orderHistoryNumber;
+		this.orderHistoryTime = orderHistoryTime;
+		this.preferGenreNumber = preferGenreNumber;
+		this.preferGenreFirst = preferGenreFirst;
+		this.preferGenreSecond = preferGenreSecond;
+		this.preferGenreThird = preferGenreThird;
+		this.ratingNumber = ratingNumber;
+		this.ratingGrade = ratingGrade;
+		this.watchNumber = watchNumber;
+		this.watchCheck = watchCheck;
+		this.memberNumber = memberNumber;
+		this.memberId = memberId;
 	}
 
-	public int getActor_number() {
-		return actor_number;
+	public int getActorNumber() {
+		return actorNumber;
 	}
 
-	public void setActor_number(int actor_number) {
-		this.actor_number = actor_number;
+	public void setActorNumber(int actorNumber) {
+		this.actorNumber = actorNumber;
 	}
 
-	public String getActor_name() {
-		return actor_name;
+	public String getActorName() {
+		return actorName;
 	}
 
-	public void setActor_name(String actor_name) {
-		this.actor_name = actor_name;
+	public void setActorName(String actorName) {
+		this.actorName = actorName;
 	}
 
-	public int getBasket_number() {
-		return basket_number;
+	public int getBasketNumber() {
+		return basketNumber;
 	}
 
-	public void setBasket_number(int basket_number) {
-		this.basket_number = basket_number;
+	public void setBasketNumber(int basketNumber) {
+		this.basketNumber = basketNumber;
 	}
 
-	public int getCast_member_number() {
-		return cast_member_number;
+	public int getCastMemberNumber() {
+		return castMemberNumber;
 	}
 
-	public void setCast_member_number(int cast_member_number) {
-		this.cast_member_number = cast_member_number;
+	public void setCastMemberNumber(int castMemberNumber) {
+		this.castMemberNumber = castMemberNumber;
 	}
 
-	public int getDirector_number() {
-		return director_number;
+	public int getDirectorNumber() {
+		return directorNumber;
 	}
 
-	public void setDirector_number(int director_number) {
-		this.director_number = director_number;
+	public void setDirectorNumber(int directorNumber) {
+		this.directorNumber = directorNumber;
 	}
 
-	public String getDirector_name() {
-		return director_name;
+	public String getDirectorName() {
+		return directorName;
 	}
 
-	public void setDirector_name(String director_name) {
-		this.director_name = director_name;
+	public void setDirectorName(String directorName) {
+		this.directorName = directorName;
 	}
 
-	public int getGenre_number() {
-		return genre_number;
+	public int getGenreNumber() {
+		return genreNumber;
 	}
 
-	public void setGenre_number(int genre_number) {
-		this.genre_number = genre_number;
+	public void setGenreNumber(int genreNumber) {
+		this.genreNumber = genreNumber;
 	}
 
-	public String getGenre_name() {
-		return genre_name;
+	public String getGenreName() {
+		return genreName;
 	}
 
-	public void setGenre_name(String genre_name) {
-		this.genre_name = genre_name;
+	public void setGenreName(String genreName) {
+		this.genreName = genreName;
 	}
 
-	public int getHeart_number() {
-		return heart_number;
+	public int getHeartNumber() {
+		return heartNumber;
 	}
 
-	public void setHeart_number(int heart_number) {
-		this.heart_number = heart_number;
+	public void setHeartNumber(int heartNumber) {
+		this.heartNumber = heartNumber;
 	}
 
-	public String getHeart_check() {
-		return heart_check;
+	public String getHeartCheck() {
+		return heartCheck;
 	}
 
-	public void setHeart_check(String heart_check) {
-		this.heart_check = heart_check;
+	public void setHeartCheck(String heartCheck) {
+		this.heartCheck = heartCheck;
 	}
 
-	public int getLine_review_number() {
-		return line_review_number;
+	public int getLineReviewNumber() {
+		return lineReviewNumber;
 	}
 
-	public void setLine_review_number(int line_review_number) {
-		this.line_review_number = line_review_number;
+	public void setLineReviewNumber(int lineReviewNumber) {
+		this.lineReviewNumber = lineReviewNumber;
 	}
 
-	public String getLine_review_context() {
-		return line_review_context;
+	public String getLineReviewContext() {
+		return lineReviewContext;
 	}
 
-	public void setLine_review_context(String line_review_context) {
-		this.line_review_context = line_review_context;
+	public void setLineReviewContext(String lineReviewContext) {
+		this.lineReviewContext = lineReviewContext;
 	}
 
-	public int getMovie_number() {
-		return movie_number;
+	public int getMovieNumber() {
+		return movieNumber;
 	}
 
-	public void setMovie_number(int movie_number) {
-		this.movie_number = movie_number;
+	public void setMovieNumber(int movieNumber) {
+		this.movieNumber = movieNumber;
 	}
 
-	public String getMovie_title() {
-		return movie_title;
+	public String getMovieTitle() {
+		return movieTitle;
 	}
 
-	public void setMovie_title(String movie_title) {
-		this.movie_title = movie_title;
+	public void setMovieTitle(String movieTitle) {
+		this.movieTitle = movieTitle;
 	}
 
-	public String getMovie_summary() {
-		return movie_summary;
+	public String getMovieSummary() {
+		return movieSummary;
 	}
 
-	public void setMovie_summary(String movie_summary) {
-		this.movie_summary = movie_summary;
+	public void setMovieSummary(String movieSummary) {
+		this.movieSummary = movieSummary;
 	}
 
-	public Date getMovie_release_date() {
-		return movie_release_date;
+	public Date getMovieReleaseDate() {
+		return movieReleaseDate;
 	}
 
-	public void setMovie_release_date(Date movie_release_date) {
-		this.movie_release_date = movie_release_date;
+	public void setMovieReleaseDate(Date movieReleaseDate) {
+		this.movieReleaseDate = movieReleaseDate;
 	}
 
-	public String getMovie_runtime() {
-		return movie_runtime;
+	public String getMovieRuntime() {
+		return movieRuntime;
 	}
 
-	public void setMovie_runtime(String movie_runtime) {
-		this.movie_runtime = movie_runtime;
+	public void setMovieRuntime(String movieRuntime) {
+		this.movieRuntime = movieRuntime;
 	}
 
-	public int getMovie_price() {
-		return movie_price;
+	public int getMoviePrice() {
+		return moviePrice;
 	}
 
-	public void setMovie_price(int movie_price) {
-		this.movie_price = movie_price;
+	public void setMoviePrice(int moviePrice) {
+		this.moviePrice = moviePrice;
 	}
 
-	public String getMovie_poster() {
-		return movie_poster;
+	public String getMoviePoster() {
+		return moviePoster;
 	}
 
-	public void setMovie_poster(String movie_poster) {
-		this.movie_poster = movie_poster;
+	public void setMoviePoster(String moviePoster) {
+		this.moviePoster = moviePoster;
 	}
 
-	public String getMovie_preview() {
-		return movie_preview;
+	public String getMoviePreview() {
+		return moviePreview;
 	}
 
-	public void setMovie_preview(String movie_preview) {
-		this.movie_preview = movie_preview;
+	public void setMoviePreview(String moviePreview) {
+		this.moviePreview = moviePreview;
 	}
 
-	public int getOrder_history_number() {
-		return order_history_number;
+	public int getOrderHistoryNumber() {
+		return orderHistoryNumber;
 	}
 
-	public void setOrder_history_number(int order_history_number) {
-		this.order_history_number = order_history_number;
+	public void setOrderHistoryNumber(int orderHistoryNumber) {
+		this.orderHistoryNumber = orderHistoryNumber;
 	}
 
-	public Date getOrder_history_time() {
-		return order_history_time;
+	public Date getOrderHistoryTime() {
+		return orderHistoryTime;
 	}
 
-	public void setOrder_history_time(Date order_history_time) {
-		this.order_history_time = order_history_time;
+	public void setOrderHistoryTime(Date orderHistoryTime) {
+		this.orderHistoryTime = orderHistoryTime;
 	}
 
-	public int getPrefer_genre_number() {
-		return prefer_genre_number;
+	public int getPreferGenreNumber() {
+		return preferGenreNumber;
 	}
 
-	public void setPrefer_genre_number(int prefer_genre_number) {
-		this.prefer_genre_number = prefer_genre_number;
+	public void setPreferGenreNumber(int preferGenreNumber) {
+		this.preferGenreNumber = preferGenreNumber;
 	}
 
-	public String getPrefer_genre_first() {
-		return prefer_genre_first;
+	public String getPreferGenreFirst() {
+		return preferGenreFirst;
 	}
 
-	public void setPrefer_genre_first(String prefer_genre_first) {
-		this.prefer_genre_first = prefer_genre_first;
+	public void setPreferGenreFirst(String preferGenreFirst) {
+		this.preferGenreFirst = preferGenreFirst;
 	}
 
-	public String getPrefer_genre_second() {
-		return prefer_genre_second;
+	public String getPreferGenreSecond() {
+		return preferGenreSecond;
 	}
 
-	public void setPrefer_genre_second(String prefer_genre_second) {
-		this.prefer_genre_second = prefer_genre_second;
+	public void setPreferGenreSecond(String preferGenreSecond) {
+		this.preferGenreSecond = preferGenreSecond;
 	}
 
-	public String getPrefer_genre_third() {
-		return prefer_genre_third;
+	public String getPreferGenreThird() {
+		return preferGenreThird;
 	}
 
-	public void setPrefer_genre_third(String prefer_genre_third) {
-		this.prefer_genre_third = prefer_genre_third;
+	public void setPreferGenreThird(String preferGenreThird) {
+		this.preferGenreThird = preferGenreThird;
 	}
 
-	public int getRating_number() {
-		return rating_number;
+	public int getRatingNumber() {
+		return ratingNumber;
 	}
 
-	public void setRating_number(int rating_number) {
-		this.rating_number = rating_number;
+	public void setRatingNumber(int ratingNumber) {
+		this.ratingNumber = ratingNumber;
 	}
 
-	public int getRating_grade() {
-		return rating_grade;
+	public int getRatingGrade() {
+		return ratingGrade;
 	}
 
-	public void setRating_grade(int rating_grade) {
-		this.rating_grade = rating_grade;
+	public void setRatingGrade(int ratingGrade) {
+		this.ratingGrade = ratingGrade;
 	}
 
-	public int getWatch_number() {
-		return watch_number;
+	public int getWatchNumber() {
+		return watchNumber;
 	}
 
-	public void setWatch_number(int watch_number) {
-		this.watch_number = watch_number;
+	public void setWatchNumber(int watchNumber) {
+		this.watchNumber = watchNumber;
 	}
 
-	public String getWatch_check() {
-		return watch_check;
+	public String getWatchCheck() {
+		return watchCheck;
 	}
 
-	public void setWatch_check(String watch_check) {
-		this.watch_check = watch_check;
+	public void setWatchCheck(String watchCheck) {
+		this.watchCheck = watchCheck;
 	}
 
-	public int getMember_number() {
-		return member_number;
+	public int getMemberNumber() {
+		return memberNumber;
 	}
 
-	public void setMember_number(int member_number) {
-		this.member_number = member_number;
+	public void setMemberNumber(int memberNumber) {
+		this.memberNumber = memberNumber;
 	}
 
-	public String getMember_id() {
-		return member_id;
+	public String getMemberId() {
+		return memberId;
 	}
 
-	public void setMember_id(String member_id) {
-		this.member_id = member_id;
+	public void setMemberId(String memberId) {
+		this.memberId = memberId;
 	}
 
 	@Override
 	public String toString() {
-		return "MovieDto [actor_number=" + actor_number + ", actor_name=" + actor_name + ", basket_number="
-				+ basket_number + ", cast_member_number=" + cast_member_number + ", director_number=" + director_number
-				+ ", director_name=" + director_name + ", genre_number=" + genre_number + ", genre_name=" + genre_name
-				+ ", heart_number=" + heart_number + ", heart_check=" + heart_check + ", line_review_number="
-				+ line_review_number + ", line_review_context=" + line_review_context + ", movie_number=" + movie_number
-				+ ", movie_title=" + movie_title + ", movie_summary=" + movie_summary + ", movie_release_date="
-				+ movie_release_date + ", movie_runtime=" + movie_runtime + ", movie_price=" + movie_price
-				+ ", movie_poster=" + movie_poster + ", movie_preview=" + movie_preview + ", order_history_number="
-				+ order_history_number + ", order_history_time=" + order_history_time + ", prefer_genre_number="
-				+ prefer_genre_number + ", prefer_genre_first=" + prefer_genre_first + ", prefer_genre_second="
-				+ prefer_genre_second + ", prefer_genre_third=" + prefer_genre_third + ", rating_number="
-				+ rating_number + ", rating_grade=" + rating_grade + ", watch_number=" + watch_number + ", watch_check="
-				+ watch_check + ", member_number=" + member_number + ", member_id=" + member_id + "]";
+		return "MovieDto [actorNumber=" + actorNumber + ", actorName=" + actorName + ", basketNumber=" + basketNumber
+				+ ", castMemberNumber=" + castMemberNumber + ", directorNumber=" + directorNumber + ", directorName="
+				+ directorName + ", genreNumber=" + genreNumber + ", genreName=" + genreName + ", heartNumber="
+				+ heartNumber + ", heartCheck=" + heartCheck + ", lineReviewNumber=" + lineReviewNumber
+				+ ", lineReviewContext=" + lineReviewContext + ", movieNumber=" + movieNumber + ", movieTitle="
+				+ movieTitle + ", movieSummary=" + movieSummary + ", movieReleaseDate=" + movieReleaseDate
+				+ ", movieRuntime=" + movieRuntime + ", moviePrice=" + moviePrice + ", moviePoster=" + moviePoster
+				+ ", moviePreview=" + moviePreview + ", orderHistoryNumber=" + orderHistoryNumber
+				+ ", orderHistoryTime=" + orderHistoryTime + ", preferGenreNumber=" + preferGenreNumber
+				+ ", preferGenreFirst=" + preferGenreFirst + ", preferGenreSecond=" + preferGenreSecond
+				+ ", preferGenreThird=" + preferGenreThird + ", ratingNumber=" + ratingNumber + ", ratingGrade="
+				+ ratingGrade + ", watchNumber=" + watchNumber + ", watchCheck=" + watchCheck + ", memberNumber="
+				+ memberNumber + ", memberId=" + memberId + "]";
 	}
 	
 }
