@@ -3,16 +3,22 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
+	<meta charset="UTF-8">
+	<title>MovieListOneView</title>
+	<script type="text/javascript">
+// 	function pageMove(){
+// 		location.href = "../member/add.do";
+// 	}
+	</script>
 </head>
+
 <body>
 	<jsp:include page="/WEB-INF/view/Header.jsp"/>
 
 
 
 
-		<div id="title"><h2>회원가입</h2></div>
+		<div id="title"><h2>MovieListOneView</h2></div>
 <!-- 			<div id="form-wrap"> -->
 <!-- 				<form class="form-signUp" name="loginForm" action="./login" method="post"> -->
 <!-- 					<input type="text" name="name" placeholder="이름" id="input-name"><br> -->
@@ -29,10 +35,6 @@
 <!-- 				</form>  -->
 <!-- 			</div> -->
 			
-<script type="text/javascript">
-// 	function pageMove(){
-// 		location.href = "../member/add.do";
-// 	}
-</script>
 </body>
+
 </html>
