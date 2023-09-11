@@ -15,30 +15,12 @@
 		<result column="MOVIE_PREVIEW" property="moviePreview" />
 		<result column="GENRE_NUMBER" property="genreNumber" />		
 	</resultMap>
-
-<!-- 	<select id="memberSelectList" resultMap="memberResultMap"> -->
-<!-- 		SELECT MNO, MNAME, EMAIL, CRE_DATE -->
-<!-- 		FROM MEMBER -->
-<!-- 		ORDER BY MNO DESC -->
-<!-- 	</select> -->
 	
 	<select id="movieSelectList" parameterType="map" resultMap="movieResultMap">
-		SELECT m.movie_number 영화번호, m.movie_title 영화제목, m.movie_summary 줄거리, m.movie_release_date 개봉일,
-        					m.movie_runtime 상영시간, m.movie_price 가격, m.movie_poster 포스터, m.movie_preview 예고편, g.genre_name 장르명
+		SELECT MOVIE_NUMBER, MOVIE_TITLE, MOVIE_SUMMARY, MOVIE_RELEASE_DATE,
+							MOVIE_RUNTIME, MOVIE_PRICE, MOVIE_POSTER, MOVIE_PREVIEW, GENRE_NAME
 		FROM MOVIE M JOIN GENRE G
 		ON M.GENRE_NUMBER = G.GENRE_NUMBER
-
-
-
-
-<!-- 		SELECT MEMBER.MNO, MNAME, EMAIL, CRE_DATE -->
-<!-- 		FROM(	SELECT ROWNUM AS RNUM, M.MNO, M.MNAME, M.EMAIL, M.CRE_DATE -->
-<!-- 						FROM ( -->
-<!-- 							SELECT MNO, MNAME, EMAIL, CRE_DATE -->
-<!-- 							FROM MEMBER -->
-<!-- 							ORDER BY CRE_DATE DESC) M -->
-<!-- 		) MEMBER -->
-<!-- 		WHERE MEMBER.RNUM BETWEEN #{start} AND #{end} -->
 	</select>
 
 	<select id="movieExist" parameterType="map" resultMap="movieResultMap">
@@ -47,42 +29,40 @@
 		WHERE EMAIL = #{email} AND PWD = #{pwd}
 	</select>
 	
-	<insert id="movieInsertOne" parameterType="movieDto"
-		useGeneratedKeys="true" keyProperty="no">
+	<insert id="movieInsertOne" parameterType="movieDto" useGeneratedKeys="true" keyProperty="movieNumber">
 		<selectKey keyProperty="no" resultType="int" order="BEFORE">
-			SELECT MEMBERS_MNO_SEQ.NEXTVAL
+			SELECT MOVIE_MNO_SEQ.NEXTVAL
 			FROM DUAL
 		</selectKey>
-		
-		INSERT INTO MEMBER
-			(MNO, EMAIL, PWD, MNAME, CRE_DATE, MOD_DATE)
-		VALUES(#{no}, #{email}, #{password}, #{name}, SYSDATE, SYSDATE)
+		INSERT INTO MOVIE
+			(MOVIE_NUMBER, MOVIE_TITLE, MOVIE_SUMMARY, MOVIE_RELEASE_DATE, MOVIE_RUNTIME, MOVIE_PRICE, MOVIE_POSTER, MOVIE_PREVIEW, GENRE_NUMBER)
+		VALUES(#{movieNumber}, #{movieTitle}, #{movieSummary}, #{movieReleaseDate}, #{movieRuntime}, #{moviePrice}, #{moviePoster}, #{moviePreview}, #{genreNumber}, SYSDATE)
 	</insert>
 	
 	<select id="movieSelectOne" parameterType="int" resultMap="movieResultMap">
 		SELECT MNO, MNAME, EMAIL, CRE_DATE
-		FROM MEMBER
-		WHERE MNO = #{no}
+		FROM MOVIE
+		WHERE MOVIE_NUMBER = #{movieNumber}
 	</select>
 	
 	<update id="movieUpdateOne" parameterType="movieDto">
-		UPDATE MEMBER
+		UPDATE MOVIE
 		<set>
-			<if test="name != ''">MNAME = #{name},</if>
-			<if test="email != ''">EMAIL = #{email},</if>
+			<if test="movieTitle != ''">MOVIE_TITLE = #{movieTitle},</if>
+			<if test="movieNumber != ''">MOVIE_NUMBER = #{movieNumber},</if>
 			MOD_DATE = SYSDATE
 		</set>
-		WHERE MNO = #{no}
+		WHERE MOVIE_NUMBER = #{movieNumber}
 	</update>
 	
 	<delete id="movieDeleteOne" parameterType="int">
-		DELETE FROM MEMBER
-		WHERE MNO = #{no}
+		DELETE FROM MOVIE
+		WHERE MOVIE_NUMBER = #{movieNumber}
 	</delete>
 	
 	<select id="movieSelectTotalCount" resultType="java.lang.Integer">
 		SELECT COUNT(*)
-		FROM MEMBER
+		FROM MOVIE
 	</select>
 	
 	<insert id="insertFile" parameterType="map">
@@ -98,7 +78,7 @@
 		SELECT IDX, ORIGINAL_FILE_NAME, STORED_FILE_NAME
 			, ROUND(FILE_SIZE/1024, 1) AS FILE_SIZE
 		FROM TB_FILE
-		WHERE PARENT_SEQ = #{no}
+		WHERE PARENT_SEQ = #{movieNumber}
 	</select>
 	
 	<select id="fileSelectStoredFileName" parameterType="int" resultType="map">
@@ -109,9 +89,7 @@
 	
 	<delete id="fileDelete" parameterType="int">
 		DELETE FROM TB_FILE
-		WHERE PARENT_SEQ = #{no}
+		WHERE PARENT_SEQ = #{movieNumber}
 	</delete>
 
 </mapper>
-
-
