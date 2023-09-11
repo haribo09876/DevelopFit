@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+	pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -11,30 +13,50 @@
 // 	}
 	</script>
 </head>
-
 <body>
+
 	<jsp:include page="/WEB-INF/view/Header.jsp"/>
+	<h1>MovieListView (영화목록)</h1>
+<!-- 	<p> -->
+<!-- 		<a href='./add.do'>신규 회원</a> -->
+<!-- 	</p> -->
+	
+<!-- 	<table> -->
+<!-- 		<tr> -->
+<!-- 			<th>번호</th> -->
+<!-- 			<th>이름</th> -->
+<!-- 			<th>이메일</th> -->
+<!-- 			<th>가입일</th> -->
+<!-- 			<th></th> -->
+<!-- 		</tr> -->
+	
+<%-- 		<c:forEach var="memberDto" items="${memberList}"> --%>
+<!-- 		<tr> -->
+<%-- 			<td>${memberDto.no}</td> --%>
+<!-- 			<td> -->
+<%-- 				<a href='./listOne.do?no=${memberDto.no}'>${memberDto.name}</a> --%>
+<!-- 			</td> -->
+<%-- 			<td>${memberDto.email}</td> --%>
+<!-- 			<td> -->
+<%-- 				<fmt:formatDate pattern="yyyy-MM-dd hh:mm" value="${memberDto.createDate}"/> --%>
+<!-- 			</td> -->
+<!-- 			<td> -->
+<%-- 				<a href='./delete.do?no=${memberDto.no}'>[삭제]</a> --%>
+<!-- 			</td> -->
+<!-- 		</tr> -->
+<%-- 		</c:forEach> --%>
+	
+<!-- 	</table> -->
 
-
-
-
-		<div id="title"><h2>MovieListView</h2></div>
-<!-- 			<div id="form-wrap"> -->
-<!-- 				<form class="form-signUp" name="loginForm" action="./login" method="post"> -->
-<!-- 					<input type="text" name="name" placeholder="이름" id="input-name"><br> -->
-<!-- 					<input type="email" name="name" placeholder="이메일" id="input-email"><br> -->
-<!-- 					<input type="text" name="name" placeholder="이름" id="input-name"><br> -->
-<!-- 					<input type="button" value="취소" id="input-btn" onclick="check();"> -->
-<!-- 					<input type="button" value="회원가입" id="input-btn" onclick="check();"> -->
-<!-- 					<div id="signup" onclick="pageMove();">회원가입</div> -->
-<!-- 					<div id="signup-kakao"><a href="#">카카오로 회원가입</a></div><br> -->
-<!-- 					<div id="link-form"> -->
-<!-- 						<div id="findId"><a href="#">아이디 찾기</a></div> -->
-<!-- 						<div id="findPw"><a href="#">비밀번호 찾기</a></div> -->
-<!-- 					</div> -->
-<!-- 				</form>  -->
-<!-- 			</div> -->
-			
+<%-- 	<jsp:include page="/WEB-INF/views/common/Paging.jsp"> --%>
+<%-- 		<jsp:param value="${pagingMap}" name="pagingMap"/> --%>
+<%-- 	</jsp:include> --%>
+	
+<!-- 	<form action="./list.do" id='pagingForm' method="post"> -->
+<!-- 		<input type="hidden" id='curPage' name='curPage' -->
+<%-- 			value="${pagingMap.memberPaging.curPage}"> --%>
+<!-- 	</form> -->
+	
+<%-- 	<jsp:include page="/WEB-INF/views/Tail.jsp"/> --%>
 </body>
-
 </html>

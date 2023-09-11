@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+	pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -11,30 +13,19 @@
 // 	}
 	</script>
 </head>
-
 <body>
 	<jsp:include page="/WEB-INF/view/Header.jsp"/>
-
-
-
-
-		<div id="title"><h2>MovieForm</h2></div>
-<!-- 			<div id="form-wrap"> -->
-<!-- 				<form class="form-signUp" name="loginForm" action="./login" method="post"> -->
-<!-- 					<input type="text" name="name" placeholder="이름" id="input-name"><br> -->
-<!-- 					<input type="email" name="name" placeholder="이메일" id="input-email"><br> -->
-<!-- 					<input type="text" name="name" placeholder="이름" id="input-name"><br> -->
-<!-- 					<input type="button" value="취소" id="input-btn" onclick="check();"> -->
-<!-- 					<input type="button" value="회원가입" id="input-btn" onclick="check();"> -->
-<!-- 					<div id="signup" onclick="pageMove();">회원가입</div> -->
-<!-- 					<div id="signup-kakao"><a href="#">카카오로 회원가입</a></div><br> -->
-<!-- 					<div id="link-form"> -->
-<!-- 						<div id="findId"><a href="#">아이디 찾기</a></div> -->
-<!-- 						<div id="findPw"><a href="#">비밀번호 찾기</a></div> -->
-<!-- 					</div> -->
-<!-- 				</form>  -->
-<!-- 			</div> -->
-			
-</body>
-
+	
+	<h1>MovieForm (영화등록)</h1>
+<!-- 	<form action='./addCtr.do' method='post' enctype="multipart/form-data"> -->
+<!-- 		이름:			<input type='text' name='name'><br>  -->
+<!-- 		이메일:		<input type='text' name='email'><br>  -->
+<!-- 		암호:			<input type='password' 	name='password'><br> -->
+<!-- 		파일:			<input type="file" name='file'><br> -->
+<!-- 						<input type='submit' value='추가'> -->
+<!-- 						<input type="button" value='뒤로가기' onclick="pageMoveListFnc();"> -->
+<!-- 	</form> -->
+	
+<%-- 	<jsp:include page="/WEB-INF/view/Tail.jsp"/> --%>
+<!-- </body> -->
 </html>

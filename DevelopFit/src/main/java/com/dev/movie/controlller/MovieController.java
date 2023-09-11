@@ -49,90 +49,90 @@ public class MovieController {
 		model.addAttribute("pagingMap", pagingMap);
 		
 		return "movie/MovieListView";
-	 }	
-	
-//	 영화 상세, 파일
-	 @RequestMapping(value = "/movie/listOne.do", method = RequestMethod.GET)
-	 public String movieListOne(int movieNumber, Model model) {
-		 log.debug("Welcome MovieController movieListOne! - {}", movieNumber);
-
-		 Map<String, Object> map = movieService.movieSelectOne(movieNumber);
-	
-		 MovieDto movieDto = (MovieDto)map.get("movieDto");
-		 List<Map<String, Object>> fileList = (List<Map<String, Object>>)map.get("fileList");
-	
-		 model.addAttribute("movieDto", movieDto);
-		 model.addAttribute("fileList", fileList);
-	
-		 return "movie/MovieListOneView";
 	 }
-
-//	 영화 등록 화면으로 이동
-	 @RequestMapping(value = "/movie/add.do", method = RequestMethod.GET)
-	 public String movieAdd(Model model) {
-		 log.debug("Welcome MovieController movieAdd!");
-
-		 return "movie/MovieForm";
-	 }
-
-//	 영화 등록
-	 @RequestMapping(value = "/movie/addCtr.do", method = RequestMethod.POST)
-	 public String movieAdd(MovieDto movieDto, MultipartHttpServletRequest multipartHttpServletRequest, Model model) {
-		log.debug("Welcome MovieController movieAdd! " + movieDto);
-
-		try {
-			movieService.movieInsertOne(movieDto, multipartHttpServletRequest);
-		} catch (Exception e) {
-		// TODO: handle exception
-			System.out.println("오류 처리할 거 있으면 한다");
-			e.printStackTrace();
-		}
-		return "redirect:/movie/list.do";
-	 }
-	 
-//	 영화 수정 화면으로, 파일 추가
-	 @RequestMapping(value = "/movie/update.do", method = RequestMethod.GET)
-	 public String movieUpdate(int movieNumber, Model model) {
-		 log.info("Welcome movieUpdate!" + movieNumber);
 	
-		 Map<String, Object> map = movieService.movieSelectOne(movieNumber);
-
-		 MovieDto movieDto = (MovieDto)map.get("movieDto");
-	
-		 List<Map<String, Object>> fileList = (List<Map<String, Object>>)map.get("fileList");
-	
-		 model.addAttribute("movieDto", movieDto);
-		 model.addAttribute("fileList", fileList);
-	
-		 return "movie/MovieUpdateForm";
-	 }
-
-//	 회원수정, 파일 추가
-	 @RequestMapping(value = "/movie/updateCtr.do", method = RequestMethod.POST)
-	 public String movieUpdateCtr(MovieDto movieDto
-	, @RequestParam(value = "fileIdx", defaultValue = "-1") int fileIdx
-	, MultipartHttpServletRequest multipartHttpServletRequest, Model model) {
-		 log.info("Welcome MovieController movieUpdateCtr! movieDto: {}\n fileIdx: {}", movieDto, fileIdx);
-	
-		 int resultNum = 0;
-	
-		 try {
-			 resultNum = movieService.movieUpdateOne(movieDto, multipartHttpServletRequest, fileIdx);
-		 } catch (Exception e) {
-			 // TODO: handle exception
-			 e.printStackTrace();
-		 }
-		 return "common/successPage";
-	 }
-
-//	 영화 삭제
-	 @RequestMapping(value = "/movie/delete.do", method = RequestMethod.GET)
-	public String movieDeleteCtr(int movieNumber, Model model) {
-		log.debug("Welcome MovieController movieDelete" + movieNumber);
-
-		movieService.movieDeleteOne(movieNumber);
-
-		return "redirect:/movie/list.do";
-	}
+////	 영화 상세, 파일
+//	 @RequestMapping(value = "/movie/listOne.do", method = RequestMethod.GET)
+//	 public String movieListOne(int movieNumber, Model model) {
+//		 log.debug("Welcome MovieController movieListOne! - {}", movieNumber);
+//
+//		 Map<String, Object> map = movieService.movieSelectOne(movieNumber);
+//	
+//		 MovieDto movieDto = (MovieDto)map.get("movieDto");
+//		 List<Map<String, Object>> fileList = (List<Map<String, Object>>)map.get("fileList");
+//	
+//		 model.addAttribute("movieDto", movieDto);
+//		 model.addAttribute("fileList", fileList);
+//	
+//		 return "movie/MovieListOneView";
+//	 }
+//
+////	 영화 등록 화면으로 이동
+//	 @RequestMapping(value = "/movie/add.do", method = RequestMethod.GET)
+//	 public String movieAdd(Model model) {
+//		 log.debug("Welcome MovieController movieAdd!");
+//
+//		 return "movie/MovieForm";
+//	 }
+//
+////	 영화 등록
+//	 @RequestMapping(value = "/movie/addCtr.do", method = RequestMethod.POST)
+//	 public String movieAdd(MovieDto movieDto, MultipartHttpServletRequest multipartHttpServletRequest, Model model) {
+//		log.debug("Welcome MovieController movieAdd! " + movieDto);
+//
+//		try {
+//			movieService.movieInsertOne(movieDto, multipartHttpServletRequest);
+//		} catch (Exception e) {
+//		// TODO: handle exception
+//			System.out.println("오류 처리할 거 있으면 한다");
+//			e.printStackTrace();
+//		}
+//		return "redirect:/movie/list.do";
+//	 }
+//	 
+////	 영화 수정 화면으로, 파일 추가
+//	 @RequestMapping(value = "/movie/update.do", method = RequestMethod.GET)
+//	 public String movieUpdate(int movieNumber, Model model) {
+//		 log.info("Welcome movieUpdate!" + movieNumber);
+//	
+//		 Map<String, Object> map = movieService.movieSelectOne(movieNumber);
+//
+//		 MovieDto movieDto = (MovieDto)map.get("movieDto");
+//	
+//		 List<Map<String, Object>> fileList = (List<Map<String, Object>>)map.get("fileList");
+//	
+//		 model.addAttribute("movieDto", movieDto);
+//		 model.addAttribute("fileList", fileList);
+//	
+//		 return "movie/MovieUpdateForm";
+//	 }
+//
+////	 회원수정, 파일 추가
+//	 @RequestMapping(value = "/movie/updateCtr.do", method = RequestMethod.POST)
+//	 public String movieUpdateCtr(MovieDto movieDto
+//	, @RequestParam(value = "fileIdx", defaultValue = "-1") int fileIdx
+//	, MultipartHttpServletRequest multipartHttpServletRequest, Model model) {
+//		 log.info("Welcome MovieController movieUpdateCtr! movieDto: {}\n fileIdx: {}", movieDto, fileIdx);
+//	
+//		 int resultNum = 0;
+//	
+//		 try {
+//			 resultNum = movieService.movieUpdateOne(movieDto, multipartHttpServletRequest, fileIdx);
+//		 } catch (Exception e) {
+//			 // TODO: handle exception
+//			 e.printStackTrace();
+//		 }
+//		 return "common/successPage";
+//	 }
+//
+////	 영화 삭제
+//	 @RequestMapping(value = "/movie/delete.do", method = RequestMethod.GET)
+//	public String movieDeleteCtr(int movieNumber, Model model) {
+//		log.debug("Welcome MovieController movieDelete" + movieNumber);
+//
+//		movieService.movieDeleteOne(movieNumber);
+//
+//		return "redirect:/movie/list.do";
+//	}
 
 }
