@@ -7,7 +7,7 @@
 	<resultMap type="boardDto" id="boardResultMap">
 		<id column="BOARD_NUMBER" property="boardNumber" />
 		<result column="BOARD_TITLE" property="boardTitle" />
-		<result column="BOARD_CREATE_DATE" property="boardCreatedate" 
+		<result column="BOARD_CREATE_DATE" property="boardCreateDate" 
 		javaType="java.util.Date" />
 		<result column="BOARD_HIT" property="boardHit" />
 	</resultMap>
