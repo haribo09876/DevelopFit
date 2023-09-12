@@ -5,12 +5,11 @@
 <mapper namespace="com.dev.board">
 
 	<resultMap type="boardDto" id="boardResultMap">
-		<id column="BOARD_NUMBER" property="boardnumber" />
-		<result column="MEMBER_ID" property="memberid" />
-		<result column="BOARD_TITLE" property="boardtitle" />
-		<result column="BOARD_CREATE_DATE" property="boardcreatedate" 
+		<id column="BOARD_NUMBER" property="boardNumber" />
+		<result column="BOARD_TITLE" property="boardTitle" />
+		<result column="BOARD_CREATE_DATE" property="boardCreatedate" 
 		javaType="java.util.Date" />
-		<result column="BOARD_HIT" property="boardhit" />
+		<result column="BOARD_HIT" property="boardHit" />
 	</resultMap>
 	
 <!-- 	게시글 리스트 = 게시판 -->
