@@ -61,28 +61,32 @@
 		<div id="headtext">community</div>
 		<div id="comunityboard">
 
-				<div id="board_num">게시번호</div>
+				<div id="boardNum">게시번호</div>
 				<div id="title">제목</div>
+				<div id="content">내용</div>
 				<div id="member">작성자</div>
-				<div id="cre_date">작성일</div>
-				<div>조회수</div>
+				<div id="creDate">작성일</div>
+				<div id="boardHit">조회수</div>
 
         <c:forEach var="boardDto" items="${boardSelectList}">
-                <div>${boardDto.boardnumber}</div>
+                <div>${boardDto.boardNumber}</div>
                 <div>
 <%--                     <a href='./boardSelectOne.do?no=${boardDto.board_number}'>${boardDto.board_title} --%>
 <!--                     </a> -->
                 </div>
                 <div>
-                	${boardDto.boardtitle}	
+                	${boardDto.boardTitle}	
                 </div>
                 <div>
-                    <fmt:formatDate pattern="yyyy-MM-dd hh:mm" value="${boardDto.boardcreatedate}"/>
+                	${boardDto.boardContent}
                 </div>
-                <div>${boardDto.boardhit}</div>
+                <div>
+                    <fmt:formatDate pattern="yyyy-MM-dd hh:mm" value="${boardDto.boardCreateDate}"/>
+                </div>
+                <div>${boardDto.boardHit}</div>
                 
                     <!-- 폼 필드 추가 -->
-                    <input type="hidden" name="boardNumber" value="${boardDto.boardnumber}">
+                    <input type="hidden" name="boardNumber" value="${boardDto.boardNumber}">
         </c:forEach>
    
 	</div>

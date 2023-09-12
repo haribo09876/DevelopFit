@@ -7,25 +7,26 @@
 	<resultMap type="boardDto" id="boardResultMap">
 		<id column="BOARD_NUMBER" property="boardNumber" />
 		<result column="BOARD_TITLE" property="boardTitle" />
-		<result column="BOARD_CREATE_DATE" property="boardCreatedate" 
+		<result column="BOARD_CREATE_DATE" property="boardCreateDate" 
 		javaType="java.util.Date" />
 		<result column="BOARD_HIT" property="boardHit" />
+		<result column="MEMBER_NUMBER" property="memberNumber" />
 	</resultMap>
 	
 <!-- 	게시글 리스트 = 게시판 -->
 	<select id="boardSelectList" parameterType="map" resultMap="boardResultMap">
-		SELECT C.BOARD_NUMBER, C.BOARD_TITLE, C.MEMBER_ID, 
-		C.CREATE_DATE, C.BOARD_HIT
-		FROM(   
-			SELECT ROWNUM AS RNUM, C.BOARD_NUMBER, C.BOARD_TITLE, C.MEMBER_ID, 
-			C.CREATE_DATE, C.BOARD_HIT
-		    FROM(   
-		    	SELECT B.BOARD_NUMBER, B.BOARD_TITLE, M.MEMBER_ID, 
-		    	B.BOARD_CREATE_DATE, B.BOARD_HIT
-		        FROM MEMBER M JOIN BOARD B ON M.MEMBER_NUMBER = B.MEMBER_NUMBER
-		        ORDER BY CREATE_DATE DESC) C
+		SELECT C.BOARD_NUMBER, C.BOARD_TITLE, C.BOARD_CONTENT, C.MEMBER_ID, 
+		C.BOARD_CREATE_DATE, C.BOARD_HIT
+		FROM(
+		SELECT ROWNUM AS RNUM, C.BOARD_NUMBER, C.BOARD_TITLE, C.BOARD_CONTENT, 
+		C.MEMBER_ID, C.BOARD_CREATE_DATE, C.BOARD_HIT
+		FROM(
+		SELECT B.BOARD_NUMBER, B.BOARD_TITLE, B.BOARD_CONTENT, M.MEMBER_ID, 
+		B.BOARD_CREATE_DATE, B.BOARD_HIT
+		FROM MEMBER M JOIN BOARD B ON M.MEMBER_NUMBER = B.MEMBER_NUMBER
+		ORDER BY BOARD_CREATE_DATE DESC) C
 		) C
-		WHERE C.RNUM BETWEEN #{start} AND #{end}
+<!-- 		WHERE C.RNUM BETWEEN #{start} AND #{end} -->
 
 	</select>
 <!-- 	게시글 생성 -->
