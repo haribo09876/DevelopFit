@@ -7,6 +7,7 @@
 	<typeAliases>
 		<typeAlias type="com.dev.member.dto.MemberDto" alias="memberDto"/>
 		<typeAlias type="com.dev.movie.dto.MovieDto" alias="movieDto"/>
+		<typeAlias type="com.dev.board.dto.BoardDto" alias="boardDto"/>
 	</typeAliases>
 	
 </configuration>
