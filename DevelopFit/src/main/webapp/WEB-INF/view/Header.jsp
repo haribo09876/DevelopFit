@@ -15,7 +15,7 @@
 	}
 	li{
 		float: left;
-		width: 150px;
+		width: 180px;
 		line-height: 100px;
 	}
 	#header{

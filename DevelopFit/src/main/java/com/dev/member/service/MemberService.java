@@ -1,5 +1,9 @@
 package com.dev.member.service;
 
-public interface MemberService {
+import com.dev.member.dto.MemberDto;
 
+	public interface MemberService {
+
+	public MemberDto memberExist(String id, String password);
+	
 }
