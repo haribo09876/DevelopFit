@@ -178,6 +178,9 @@
 		
 	</div>
 		
+	<jsp:include page="/WEB-INF/view/Footer.jsp" />
+		
+		
 <!-- 	<form action='./updateCtr.do' method='post' enctype="multipart/form-data"> -->
 <%-- 		<input type="hidden" name='no' value='${memberDto.no}'> 이름: <input --%>
 <%-- 			type='text' name='name' value='${memberDto.name}'><br> --%>
@@ -220,6 +223,6 @@
 <!-- 		<input type='button' value='회원목록으로' onclick="pageMoveListFnc();"> -->
 <!-- 	</form> -->
 
-<%-- 	<jsp:include page="/WEB-INF/views/Tail.jsp" /> --%>
+
 </body>
 </html>

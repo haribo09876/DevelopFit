@@ -26,10 +26,15 @@
 		}
 		#movieListTable {
 			background-color: #FFFFFF;
+			color: black;
 		}
 		tr th td {
 			border:1px solid black;
 			background-color: #FFFFFF;
+			color: black;
+		}
+		#movieListPoster {
+			width: 100px;
 		}
 	
 	</style>
@@ -55,11 +60,13 @@
 			<c:forEach var="movieDto" items="${movieList}">
 				<tr>
 					<td>${movieDto.movieNumber}</td>
-					<td>${movieDto.moviePoster}</td>
+					<td>
+						<img id="movieListPoster" alt="포스터" src="${movieDto.moviePoster}">			
+					</td>
 					<td>
 						<a href='./listOne.do?no=${movieDto.movieNumber}'>${movieDto.movieTitle}</a>
 					</td>
-					<td>장르</td>
+					<td>${movieDto.genreNumber}</td>
 					<td>${movieDto.movieRuntime}</td>
 					<td>${movieDto.moviePrice}</td>
 				</tr>
@@ -74,6 +81,8 @@
 			<input type="hidden" id='curPage' name='curPage'
 				value="${pagingMap.moviePaging.curPage}">
 		</form>
+		
+	<jsp:include page="/WEB-INF/view/Footer.jsp" />
 
 <!-- 	<p> -->
 <!-- 		<a href='./add.do'>신규 영화</a> -->

@@ -178,7 +178,7 @@
 		
 	</div>
 	
-	
+	<jsp:include page="/WEB-INF/view/Footer.jsp" />
 	
 <!-- 	<form action='./update.do' method='get'> -->
 <%-- 		<input type='hidden' name='no' value='${memberDto.no}'> --%>

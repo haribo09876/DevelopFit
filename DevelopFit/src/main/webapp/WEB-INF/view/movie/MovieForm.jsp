@@ -178,7 +178,7 @@
 		
 	</div>
 	
-	<%-- 	<jsp:include page="/WEB-INF/view/Tail.jsp"/> --%>
+	<jsp:include page="/WEB-INF/view/Footer.jsp" />
 
 <!-- 	<form action='./addCtr.do' method='post' enctype="multipart/form-data"> -->
 <!-- 		이름:			<input type='text' name='name'><br>  -->

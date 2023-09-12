@@ -157,7 +157,7 @@
 		</div>	
 		
 		
-	<jsp:include page="/WEB-INF/view/footer.jsp"/>
+	<jsp:include page="/WEB-INF/view/Footer.jsp"/>
 		
 <script type="text/javascript">
 
