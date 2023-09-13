@@ -91,7 +91,7 @@
 				value="${pagingMap.moviePaging.curPage}">
 		</form>
 		
-	<jsp:include page="/WEB-INF/view/Footer.jsp" />
+<%-- 	<jsp:include page="/WEB-INF/view/Footer.jsp" /> --%>
 
 <!-- 	<p> -->
 <!-- 		<a href='./add.do'>신규 영화</a> -->

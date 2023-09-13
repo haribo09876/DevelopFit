@@ -178,7 +178,7 @@
 		
 	</div>
 		
-	<jsp:include page="/WEB-INF/view/Footer.jsp" />
+<%-- 	<jsp:include page="/WEB-INF/view/Footer.jsp" /> --%>
 		
 		
 <!-- 	<form action='./updateCtr.do' method='post' enctype="multipart/form-data"> -->
