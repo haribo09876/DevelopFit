@@ -4,8 +4,8 @@ import java.io.Serializable;
 
 public class Paging implements Serializable {
 	
-	public static final int PAGE_SCALE = 5;
-	public static final int BLOCK_SCALE = 3;
+	public static final int PAGE_SCALE = 10;
+	public static final int BLOCK_SCALE = 5;
 	
 	private int curPage;
 	

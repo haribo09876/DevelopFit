@@ -58,28 +58,28 @@ public class MovieDaoImpl implements MovieDao{
 		return (int)sqlSession.selectOne("com.dev.movie.movieSelectTotalCount");
 	}
 	
-	@Override
-	public void insertFile(Map<String, Object> map) {
-		// TODO Auto-generated method stub
-		sqlSession.insert("com.dev.movie.insertFile", map);		
-	}
-	
-	@Override
-	public List<Map<String, Object>> fileSelectList(int movieNumber) {
-		// TODO Auto-generated method stub
-		return sqlSession.selectList(namespace + "fileSelectList", movieNumber);
-	}
-	
-	@Override
-	public Map<String, Object> fileSelectStoredFileName(int parentSeq) {
-		// TODO Auto-generated method stub
-		return sqlSession.selectOne(namespace + "fileSelectStoredFileName", parentSeq);
-	}
-	
-	@Override
-	public int fileDelete(int parentSeq) {
-		// TODO Auto-generated method stub
-		return sqlSession.delete(namespace + "fileDelete", parentSeq);
-	}
+//	@Override
+//	public void insertFile(Map<String, Object> map) {
+//		// TODO Auto-generated method stub
+//		sqlSession.insert("com.dev.movie.insertFile", map);		
+//	}
+//	
+//	@Override
+//	public List<Map<String, Object>> fileSelectList(int movieNumber) {
+//		// TODO Auto-generated method stub
+//		return sqlSession.selectList(namespace + "fileSelectList", movieNumber);
+//	}
+//	
+//	@Override
+//	public Map<String, Object> fileSelectStoredFileName(int parentSeq) {
+//		// TODO Auto-generated method stub
+//		return sqlSession.selectOne(namespace + "fileSelectStoredFileName", parentSeq);
+//	}
+//	
+//	@Override
+//	public int fileDelete(int parentSeq) {
+//		// TODO Auto-generated method stub
+//		return sqlSession.delete(namespace + "fileDelete", parentSeq);
+//	}
 
 }

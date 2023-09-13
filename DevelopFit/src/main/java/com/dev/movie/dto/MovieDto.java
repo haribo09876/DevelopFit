@@ -2,6 +2,8 @@ package com.dev.movie.dto;
 
 import java.util.Date;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 public class MovieDto {
 	
 	private int actorNumber;
@@ -26,6 +28,7 @@ public class MovieDto {
 	private int movieNumber;
 	private String movieTitle;
 	private String movieSummary;
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	private Date movieReleaseDate;
 	private String movieRuntime;
 	private int moviePrice;
@@ -33,6 +36,7 @@ public class MovieDto {
 	private String moviePreview;
 	
 	private int orderHistoryNumber;
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	private Date orderHistoryTime;
 	
 	private int preferGenreNumber;

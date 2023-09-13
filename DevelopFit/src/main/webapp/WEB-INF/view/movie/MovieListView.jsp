@@ -25,12 +25,11 @@
 			transform: translateX(-50%);
 		}
 		#movieListTable {
-			background-color: #FFFFFF;
+			background-color: lightgray;
 			color: black;
 		}
 		tr th td {
 			border:1px solid black;
-			background-color: #FFFFFF;
 			color: black;
 		}
 		#movieListPoster {
@@ -53,6 +52,7 @@
 				<th>포스터</th>
 				<th>영화명</th>
 				<th>장르</th>
+				<th>개봉일</th>
 				<th>런타임</th>
 				<th>가격</th>
 			</tr>
@@ -64,23 +64,23 @@
 						<img id="movieListPoster" alt="포스터" src="${movieDto.moviePoster}">			
 					</td>
 					<td>
-						<a href='./listOne.do?no=${movieDto.movieNumber}'>${movieDto.movieTitle}</a>
+						<a href='./listOne.do?movieNumber=${movieDto.movieNumber}'>${movieDto.movieTitle}</a>
 					</td>
-					<td>${movieDto.genreNumber}</td>
+					<td>${movieDto.genreName}</td>
+					<td>${movieDto.movieReleaseDate}</td>
 					<td>${movieDto.movieRuntime} 분</td>
 					<td>${movieDto.moviePrice} 원</td>
 					<td>
-						<button onclick="">&#128398 등록</button>
+						<a href='./update.do?movieNumber=${movieDto.movieNumber}'>&#128465 수정</a>
 					</td>
 					<td>
-						<button onclick="">&#128393 수정</button>
-					</td>
-					<td>
-						<button onclick="">&#128465 삭제</button>
+						<a href='./delete.do?movieNumber=${movieDto.movieNumber}'>&#128465 삭제</a>
 					</td>
 				</tr>
 			</c:forEach>
 		</table>
+
+		<a href='./add.do'>새 영화 등록</a>
 	
 		<jsp:include page="/WEB-INF/view/common/Paging.jsp">
 			<jsp:param value="${pagingMap}" name="pagingMap"/>

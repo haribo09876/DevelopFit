@@ -40,7 +40,7 @@ public class MovieController {
 		int end = moviePaging.getPageEnd();
 		
 		List<MovieDto> movieList = movieService.movieSelectList(start, end);
-	
+
 		HashMap<String, Object> pagingMap = new HashMap<>();
 		pagingMap.put("totalCount", totalCount);
 		pagingMap.put("memberPaging", moviePaging);
@@ -59,10 +59,10 @@ public class MovieController {
 		 Map<String, Object> map = movieService.movieSelectOne(movieNumber);
 	
 		 MovieDto movieDto = (MovieDto)map.get("movieDto");
-		 List<Map<String, Object>> fileList = (List<Map<String, Object>>)map.get("fileList");
+//		 List<Map<String, Object>> fileList = (List<Map<String, Object>>)map.get("fileList");
 	
 		 model.addAttribute("movieDto", movieDto);
-		 model.addAttribute("fileList", fileList);
+//		 model.addAttribute("fileList", fileList);
 	
 		 return "movie/MovieListOneView";
 	 }
@@ -99,10 +99,10 @@ public class MovieController {
 
 		 MovieDto movieDto = (MovieDto)map.get("movieDto");
 	
-		 List<Map<String, Object>> fileList = (List<Map<String, Object>>)map.get("fileList");
+//		 List<Map<String, Object>> fileList = (List<Map<String, Object>>)map.get("fileList");
 	
 		 model.addAttribute("movieDto", movieDto);
-		 model.addAttribute("fileList", fileList);
+//		 model.addAttribute("fileList", fileList);
 	
 		 return "movie/MovieUpdateForm";
 	 }
