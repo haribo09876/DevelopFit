@@ -96,7 +96,7 @@
 </head>
 <body>
 	<jsp:include page="/WEB-INF/view/Header.jsp"/>
-				
+
 		<div id="contentsAreaDiv">
 			<h3>영화 추가 (MovieForm)</h3>
 			<form action="./addCtr.do" method="post" enctype="multipart/form-data">
