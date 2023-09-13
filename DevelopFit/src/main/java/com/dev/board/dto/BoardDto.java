@@ -9,6 +9,7 @@ public class BoardDto {
 	private String boardContent;
 	private Date boardCreateDate;
 	private int boardHit;
+	private String memberId;
 	private int memberNumber;
 	
 	public BoardDto() {
@@ -16,13 +17,14 @@ public class BoardDto {
 	}
 
 	public BoardDto(int boardNumber, String boardTitle, String boardContent, Date boardCreateDate, int boardHit,
-			int memberNumber) {
+			String memberId, int memberNumber) {
 		super();
 		this.boardNumber = boardNumber;
 		this.boardTitle = boardTitle;
 		this.boardContent = boardContent;
 		this.boardCreateDate = boardCreateDate;
 		this.boardHit = boardHit;
+		this.memberId = memberId;
 		this.memberNumber = memberNumber;
 	}
 
@@ -66,6 +68,14 @@ public class BoardDto {
 		this.boardHit = boardHit;
 	}
 
+	public String getMemberId() {
+		return memberId;
+	}
+
+	public void setMemberId(String memberId) {
+		this.memberId = memberId;
+	}
+
 	public int getMemberNumber() {
 		return memberNumber;
 	}
@@ -77,9 +87,13 @@ public class BoardDto {
 	@Override
 	public String toString() {
 		return "BoardDto [boardNumber=" + boardNumber + ", boardTitle=" + boardTitle + ", boardContent=" + boardContent
-				+ ", boardCreateDate=" + boardCreateDate + ", boardHit=" + boardHit + ", memberNumber=" + memberNumber
-				+ "]";
+				+ ", boardCreateDate=" + boardCreateDate + ", boardHit=" + boardHit + ", memberId=" + memberId
+				+ ", memberNumber=" + memberNumber + "]";
 	}
+	
+	
+	
+	
 	
 	
 	

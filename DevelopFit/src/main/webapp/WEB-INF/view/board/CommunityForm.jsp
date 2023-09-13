@@ -29,68 +29,131 @@
 		font-size: 30px;
 	}
 	#comunityboard{
-		margin-top: 80px;
 		margin-left: 70px;
-		height: 50px;
+		height: 500px;
+		width: 1000px;
+	}
+	#menuwrap{
+		margin-top: 40px;
+		margin-left: 70px;
+		margin-bottom: 10px;
+		width: 1000px;
+		height: 38px;
 		border-bottom: 1px solid black;
 	}
-	#board_num{
-		width: 100px;
+	#menuBoardNum{
+		width: 70px;
 		text-align: center;
-		padding-right: 50px;
+		float: left;
 	}
-	#title{
-		width: 300px;
-		text-align: center;
-		padding-right: 50px;
-	}
-	#member{
+	#menuTitle{
 		width: 200px;
 		text-align: center;
-		padding-right: 50px;
+		float: left;
 	}
-	#cre_date{
+	#menuContent{
+		width: 300px;
+		text-align: center;
+		float: left;
+	}
+	#menuMemberId{
 		width: 150px;
 		text-align: center;
-		padding-right: 50px;
+		float: left;
+	}
+	#menuCreDate{
+		width: 150px;
+		text-align: center;
+		float: left;
+	}
+	#menuBoardHit{
+		width: 70px;
+		text-align: center;
+		float: right;
+	}
+	#boardContentWrap{
+		width: 1000px;
+		height: 32px;
+		margin-top: 2px;
+		padding-top: 5px;
+		padding-bottom: 5px;
+	}
+	#boardNum{
+		width: 70px;
+		text-align: center;
+		float: left;
+	}
+	#boardTitle{
+		width: 200px;
+		text-align: center;
+		float: left;
+		text-overflow: ellipsis;
+		overflow: hidden;
+		white-space: nowrap;
+	}
+	#boardContent{
+		width: 300px;
+		text-align: center;
+		float: left;
+		text-overflow: ellipsis;
+		overflow: hidden;
+		white-space: nowrap;
+	}
+	#boardMemberId{
+		width: 150px;
+		text-align: center;
+		float: left;
+		text-overflow: ellipsis;
+		overflow: hidden;
+		white-space: nowrap;
+	}
+	#boardCreDate{
+		width: 150px;
+		text-align: center;
+		float: left;
+	}
+	#BoardBoardHit{
+		width: 70px;
+		text-align: center;
+		float: right;
 	}
 </style>
 </head>
 <body>
 	<div id="container">
 		<div id="headtext">community</div>
-		<div id="comunityboard">
-
-				<div id="boardNum">게시번호</div>
-				<div id="title">제목</div>
-				<div id="content">내용</div>
-				<div id="member">작성자</div>
-				<div id="creDate">작성일</div>
-				<div id="boardHit">조회수</div>
-
-        <c:forEach var="boardDto" items="${boardSelectList}">
-                <div>${boardDto.boardNumber}</div>
-                <div>
-<%--                     <a href='./boardSelectOne.do?no=${boardDto.board_number}'>${boardDto.board_title} --%>
-<!--                     </a> -->
-                </div>
-                <div>
-                	${boardDto.boardTitle}	
-                </div>
-                <div>
-                	${boardDto.boardContent}
-                </div>
-                <div>
-                    <fmt:formatDate pattern="yyyy-MM-dd hh:mm" value="${boardDto.boardCreateDate}"/>
-                </div>
-                <div>${boardDto.boardHit}</div>
+			<div id="menuwrap">
+				<div id="menuBoardNum">게시번호</div>
+				<div id="menuTitle">제목</div>
+				<div id="menuContent">내용</div>
+				<div id="menuMemberId">작성자</div>
+				<div id="menuCreDate">작성일</div>
+				<div id="menuBoardHit">조회수</div>
+			</div>
+		<div id="comunityboard">	
+       		<c:forEach var="boardDto" items="${boardList}">
+       			<div id="boardContentWrap">
+	            	<div id="boardNum">${boardDto.boardNumber}</div>
+	                
+	                <div id="boardTitle">${boardDto.boardTitle}</div>
+	                
+	                <div id="boardContent">${boardDto.boardContent}</div>
+	                
+	               	<div id="boardMemberId">${boardDto.memberId}</div>
+	                
+	                <div id="boardCreDate">
+	                    <fmt:formatDate pattern="yyyy-MM-dd" value="${boardDto.boardCreateDate}"/>
+	                </div>
+	                
+	                <div id="BoardBoardHit">${boardDto.boardHit}</div>
                 
-                    <!-- 폼 필드 추가 -->
+                </div>
                     <input type="hidden" name="boardNumber" value="${boardDto.boardNumber}">
         </c:forEach>
-   
+   		
 	</div>
 </div>
-
+<%--                     <a href='./boardSelectOne.do?no=${boardDto.board_number}'>${boardDto.board_title} --%>
+<!--                     </a> -->
 </body>
 </html>

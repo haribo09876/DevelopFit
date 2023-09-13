@@ -7,9 +7,11 @@
 	<resultMap type="boardDto" id="boardResultMap">
 		<id column="BOARD_NUMBER" property="boardNumber" />
 		<result column="BOARD_TITLE" property="boardTitle" />
+		<result column="BOARD_CONTENT" property="boardContent" />
 		<result column="BOARD_CREATE_DATE" property="boardCreateDate" 
 		javaType="java.util.Date" />
 		<result column="BOARD_HIT" property="boardHit" />
+		<result column="MEMBER_ID" property="memberId" />
 		<result column="MEMBER_NUMBER" property="memberNumber" />
 	</resultMap>
 	
@@ -38,32 +40,32 @@
 		</selectKey>
 		
 		INSERT INTO BOARD
-			(BOARD_NUMBER, BOARD_TITLE, BOARD_CONTENT, BOARD_CREATE_DATE, MEMBER_NUMBER)
-		VALUES(#{board_number}, #{board_title}, #{board_content}, 
-		SYSDATE, #{member_number})
+			(BOARD_NUMBER, BOARD_TITLE, BOARD_CONTENT, MEMBER_ID, BOARD_CREATE_DATE, BOARD_HIT)
+		VALUES(#{boardNumber}, #{boardTitle}, #{boardContent}, 
+		SYSDATE, #{memberId}, #{boardHit})
 	</insert>
 	
 <!-- 	게시글 수정을 위해 수정할 게시글 하나 선택 -->
 	<select id="boardSelectOne" parameterType="int" resultMap="boardResultMap">
 		SELECT BOARD_TITLE, BOARD_CONTENT
 		FROM BOARD
-		WHERE MEMBER_NUMBER = #{member_number}
+		WHERE MEMBER_NUMBER = #{memberNumber}
 	</select>
 	
 <!-- 	게시글 내용 업데이트 (제목, 내용) -->
 	<update id="boardUpdateOne" parameterType="boardDto">
 		UPDATE BOARD
 		<set>
-			<if test="title != ''">BOARD_TITLE = #{board_title},</if>
-			<if test="content != ''">BOARD_CONTENT = #{board_content},</if>
+			<if test="title != ''">BOARD_TITLE = #{boardTitle},</if>
+			<if test="content != ''">BOARD_CONTENT = #{boardContent},</if>
 		</set>
-		WHERE MEMBER_NUMBER = #{member_number}
+		WHERE MEMBER_NUMBER = #{memberNumber}
 	</update>
 	
 <!-- 	게시글 내용 삭제 -->
 	<delete id="boardDeleteOne" parameterType="int">
 		DELETE FROM BOARD
-		WHERE MEMBER_NUMBER = #{member_number}
+		WHERE MEMBER_NUMBER = #{memberNumber}
 	</delete>
 	
 <!-- 	페이징 기능을 위한 총 게시글 수 산출 -->

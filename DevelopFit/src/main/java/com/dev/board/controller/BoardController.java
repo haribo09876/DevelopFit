@@ -74,7 +74,7 @@ public class BoardController<Paging> {
 	    log.info("Welcome MemberController list!");
 
 	    // 게시글 리스트를 가져옵니다.
-	    List<BoardDto> boardList = boardService.boardSelectList(1, 1);
+	    List<BoardDto> boardList = boardService.boardSelectList(1, 10);
 
 	    model.addAttribute("boardList", boardList);
 
