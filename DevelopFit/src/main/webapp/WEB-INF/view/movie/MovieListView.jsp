@@ -6,7 +6,7 @@
 <html>
 <head>
 	<meta charset="UTF-8">
-	<title>MovieListView</title>
+	<title>영화 목록 (MovieListView)</title>
 	<script type="text/javascript">
 
 	</script>
@@ -46,7 +46,7 @@
 
 	
 	<div id="contentsAreaDiv">
-		<h3>영화목록 (MovieListView)</h3>
+		<h3>영화 목록 (MovieListView)</h3>
 		<table id="movieListTable">
 			<tr>
 				<th>영화번호</th>
@@ -67,8 +67,17 @@
 						<a href='./listOne.do?no=${movieDto.movieNumber}'>${movieDto.movieTitle}</a>
 					</td>
 					<td>${movieDto.genreNumber}</td>
-					<td>${movieDto.movieRuntime}</td>
-					<td>${movieDto.moviePrice}</td>
+					<td>${movieDto.movieRuntime} 분</td>
+					<td>${movieDto.moviePrice} 원</td>
+					<td>
+						<button onclick="">&#128398 등록</button>
+					</td>
+					<td>
+						<button onclick="">&#128393 수정</button>
+					</td>
+					<td>
+						<button onclick="">&#128465 삭제</button>
+					</td>
 				</tr>
 			</c:forEach>
 		</table>

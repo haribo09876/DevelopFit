@@ -6,7 +6,7 @@
 <html>
 <head>
 	<meta charset="UTF-8">
-	<title>MovieUpdateForm</title>
+	<title>영화 수정 (MovieUpdateForm)</title>
 	<style>
 		body{
 			background-color: #101322;
@@ -98,7 +98,7 @@
 	<jsp:include page="/WEB-INF/view/Header.jsp"/>
 	
 	<div id="contentsAreaDiv">
-		<h3>인셉션</h3>
+		<h3>영화 수정 (MovieUpdateForm)</h3>
 		<img id="poster" alt="영화포스터" src="https://m.media-amazon.com/images/M/MV5BMjExMjkwNTQ0Nl5BMl5BanBnXkFtZTcwNTY0OTk1Mw@@._V1_.jpg" />
 		<div id="firstSectionDiv">
 			<p>영화명 : 인셉션</p>

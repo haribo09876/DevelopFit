@@ -6,7 +6,7 @@
 <html>
 <head>
 	<meta charset="UTF-8">
-	<title>MovieListOneView</title>
+	<title>영화 상세 (MovieListOneView)</title>
 	<style>
 		body{
 			background-color: #101322;
@@ -98,14 +98,14 @@
 	<jsp:include page="/WEB-INF/view/Header.jsp"/>
 	
 	<div id="contentsAreaDiv">
-		<h3>인셉션</h3>
+		<h3>영화 상세 (MovieListOneView)</h3>
 		<img id="poster" alt="영화포스터" src="https://m.media-amazon.com/images/M/MV5BMjExMjkwNTQ0Nl5BMl5BanBnXkFtZTcwNTY0OTk1Mw@@._V1_.jpg" />
 		<div id="firstSectionDiv">
-			<p>영화명 : 인셉션</p>
-			<p>장르 : 장르1, 장르2, 장르3</p>
-			<p>관람가 : OO세 관람가</p>
-			<p>개봉일 : 0000년 00월</p>
-			<p>가격 : 00,000 원</p>
+			<a>영화명 : 인셉션</a>
+			<a>장르 : 장르1, 장르2, 장르3</a>
+			<a>관람가 : OO세 관람가</a>
+			<a>개봉일 : 0000년 00월</a>
+			<a>가격 : 00,000 원</a>
 		</div>
 		<div id="secondSectionDiv">
 			<button class="firstButton">&#x1F44D  좋아요</button>
