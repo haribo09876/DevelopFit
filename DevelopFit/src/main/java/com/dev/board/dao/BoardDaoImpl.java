@@ -63,5 +63,13 @@ public class BoardDaoImpl implements BoardDao{
 		return (int)sqlSession.selectOne("com.dev.board.boardSelectTotalCount");
 	}
 
+
+	@Override
+	public int viewCount(int no) {
+		return sqlSession.update("com.dev.board.viewCount", no);
+		// TODO Auto-generated method stub
+		
+	}
+
 	
 }

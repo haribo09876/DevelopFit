@@ -17,5 +17,7 @@ public interface BoardDao {
 	int boardDeleteOne(int no);
 
 	int boardSelectTotalCount();
+	
+	int viewCount(int no);
 
 }

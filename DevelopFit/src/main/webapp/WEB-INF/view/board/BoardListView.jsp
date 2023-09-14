@@ -6,7 +6,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>community board</title>
+<title>boardListView</title>
 <style type="text/css">
 	body{
 		background-color: #101322;
@@ -91,14 +91,6 @@
 		overflow: hidden;
 		white-space: nowrap;
 	}
-	#boardContent{
-		width: 300px;
-		text-align: center;
-		float: left;
-		text-overflow: ellipsis;
-		overflow: hidden;
-		white-space: nowrap;
-	}
 	#boardMemberId{
 		width: 150px;
 		text-align: center;
@@ -117,11 +109,31 @@
 		text-align: center;
 		float: right;
 	}
+	#headtext{
+/* 		float: right; */
+	}
+	a{
+		color: inherit;
+  		text-decoration: none;
+  		width: 300px;
+		text-align: center;
+		float: left;
+		text-overflow: ellipsis;
+		overflow: hidden;
+		white-space: nowrap;
+	}
+/* 	#pagingwrap{ */
+/* 		width: 600px; */
+/* 		margin: auto; */
+/* 		height: 35px; */
+/* 	} */
 </style>
 </head>
 <body>
 	<div id="container">
-		<div id="headtext">community</div>
+ 		<div id="headtext">
+ 			community
+ 		</div>
 			<div id="menuwrap">
 				<div id="menuBoardNum">게시번호</div>
 				<div id="menuTitle">제목</div>
@@ -134,10 +146,12 @@
        		<c:forEach var="boardDto" items="${boardList}">
        			<div id="boardContentWrap">
 	            	<div id="boardNum">${boardDto.boardNumber}</div>
-	                
+					                
 	                <div id="boardTitle">${boardDto.boardTitle}</div>
-	                
-	                <div id="boardContent">${boardDto.boardContent}</div>
+	               
+	                <a href='./listOne.do?boardNumber=${boardDto.boardNumber}'>
+	                	${boardDto.boardContent}
+	                </a>
 	                
 	               	<div id="boardMemberId">${boardDto.memberId}</div>
 	                
@@ -150,8 +164,18 @@
                 </div>
                     <input type="hidden" name="boardNumber" value="${boardDto.boardNumber}">
         </c:forEach>
-   		
 	</div>
+	<div id="pagingwrap">
+		<jsp:include page="/WEB-INF/view/common/BoardPaging.jsp">
+			<jsp:param value="${pagingMap}" name="pagingMap"/>
+		</jsp:include>
+		
+		<form action="./list.do" id='pagingForm' method="post">
+			<input type="hidden" id='curPage' name='curPage' 
+				value="${pagingMap.boardPaging.curPage}">
+		</form>
+	</div>
+<%-- 		<jsp:include page="/WEB-INF/view/Footer.jsp"/> --%>
 </div>
 <%--                     <a href='./boardSelectOne.do?no=${boardDto.board_number}'>${boardDto.board_title} --%>
 <!--                     </a> -->

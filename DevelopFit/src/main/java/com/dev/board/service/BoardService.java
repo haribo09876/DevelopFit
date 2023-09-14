@@ -15,11 +15,13 @@ public interface BoardService {
 
 	Map<String, Object> boardSelectOne(int no);
 
-	int memberUpdateOne(BoardDto boardDto, MultipartHttpServletRequest multipartHttpServletRequest, int fileIdx)
-			throws Exception;
+	int boardUpdateOne(BoardDto boardDto);
 
 	int boardDeleteOne(int no);
 
 	int boardSelectTotalCount();
-	
+
+	List<BoardDto> boardSearchList(String searchKeyword, int start, int end);
+
+	int viewCount(int no);
 }

@@ -6,7 +6,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>UpdateForm</title>
+<title>boardListOneView</title>
 <style type="text/css">
 	body{
 		background-color: #101322;
@@ -78,24 +78,33 @@
 	<div id="container">
 		<div id="topcontent">
 			<div id="iddatewrap">
-		 		<div id="memberid">글쓴이: ${boardDto.memberId}</div>
+				<div>
+		 			<div id="memberid">글쓴이: ${boardDto.memberId}</div>
+		 		</div>
 		 		<div id="createdate">작성일: 
 		 			<fmt:formatDate pattern="yyyy-MM-dd" value="${boardDto.boardCreateDate}"/>
 		 		</div>
 		 	</div>
-		</div>
-	 	
 	 	<div id="boardhit">조회수: ${boardDto.boardHit}</div>
-		
-		<form action='./updateCtr.do' method='post'>
+			
+		<div id="title">제목: ${boardDto.boardTitle}</div>
+			
+		<div id="content">
+			${boardDto.boardContent}
+		</div>
+			
+		</div>
+<%-- 		<c:if></c:if> --%>
+		<form action='./update.do' method='post'>
 			<input type="hidden" name='boardNumber' value='${boardDto.boardNumber}'>
 			<input type="hidden" name='memberNumber' value='${boardDto.memberNumber}'>
-			제목:		<input id="title" type="text" name="boardTitle" value="${boardDto.boardTitle}"> 
-			내용:		<input id="content" type="text" name="boardContent" value="${boardDto.boardContent}"> 
-			<input type="submit" value="수정완료" />
-		</form>	
-
-	
+			<input type="submit" value="수정">
+		</form>
+		<form action='./delete.do' method='post'>
+			<input type="hidden" name='boardNumber' value='${boardDto.boardNumber}'>
+			<input type="hidden" name='memberNumber' value='${boardDto.memberNumber}'>
+			<input type="submit" value="삭제">
+		</form>
 </div>
 	
 		<div id="commentmenu">

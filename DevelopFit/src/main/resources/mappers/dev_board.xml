@@ -18,19 +18,38 @@
 <!-- 	게시글 리스트 = 게시판 -->
 	<select id="boardSelectList" parameterType="map" resultMap="boardResultMap">
 		SELECT C.BOARD_NUMBER, C.BOARD_TITLE, C.BOARD_CONTENT, C.MEMBER_ID, 
-		C.BOARD_CREATE_DATE, C.BOARD_HIT
+		C.BOARD_CREATE_DATE, C.BOARD_HIT, C.MEMBER_NUMBER
 		FROM(
 		SELECT ROWNUM AS RNUM, C.BOARD_NUMBER, C.BOARD_TITLE, C.BOARD_CONTENT, 
-		C.MEMBER_ID, C.BOARD_CREATE_DATE, C.BOARD_HIT
+		C.MEMBER_ID, C.BOARD_CREATE_DATE, C.BOARD_HIT, C.MEMBER_NUMBER
 		FROM(
 		SELECT B.BOARD_NUMBER, B.BOARD_TITLE, B.BOARD_CONTENT, M.MEMBER_ID, 
-		B.BOARD_CREATE_DATE, B.BOARD_HIT
+		B.BOARD_CREATE_DATE, B.BOARD_HIT, M.MEMBER_NUMBER
 		FROM MEMBER M JOIN BOARD B ON M.MEMBER_NUMBER = B.MEMBER_NUMBER
-		ORDER BY BOARD_CREATE_DATE DESC) C
+		ORDER BY BOARD_NUMBER) C
 		) C
-<!-- 		WHERE C.RNUM BETWEEN #{start} AND #{end} -->
-
+		WHERE C.RNUM BETWEEN #{start} AND #{end}
+		ORDER BY C.BOARD_NUMBER
+		
 	</select>
+	
+<!-- 	게시글 상세페이지 -->
+	<select id="boardSelectOne" parameterType="int" resultMap="boardResultMap">
+		SELECT B.BOARD_NUMBER, M.MEMBER_ID, B.BOARD_TITLE, B.BOARD_CONTENT,
+        B.BOARD_CREATE_DATE, B.BOARD_HIT, M.MEMBER_NUMBER
+		FROM MEMBER M JOIN BOARD B
+		ON M.MEMBER_NUMBER = B.MEMBER_NUMBER
+		WHERE B.BOARD_NUMBER = #{boardNumber}
+	</select>
+<!-- 	조회수 증가 -->
+	<update id="viewCount" parameterType="int">
+		UPDATE BOARD
+		<set>
+			BOARD_HIT = BOARD_HIT + 1
+		</set>
+		WHERE BOARD_NUMBER = #{boardNumber}
+	</update>
+	
 <!-- 	게시글 생성 -->
 	<insert id="boardInsertOne" parameterType="boardDto"
 		useGeneratedKeys="true" keyProperty="no">
@@ -45,23 +64,18 @@
 		SYSDATE, #{memberId}, #{boardHit})
 	</insert>
 	
-<!-- 	게시글 수정을 위해 수정할 게시글 하나 선택 -->
-	<select id="boardSelectOne" parameterType="int" resultMap="boardResultMap">
-		SELECT BOARD_TITLE, BOARD_CONTENT
-		FROM BOARD
-		WHERE MEMBER_NUMBER = #{memberNumber}
-	</select>
 	
 <!-- 	게시글 내용 업데이트 (제목, 내용) -->
 	<update id="boardUpdateOne" parameterType="boardDto">
 		UPDATE BOARD
-		<set>
-			<if test="title != ''">BOARD_TITLE = #{boardTitle},</if>
-			<if test="content != ''">BOARD_CONTENT = #{boardContent},</if>
-		</set>
-		WHERE MEMBER_NUMBER = #{memberNumber}
+ 		<set>
+ 			<if test="boardTitle != null">BOARD_TITLE = #{boardTitle},</if>
+ 			<if test="boardContent != null">BOARD_CONTENT = #{boardContent}</if>
+ 		</set>
+ 		WHERE MEMBER_NUMBER = #{memberNumber}
+		AND BOARD_NUMBER = #{boardNumber}
 	</update>
-	
+		
 <!-- 	게시글 내용 삭제 -->
 	<delete id="boardDeleteOne" parameterType="int">
 		DELETE FROM BOARD
@@ -71,7 +85,7 @@
 <!-- 	페이징 기능을 위한 총 게시글 수 산출 -->
 	<select id="boardSelectTotalCount" resultType="java.lang.Integer">
 		SELECT COUNT(*)
-		FROM MEMBER
+		FROM BOARD
 	</select>
 	
 

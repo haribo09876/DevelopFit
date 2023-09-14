@@ -50,20 +50,12 @@ public class BoardServiceImpl implements BoardService{
 		return resultMap;
 	}
 
-	@Transactional(rollbackFor = Exception.class)
 	@Override
-	public int memberUpdateOne(BoardDto boardDto
-		, MultipartHttpServletRequest multipartHttpServletRequest
-		, int fileIdx) throws Exception{
+	public int boardUpdateOne(BoardDto boardDto){
 		// TODO Auto-generated method stub
 		int resultNum = 0;
 		
-		try {
-			resultNum = boardDao.boardUpdateOne(boardDto);
-			
-		} catch (Exception e) {
-			TransactionAspectSupport.currentTransactionStatus().setRollbackOnly();
-		}
+		resultNum = boardDao.boardUpdateOne(boardDto);
 		
 		return resultNum;
 	}
@@ -78,5 +70,15 @@ public class BoardServiceImpl implements BoardService{
 	public int boardSelectTotalCount() {
 		// TODO Auto-generated method stub
 		return boardDao.boardSelectTotalCount();
+	}
+	@Override
+	public List<BoardDto> boardSearchList(String searchKeyword, int start, int end) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+	@Override
+	public int viewCount(int no) {
+		// TODO Auto-generated method stub
+		return boardDao.viewCount(no);
 	}
 }
