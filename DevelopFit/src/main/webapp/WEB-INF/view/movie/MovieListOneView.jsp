@@ -97,39 +97,52 @@
 <body>
 	<jsp:include page="/WEB-INF/view/Header.jsp"/>
 	
+	
+<!-- 		<h1>회원정보</h1> -->
+<!-- 		<form action='./update.do' method='get'> -->
+<%-- 			<input type='hidden' name='no' value='${memberDto.no}'> --%>
+<!-- 			이름:		<input type='text' name='name' id="memberName" -->
+<%-- 							value='${memberDto.name}' readonly="readonly"><br> --%>
+<!-- 			이메일: <input type='text' name='email' -->
+<%-- 							value='${memberDto.email}' readonly="readonly"><br> --%>
+<!-- 			<input type='submit' value='수정하기'> -->
+<!-- 			<input type='button' value='이전페이지' onclick='pageMoveListFnc();'> -->
+<!-- 		</form> -->
+	
+	
+	<a href='./list.do'>&#128281 회원목록으로</a>
+	<a href='./update.do?movieNumber=${movieDto.movieNumber}'>&#128465 수정</a>
+	<a href='./delete.do?movieNumber=${movieDto.movieNumber}'>&#128465 삭제</a>
+	
 	<div id="contentsAreaDiv">
 		<h3>영화 상세 (MovieListOneView)</h3>
-		<img id="poster" alt="영화포스터" src="https://m.media-amazon.com/images/M/MV5BMjExMjkwNTQ0Nl5BMl5BanBnXkFtZTcwNTY0OTk1Mw@@._V1_.jpg" />
+		<img id="poster" alt="영화포스터" src="${movieDto.moviePoster}" />
 		<div id="firstSectionDiv">
-			<a>영화명 : 인셉션</a>
-			<a>장르 : SF</a>
-			<a>관람가 : 12세 관람가</a>
-			<a>개봉일 : 2010년 07월 21일</a>
-			<a>가격 : 10,000 원</a>
+			<p>영화명 : ${movieDto.movieTitle}</p>
+			<p>장르 : ${movieDto.genreName}</p>
+			<p>개봉일 : ${movieDto.movieReleaseDate}</p>
+			<p>상영시간 : ${movieDto.movieRuntime}분</p>
+			<p>관람가 : 00세 관람가</p>
+			<p>가격 : ${movieDto.moviePrice} 원</p>
 		</div>
 		<div id="secondSectionDiv">
 			<button class="firstButton">&#x1F44D  좋아요</button>
 			<button class="firstButton">&#x2714  봤어요</button>
 			<button class="firstButton">&#x1F517  공유하기</button><br>
-			<button id="secondButton">장바구니추가</button>
-			<button id="thirdButton">구매하기</button>			
+			<button id="secondButton">&#128722 장바구니추가</button>
+			<button id="thirdButton">&#127916 구매하기</button>			
 		</div>
-		
+
 		<h3>영화내용</h3>
 		<div id="thirdSectionDiv">
-			<a>타인의 꿈에 들어가 생각을 훔치는 특수 보안요원 코브. 그를 이용해 라이벌 기업의 정보를 빼내고자 하는
-					사이토는 코브에게 생각을 훔치는 것이 아닌, 생각을 심는 ‘인셉션’ 작전을 제안한다.
-					성공 조건으로 국제적인 수배자가 되어있는 코브의 신분을 바꿔주겠다는 거부할 수 없는 제안을 하고,
-					사랑하는 아이들에게 돌아가기 위해 그 제안을 받아들인다. 최강의 팀을 구성, 표적인 피셔에게 접근해서
-					‘인셉션’ 작전을 실행하지만 예기치 못한 사건들과 마주하게 되는데…
-					꿈 VS 현실
-					시간, 규칙, 타이밍 모든 것이 완벽해야만 하는, 단 한 번도 성공한 적 없는 ‘인셉션’ 작전이 시작된다!
-			</a>		
+			<p>
+				${movieDto.movieSummary}
+			</p>
 		</div>
 		
 		<h3>예고편</h3>
 		<div id="fourthSectionDiv">
-			<iframe width="560" height="315" src="https://www.youtube.com/embed/GuW4X4Gwq2w?si=BfKvaQolvbm6BSgu"
+			<iframe width="560" height="315" src="${movieDto.moviePreview}"
 				frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
 				allowfullscreen style="position: absolute; width:100%; height:100%;"></iframe>
 		</div>
@@ -148,64 +161,35 @@
 		
 		<h3>출연진</h3>
 		<div id="sixthSectionDiv">
-			<p class="actor">레오나르도 디카프리오</p>
-			<p class="actor">마리옹 꼬띠아르</p>
-			<p class="actor">조셉 고든 레빗</p>
-			<p class="actor">톰 하디</p>
-			<p class="actor">킬리언 머피</p>
-			<p class="actor">엘리엇 페이지</p>
-			<p class="actor">와타나베 켄</p>
+			<p class="actor">배우1</p>
+			<p class="actor">배우2</p>
+			<p class="actor">배우3</p>
+			<p class="actor">배우4</p>
+			<p class="actor">배우5</p>
+			<p class="actor">배우6</p>
+			<p class="actor">배우7</p>
 		</div>
 		
 		<h3>한줄평</h3>
 		<div id="seventhSectionDiv">
-			<a>타인의 꿈에 들어가 생각을 훔치는 특수 보안요원 코브. 그를 이용해 라이벌 기업의 정보를 빼내고자 하는
-					사이토는 코브에게 생각을 훔치는 것이 아닌, 생각을 심는 ‘인셉션’ 작전을 제안한다.
-			</a>
+			<p>
+				한줄평1 내용 ~~~
+			</p>
 			<hr>
-			<a>타인의 꿈에 들어가 생각을 훔치는 특수 보안요원 코브. 그를 이용해 라이벌 기업의 정보를 빼내고자 하는
-					사이토는 코브에게 생각을 훔치는 것이 아닌, 생각을 심는 ‘인셉션’ 작전을 제안한다.
-			</a>
+			<p>
+				한줄평2 내용 ~~~
+			</p>
 			<hr>
-			<a>타인의 꿈에 들어가 생각을 훔치는 특수 보안요원 코브. 그를 이용해 라이벌 기업의 정보를 빼내고자 하는
-					사이토는 코브에게 생각을 훔치는 것이 아닌, 생각을 심는 ‘인셉션’ 작전을 제안한다.
-			</a>
+			<p>
+				한줄평3 내용 ~~~
+			</p>
 			<hr>
-			<a>∨ 더보기</a>
+			<p>∨ 더보기</p>
 			<hr>
 		</div>
-				
-		
 	</div>
 	
 <%-- 	<jsp:include page="/WEB-INF/view/Footer.jsp" /> --%>
-	
-<!-- 	<form action='./update.do' method='get'> -->
-<%-- 		<input type='hidden' name='no' value='${memberDto.no}'> --%>
-<!-- 		이름:		<input type='text' name='name' id="memberName" -->
-<%-- 						value='${memberDto.name}' readonly="readonly"><br> --%>
-<!-- 		이메일: <input type='text' name='email' -->
-<%-- 						value='${memberDto.email}' readonly="readonly"><br> --%>
-<!-- 		첨부파일: -->
-<%-- 		<c:choose> --%>
-<%-- 			<c:when test="${empty fileList}"> --%>
-<!-- 				첨부파일이 없습니다. -->
-<%-- 			</c:when> --%>
-<%-- 			<c:otherwise> --%>
-<%-- 				<c:forEach var="row" items="${fileList}"> --%>
-<%-- 					<input type="button" value="이미지" name="file">${row.ORIGINAL_FILE_NAME} --%>
-<%-- 					(${row.FILE_SIZE}kb)<br> --%>
-<!-- 					<img alt="image not found" -->
-<%-- 						src="<c:url value='/img/${row.STORED_FILE_NAME}'/>"><br>				 --%>
-<%-- 				</c:forEach> --%>
-<%-- 			</c:otherwise> --%>
-<%-- 		</c:choose> --%>
-						
-<%-- 		가입일: <fmt:formatDate value="${requestScope.memberDto.createDate}" pattern="yyyy-MM-dd hh:mm" /><br> --%>
-<!-- 		<input type='submit' value='수정하기'> -->
-<!-- 		<input type='button' value='이전페이지' onclick='pageMoveListFnc();'> -->
-<!-- 	</form> -->
-	
-<%-- 	<jsp:include page="/WEB-INF/views/Tail.jsp"/> --%>
+
 </body>
 </html>

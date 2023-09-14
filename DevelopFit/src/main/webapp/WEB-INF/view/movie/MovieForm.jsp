@@ -108,7 +108,7 @@
 				포스터 :			<input type='text' 	name='moviePoster'><br>
 				예고편 :			<input type='text' 	name='moviePreview'><br>
 				장르번호 :		<input type='number' name='genreNumber'><br>
-				<a href='./list.do'>뒤로가기</a>
+				<a href='./list.do'>&#128281 뒤로가기</a>
 				<input type="submit" value="추가">
 			</form>
 		</div>

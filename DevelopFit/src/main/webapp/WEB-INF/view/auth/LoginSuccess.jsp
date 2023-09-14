@@ -155,6 +155,9 @@ a {
 
 
 	<div id="wrap">
+
+		<span style="color: white;"> ${member.memberId}님 </span>
+
 		<div id="title">
 			<h2>로그인</h2>
 		</div>
@@ -191,31 +194,27 @@ a {
 	<jsp:include page="/WEB-INF/view/Footer.jsp" />
 
 	<script type="text/javascript">
+		var inputID = document.getElementById('input-id');
+		var inputPW = document.getElementById('input-pw');
 
-	alert("아이디 또는 비밀번호를 확인해주세요.")
+		function check() {
+			var form = document.loginForm;
 
-	var inputID = document.getElementById('input-id');
-	var inputPW = document.getElementById('input-pw');
+			if (inputID.value === '') {
+				alert('아이디를 입력해 주세요.');
+				form.memberId.focus();
+				return false;
+			} else if (inputPW.value === '') {
+				alert('비밀번호를 입력해 주세요.');
+				form.memberPassword.focus();
+				return false;
+			}
+			form.submit();
+		}
 
-	function check(){
-		var form = document.loginForm;
-		
-		if (inputID.value === '') {
-			alert('아이디를 입력해 주세요.');
-			form.memberId.focus();
-	        return false;
-		} else if(inputPW.value === ''){
-			alert('비밀번호를 입력해 주세요.');
-			form.memberPassword.focus();
-			return false;
-		} 
-		form.submit();
-	}
-	
-	function pageMove(){
-		location.href = "../member/add.do";
-	}
-	
-</script>
+		function pageMove() {
+			location.href = "../member/add.do";
+		}
+	</script>
 </body>
 </html>

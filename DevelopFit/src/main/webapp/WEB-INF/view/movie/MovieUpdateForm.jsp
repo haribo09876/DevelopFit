@@ -92,57 +92,27 @@
 	<script type="text/javascript" src="/SpringHome/resources/js/jquery-3.7.1.js">
 	</script>
 	<script type="text/javascript">
-		$(document).ready(function(){
-			$("a[id^='delete']").on("click", function(e){
-				e.preventDefault();
-				deleteFile($(this));		
-			});	
-		});
-	
-		function deleteFile(obj) {
-			obj.parent().remove();
-		}
-	
-		function addFileFnc() {
-			var obj = $('#fileContent');
-			var htmlStr ="";
-			htmlStr += '<div>';
-			htmlStr += '<input type="hidden" id="fileIdx" name="fileIdx" value="">';
-			htmlStr += '<input type="file" id="file0" name="file0" value="">';
-			htmlStr += '<a href="#this" id="delete0" onclick="addFileFnc();">삭제</a><br>';
-			htmlStr += '</div>';
-			
-			obj.html(htmlStr);
-			
-			$('a[id^="delete"]').on('click', function(e) {
-				e.preventDefault();
-				deleteFile($(this));
-			});
-		}
-		
-		function pageMoveListFnc() {
-			location.href = "./list.do";
-		}
-	
-		function pageMoveDeleteFnc(no) {
-			var url = './delete.do?no=' + no;
-			location.href = url;
-		}
+
 	</script>
 </head>
 <body>
 	<jsp:include page="/WEB-INF/view/Header.jsp"/>
-	
+			
 	<h3>영화 수정 (MovieUpdateForm)</h3>	
 	<form action='./updateCtr.do' method='post' enctype="multipart/form-data">
-			영화제목 :	<input type='text' name='movieTitle' value='${memberDto.movieTitle}'><br>
-			줄거리 :		<input type='text' name='movieSummary' value='${memberDto.movieSummary}'><br>
-			개봉일 :		<input type='date' name='movieReleaseDate' value='${memberDto.movieReleaseDate}'><br>
-			상영시간 :	<input type='number' name='movieRuntime' value='${memberDto.movieRuntime}'><br>
-			가격 :		<input type='number' name='moviePrice' value='${memberDto.moviePrice}'><br>
-			포스터 :		<input type='text' name='moviePoster' value='${memberDto.moviePoster}'><br>
-			예고편 :		<input type='text' name='moviePreview' value='${memberDto.moviePreview}'><br>
-			장르번호 :	<input type='number' name='genreNumber' value='${memberDto.genreNumber}'>
+
+		영화제목 :	<input type='text' name='movieTitle' value='${movieDto.movieTitle}'><br>
+		줄거리 :		<input type='text' name='movieSummary' value='${movieDto.movieSummary}'><br>
+		개봉일 :		<input type='date' name='movieReleaseDate' value='${movieDto.movieReleaseDate}'><br>
+		상영시간 :	<input type='number' name='movieRuntime' value='${movieDto.movieRuntime}'><br>
+		가격 :		<input type='number' name='moviePrice' value='${movieDto.moviePrice}'><br>
+		포스터 :		<input type='text' name='moviePoster' value='${movieDto.moviePoster}'><br>
+		예고편 :		<input type='text' name='moviePreview' value='${movieDto.moviePreview}'><br>
+
+		<input type='submit' value='저장하기'>
+		<a href='./list.do'>&#128281 회원목록으로</a>
+		<a href='./delete.do?movieNumber=${movieDto.movieNumber}'>&#128465 삭제하기</a>
+	</form>
 
 <!-- 			<div id='fileContent'> -->
 <!-- 				<div> -->
@@ -167,10 +137,7 @@
 <!-- 				</div> -->
 <!-- 			</div> -->
 <!-- 				<input type="button" value='파일추가' onclick="addFileFnc();"> -->
-				<input type='submit' value='저장하기'>
-				<a href='./delete.do?movieNumber=${movieDto.movieNumber}'>&#128465 삭제하기</a>
-				<a href='./list.do'>회원목록으로</a>
-	</form>
+
 		
 <%-- 	<jsp:include page="/WEB-INF/view/Footer.jsp" /> --%>
 		

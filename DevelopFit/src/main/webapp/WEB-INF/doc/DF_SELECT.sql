@@ -1,6 +1,6 @@
 -- 가입자의 모든 정보
 SELECT M.MEMBER_NUMBER 번호, M.MEMBER_ID 아이디, M.MEMBER_PASSWORD 비밀번호, M.MEMBER_NAME 이름, M.MEMBER_EMAIL 이메일,
-        M.MEMBER_BIRTH_DATE 생년월일, M.MEMBER_PHONE_NUBMER 전화번호, M.MEMBER_GENDER 성별,
+        M.MEMBER_BIRTH_DATE 생년월일, M.MEMBER_PHONE_NUMBER 전화번호, M.MEMBER_GENDER 성별,
         M.MEMBER_CREATE_DATE 가입일, M.MEMBER_MODIFY_DATE 수정일,
         PG.PREFER_GENRE_FIRST 선호장르1, PG.PREFER_GENRE_SECOND 선호장르2, PG.PREFER_GENRE_THIRD 선호장르3
 FROM MEMBER M JOIN PREFER_GENRE PG
@@ -67,8 +67,10 @@ ON b.movie_number = mv.movie_number;
 SELECT OH.ORDER_HISTORY_NUMBER, M.MEMBER_ID 아이디, MV.MOVIE_TITLE, OH.ORDER_HISTORY_TIME
 FROM MEMBER M JOIN ORDER_HISTORY OH
 ON m.member_number = oh.member_number
+JOIN ORDER_PRODUCT OP
+ON op.order_history_number = oh.order_history_number
 JOIN MOVIE MV
-ON oh.movie_number = mv.movie_number;
+ON op.movie_number = mv.movie_number;
 
 
 -- 한줄평 보기

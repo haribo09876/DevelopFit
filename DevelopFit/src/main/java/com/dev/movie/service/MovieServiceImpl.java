@@ -77,9 +77,9 @@ public class MovieServiceImpl implements MovieService{
 		// TODO Auto-generated method stub
 		int resultNum = 0;
 		
-//		try {
-//			resultNum = movieDao.movieUpdateOne(movieDto);
-//			
+		try {
+			resultNum = movieDao.movieUpdateOne(movieDto);
+			
 //			int parentSeq = movieDto.getMovieNumber();
 //			Map<String, Object> tempFileMap
 //				= movieDao.fileSelectStoredFileName(parentSeq);
@@ -103,10 +103,9 @@ public class MovieServiceImpl implements MovieService{
 //					fileUtils.parseUpdateFileInfo(tempFileMap);
 //				}
 //			}
-//		} catch (Exception e) {
-//			TransactionAspectSupport.currentTransactionStatus().setRollbackOnly();
-//		}
-		
+		} catch (Exception e) {
+			TransactionAspectSupport.currentTransactionStatus().setRollbackOnly();
+		}
 		return resultNum;
 	}
 	

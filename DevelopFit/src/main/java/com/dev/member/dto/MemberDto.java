@@ -1,11 +1,12 @@
 package com.dev.member.dto;
 	
 
-import java.util.Date;
+import java.sql.Date;
 
 //Bean Spec
 public class MemberDto {
 
+	
 	int memberNumber;
 	String memberId;
 	String memberPassword;
@@ -16,7 +17,8 @@ public class MemberDto {
 	String memberGender;
 	Date memberCreateDate;
 	Date memberModifyDate;
-	
+
+
 	public MemberDto() {
 		super();
 		// TODO Auto-generated constructor stub

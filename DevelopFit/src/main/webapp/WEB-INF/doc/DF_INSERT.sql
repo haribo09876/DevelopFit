@@ -5,14 +5,12 @@ VALUE(  MEMBER_NUMBER,
         MEMBER_NAME,
         MEMBER_EMAIL,
         MEMBER_BIRTH_DATE,
-        MEMBER_PHONE_NUBMER,
+        MEMBER_PHONE_NUMBER,
         MEMBER_MONEY,
         MEMBER_GENDER,
         MEMBER_CREATE_DATE,
         MEMBER_MODIFY_DATE)
 VALUES(MEMBER_NUMBER_SEQ.NEXTVAL, 'kimj92', 'jeongsu9292!', '김정수', 'kimj92@ezen.com', '1992-01-30', '01014351668', 0, 'M', SYSDATE, SYSDATE);
-INSERT INTO MEMBER
-VALUES(MEMBER_NUMBER_SEQ.NEXTVAL, 'lsw0909', 'tjsdn99!@', '이선우', 'lsw0909@ezen.com', '1999-09-09', '01088460576', 0, 'F', SYSDATE, SYSDATE);
 INSERT INTO MEMBER
 VALUES(MEMBER_NUMBER_SEQ.NEXTVAL, 'rudtj22', 'sksmsrudtj22@', '박경서', 'rudtj22@ezen.com', '1995-08-22', '01014247683', 0, 'F', SYSDATE, SYSDATE);
 INSERT INTO MEMBER
@@ -24,7 +22,7 @@ INSERT ALL
                 MEMBER_NAME,
                 MEMBER_EMAIL,
                 MEMBER_BIRTH_DATE,
-                MEMBER_PHONE_NUBMER,
+                MEMBER_PHONE_NUMBER,
                 MEMBER_MONEY,
                 MEMBER_GENDER,
                 MEMBER_CREATE_DATE,
@@ -96,7 +94,7 @@ VALUES(MOVIE_NUMBER_SEQ.NEXTVAL, '잠', '행복한 신혼부부 ‘현수’(이
 INSERT INTO MOVIE
 VALUES(MOVIE_NUMBER_SEQ.NEXTVAL, '콘크리트 유토피아', '“아파트는 주민의 것” 온 세상을 집어삼킨 대지진, 그리고 하루아침에 폐허가 된 서울. 모든 것이 무너졌지만 오직 황궁 아파트만은 그대로다.', '2023-08-09', 130, 10000, 'https://i.namu.wiki/i/UzpGwb3r9bgA71yBzP58V6IwqlBtXQZeeto9_v5QG-_m7A8Q_ai1aQdrF-XMlD2Xs7-lQiBGcS3Srr5eqemjT4FJ2USynqVOqKLdUnHOqfbxOVS37eBVSu5eSUHevtubf_0NVpJVGSwblhd0FDCYrg.webp', 'https://tv.naver.com/v/38045897', 15);
 INSERT INTO MOVIE
-VALUES(MOVIE_NUMBER_SEQ.NEXTVAL, '엘리멘탈', '불, 물, 공기, 흙 4개의 원소들이 살고 있는 ‘엘리멘트 시티’ 재치 있고 불처럼 열정 넘치는 ‘앰버’', '2023-06-14', 109, 11000, 'https://i.namu.wiki/i/-tGGoIgEfeWPooaGX_24b1fcCS5r5iplAZDNMiyX8VKH5oaaM2Ex1PpQsX6oSb4rmUy_o6Os-W7dAljYeJIblIwsapHcuMneFXiU7qNWVsiR51dkflq5eThOzCQTDBsKcFt8GumGVIPAG7Y3lZH-Cw.webp', 'https://tv.naver.com/v/38045897', 16);
+VALUES(MOVIE_NUMBER_SEQ.NEXTVAL, '엘리멘탈', '불, 물, 공기, 흙 4개의 원소들이 살고 있는 ‘엘리멘트 시티’ 재치 있고 불처럼 열정 넘치는 ‘앰버’', '2023-06-14', 109, 11000, 'https://i.namu.wiki/i/UzpGwb3r9bgA71yBzP58V6IwqlBtXQZeeto9_v5QG-_m7A8Q_ai1aQdrF-XMlD2Xs7-lQiBGcS3Srr5eqemjT4FJ2USynqVOqKLdUnHOqfbxOVS37eBVSu5eSUHevtubf_0NVpJVGSwblhd0FDCYrg.webp', 'https://tv.naver.com/v/38045897', 16);
 INSERT INTO MOVIE
 VALUES(MOVIE_NUMBER_SEQ.NEXTVAL, '타겟', '중고거래로 범죄의 표적이 된 ‘수현’의 일상 속에서 벌어지는 서스펜스를 담은 스릴러', '2023-08-30', 101, 8000, 'https://i.namu.wiki/i/sBwdeekyyhtz1gqQhbtyBIasYGwbIr5FtaWXr9YZ_2xf7u3nAgjaIm3yKWCThEbeLALWz2_NqwqjmWef7eeznIsctSFgl_uLDg_w-1bBFKdsm1v8f8zVLFHO6SKpCmhXr_mCZGNfAld-Uz9UZSw3fw.webp', 'https://tv.naver.com/v/38045897', 15);
 SELECT* FROM MOVIE;
@@ -220,7 +218,7 @@ VALUES(CAST_MEMBER_NUMBER_SEQ.NEXTVAL, 2, 6, 2);
 INSERT INTO CAST_MEMBER
 VALUES(CAST_MEMBER_NUMBER_SEQ.NEXTVAL, 3, 9, 3);
 INSERT INTO CAST_MEMBER
-VALUES(CAST_MEMBER_NUMBER_SEQ.NEXTVAL, 3, 0, 3);
+VALUES(CAST_MEMBER_NUMBER_SEQ.NEXTVAL, 3, 10, 3);
 INSERT INTO CAST_MEMBER
 VALUES(CAST_MEMBER_NUMBER_SEQ.NEXTVAL, 4, 1, 4);
 INSERT INTO CAST_MEMBER
@@ -260,7 +258,6 @@ VALUES(LINE_REVIEW_NUMBER_SEQ.NEXTVAL, '별로..', 3, 4);
 SELECT* FROM LINE_REVIEW;
 
 
-
 INSERT INTO BASKET
 VALUE(BASKET_NO, MEMBER_NUMBER, MOVIE_NUMBER)
 VALUES(BASKET_NUMBER_SEQ.NEXTVAL, 1, 1);
@@ -272,13 +269,22 @@ INSERT INTO BASKET
 VALUES(BASKET_NUMBER_SEQ.NEXTVAL, 3, 4);
 SELECT* FROM BASKET;
 
-INSERT INTO ORDER_HISTORY
-VALUE(ORDER_HISTORY_NUMBER, ORDER_HISTORY_TIME, MEMBER_NUMBER, MOVIE_NUMBER)
-VALUES(to_number(to_char(sysdate, 'yymmdd')) || LPAD(ORDER_HISTORY_NUMBER_SEQ.NEXTVAL, 3, '0'), '2023-09-01', 1, 1);
-INSERT INTO ORDER_HISTORY
-VALUES(to_number(to_char(sysdate, 'yymmdd')) || LPAD(ORDER_HISTORY_NUMBER_SEQ.NEXTVAL, 3, '0'), '2023-09-01', 1, 2);
-INSERT INTO ORDER_HISTORY
-VALUES(to_number(to_char(sysdate, 'yymmdd')) || LPAD(ORDER_HISTORY_NUMBER_SEQ.NEXTVAL, 3, '0'), '2023-09-05', 3, 4);
-SELECT* FROM ORDER_HISTORY;
 
-COMMIT;
+INSERT ALL
+    INTO ORDER_HISTORY
+        VALUES(to_number(to_char(sysdate, 'yymmdd')) || LPAD(ORDER_HISTORY_NUMBER_SEQ.NEXTVAL, 3, '0'), SYSDATE, 1)
+    INTO ORDER_PRODUCT
+        VALUES(ORDER_PRODUCT_NUMBER_SEQ.NEXTVAL, to_number(to_char(sysdate, 'yymmdd')) || LPAD(ORDER_HISTORY_NUMBER_SEQ.NEXTVAL, 3, '0'), 1)
+SELECT * FROM DUAL;
+INSERT ALL
+    INTO ORDER_HISTORY
+        VALUES(to_number(to_char(sysdate, 'yymmdd')) || LPAD(ORDER_HISTORY_NUMBER_SEQ.NEXTVAL, 3, '0'), SYSDATE, 1)
+    INTO ORDER_PRODUCT
+        VALUES(ORDER_PRODUCT_NUMBER_SEQ.NEXTVAL, to_number(to_char(sysdate, 'yymmdd')) || LPAD(ORDER_HISTORY_NUMBER_SEQ.NEXTVAL, 3, '0'), 1)
+SELECT * FROM DUAL;
+INSERT ALL
+    INTO ORDER_HISTORY
+        VALUES(to_number(to_char(sysdate, 'yymmdd')) || LPAD(ORDER_HISTORY_NUMBER_SEQ.NEXTVAL, 3, '0'), SYSDATE, 3)
+    INTO ORDER_PRODUCT
+        VALUES(ORDER_PRODUCT_NUMBER_SEQ.NEXTVAL, to_number(to_char(sysdate, 'yymmdd')) || LPAD(ORDER_HISTORY_NUMBER_SEQ.NEXTVAL, 3, '0'), 1)
+SELECT * FROM DUAL;
