@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.dev.order">
+	
+	<resultMap type="orderDto" id="orderResultMap">
+		<id column="MEMBER_NUMBER" property="memberNumber" />
+		<result column="ORDER_HISTORY_NUMBER" property="orderHistoryNumber" />
+		<result column="MEMBER_ID" property="memberId" />
+		<result column="MOVIE_TITLE" property="movieTitle" />
+		<result column="MOVIE_PRICE" property="moviePrice" />
+		<result column="MOVIE_POSTER" property="moviePoster" />
+		<result column="ORDER_HISTORY_TIME" property="orderHistoryTime" />
+	</resultMap>
+	
+	<select id="basketList" parameterType="int" resultMap="orderResultMap">
+		SELECT MEMBER_ID, MOVIE_TITLE, MOVIE_PRICE, MOVIE_POSTER
+		FROM MEMBER M JOIN BASKET B
+		ON M.MEMBER_NUMBER = B.MEMBER_NUMBER
+		JOIN MOVIE MV
+		ON B.MOVIE_NUMBER = MV.MOVIE_NUMBER
+		WHERE M.MEMBER_NUMBER = #{no}
+	</select>
+	
+	
+	<delete id="deleteBasket">
+		DELETE FROM
+		WHERE
+	</delete>
+	
+	
+	<select id="orderHistory">
+		
+	</select>
+	
+	
+	
+</mapper>
