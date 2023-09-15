@@ -34,6 +34,10 @@
 	</select>
 	
 <!-- 	게시글 상세페이지 -->
+<!-- 여기서 멤버넘버도 셀랙해서 게시판 상세페이지에 멤버넘버를 가지고 있음 -->
+<!-- 수정버튼 누르면 상세페이지jsp폼에서 히든으로(화면에 안보이는) 가지고 있던 멤버 넘버를  -->
+<!-- 업데이트 폼으로 다른 정보와 같이보냄 > 수정버튼 누르면 업데이트 ctr 하면서 -->
+<!-- slq(아래 boardUpdateOne)로 멤버정보 보내서 검증 수행  -->
 	<select id="boardSelectOne" parameterType="int" resultMap="boardResultMap">
 		SELECT B.BOARD_NUMBER, M.MEMBER_ID, B.BOARD_TITLE, B.BOARD_CONTENT,
         B.BOARD_CREATE_DATE, B.BOARD_HIT, M.MEMBER_NUMBER
@@ -41,6 +45,7 @@
 		ON M.MEMBER_NUMBER = B.MEMBER_NUMBER
 		WHERE B.BOARD_NUMBER = #{boardNumber}
 	</select>
+	
 <!-- 	조회수 증가 -->
 	<update id="viewCount" parameterType="int">
 		UPDATE BOARD
@@ -52,16 +57,15 @@
 	
 <!-- 	게시글 생성 -->
 	<insert id="boardInsertOne" parameterType="boardDto"
-		useGeneratedKeys="true" keyProperty="no">
-		<selectKey keyProperty="no" resultType="int" order="BEFORE">
-			SELECT BOARD_BOARD_NUMBER_SEQ.NEXTVAL
+		useGeneratedKeys="true" keyProperty="boardNumber">
+		<selectKey keyProperty="boardNumber" resultType="int" order="BEFORE">
+			SELECT BOARD_NUMBER_SEQ.NEXTVAL
 			FROM DUAL
 		</selectKey>
 		
 		INSERT INTO BOARD
-			(BOARD_NUMBER, BOARD_TITLE, BOARD_CONTENT, MEMBER_ID, BOARD_CREATE_DATE, BOARD_HIT)
-		VALUES(#{boardNumber}, #{boardTitle}, #{boardContent}, 
-		SYSDATE, #{memberId}, #{boardHit})
+			(BOARD_NUMBER, BOARD_TITLE, BOARD_CONTENT, BOARD_CREATE_DATE, MEMBER_NUMBER)
+		VALUES(#{boardNumber}, #{boardTitle}, #{boardContent}, SYSDATE, #{memberNumber})
 	</insert>
 	
 	
@@ -79,7 +83,8 @@
 <!-- 	게시글 내용 삭제 -->
 	<delete id="boardDeleteOne" parameterType="int">
 		DELETE FROM BOARD
-		WHERE MEMBER_NUMBER = #{memberNumber}
+		WHERE BOARD_NUMBER = #{boardNumber}
+		AND MEMBER_NUMBER = #{memberNumber}
 	</delete>
 	
 <!-- 	페이징 기능을 위한 총 게시글 수 산출 -->

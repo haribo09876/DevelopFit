@@ -14,7 +14,7 @@ public interface BoardDao {
 
 	int boardUpdateOne(BoardDto boardDto);
 
-	int boardDeleteOne(int no);
+	int boardDeleteOne(BoardDto boardDto);
 
 	int boardSelectTotalCount();
 	

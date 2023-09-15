@@ -102,9 +102,12 @@
 		</form>
 		<form action='./delete.do' method='post'>
 			<input type="hidden" name='boardNumber' value='${boardDto.boardNumber}'>
-			<input type="hidden" name='memberNumber' value='${boardDto.memberNumber}'>
+<%--	<input type="hidden" name='memberNumber' value='${memberDto.memberNumber}'> --%>
+			<input type="hidden" name='memberNumber' value= 1>
 			<input type="submit" value="삭제">
 		</form>
+		
+		
 </div>
 	
 		<div id="commentmenu">

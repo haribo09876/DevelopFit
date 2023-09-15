@@ -14,6 +14,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import com.dev.board.dto.BoardDto;
 import com.dev.board.service.BoardService;
@@ -95,73 +96,33 @@ public class BoardController {
 		return "common/BoardsuccessPage";
 	}
 	
-//	//게시글 추가 페이지로 이동
-//	@RequestMapping(value = "/board/add.do", method = RequestMethod.GET)
-//	public String boardAdd(Model model) {
-//		
-//		log.debug("Welcome BoardController boardAdd!");
-//		
-//		return "board/BoardForm";
-//	}
+	//게시글 추가 페이지로 이동
+	@RequestMapping(value = "/board/add.do", method = RequestMethod.POST)
+	public String boardAdd(Model model) {
+		
+		log.debug("Welcome BoardController boardAdd!");
+		
+		return "board/AddForm";
+	}
 	
-//	@RequestMapping(value = "/board/listlogin.do",
-//			method = {RequestMethod.GET, RequestMethod.POST})
-//	public String boardListLogin(@RequestParam(defaultValue = "1") int curPage, Model model) {
-//	    // Log4j
-//	    log.info("Welcome BoardController list!: {}", curPage);
-//
-//	    int totalCount = boardService.boardSelectTotalCount();
-//	    
-//	    Paging boardPaging = new Paging(totalCount, curPage);
-//	    
-//	    int start = boardPaging.getPageBegin();
-//		int end = boardPaging.getPageEnd();
-//	    
-	
-////	일반 .do는 단순 페이지 이동
-//	@RequestMapping(value = "/member/add.do", method = RequestMethod.GET)
-//	public String memberAdd(Model model) {
-//		log.debug("Welcome MemberController memberAdd!");
-//
-//		return "member/MemberForm";
-//	}
-//
-//	@RequestMapping(value = "/member/addCtr.do", method = RequestMethod.POST)
-//	public String memberAdd(MemberDto memberDto, MultipartHttpServletRequest mulRequest
-//			, Model model) {
-//		log.debug("Welcome MemberController memberAdd! " + memberDto);
-//
-//		try {
-//			memberService.memberInsertOne(memberDto, mulRequest);
-//		} catch (Exception e) {
-//			// TODO: handle exception
-//			System.out.println("오류 처리할 거 있으면 한다");
-//			e.printStackTrace();
-//		}
-//		return "redirect:/member/list.do";
-//	}
-//
+//	게시글 추가
+	@RequestMapping(value = "/board/addCtr.do", method = RequestMethod.POST)
+	public String boardAdd(BoardDto boardDto, Model model) {
+		log.debug("Welcome BoardController boardAdd! " + boardDto);
 
-//		
-//		try {
-//			resultNum = memberService.memberUpdateOne(memberDto, mulRequest, fileIdx);
-//		} catch (Exception e) {
-//			// TODO: handle exception
-//			e.printStackTrace();
-//		}
-//		
-//		return "common/successPage";
-//	}
-//
+			boardService.boardInsertOne(boardDto);
+		return "redirect:/board/list.do";
+	}
+	
 //	
-////	회원삭제
-//	@RequestMapping(value = "/member/delete.do", method = RequestMethod.GET)
-//	public String memberDeleteCtr(int no, Model model) {
-//		log.debug("Welcome MemberController memberDelete" + no);
-//		
-//		memberService.memberDeleteOne(no);
-//					
-//		return "redirect:/member/list.do";
-//	}
+//	게시글 삭제
+	@RequestMapping(value = "/board/delete.do", method = RequestMethod.POST)
+	public String boardDeleteCtr(BoardDto boardDto, Model model) {
+		log.debug("Welcome BoardController boardDelete" + boardDto);
+		
+		boardService.boardDeleteOne(boardDto);
+					
+		return "redirect:/board/list.do";
+	}
 
 }

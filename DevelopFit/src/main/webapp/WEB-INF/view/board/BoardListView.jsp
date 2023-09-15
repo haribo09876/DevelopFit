@@ -175,9 +175,14 @@
 				value="${pagingMap.boardPaging.curPage}">
 		</form>
 	</div>
+	
+	<form action="./add.do" id='AddForm' method="post">
+		<input type="hidden" name="memberNumber" value="${boardDto.memberNumber}">
+		<input type="submit" value="글쓰기">
+	</form>
+	
 <%-- 		<jsp:include page="/WEB-INF/view/Footer.jsp"/> --%>
 </div>
-<%--                     <a href='./boardSelectOne.do?no=${boardDto.board_number}'>${boardDto.board_title} --%>
-<!--                     </a> -->
+
 </body>
 </html>

@@ -1,12 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
-<title>UpdateForm</title>
+<title>AddForm</title>
 <style type="text/css">
 	body{
 		background-color: #101322;
@@ -75,30 +74,19 @@
 </style>
 </head>
 <body>
-	<div id="container">
-		<div id="topcontent">
-			<div id="iddatewrap">
-		 		<div id="memberid">글쓴이: ${boardDto.memberId}</div>
-		 		<div id="createdate">작성일: 
-		 			<fmt:formatDate pattern="yyyy-MM-dd" value="${boardDto.boardCreateDate}"/>
-		 		</div>
-		 	</div>
-		</div>
-	 	
-		<form action='./updateCtr.do' method='post'>
-			<input type="hidden" name='boardNumber' value='${boardDto.boardNumber}'>
-			<input type="hidden" name='memberNumber' value='${boardDto.memberNumber}'>
-			제목:		<input id="title" type="text" name="boardTitle" value="${boardDto.boardTitle}"> 
-			내용:		<input id="content" type="text" name="boardContent" value="${boardDto.boardContent}"> 
-			<input type="submit" value="수정완료" />
-		</form>	
-
+	<form action='./addCtr.do' method='post'>
+		<input type="hidden" name='memberNumber' value= 1>
+<%-- 	<input type="hidden" name='memberNumber' value= "${memberDto.memberNumber}"> --%>
+<%-- 	로그인 기능 추가되면 78번줄코드 79번줄코드로 변경--%>
+		제목:		<input id="title" type="text" name="boardTitle" value="${boardDto.boardTitle}"> 
+		내용:		<input id="content" type="text" name="boardContent" value="${boardDto.boardContent}"> 
+		<input type="submit" value="저장" />
+	</form>	
 	
-</div>
-	
-		<div id="commentmenu">
-			<div>댓글</div>
-		</div>
-	
+		
+		
+	<div id="commentmenu">
+		<div>댓글</div>
+	</div>
 </body>
-</html>
+</html>	 	

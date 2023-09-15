@@ -53,9 +53,9 @@ public class BoardDaoImpl implements BoardDao{
 	}
 
 	@Override
-	public int boardDeleteOne(int no) {
+	public int boardDeleteOne(BoardDto boardDto) {
 		// TODO Auto-generated method stub
-		return sqlSession.delete("com.dev.board.boardDeleteOne", no);
+		return sqlSession.delete("com.dev.board.boardDeleteOne", boardDto);
 	}
 	
 	@Override

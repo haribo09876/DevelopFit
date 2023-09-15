@@ -30,11 +30,9 @@ public class BoardServiceImpl implements BoardService{
 		log.info("Welcome boardServiceImpl SelectList!");
 		return boardDao.boardSelectList(start, end);
 	}
-//이거 헷갈린다.. 인서트 에러나면 이거때문일 확률 높음
+	
 	@Override
-	public void boardInsertOne(BoardDto boardDto
-		, MultipartHttpServletRequest multipartHttpServletRequest) throws Exception{
-		// TODO Auto-generated method stub
+	public void boardInsertOne(BoardDto boardDto){
 		boardDao.boardInsertOne(boardDto);
 	}
 
@@ -61,20 +59,15 @@ public class BoardServiceImpl implements BoardService{
 	}
 
 	@Override
-	public int boardDeleteOne(int no) {
+	public int boardDeleteOne(BoardDto boardDto) {
 		// TODO Auto-generated method stub
-		return boardDao.boardDeleteOne(no);
+		return boardDao.boardDeleteOne(boardDto);
 	}
 
 	@Override
 	public int boardSelectTotalCount() {
 		// TODO Auto-generated method stub
 		return boardDao.boardSelectTotalCount();
-	}
-	@Override
-	public List<BoardDto> boardSearchList(String searchKeyword, int start, int end) {
-		// TODO Auto-generated method stub
-		return null;
 	}
 	@Override
 	public int viewCount(int no) {
