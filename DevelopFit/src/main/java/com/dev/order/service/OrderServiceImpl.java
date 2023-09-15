@@ -19,10 +19,17 @@ public class OrderServiceImpl implements OrderService{
 	public OrderDao orderDao;
 	
 	@Override
-	public List<OrderDto> basketList(int no) {
+	public List<OrderDto> selectBasketList(int no) {
 		// TODO Auto-generated method stub
-		log.info("Welcome OrderServiceImpl basketList!");
-		return orderDao.basketList(no);
+		log.info("Welcome OrderServiceImpl selectBasketList!");
+		return orderDao.selectBasketList(no);
+	}
+
+	@Override
+	public List<OrderDto> selectOrderHistory(int no) {
+		// TODO Auto-generated method stub
+		log.info("Welcome OrderServiceImpl selectOrderHistory!");
+		return orderDao.selectOrderHistory(no);
 	}
 
 	

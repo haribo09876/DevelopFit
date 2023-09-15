@@ -6,6 +6,8 @@ import com.dev.order.dto.OrderDto;
 
 public interface OrderService {
 	
-	List<OrderDto> basketList(int no);
+	List<OrderDto> selectBasketList(int no);
+	
+	List<OrderDto> selectOrderHistory(int no);
 	
 }

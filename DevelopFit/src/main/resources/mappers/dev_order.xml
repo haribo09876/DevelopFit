@@ -6,32 +6,42 @@
 	
 	<resultMap type="orderDto" id="orderResultMap">
 		<id column="MEMBER_NUMBER" property="memberNumber" />
-		<result column="ORDER_HISTORY_NUMBER" property="orderHistoryNumber" />
 		<result column="MEMBER_ID" property="memberId" />
 		<result column="MOVIE_TITLE" property="movieTitle" />
 		<result column="MOVIE_PRICE" property="moviePrice" />
 		<result column="MOVIE_POSTER" property="moviePoster" />
+		<result column="ORDER_HISTORY_NUMBER" property="orderHistoryNumber" />
 		<result column="ORDER_HISTORY_TIME" property="orderHistoryTime" />
 	</resultMap>
 	
-	<select id="basketList" parameterType="int" resultMap="orderResultMap">
-		SELECT MEMBER_ID, MOVIE_TITLE, MOVIE_PRICE, MOVIE_POSTER
+	<select id="selectBasketList" parameterType="int" resultMap="orderResultMap">
+		SELECT M.MOVIE_NUMBER, MV.MOVIE_TITLE, MV.MOVIE_PRICE, MV.MOVIE_POSTER
 		FROM MEMBER M JOIN BASKET B
 		ON M.MEMBER_NUMBER = B.MEMBER_NUMBER
 		JOIN MOVIE MV
 		ON B.MOVIE_NUMBER = MV.MOVIE_NUMBER
-		WHERE M.MEMBER_NUMBER = #{no}
+		WHERE M.MEMBER_NUMBER = #{memberNumber}
 	</select>
 	
 	
-	<delete id="deleteBasket">
-		DELETE FROM
-		WHERE
+	<delete id="deleteBasket" parameterType="int">
+		DELETE FROM BASKET
+		WHERE MEMBER_NUMBER = #{memberNumber}
 	</delete>
 	
-	
-	<select id="orderHistory">
+	<insert id="insertOrderHistory">
 		
+	</insert>
+	
+	<select id="selectOrderHistory" parameterType="int" resultMap="orderResultMap">
+		SELECT OH.ORDER_HISTORY_NUMBER, M.MEMBER_ID, MV.MOVIE_TITLE, OH.ORDER_HISTORY_TIME
+		FROM MEMBER M JOIN ORDER_HISTORY OH
+		ON M.MEMBER_NUMBER = OH.MEMBER_NUMBER
+		JOIN ORDER_PRODUCT OP
+		ON OP.ORDER_HISTORY_NUMBER = OH.ORDER_HISTORY_NUMBER
+		JOIN MOVIE MV
+		ON OP.MOVIE_NUMBER = MV.MOVIE_NUMBER
+		WHERE M.MEMBER_NUMBER = #{memberNumber}
 	</select>
 	
 	

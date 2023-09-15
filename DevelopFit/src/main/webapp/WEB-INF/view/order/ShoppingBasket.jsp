@@ -24,9 +24,9 @@ h1 {
 
 #productWrap {
 	width: 900px;
-	height: 420px;
+	height: auto;
 	margin: 30px auto;
- 	background-color: skyblue;
+  	background-color: skyblue;
 }
 
 #deleteProduct {
@@ -37,11 +37,12 @@ h1 {
 }
 
 #productDetail {
-	width: 840px;
-	height: 120px;
+	width: 830px;
+	height: 150px;
 	background-color: #172036;
-	border-radius: 10px;
-	padding: 30px;
+	border-radius: 13px;
+	padding: 30px 30px 30px 40px;
+	margin-bottom: 15px;
 }
 
 #productImg {
@@ -76,11 +77,6 @@ h1 {
 
 
 
-
-#selectWrap {
-	
-}
-
 #cancel {
 	width: 250px;
 	height: 45px;
@@ -103,6 +99,42 @@ h1 {
 	padding-top: 8px;
 	display: inline-block;
 }
+
+#productPoster {
+	width: 100px;
+	height: 150px;
+	float: left;
+}
+
+.productInfo {
+	display: inline-block;
+	float: left;
+}
+
+#productName {
+	width: 300px;
+	height: 150px;
+	margin: 0px 10px 10px 10px;
+	border: 1px solid white;
+	float: left;
+}
+
+#productPrice {
+	width: 100px;
+	height: 150px;
+	margin: 0px 10px 10px 10px;
+	border: 1px solid white;
+	float: left;
+	text-align: center;
+}
+
+#productSelect {
+	width: 50px;
+	height: 150px;
+	margin: 0px 10px 10px 10px;
+	border: 1px solid white;
+	text-align: center;
+}
 </style>
 
 </head>
@@ -114,19 +146,16 @@ h1 {
 	<div id="productWrap">
 		<h1>장바구니</h1>
 		<div id="deleteProduct">선택삭제</div>
+		
 		<c:forEach var="basketList" items="${basketList}">
 		<div id="productDetail">
-			<div id="productImg">
-				<img style="width:100px; height: 150px;" src="${basketList.moviePoster}" />
-<%-- 				${basketList.moviePoster} --%>
-			</div>
-			<div id="productInfo">
-				<h2>${basketList.movieTitle}</h2>
-				<p>${basketList.moviePrice}</p>
-				<label><input type="checkbox" name="product" value="오펜하이머"></label>
-			</div>
+			<div id="productImg" class="productInfo"><img id="productPoster" src="${basketList.moviePoster}" /></div>
+			<div id="productName" class="productInfo"><h2>${basketList.movieTitle}</h2></div>
+			<div id="productPrice" class="productInfo"><p>상품금액</p><p>${basketList.moviePrice}</p></div>
+			<div id="productSelect" class="productInfo"><label><input type="checkbox" name="product" value="${basketList.movieTitle}"></label></div>
 		</div>
 		</c:forEach>
+		
 	</div>
 	
 	

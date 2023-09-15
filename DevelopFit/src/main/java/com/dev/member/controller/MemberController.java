@@ -169,7 +169,6 @@ public class MemberController {
 	// 마이페이지 페이지 이동
 	@RequestMapping(value = "/member/myPage.do", method = RequestMethod.GET)
 	public String myPage(Model model) {
-
 		log.debug("Welcome MemberController myPage!");
 
 		return "member/myPage";

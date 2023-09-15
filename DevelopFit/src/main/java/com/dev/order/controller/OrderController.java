@@ -40,7 +40,7 @@ public class OrderController {
 //	    	return "order/ShoppingBasket";
 //	    }
 	    
-	    model.addAttribute("basketList", orderService.basketList(1));
+	    model.addAttribute("basketList", orderService.selectBasketList(1));
 	    return "order/ShoppingBasket";
 	}
 	
@@ -61,7 +61,7 @@ public class OrderController {
 //	    	return "order/ShoppingBasket";
 //	    }
 	    
-//	    model.addAttribute("basketList", orderService.basketList(1));
+	    model.addAttribute("orderHistory", orderService.selectOrderHistory(1));
 	    return "order/OrderSuccess";
 	}
 	
@@ -69,8 +69,8 @@ public class OrderController {
 	public String cancel(Model model) {
 	    // Log4j
 	    log.info("Welcome OrderController cancel! memberNumber: {}");
-
-
+	    
+	    
 	    return "order/OrderCancel";
 	}
 }
