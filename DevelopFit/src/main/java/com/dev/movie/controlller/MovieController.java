@@ -26,7 +26,7 @@ public class MovieController {
 	@Autowired
 	private MovieService movieService;
 
-//	 영화 목록조희, 리스트, 페이징
+//	 영화 리스트
 	@RequestMapping(value = "/movie/list.do", method = {RequestMethod.GET, RequestMethod.POST})
 	public String movieList(@RequestParam(defaultValue = "1") int curPage, Model model) {
 //	 Log4j
@@ -51,7 +51,7 @@ public class MovieController {
 		return "movie/MovieListView";
 	 }
 	
-//	 영화 상세, 파일
+//	 영화 상세
 	 @RequestMapping(value = "/movie/listOne.do", method = RequestMethod.GET)
 	 public String movieListOne(int movieNumber, Model model) {
 		 log.debug("Welcome MovieController movieListOne! - {}", movieNumber);
@@ -59,15 +59,13 @@ public class MovieController {
 		 Map<String, Object> map = movieService.movieSelectOne(movieNumber);
 	
 		 MovieDto movieDto = (MovieDto)map.get("movieDto");
-//		 List<Map<String, Object>> fileList = (List<Map<String, Object>>)map.get("fileList");
 	
 		 model.addAttribute("movieDto", movieDto);
-//		 model.addAttribute("fileList", fileList);
 	
 		 return "movie/MovieListOneView";
 	 }
 
-//	 영화 등록 화면으로 이동
+//	 영화 등록 페이지 이동
 	 @RequestMapping(value = "/movie/add.do", method = RequestMethod.GET)
 	 public String movieAdd(Model model) {
 		 log.debug("Welcome MovieController movieAdd!");
@@ -90,7 +88,7 @@ public class MovieController {
 		return "redirect:/movie/list.do";
 	 }
 	 
-//	 영화 수정 화면으로, 파일 추가
+//	 영화 수정 페이지 이동
 	 @RequestMapping(value = "/movie/update.do", method = RequestMethod.GET)
 	 public String movieUpdate(int movieNumber, Model model) {
 		 log.info("Welcome movieUpdate!" + movieNumber);
@@ -106,8 +104,9 @@ public class MovieController {
 	
 		 return "movie/MovieUpdateForm";
 	 }
-
-//	 회원수정, 파일 추가
+	
+	 
+//	 영화 수정
 	 @RequestMapping(value = "/movie/updateCtr.do", method = RequestMethod.POST)
 	 public String movieUpdateCtr(MovieDto movieDto
 	, @RequestParam(value = "fileIdx", defaultValue = "-1") int fileIdx
@@ -122,7 +121,7 @@ public class MovieController {
 			 // TODO: handle exception
 			 e.printStackTrace();
 		 }
-		 return "common/successPage";
+		 return "redirect:/movie/list.do";
 	 }
 
 //	 영화 삭제

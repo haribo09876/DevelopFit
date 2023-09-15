@@ -102,7 +102,7 @@
 			<form action="./addCtr.do" method="post" enctype="multipart/form-data">
 				영화제목 :		<input type='text' name='movieTitle'><br>
 				줄거리 :			<input type='text' 	name='movieSummary'><br>
-				개봉일 :			<input type='date' name='movieReleaseDate'><br>				
+				개봉일 :			<input type='date' name='movieReleaseDate'><br>
 				상영시간 :		<input type='number' name='movieRuntime'><br>
 				가격 :			<input type='number' name='moviePrice'><br>
 				포스터 :			<input type='text' 	name='moviePoster'><br>

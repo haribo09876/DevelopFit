@@ -9,7 +9,7 @@
 	alert('성공적으로 처리되었습니다');	
 // 	"redirect:/member/list.do";
 	
-	location.href = '/DevelopFit/board/list.do';	
+	location.href = '/DevelopFit/board/list.do';
 </script>
 
 </head>

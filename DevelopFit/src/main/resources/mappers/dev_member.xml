@@ -4,7 +4,6 @@
 
 <mapper namespace="com.dev.member">
 
-
 	<resultMap type="memberDto" id="memberResultMap">
 		<id column="MEMBER_ID" property="memberId" />
 		<result column="MEMBER_NUMBER" property="memberNumber" />
@@ -17,9 +16,6 @@
 		<result column="MEMBER_CREATE_DATE" property="memberCreateDate" javaType="java.util.Date" />
 		<result column="MEMBER_MODIFY_DATE" property="memberModifyDate" javaType="java.util.Date" />
 	</resultMap>
-
-	
-	
 
 <!-- 	로그인 기능 구현 -->
 	<select id="memberExist" parameterType="map"
@@ -51,9 +47,5 @@
 		FROM MEMBER
 		WHERE MEMBER_ID = #{memberId} AND MEMBER_EMAIL = #{memberEmail}
 	</select>
-
 	
 </mapper>
-
-
-

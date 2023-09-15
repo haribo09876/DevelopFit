@@ -4,7 +4,7 @@
 
 <mapper namespace="com.dev.movie">
 
-	<resultMap type="movieDto" id="movieResultMap">
+	<resultMap id="movieResultMap" type="movieDto">
 		<id column="MOVIE_NUMBER" property="movieNumber" />
 		<result column="MOVIE_TITLE" property="movieTitle" />
 		<result column="MOVIE_SUMMARY" property="movieSummary" />
@@ -24,12 +24,6 @@
 		ON M.GENRE_NUMBER = G.GENRE_NUMBER
 		ORDER BY M.MOVIE_NUMBER DESC		
 	</select>
-
-<!-- 	<select id="movieExist" parameterType="map" resultMap="movieResultMap"> -->
-<!-- 		SELECT MNAME, EMAIL -->
-<!-- 		FROM MEMBER -->
-<!-- 		WHERE EMAIL = #{email} AND PWD = #{pwd} -->
-<!-- 	</select> -->
 
 	<insert id="movieInsertOne" parameterType="movieDto" useGeneratedKeys="true" keyProperty="movieNumber">
 		<selectKey keyProperty="movieNumber" resultType="int" order="BEFORE">
@@ -52,13 +46,13 @@
 	<update id="movieUpdateOne" parameterType="movieDto">
 		UPDATE MOVIE
 		<set>
-			<if test="movieTitle != ''">MOVIE_TITLE = #{movieTitle},</if>
-			<if test="'movieSummary' != ''">MOVIE_SUMMARY = #{movieSummary},</if>
-			<if test="movieReleaseDate != ''">MOVIE_RELEASE_DATE = #{movieReleaseDate},</if>
-			<if test="movieRuntime != ''">MOVIE_RUNTIME = #{movieRuntime},</if>
-			<if test="moviePrice != ''">MOVIE_PRICE = #{moviePrice},</if>
-			<if test="moviePoster != ''">MOVIE_POSTER = #{moviePoster},</if>
-			<if test="moviePreview != ''">MOVIE_PREVIEW = #{moviePreview}</if>
+			MOVIE_TITLE = #{movieTitle},
+			MOVIE_SUMMARY = #{movieSummary},
+			MOVIE_RELEASE_DATE = #{movieReleaseDate},
+			MOVIE_RUNTIME = #{movieRuntime},
+			MOVIE_PRICE = #{moviePrice},
+			MOVIE_POSTER = #{moviePoster},
+			MOVIE_PREVIEW = #{moviePreview}
 		</set>
 		WHERE MOVIE_NUMBER = #{movieNumber}
 	</update>

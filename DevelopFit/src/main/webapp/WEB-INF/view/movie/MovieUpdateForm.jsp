@@ -100,7 +100,7 @@
 			
 	<h3>영화 수정 (MovieUpdateForm)</h3>	
 	<form action='./updateCtr.do' method='post' enctype="multipart/form-data">
-
+		<input type="hidden" name='movieNumber' value='${movieDto.movieNumber}'>
 		영화제목 :	<input type='text' name='movieTitle' value='${movieDto.movieTitle}'><br>
 		줄거리 :		<input type='text' name='movieSummary' value='${movieDto.movieSummary}'><br>
 		개봉일 :		<input type='date' name='movieReleaseDate' value='${movieDto.movieReleaseDate}'><br>
