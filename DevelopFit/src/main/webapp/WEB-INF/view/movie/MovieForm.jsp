@@ -88,10 +88,8 @@
 			border-radius: 8px;
 			color: #FFFFFF;
 		}
-	
 	</style>	
 	<script type="text/javascript">
-
 	</script>
 </head>
 <body>
@@ -112,7 +110,6 @@
 				<input type="submit" value="추가">
 			</form>
 		</div>
-	
-	<%-- 	<jsp:include page="/WEB-INF/view/Footer.jsp" /> --%>
+	<jsp:include page="/WEB-INF/view/Footer.jsp" />
 </body>
 </html>

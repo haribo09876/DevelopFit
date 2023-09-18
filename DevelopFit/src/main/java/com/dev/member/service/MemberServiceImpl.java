@@ -1,14 +1,11 @@
 package com.dev.member.service;
 
-import java.util.List;
-import java.util.Map;
 
 import org.slf4j.Logger;
 
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import com.dev.member.dao.MemberDao;
 import com.dev.member.dto.MemberDto;
@@ -44,6 +41,12 @@ public class MemberServiceImpl implements MemberService{
 	public MemberDto findPw(String memberId, String memberEmail) {
 		// TODO Auto-generated method stub
 		return memberDao.findPw(memberId, memberEmail);
+	}
+
+	@Override
+	public void memberUpdateOne(MemberDto memberDto) {
+		// TODO Auto-generated method stub
+		memberDao.memberUpdateOne(memberDto);
 	}
 	
 }

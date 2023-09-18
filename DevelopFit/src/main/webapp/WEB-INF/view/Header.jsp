@@ -104,10 +104,33 @@ li {
 	border-bottom: 1px solid white;
 }
 </style>
+<script>
+	function alertFnc(){
+		alert("로그인 후 이용 가능합니다.");
+	}
+</script>
 
 <div id="header">
 
+
 	<div id="header-content">
+	<c:if test="${sessionScope.member.memberId == null }">
+		<div id="content-left">
+			<div id="logo">
+				<a href="../auth/login.do">LOGO</a>
+			</div>
+			<div id="menu">
+				<ul>
+					<li><a href="#" id="menu1" onclick="alertFnc();">MENU1</a></li>
+					<li><a href="#" id="menu2" onclick="alertFnc();">MENU2</a></li>
+					<li><a href="#" id="menu3" onclick="alertFnc();">MENU3</a></li>
+					<li><a href="#" id="menu4" onclick="alertFnc();">MENU4</a></li>
+				</ul>
+			</div>
+		</div>
+	</c:if>
+	
+	<c:if test="${sessionScope.member.memberId ne null }">
 		<div id="content-left">
 			<div id="logo">
 				<a href="../auth/login.do">LOGO</a>
@@ -121,7 +144,9 @@ li {
 				</ul>
 			</div>
 		</div>
-
+	</c:if>
+	
+	
 		<!-- 		로그인 성공시 -->
 		<c:if test="${sessionScope.member.memberId ne null }">
 			<div id="content-right">

@@ -1,6 +1,6 @@
 package com.dev.member.service;
 
-import org.springframework.web.multipart.MultipartHttpServletRequest;
+
 
 import com.dev.member.dto.MemberDto;
 
@@ -13,6 +13,9 @@ import com.dev.member.dto.MemberDto;
 	public MemberDto findId(String memberEmail, String memberPhoneNumber);
 
 	public MemberDto findPw(String memberId, String memberEmail);
+
+	public void memberUpdateOne(MemberDto memberDto);
+
 
 	
 }

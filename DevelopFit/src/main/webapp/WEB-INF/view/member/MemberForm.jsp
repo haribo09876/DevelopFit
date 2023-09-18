@@ -331,8 +331,9 @@ div {
 	var exptext = /^[A-Za-z0-9_\.\-]+@[A-Za-z0-9\-]+\.[A-Za-z0-9\-]+/;
 	
 	
-	
 	function check(){
+		
+		var form = document.signUpForm;
 			
 			if (inputID.value === '') {
 				alert('아이디를 입력해 주세요.');

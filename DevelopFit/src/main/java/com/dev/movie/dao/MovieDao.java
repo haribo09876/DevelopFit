@@ -15,13 +15,4 @@ public interface MovieDao {
 	public int movieDeleteOne(int movieNumber);
 	
 	public int movieSelectTotalCount();
-
-//	public void insertFile(Map<String, Object> map);
-//
-//	List<Map<String, Object>> fileSelectList(int movieNumber);
-//
-//	public Map<String, Object> fileSelectStoredFileName(int parentSeq);
-//	
-//	public int fileDelete(int parentSeq);
-	
 }
