@@ -15,15 +15,21 @@ public class OrderDaoImpl implements OrderDao{
 	SqlSessionTemplate sqlSession;
 	
 	@Override
-	public List<OrderDto> selectBasketList(int no) {
+	public List<OrderDto> selectBasketList(int memberNumber) {
 		
-		return sqlSession.selectList("com.dev.order.selectBasketList", no);
+		return sqlSession.selectList("com.dev.order.selectBasketList", memberNumber);
 	}
 
 	@Override
 	public List<OrderDto> selectOrderHistory(int no) {
 		// TODO Auto-generated method stub
 		return sqlSession.selectList("com.dev.order.selectOrderHistory", no);
+	}
+
+	@Override
+	public void deleteBasket(int no) {
+		// TODO Auto-generated method stub
+		sqlSession.delete("com.dev.order.deleteBasket", no);
 	}
 
 }

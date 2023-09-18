@@ -19,10 +19,10 @@ public class OrderServiceImpl implements OrderService{
 	public OrderDao orderDao;
 	
 	@Override
-	public List<OrderDto> selectBasketList(int no) {
+	public List<OrderDto> selectBasketList(int memberNumber) {
 		// TODO Auto-generated method stub
 		log.info("Welcome OrderServiceImpl selectBasketList!");
-		return orderDao.selectBasketList(no);
+		return orderDao.selectBasketList(memberNumber);
 	}
 
 	@Override
@@ -30,6 +30,12 @@ public class OrderServiceImpl implements OrderService{
 		// TODO Auto-generated method stub
 		log.info("Welcome OrderServiceImpl selectOrderHistory!");
 		return orderDao.selectOrderHistory(no);
+	}
+
+	@Override
+	public void deleteBasket(int no) {
+		orderDao.deleteBasket(no);
+		
 	}
 
 	

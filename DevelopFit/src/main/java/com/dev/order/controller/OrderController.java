@@ -1,6 +1,6 @@
 package com.dev.order.controller;
 
-import java.util.List;
+import java.util.ArrayList;
 
 import javax.servlet.http.HttpSession;
 
@@ -13,7 +13,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.dev.member.dto.MemberDto;
-import com.dev.order.dto.OrderDto;
 import com.dev.order.service.OrderService;
 
 @Controller
@@ -24,10 +23,13 @@ public class OrderController {
 	@Autowired
 	private OrderService orderService;
 	
+	// 장바구니 페이지
 	@RequestMapping(value = "/order/basket.do", method = {RequestMethod.GET, RequestMethod.POST})
 	public String basket(HttpSession session, Model model) {
 	    // Log4j
 	    log.info("Welcome OrderController basket! memberNumber: {}", session);
+	    MemberDto memberDto = (MemberDto)session.getAttribute("memberDto");
+
 	    
 //	    if(session != null) {
 //		    MemberDto memberDto = (MemberDto)session.getAttribute("memberDto");
@@ -44,6 +46,20 @@ public class OrderController {
 	    return "order/ShoppingBasket";
 	}
 	
+	
+	// 장바구니 삭제
+	@RequestMapping(value = "/order/basketCtr.do", method = RequestMethod.POST)
+	public String basketCtr(String product, Model model) {
+	    log.info("Welcome OrderController basketCtr! {}");
+	    
+	    String[] productArr = product.split(",");
+	    orderService.deleteBasket(1);
+	    orderService.deleteBasket(2);
+	    return "redirect:success.do";
+	}
+	
+	
+	// 주문 성공
 	@RequestMapping(value = "/order/success.do", method = {RequestMethod.GET, RequestMethod.POST})
 	public String success(HttpSession session, Model model) {
 	    // Log4j
@@ -65,6 +81,8 @@ public class OrderController {
 	    return "order/OrderSuccess";
 	}
 	
+	
+	// 주문 취소
 	@RequestMapping(value = "/order/cancel.do", method = {RequestMethod.GET, RequestMethod.POST})
 	public String cancel(Model model) {
 	    // Log4j

@@ -7,7 +7,11 @@
 	<resultMap type="orderDto" id="orderResultMap">
 		<id column="MEMBER_NUMBER" property="memberNumber" />
 		<result column="MEMBER_ID" property="memberId" />
+		<result column="MOVIE_NUMBER" property="movieNumber" />
 		<result column="MOVIE_TITLE" property="movieTitle" />
+		<result column="MOVIE_SUMMARY" property="movieSummary" />
+		<result column="MOVIE_RUNTIME" property="movieRuntime" />
+		<result column="MOVIE_RELEASE_DATE" property="movieReleaseDate" />
 		<result column="MOVIE_PRICE" property="moviePrice" />
 		<result column="MOVIE_POSTER" property="moviePoster" />
 		<result column="ORDER_HISTORY_NUMBER" property="orderHistoryNumber" />
@@ -15,7 +19,7 @@
 	</resultMap>
 	
 	<select id="selectBasketList" parameterType="int" resultMap="orderResultMap">
-		SELECT M.MOVIE_NUMBER, MV.MOVIE_TITLE, MV.MOVIE_PRICE, MV.MOVIE_POSTER
+		SELECT MV.MOVIE_NUMBER, MV.MOVIE_TITLE, MV.MOVIE_PRICE, MV.MOVIE_POSTER, MV.MOVIE_SUMMARY, MV.MOVIE_RUNTIME, MV.MOVIE_RELEASE_DATE
 		FROM MEMBER M JOIN BASKET B
 		ON M.MEMBER_NUMBER = B.MEMBER_NUMBER
 		JOIN MOVIE MV
@@ -26,11 +30,16 @@
 	
 	<delete id="deleteBasket" parameterType="int">
 		DELETE FROM BASKET
-		WHERE MEMBER_NUMBER = #{memberNumber}
+		WHERE MOVIE_NUMBER = #{movieNumber}
+<!-- 		<foreach collection="array" item="item" index="index" separator=","> -->
+<!-- 			, MEMBER_NUMBER = #{memberNumber[index]} -->
+<!-- 		</foreach> -->
 	</delete>
 	
 	<insert id="insertOrderHistory">
-		
+		<foreach collection="">
+			
+		</foreach>
 	</insert>
 	
 	<select id="selectOrderHistory" parameterType="int" resultMap="orderResultMap">
