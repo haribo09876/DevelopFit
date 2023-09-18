@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Footer</title>
+<title>Insert title here</title>
 <style type="text/css">
 	footer{
 		bottom: 0px;

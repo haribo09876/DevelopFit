@@ -5,7 +5,6 @@ import java.util.HashMap;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
-import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import com.dev.member.dto.MemberDto;
 
@@ -51,6 +50,15 @@ public class MemberDaoImpl implements MemberDao{
 		paramMap.put("memberEmail", memberEmail);
 		return sqlSession.selectOne("com.test.member.findPw", paramMap);
 	}
+
+
+	@Override
+	public int memberUpdateOne(MemberDto memberDto) {
+		// TODO Auto-generated method stub
+		return sqlSession.update("com.test.member.memberUpdateOne", memberDto);
+	}
+
+
 	
 
 	

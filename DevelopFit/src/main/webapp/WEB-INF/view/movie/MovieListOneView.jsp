@@ -88,29 +88,14 @@
 			border-radius: 8px;
 			color: #FFFFFF;
 		}
-	
 	</style>	
 	<script type="text/javascript">
-
 	</script>
 </head>
 <body>
 	<jsp:include page="/WEB-INF/view/Header.jsp"/>
 	
-	
-<!-- 		<h1>회원정보</h1> -->
-<!-- 		<form action='./update.do' method='get'> -->
-<%-- 			<input type='hidden' name='no' value='${memberDto.no}'> --%>
-<!-- 			이름:		<input type='text' name='name' id="memberName" -->
-<%-- 							value='${memberDto.name}' readonly="readonly"><br> --%>
-<!-- 			이메일: <input type='text' name='email' -->
-<%-- 							value='${memberDto.email}' readonly="readonly"><br> --%>
-<!-- 			<input type='submit' value='수정하기'> -->
-<!-- 			<input type='button' value='이전페이지' onclick='pageMoveListFnc();'> -->
-<!-- 		</form> -->
-	
-	
-	<a href='./list.do'>&#128281 회원목록으로</a>
+	<a href='./list.do'>&#128281 영화목록으로</a>
 	<a href='./update.do?movieNumber=${movieDto.movieNumber}'>&#128465 수정</a>
 	<a href='./delete.do?movieNumber=${movieDto.movieNumber}'>&#128465 삭제</a>
 	
@@ -189,7 +174,6 @@
 		</div>
 	</div>
 	
-<%-- 	<jsp:include page="/WEB-INF/view/Footer.jsp" /> --%>
-
+	<jsp:include page="/WEB-INF/view/Footer.jsp" />
 </body>
 </html>

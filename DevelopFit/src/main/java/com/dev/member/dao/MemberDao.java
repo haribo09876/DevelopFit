@@ -1,6 +1,6 @@
 package com.dev.member.dao;
 
-import org.springframework.web.multipart.MultipartHttpServletRequest;
+
 
 import com.dev.member.dto.MemberDto;
 
@@ -13,6 +13,9 @@ public interface MemberDao {
 	public MemberDto findId(String memberEmail, String memberPhoneNumber);
 
 	MemberDto findPw(String memberId, String memberEmail);
+
+	public int memberUpdateOne(MemberDto memberDto);
+
 
 	
 }

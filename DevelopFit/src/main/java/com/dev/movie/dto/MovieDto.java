@@ -371,5 +371,4 @@ public class MovieDto {
 				+ ratingGrade + ", watchNumber=" + watchNumber + ", watchCheck=" + watchCheck + ", memberNumber="
 				+ memberNumber + ", memberId=" + memberId + "]";
 	}
-	
 }
