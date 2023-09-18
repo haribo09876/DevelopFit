@@ -12,7 +12,7 @@
 			list-style-type: none;
 			padding: 0;
 			overflow: hidden;
-			background-color: #FFFFFF;
+			background-color: #131826;
 			/*     width: 1000px; */ /* 넓이를 주면 고정  */
 			display: table; /* table을 주면  요소의 내용에 맞게 자동으로 크기 */
 			margin-left: auto;
@@ -25,11 +25,11 @@
 		
 		nav>ul>li>a {
 			display: block;
-			color: black;
 			text-align: center;
 			padding: 1px;
 			text-decoration: none;
 			width: 30px;
+			color: white;
 		}
 		
 		nav>ul>li>a:hover {

@@ -9,15 +9,16 @@
 <title>boardListOneView</title>
 <style type="text/css">
 	body{
-		background-color: #101322;
+		background-color: #131826;
 		width: 1300px;
 		height: 1300px;
 		margin: auto;
+		color: white;
 		}
 	#container{
  		margin: 150px 60px 50px;
 		border-color: black;
- 		background-color: white;
+ 		background-color: #172036;
  		height: 1200px;
  		width: 1200px;
 	}
@@ -72,6 +73,29 @@
  		float: right;
  		margin-right: 30px;
 	}
+	#update{
+		color: white;
+		background-color: #0DA66E;
+		float: left;
+		width: 60px;
+		height: 30px;
+		margin-left: 920px;
+	}
+	#delete{
+		color: white;
+		background-color: #0DA66E;
+		float: right;
+		width: 60px;
+		height: 30px;
+		margin-right:137px;
+		margin-left: 0px;
+	}
+	#commenview{
+		float: left;
+		margin-left: 200px;
+		margin-top: 80px;
+	}
+	
 </style>
 </head>
 <body>
@@ -95,24 +119,25 @@
 			
 		</div>
 <%-- 		<c:if></c:if> --%>
+	<div>
+		<form action='./delete.do' method='post'>
+			<input type="hidden" name='boardNumber' value='${boardDto.boardNumber}'>
+<%--	<input type="hidden" name='memberNumber' value='${member.memberNumber}'> --%>
+			<input type="hidden" name='memberNumber' value= 1>
+			<input type="submit" id="delete" value="삭제">
+		</form>
 		<form action='./update.do' method='post'>
 			<input type="hidden" name='boardNumber' value='${boardDto.boardNumber}'>
 			<input type="hidden" name='memberNumber' value='${boardDto.memberNumber}'>
-			<input type="submit" value="수정">
+			<input type="submit" id="update" value="수정">
 		</form>
-		<form action='./delete.do' method='post'>
-			<input type="hidden" name='boardNumber' value='${boardDto.boardNumber}'>
-<%--	<input type="hidden" name='memberNumber' value='${memberDto.memberNumber}'> --%>
-			<input type="hidden" name='memberNumber' value= 1>
-			<input type="submit" value="삭제">
-		</form>
-		
-		
+	</div>	
+	<div id="commenview">
+		<div>댓글</div>
+	</div>
 </div>
 	
-		<div id="commentmenu">
-			<div>댓글</div>
-		</div>
+		
 	
 </body>
 </html>
