@@ -80,6 +80,7 @@
 		width: 60px;
 		height: 30px;
 		margin-left: 920px;
+		margin-top: 40px;
 	}
 	#delete{
 		color: white;
@@ -89,13 +90,16 @@
 		height: 30px;
 		margin-right:137px;
 		margin-left: 0px;
+		margin-top: 40px;
 	}
-	#commenview{
+	#commentview{
 		float: left;
 		margin-left: 200px;
 		margin-top: 80px;
 	}
-	
+	#commentpagingwrap{
+		margin-top: 400px;
+	}
 </style>
 </head>
 <body>
@@ -118,7 +122,6 @@
 		</div>
 			
 		</div>
-<%-- 		<c:if></c:if> --%>
 	<div>
 		<form action='./delete.do' method='post'>
 			<input type="hidden" name='boardNumber' value='${boardDto.boardNumber}'>
@@ -132,8 +135,29 @@
 			<input type="submit" id="update" value="수정">
 		</form>
 	</div>	
-	<div id="commenview">
+	<div id="commentview">
 		<div>댓글</div>
+	</div>
+	<c:forEach var="boardCommentDto" items="${boardCommentList}">
+    	<div id="boardCommentContent">${boardCommentDto.commentContent}</div>
+	</c:forEach>
+	
+	<form action='./commentUpdateCtr.do' method='post'>
+			<input type="hidden" name='commentNumber' value='${boardCommentDto.commentNumber}'>
+			<input type="hidden" name='memberNumber' value= 1>
+			<input type="hidden" id="boardNumber" value="${boardDto.boardNumber}">
+			<input type="submit" id="update" value="수정">
+	</form>
+	
+	<div id="commentpagingwrap">
+		<jsp:include page="/WEB-INF/view/common/BoardCommentPaging.jsp">
+			<jsp:param value="${commentPagingMap}" name="commentPagingMap"/>
+		</jsp:include>
+		
+		<form action="./commentList.do" id='pagingForm' method="post">
+			<input type="hidden" id='curPage' name='curPage' 
+				value="${commentPagingMap.boardCommentPaging.curPage}">
+		</form>
 	</div>
 </div>
 	

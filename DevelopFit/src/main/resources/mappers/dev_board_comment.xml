@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.dev.boardComment">
+
+	<resultMap type="boardCommentDto" id="boardCommentResultMap">
+		<id column="POST_COMMENT_NUMBER" property="commentNumber" />
+		<result column="POST_COMMENT_CONTENT" property="commentContent" />
+		<result column="POST_COMMENT_DATE" property="commentCreateDate" 
+		javaType="java.util.Date" />
+		<result column="BOARD_NUMBER" property="boardNumber" />
+		<result column="MEMBER_ID" property="memberId" />
+		<result column="MEMBER_NUMBER" property="memberNumber" />
+	</resultMap>
+	
+<!-- 	댓글리스트 -->
+	<select id="boardCommentSelectList" parameterType="map" resultMap="boardCommentResultMap">
+		SELECT B.BOARD_NUMBER, M.MEMBER_ID, PC.POST_COMMENT_CONTENT, PC.POST_COMMENT_DATE
+		FROM (
+		SELECT ROWNUM AS row_num, B.BOARD_NUMBER, M.MEMBER_ID,
+		PC.POST_COMMENT_CONTENT, PC.POST_COMMENT_DATE, PC.POST_COMMENT_NUMBER
+		FROM BOARD B
+		JOIN POST_COMMENT PC ON B.BOARD_NUMBER = PC.BOARD_NUMBER
+		JOIN MEMBER M ON PC.MEMBER_NUMBER = M.MEMBER_NUMBER
+		) subquery
+		WHERE subquery.row_num BETWEEN #{start} AND #{end}
+		AND B.BOARD_NUMBER = #{boardNumber}
+		AND PC.POST_COMMENT_NUMBER = #{commentNumber}
+	</select>
+	
+<!-- 	댓글 생성 -->
+	<insert id="boardCommentInsertOne" parameterType="boardCommentDto"
+		useGeneratedKeys="true" keyProperty="commentNumber">
+		<selectKey keyProperty="commentNumber" resultType="int" order="BEFORE">
+			SELECT POST_COMMENT_NUMBER_SEQ.NEXTVAL
+			FROM DUAL
+		</selectKey>
+		
+		INSERT INTO POST_COMMENT
+			(POST_COMMENT_NUMBER, POST_COMMENT_CONTENT, POST_COMMENT_DATE, 
+			BOARD_NUMBER, MEMBER_NUMBER)
+		VALUES(#{commentNumber}, #{commentContent}, SYSDATE, 
+		#{boardNumber}, #{memberNumber})
+	</insert>
+	
+	
+<!-- 	댓글 내용 업데이트 -->
+	<update id="boardCommentUpdateOne" parameterType="boardCommentDto">
+		UPDATE POST_COMMENT
+ 		<set>
+ 			<if test="commentContent != null">POST_COMMENT_CONTENT = #{commentContent}</if>
+ 		</set>
+ 		WHERE BOARD_NUMBER = #{boardNumber}
+		AND MEMBER_NUMBER = #{memberNumber}
+		AND POST_COMMENT_NUMBER = #{commentNumber}
+	</update>
+		
+<!-- 	게시글 내용 삭제 -->
+	<delete id="boardCommentDeleteOne" parameterType="int">
+		DELETE FROM POST_COMMENT
+		WHERE BOARD_NUMBER = #{boardNumber}
+		AND MEMBER_NUMBER = #{memberNumber}
+		AND POST_COMMENT_NUMBER = #{commentNumber}
+	</delete>
+	
+<!-- 	페이징 기능을 위한 총 게시글 수 산출 -->
+	<select id="boardCommentSelectTotalCount" resultType="java.lang.Integer">
+		SELECT COUNT(*)
+		FROM POST_COMMENT
+	</select>
+	
+
+</mapper>
+
+
