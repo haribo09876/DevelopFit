@@ -16,7 +16,7 @@ public class MovieDaoImpl implements MovieDao{
 	@Autowired
 	SqlSessionTemplate sqlSession;
 	
-	String namespace = "com.dev.movie.";
+	String namespace = "com.dev.movie";
 	
 	@Override
 	public List<MovieDto> movieSelectList(int start, int end) {

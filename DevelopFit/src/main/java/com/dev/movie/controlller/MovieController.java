@@ -43,7 +43,7 @@ public class MovieController {
 
 		HashMap<String, Object> pagingMap = new HashMap<>();
 		pagingMap.put("totalCount", totalCount);
-		pagingMap.put("memberPaging", moviePaging);
+		pagingMap.put("moviePaging", moviePaging);
 		
 		model.addAttribute("movieList", movieList);
 		model.addAttribute("pagingMap", pagingMap);

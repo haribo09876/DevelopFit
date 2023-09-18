@@ -82,24 +82,16 @@
 
 		<a href='./add.do'>새 영화 등록</a>
 	
-		<jsp:include page="/WEB-INF/view/common/Paging.jsp">
+		<jsp:include page="/WEB-INF/view/common/MoviePaging.jsp">
 			<jsp:param value="${pagingMap}" name="pagingMap"/>
 		</jsp:include>
 	
 		<form action="./list.do" id='pagingForm' method="post">
-			<input type="hidden" id='curPage' name='curPage'
-				value="${pagingMap.moviePaging.curPage}">
+			<input type="hidden" id='curPage' name='curPage' value="${pagingMap.moviePaging.curPage}">
 		</form>
 		
-<%-- 	<jsp:include page="/WEB-INF/view/Footer.jsp" /> --%>
-
-<!-- 	<p> -->
-<!-- 		<a href='./add.do'>신규 영화</a> -->
-<!-- 	</p> -->
-
-<!-- 	<p> -->
-<%-- 		<a href='./delete.do?no=${movieDto.no}'>[삭제]</a> --%>
-<!-- 	</p> -->
+<%-- 				<jsp:include page="/WEB-INF/view/Footer.jsp" /> --%>
 	</div>
+
 </body>
 </html>
