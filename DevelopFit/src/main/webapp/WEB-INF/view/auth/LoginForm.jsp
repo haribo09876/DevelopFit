@@ -193,7 +193,7 @@ a {
 	</div>
 
 
-	<jsp:include page="/WEB-INF/view/Footer.jsp" />
+<%-- 	<jsp:include page="/WEB-INF/view/Footer.jsp" /> --%>
 
 	<script type="text/javascript">
 		var inputID = document.getElementById('input-id');

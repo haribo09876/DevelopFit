@@ -1,6 +1,8 @@
 package com.dev.member.dao;
 
 import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -56,6 +58,33 @@ public class MemberDaoImpl implements MemberDao{
 	public int memberUpdateOne(MemberDto memberDto) {
 		// TODO Auto-generated method stub
 		return sqlSession.update("com.test.member.memberUpdateOne", memberDto);
+	}
+
+
+	@Override
+	public List<MemberDto> memberSelectList(int start, int end) {
+		// TODO Auto-generated method stub
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("start", start);
+		map.put("end", end);
+		return sqlSession.selectList("com.test.member.memberSelectList", map);
+	}
+
+
+	@Override
+	public MemberDto memberSelectOne(int memberNumber) {
+		// TODO Auto-generated method stub
+		
+		MemberDto memberDto = sqlSession.selectOne("com.test.member.memberSelectOne",memberNumber);
+		
+		return memberDto;
+	}
+
+
+	@Override
+	public int memberSelectTotalCount() {
+		// TODO Auto-generated method stub
+		return (int)sqlSession.selectOne("com.test.member.memberSelectTotalCount");
 	}
 
 

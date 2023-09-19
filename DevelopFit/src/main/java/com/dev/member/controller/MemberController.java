@@ -1,5 +1,9 @@
 package com.dev.member.controller;
 
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
 import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
@@ -9,7 +13,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
+import com.dev.util.Paging;
 import com.dev.member.dto.MemberDto;
 import com.dev.member.service.MemberService;
 
@@ -51,7 +57,7 @@ public class MemberController {
 		if (memberDto != null) {
 			// 회원존재하면 세션에담는다
 			session.setAttribute("member", memberDto);
-			viewUrl = "redirect:/auth/login.do";
+			viewUrl = "redirect:/movie/list.do";
 
 			if (memberDto.getMemberId().equals("admin1") && memberDto.getMemberPassword().equals("admin1")) {
 				viewUrl = "redirect:/admin/admin.do";
@@ -186,6 +192,48 @@ public class MemberController {
 				e.printStackTrace();
 			}
 		    return "/member/myPage";
+		}
+		
+		@RequestMapping(value = "/member/listOne.do", method = RequestMethod.GET)
+		public String memberListOne(int no, Model model) {
+			log.debug("Welcome MemberController memberListOne! - {}", no);
+			
+			Map<String, Object> map = memberService.memberSelectOne(no);
+			
+			MemberDto memberDto = (MemberDto)map.get("memberDto");
+			
+			model.addAttribute("memberDto", memberDto);
+			
+			return "member/MemberListOneView";
+		}
+		
+//		멤버 리스트 기능
+		@RequestMapping(value = "/member/list.do", 
+				method = {RequestMethod.GET, RequestMethod.POST})
+		public String memberList(@RequestParam(defaultValue = "1") int curPage, Model model) {
+
+			log.info("Welcome MemberController list! : {}", curPage);
+			
+			int totalCount = memberService.memberSelectTotalCount();
+			
+			Paging memberPaging = new Paging(totalCount, curPage);
+			
+			int start = memberPaging.getPageBegin();
+			int end = memberPaging.getPageEnd();
+			
+			List<MemberDto> memberList = memberService.memberSelectList(start, end);
+			
+			HashMap<String, Object> pagingmap = new HashMap<>();
+			pagingmap.put("totalCount", totalCount);
+			pagingmap.put("memberPaging", memberPaging);
+			
+			System.out.println(totalCount);
+			System.out.println(memberPaging);
+			
+			model.addAttribute("memberList", memberList);
+			model.addAttribute("pagingMap", pagingmap);
+			
+			return "member/MemberListView";
 		}
 
 }

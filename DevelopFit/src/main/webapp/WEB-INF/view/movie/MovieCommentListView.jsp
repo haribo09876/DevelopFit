@@ -69,12 +69,12 @@
 
 		<a href='./add.do'>새 한줄평 등록</a>
 	
-		<jsp:include page="/WEB-INF/view/common/MoviePaging.jsp">
+		<jsp:include page="/WEB-INF/view/common/MovieCommentPaging.jsp">
 			<jsp:param value="${pagingMap}" name="pagingMap"/>
 		</jsp:include>
 	
 		<form action="./list.do" id='pagingForm' method="post">
-			<input type="hidden" id='curPage' name='curPage' value="${pagingMap.moviePaging.curPage}">
+			<input type="hidden" id='curPage' name='curPage' value="${pagingMap.movieCommentPaging.curPage}">
 		</form>
 	</div>
 	<jsp:include page="/WEB-INF/view/Footer.jsp" />
