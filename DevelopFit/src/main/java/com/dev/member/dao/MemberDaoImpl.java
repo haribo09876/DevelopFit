@@ -1,6 +1,8 @@
 package com.dev.member.dao;
 
 import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,7 +31,7 @@ public class MemberDaoImpl implements MemberDao{
 	@Override
 	public void memberInsertOne(MemberDto memberDto) {
 		// TODO Auto-generated method stub
-		sqlSession.insert("com.test.member.memberInsertOne", memberDto);
+		sqlSession.insert("com.dev.member.memberInsertOne", memberDto);
 	}
 
 
@@ -39,7 +41,7 @@ public class MemberDaoImpl implements MemberDao{
 		HashMap<String, Object> paramMap = new HashMap<String, Object>();
 		paramMap.put("memberEmail", memberEmail);
 		paramMap.put("memberPhoneNumber", memberPhoneNumber);
-		return sqlSession.selectOne("com.test.member.findId", paramMap);
+		return sqlSession.selectOne("com.dev.member.findId", paramMap);
 	}
 	
 	@Override
@@ -48,14 +50,41 @@ public class MemberDaoImpl implements MemberDao{
 		HashMap<String, Object> paramMap = new HashMap<String, Object>();
 		paramMap.put("memberId", memberId);
 		paramMap.put("memberEmail", memberEmail);
-		return sqlSession.selectOne("com.test.member.findPw", paramMap);
+		return sqlSession.selectOne("com.dev.member.findPw", paramMap);
 	}
 
 
 	@Override
 	public int memberUpdateOne(MemberDto memberDto) {
 		// TODO Auto-generated method stub
-		return sqlSession.update("com.test.member.memberUpdateOne", memberDto);
+		return sqlSession.update("com.dev.member.memberUpdateOne", memberDto);
+	}
+
+
+	@Override
+	public List<MemberDto> memberSelectList(int start, int end) {
+		// TODO Auto-generated method stub
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("start", start);
+		map.put("end", end);
+		return sqlSession.selectList("com.dev.member.memberSelectList", map);
+	}
+
+
+	@Override
+	public MemberDto memberSelectOne(int memberNumber) {
+		// TODO Auto-generated method stub
+		
+		MemberDto memberDto = sqlSession.selectOne("com.dev.member.memberSelectOne",memberNumber);
+		
+		return memberDto;
+	}
+
+
+	@Override
+	public int memberSelectTotalCount() {
+		// TODO Auto-generated method stub
+		return (int)sqlSession.selectOne("com.dev.member.memberSelectTotalCount");
 	}
 
 

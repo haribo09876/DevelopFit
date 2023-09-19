@@ -1,6 +1,7 @@
 package com.dev.member.service;
 
-
+import java.util.List;
+import java.util.Map;
 
 import com.dev.member.dto.MemberDto;
 
@@ -15,6 +16,12 @@ import com.dev.member.dto.MemberDto;
 	public MemberDto findPw(String memberId, String memberEmail);
 
 	public void memberUpdateOne(MemberDto memberDto);
+
+	public int memberSelectTotalCount();
+
+	public List<MemberDto> memberSelectList(int start, int end);
+
+	public Map<String, Object> memberSelectOne(int memberNumber);
 
 
 	

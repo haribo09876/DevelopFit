@@ -58,4 +58,45 @@ public class MovieDaoImpl implements MovieDao{
 		return (int)sqlSession.selectOne("com.dev.movie.movieSelectTotalCount");
 	}
 
+
+	@Override
+	public List<MovieDto> movieCommentSelectList(int start, int end) {
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("start", start);
+		map.put("end", end);
+
+		return sqlSession.selectList("com.dev.movie.movieCommentSelectList", map);
+	}
+	
+	@Override
+	public int movieCommentInsertOne(MovieDto movieDto) {
+		// TODO Auto-generated method stub
+		return sqlSession.insert("com.dev.movie.movieCommentInsertOne", movieDto);
+	}
+	
+	@Override
+	public MovieDto movieCommentSelectOne(int movieNumber) {
+		// TODO Auto-generated method stub
+		MovieDto movieDto = sqlSession.selectOne("com.dev.movie.movieCommentSelectOne", movieNumber);
+		return movieDto;
+	}
+	
+	@Override
+	public int movieCommentUpdateOne(MovieDto movieDto) {
+		// TODO Auto-generated method stub
+		return sqlSession.update("com.dev.movie.movieCommentUpdateOne", movieDto);
+	}
+	
+	@Override
+	public int movieCommentDeleteOne(int movieNumber) {
+		// TODO Auto-generated method stub
+		return sqlSession.delete("com.dev.movie.movieCommentDeleteOne", movieNumber);
+	}
+	
+	@Override
+	public int movieCommentSelectTotalCount() {
+		// TODO Auto-generated method stub
+		return (int)sqlSession.selectOne("com.dev.movie.movieCommentSelectTotalCount");
+	}
+
 }

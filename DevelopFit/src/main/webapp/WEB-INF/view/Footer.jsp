@@ -79,10 +79,10 @@
 			<div id="footer-content-left">
 				<div id="footer-logo">LOGO</div><br>
 					<div id="footer-menu">
-						<div id="footer-menu1">MENU1</div>
-						<div id="footer-menu2">MENU2</div>
-						<div id="footer-menu3">MENU3</div>
-						<div id="footer-menu4">MENU4</div>
+						<div id="footer-menu1">홈</div>
+						<div id="footer-menu2">추천영화</div>
+						<div id="footer-menu3">영화전체</div>
+						<div id="footer-menu4">커뮤니티</div>
 					</div>
 				<div id="footer-copyright">
 					copyright &copy; by DevelopFit All Right.

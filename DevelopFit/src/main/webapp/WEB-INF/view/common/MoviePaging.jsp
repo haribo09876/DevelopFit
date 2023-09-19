@@ -4,10 +4,16 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 
 <!DOCTYPE html>
-
-<script type="text/javascript" 
-	src="/DevelopFit/resources/js/jquery-3.7.1.js"></script>
-
+	<script type="text/javascript" src="/DevelopFit/resources/js/jquery-3.7.1.js">
+	</script>
+	<script type="text/javascript">
+		function goPage(pageNumber) {
+			var curPageObj = $("#curPage");
+			curPageObj.val(pageNumber);
+			var pagingFormObj = $('#pagingForm');
+			pagingFormObj.submit();
+		}
+	</script>
 	<style type="text/css">
 		nav>ul {
 			list-style-type: none;
@@ -19,11 +25,9 @@
 			margin-left: auto;
 			margin-right: auto;
 		}
-		
 		nav>ul>li {
 			float: left;
 		}
-		
 		nav>ul>li>a {
 			display: block;
 			color: black;
@@ -32,23 +36,12 @@
 			text-decoration: none;
 			width: 30px;
 		}
-		
 		nav>ul>li>a:hover {
 			color: #FFD9EC;
 			background-color: #5D5D5D;
 			font-weight: bold;
 		}
 	</style>
-
-	<script type="text/javascript">
-		function goPage(pageNumber) {
-			var curPageObj = $("#curPage");
-			curPageObj.val(pageNumber);
-			var pagingFormObj = $('#pagingForm');
-			pagingFormObj.submit();
-		}
-	</script>
-
 	<nav class='jqueryTest'>
 		<ul>		
 			<c:if test="${pagingMap.moviePaging.prevBlock ne 1}">
