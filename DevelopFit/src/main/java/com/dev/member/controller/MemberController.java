@@ -62,10 +62,8 @@ public class MemberController {
 			if (memberDto.getMemberId().equals("admin1") && memberDto.getMemberPassword().equals("admin1")) {
 				viewUrl = "redirect:/admin/admin.do";
 			} else {
-
 				viewUrl = "redirect:/board/list.do";
 			}
-
 		} else {
 			viewUrl = "/auth/LoginFail";
 		}
