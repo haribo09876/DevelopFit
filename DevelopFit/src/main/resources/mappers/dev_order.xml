@@ -7,7 +7,11 @@
 	<resultMap type="orderDto" id="orderResultMap">
 		<id column="MEMBER_NUMBER" property="memberNumber" />
 		<result column="MEMBER_ID" property="memberId" />
+		<result column="MOVIE_NUMBER" property="movieNumber" />
 		<result column="MOVIE_TITLE" property="movieTitle" />
+		<result column="MOVIE_SUMMARY" property="movieSummary" />
+		<result column="MOVIE_RUNTIME" property="movieRuntime" />
+		<result column="MOVIE_RELEASE_DATE" property="movieReleaseDate" />
 		<result column="MOVIE_PRICE" property="moviePrice" />
 		<result column="MOVIE_POSTER" property="moviePoster" />
 		<result column="ORDER_HISTORY_NUMBER" property="orderHistoryNumber" />
@@ -15,7 +19,8 @@
 	</resultMap>
 	
 	<select id="selectBasketList" parameterType="int" resultMap="orderResultMap">
-		SELECT M.MOVIE_NUMBER, MV.MOVIE_TITLE, MV.MOVIE_PRICE, MV.MOVIE_POSTER
+		SELECT MV.MOVIE_NUMBER, MV.MOVIE_TITLE, MV.MOVIE_PRICE, MV.MOVIE_POSTER, MV.MOVIE_SUMMARY
+			, MV.MOVIE_RUNTIME, MV.MOVIE_RELEASE_DATE
 		FROM MEMBER M JOIN BASKET B
 		ON M.MEMBER_NUMBER = B.MEMBER_NUMBER
 		JOIN MOVIE MV
@@ -26,11 +31,27 @@
 	
 	<delete id="deleteBasket" parameterType="int">
 		DELETE FROM BASKET
-		WHERE MEMBER_NUMBER = #{memberNumber}
+		WHERE MOVIE_NUMBER = #{movieNumber}
 	</delete>
 	
-	<insert id="insertOrderHistory">
+	<insert id="insertOrderHistory" parameterType="map">
+<!-- 		INSERT ALL -->
+<!--     		INTO ORDER_HISTORY -->
+<!-- 		    VALUE(ORDER_HISTORY_NUMBER, ORDER_HISTORY_TIME, MEMBER_NUMBER) -->
+<!-- 		    VALUES(ORDER_HISTORY_NUMBER_SEQ.NEXTVAL, SYSDATE, #{memberNumber}) -->
+<!-- 		    INTO ORDER_PRODUCT -->
+<!-- 		    VALUE(ORDER_PRODUCT_NUMBER, ORDER_HISTORY_NUMBER, MOVIE_NUMBER) -->
+<!-- 		    VALUES(ORDER_PRODUCT_NUMBER_SEQ.NEXTVAL, ORDER_HISTORY_NUMBER_SEQ.NEXTVAL, #{movieNumber}) -->
+<!-- 		SELECT * FROM DUAL -->
 		
+		INSERT ALL
+		    INTO ORDER_HISTORY
+		    (order_history_number, order_history_time, member_number)
+		    VALUES(ORDER_HISTORY_NUMBER_SEQ.NEXTVAL, SYSDATE, #{memberNumber})
+		    INTO ORDER_PRODUCT
+		    (order_product_number, order_history_number, movie_number)
+		    VALUES(ORDER_PRODUCT_NUMBER_SEQ.NEXTVAL, ORDER_HISTORY_NUMBER_SEQ.NEXTVAL, #{movieNumber})
+		SELECT * FROM DUAL
 	</insert>
 	
 	<select id="selectOrderHistory" parameterType="int" resultMap="orderResultMap">

@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 
@@ -9,8 +9,10 @@
 <meta charset="UTF-8">
 <title>장바구니</title>
 
-<script type="text/javascript" src="/Final/resources/js/ShoppingBasket.js" ></script>
-<link href="/Final/resources/css/ShoppingBasket.css" rel="stylesheet" type="text/css" /> 
+<script type="text/javascript"
+	src="/Final/resources/js/ShoppingBasket.js"></script>
+<link href="/Final/resources/css/ShoppingBasket.css" rel="stylesheet"
+	type="text/css" />
 
 <style type="text/css">
 body {
@@ -25,15 +27,14 @@ h1 {
 #productWrap {
 	width: 900px;
 	height: auto;
-	margin: 30px auto;
-  	background-color: skyblue;
+	margin: 30px auto 0px;
 }
 
-#deleteProduct {
-	width: 64px;
+#selectAll {
+	width: 83px;
 	height: 20px;
 	display: inline-block;
-	margin-left: 650px;
+	margin-left: 617px;
 }
 
 #productDetail {
@@ -42,7 +43,8 @@ h1 {
 	background-color: #172036;
 	border-radius: 13px;
 	padding: 30px 30px 30px 40px;
-	margin-bottom: 15px;
+	/* 	margin-bottom: 15px; */
+	margin-top: 10px;
 }
 
 #productImg {
@@ -54,39 +56,39 @@ h1 {
 	display: inline-block;
 }
 
-
-
-
-
-
-
 #payWrap {
-	width: 300px;
-	height: 500px;
-	display: inline-block;
+	width: 900px;
+	height: auto;
+	margin: 50px auto;
+	background-color: skyblue;
 }
 
-#payInfo {
-	
+#payDetail {
+	width: 830px;
+	height: 90px;
+	background-color: #172036;
+	border-radius: 13px;
+	padding: 30px 30px 30px 40px;
+	margin-bottom: 15px;
+	font-size: 18px;
 }
 
-#payDetail{
-	
+#selectWrap {
+	width: 556px;
+	margin: 50px auto;
 }
-
-
-
 
 #cancel {
 	width: 250px;
 	height: 45px;
 	font-size: 25px;
-	background-color: #0DA66E;
+	background-color: #f24141;
 	border-radius: 5px;
 	text-align: center;
 	padding-top: 8px;
 	display: inline-block;
 	margin-right: 50px;
+	cursor: pointer;
 }
 
 #buy {
@@ -98,6 +100,7 @@ h1 {
 	text-align: center;
 	padding-top: 8px;
 	display: inline-block;
+	cursor: pointer;
 }
 
 #productPoster {
@@ -112,82 +115,319 @@ h1 {
 }
 
 #productName {
-	width: 300px;
+	width: 380px;
 	height: 150px;
-	margin: 0px 10px 10px 10px;
-	border: 1px solid white;
+	margin: 0px 10px 10px 16px;
 	float: left;
 }
 
 #productPrice {
 	width: 100px;
-	height: 150px;
-	margin: 0px 10px 10px 10px;
-	border: 1px solid white;
+	height: 90px;
+	margin: 0px 10px 10px 12px;
+	padding-top: 60px;
 	float: left;
 	text-align: center;
+	vertical-align: middle;
 }
 
 #productSelect {
 	width: 50px;
-	height: 150px;
-	margin: 0px 10px 10px 10px;
-	border: 1px solid white;
+	height: 85px;
+	margin: 0px 10px 10px 12px;
+	padding-top: 65px;
 	text-align: center;
 }
+
+#productOtherInfo {
+	width: 100px;
+	height: 125px;
+	margin: 0px 10px 10px 12px;
+	padding-top: 25px;
+	text-align: center;
+}
+
+p {
+/* 	display: inline-block; */
+}
+
+#deleteWrap {
+	width: 900px;
+	margin: 0px auto;
+}
+
+#deleteSelect {
+	color: white;
+	width: 64px;
+	float: right;
+	cursor: pointer;
+}
+
+#emptyBasket {
+	width: 830px;
+	height: 150px;
+	background-color: #172036;
+	border-radius: 13px;
+	padding: 30px 30px 30px 40px;
+	margin-top: 10px;
+}
+
+#emptyBasketContent {
+	font-size: 20px;
+	margin: 48px 290px;
+}
+
+#movePageMovie {
+	width: 250px;
+	height: 45px;
+	font-size: 25px;
+	background-color: #0DA66E;
+	border-radius: 5px;
+	text-align: center;
+	padding-top: 8px;
+	display: inline-block;
+	cursor: pointer;
+	margin: auto;
+}
+
+#totalPrice {
+	text-align: right;
+	display: inline-block;
+/* 	float: right; */
+}
+
+#payment {
+	width: 400px;
+	margin: 0px auto;
+}
+
+#consentOrder {
+	width: 400px;
+	margin: 0px auto;
+}
+
 </style>
+
+
+<script type="text/javascript">
+	function checkAllFnc() {
+		var checkBoxes = document.getElementsByName("product");
+		var allCheckObj = document.getElementsByName("allCheck")[0];
+
+		if (allCheckObj.checked == false) {
+			for (var i = 0; i < checkBoxes.length; i++) {
+				checkBoxes[i].checked = false;
+			}
+		} else if (allCheckObj.checked == true) {
+			for (var i = 0; i < checkBoxes.length; i++) {
+				checkBoxes[i].checked = true;
+			}
+		}
+
+	}
+	
+	function sumPrice() {
+		var sum = 0;
+		var checkBoxes = document.getElementsByName("product");
+		var totalPriceObj = document.getElementById("totalPrice");
+		
+		for(var i = 0; i < checkBoxes.length; i++){
+			if(checkBoxes[i].checked == true){
+				sum += parseInt(document.getElementById(checkBoxes[i].value).value);
+			}
+		}
+		totalPrice.innerHTML = sum + "원";
+	}
+	
+	function checkedFnc() {
+		var checkBoxes = document.getElementsByName("product");
+		var allCheckObj = document.getElementsByName("allCheck")[0];
+
+		for (var i = 0; i < checkBoxes.length; i++) {
+			if (checkBoxes[i].checked == false) {
+				allCheckObj.checked = false;
+				break;
+			} else {
+				allCheckObj.checked = true;
+			}
+		}
+	}
+
+	function checkStr() {
+		var checkBoxes = document.getElementsByName("product");
+		var checkStr = "";
+
+		for (var i = 0; i < checkBoxes.length; i++) {
+			if (checkBoxes[i].checked == true) {
+				checkStr += checkBoxes[i].value + ",";
+			}
+		}
+		return checkStr;
+	}
+
+	function buyFnc() {
+		var formObj = document.getElementById("formTag");
+		
+		if (checkStr() == "") {
+			alert("상품을 선택해주세요.");
+		} else {
+			formObj.setAttribute("method", "post");
+			formObj.setAttribute("action", "./successCtr.do");
+			formObj.submit();
+		}
+
+	}
+
+	function deleteSelectFnc() {
+		var formObj = document.getElementById("formTag");
+		
+		if(checkStr() != "") {
+			if (confirm("삭제하시겠습니까?") == true) {
+				alert("삭제되었습니다");
+// 				formObj.setAttribute("method", "post");
+// 				formObj.setAttribute("action", "./basketCtr.do");
+// 				formObj.submit();
+				
+				var productArr = [];
+				for(var i = 0; i < document.getElementsByName("product").length; i++){
+					if(document.getElementsByName("product")[i].checked == true){
+						productArr.push(document.getElementsByName("product")[i].value);
+					}
+				}
+				
+				$.ajax({
+			        url: '/order/basketCtr.do'
+			        , type: 'post'
+			        , dataType: 'text'
+			        , data: {
+			            product: productArr
+			        }
+			    });
+				alert("asd");
+			}
+		} else {
+			alert("삭제할 상품을 선택해주세요.");
+		}
+	}
+	
+	function movePageMovieFnc() {
+		location.href = "../movie/list.do";
+	}
+</script>
+
 
 </head>
 <body>
-	
-	<jsp:include page="/WEB-INF/view/Header.jsp"/>
-	
-	
+
+	<!-- 	헤더 -->
+	<jsp:include page="/WEB-INF/view/Header.jsp" />
+
+
+
+
+
+	<!-- 	장바구니 -->
 	<div id="productWrap">
 		<h1>장바구니</h1>
-		<div id="deleteProduct">선택삭제</div>
-		
-		<c:forEach var="basketList" items="${basketList}">
-		<div id="productDetail">
-			<div id="productImg" class="productInfo"><img id="productPoster" src="${basketList.moviePoster}" /></div>
-			<div id="productName" class="productInfo"><h2>${basketList.movieTitle}</h2></div>
-			<div id="productPrice" class="productInfo"><p>상품금액</p><p>${basketList.moviePrice}</p></div>
-			<div id="productSelect" class="productInfo"><label><input type="checkbox" name="product" value="${basketList.movieTitle}"></label></div>
-		</div>
-		</c:forEach>
-		
-	</div>
-	
-	
-	<div id="payWrap">
-		<h1>결제정보</h1>
-		<div id="payDetail">
-			<div id="pay">
-				<p style="display: inline-block;">결제금액</p>
-				<p style="display: inline-block;">0원</p>
-			</div>
-			<div>
-				<p style="display: inline-block;">품절 시 환불 안내</p>
-				<p style="display: inline-block;">환불안내 내용환불안내 내용환불안내 내용</p>
-			</div>
-			<div>
-				<p style="display: inline-block;">주문자 동의</p>
-				<form action="" method="post" >
-					<label><input type="checkbox" name="agree" value="1" >1</label>
-					<label><input type="checkbox" name="agree" value="2" >2</label>
-				</form>
-			</div>
-		</div>
-	</div>
-	
-	
-	<div id="selectWrap">
-		<div id="cancel" onclick="이전페이지">취소</div>
-		<div id="buy" onclick="다음페이지">구매</div>
-	</div>
-	
-	
-<%-- 	<jsp:include page="/WEB-INF/view/Footer.jsp"/> --%>
-	
+
+		<c:choose>
+			<c:when test="${not empty basketList}">
+
+
+				<div id="selectAll">
+					전체선택 <input type="checkbox" name="allCheck" onclick="checkAllFnc(); sumPrice();">
+				</div>
+
+
+				<c:forEach var="basketList" items="${basketList}">
+					<div id="productDetail">
+						<div id="productImg" class="productInfo">
+							<img id="productPoster" src="${basketList.moviePoster}" />
+						</div>
+						<div id="productName" class="productInfo">
+							<h2>${basketList.movieTitle}</h2>
+							<br />
+							<p>${basketList.movieSummary}</p>
+						</div>
+						<div id="productOtherInfo" class="productInfo">
+							<h4>개봉일</h4>
+							<p>
+								<fmt:formatDate value="${basketList.movieReleaseDate}" />
+							</p>
+							<div>
+								<br>
+							</div>
+							<h4>상영시간</h4>
+							<p>${basketList.movieRuntime}분</p>
+						</div>
+						<div id="productPrice" class="productInfo">
+							<h4>상품금액</h4>
+							<p>${basketList.moviePrice}원</p>
+						</div>
+						<form id="formTag">
+							<div id="productSelect" class="productInfo">
+								<input type="checkbox" name="product"
+									value="${basketList.movieNumber}" onclick="checkedFnc(); sumPrice();">
+								<input type="hidden" id="${basketList.movieNumber}"
+									value="${basketList.moviePrice}">
+							</div>
+						</form>
+					</div>
+				</c:forEach>
+
+
+
+				<div id="deleteWrap">
+					<div id="deleteSelect" onclick="deleteSelectFnc();">선택삭제</div>
+				</div>
+
+
+
+				<!-- 	결제정보 -->
+				<div id="payWrap">
+					<h1>결제정보</h1>
+					<div id="payDetail">
+						<div id="payment">
+							<p>결제금액</p>
+							<p id="totalPrice">0원</p>
+						</div>
+						<div id="consentOrder">
+							<p>주문자 동의</p>
+							<ol>
+								<li><label><input type="checkbox" name="agree" value="1"> 만 14세 이상입니다.</label></li>
+								<li><label><input type="checkbox" name="agree" value="2"> 이용약관 </label></li>
+							</ol>
+						</div>
+					</div>
+				</div>
+
+
+
+				<!-- 	구매취소버튼 -->
+				<div id="selectWrap">
+					<div id="cancel" onclick="이전페이지">취소</div>
+					<div id="buy" onclick="buyFnc();">구매</div>
+				</div>
+			</c:when>
+
+			<c:otherwise>
+				<div id="emptyBasket">
+					<div id="emptyBasketContent">
+						장바구니가 비어있어요..<br>영화를 담아주세요!
+					</div>
+				</div>
+				
+				<div id="movePageMovie" onclick="movePageMovieFnc();" style="color: white;">
+					영화페이지로
+				</div>
+			</c:otherwise>
+		</c:choose>
+
+	</div><!-- productWrap end -->
+
+
+
+	<%-- 	<jsp:include page="/WEB-INF/view/Footer.jsp"/> --%>
+
 </body>
 </html>

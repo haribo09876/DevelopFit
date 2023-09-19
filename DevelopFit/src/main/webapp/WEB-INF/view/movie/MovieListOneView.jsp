@@ -109,6 +109,7 @@
 			<p>상영시간 : ${movieDto.movieRuntime}분</p>
 			<p>관람가 : 00세 관람가</p>
 			<p>가격 : ${movieDto.moviePrice} 원</p>
+			<p>!!! 한줄평 테스트 위치 !!! : ${movieDto.lineReviewContext}</p>
 		</div>
 		<div id="secondSectionDiv">
 			<button class="firstButton">&#x1F44D  좋아요</button>
@@ -155,23 +156,43 @@
 			<p class="actor">배우7</p>
 		</div>
 		
-		<h3>한줄평</h3>
-		<div id="seventhSectionDiv">
-			<p>
-				한줄평1 내용 ~~~
-			</p>
-			<hr>
-			<p>
-				한줄평2 내용 ~~~
-			</p>
-			<hr>
-			<p>
-				한줄평3 내용 ~~~
-			</p>
-			<hr>
-			<p>∨ 더보기</p>
-			<hr>
+		
+			<div id="contentsAreaDiv">
+			<h3>한줄평 (MovieCommentList)</h3>
+			<table id="movieListTable">
+				<tr>
+					<th>회원 아이디</th>
+					<th>한줄평 내용</th>
+				</tr>
+	
+				<c:forEach var="movieDto" items="${movieCommentList}">
+					<tr>
+						<td>
+							<a href='./commentList.do?lineReviewNumber=${movieDto.lineReviewNumber}'>${movieDto.lineReviewNumber}</a>
+						</td>
+						<td>${movieDto.memberId}</td>
+						<td>${movieDto.lineReviewContext}</td>
+						<td>
+							<a href='./commentUpdate.do?lineReviewNumber=${movieDto.lineReviewNumber}'>&#128465 수정</a>
+						</td>
+						<td>
+							<a href='./commentDelete.do?lineReviewNumber=${movieDto.lineReviewNumber}'>&#128465 삭제</a>
+						</td>
+					</tr>
+				</c:forEach>
+			</table>
+	
+			<a href='./commentAdd.do'>새 한줄평 등록</a>
+		
+			<jsp:include page="/WEB-INF/view/common/MovieCommentPaging.jsp">
+				<jsp:param value="${pagingMap}" name="pagingMap"/>
+			</jsp:include>
+		
+			<form action="./list.do" id='pagingForm' method="post">
+				<input type="hidden" id='curPage' name='curPage' value="${pagingMap.movieCommentPaging.curPage}">
+			</form>
 		</div>
+
 	</div>
 	
 	<jsp:include page="/WEB-INF/view/Footer.jsp" />

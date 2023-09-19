@@ -60,4 +60,33 @@
 		</set>
 		WHERE MEMBER_PASSWORD = #{memberPassword}
 	</update>
+	
+<!-- 	전체 조회 -->
+	<select id="memberSelectTotalCount" resultType="java.lang.Integer">
+		SELECT COUNT(*)
+		FROM MEMBER
+	</select>
+	
+<!-- 	멤버 한명 조회 -->
+	<select id="memberSelectOne" parameterType="int"
+		resultMap="memberResultMap">
+		SELECT MEMBER_NUMBER, MEMBER_ID, MEMBER_NAME, MEMBER_EMAIL, MEMBER_PHONE_NUMBER, MEMBER_BIRTH_DATE
+		FROM MEMBER
+		WHERE MEMBER_NUMBER = #{memberNumber}
+	</select>
+	
+<!-- 	멤버 리스트 -->
+	<select id="memberSelectList" parameterType="map"
+		resultMap="memberResultMap">
+		SELECT MEMBER.MEMBER_NUMBER, MEMBER_NAME, MEMBER_EMAIL, MEMBER_BIRTH_DATE
+		FROM (  
+				SELECT ROWNUM AS RNUM, M.MEMBER_NUMBER, M.MEMBER_NAME, M.MEMBER_EMAIL, M.MEMBER_BIRTH_DATE
+       	 		FROM (  
+       	 				SELECT MEMBER_NUMBER, MEMBER_NAME, MEMBER_EMAIL, MEMBER_BIRTH_DATE
+                		FROM member
+                		ORDER BY MEMBER_CREATE_DATE DESC) M
+     		 ) MEMBER
+		WHERE MEMBER.RNUM BETWEEN #{start} AND #{end}
+	</select>
+	
 </mapper>

@@ -1,5 +1,8 @@
 package com.dev.member.service;
 
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 import org.slf4j.Logger;
 
@@ -47,6 +50,29 @@ public class MemberServiceImpl implements MemberService{
 	public void memberUpdateOne(MemberDto memberDto) {
 		// TODO Auto-generated method stub
 		memberDao.memberUpdateOne(memberDto);
+	}
+
+	@Override
+	public int memberSelectTotalCount() {
+		// TODO Auto-generated method stub
+		return memberDao.memberSelectTotalCount();
+	}
+
+	@Override
+	public List<MemberDto> memberSelectList(int start, int end) {
+		// TODO Auto-generated method stub
+		return memberDao.memberSelectList(start, end);
+	}
+
+	@Override
+	public Map<String, Object> memberSelectOne(int memberNumber) {
+		// TODO Auto-generated method stub
+		Map<String, Object> resultMap = new HashMap<String, Object>();
+		
+		MemberDto memberDto = memberDao.memberSelectOne(memberNumber);
+		resultMap.put("memberDto", memberDto);
+		
+		return resultMap;
 	}
 	
 }

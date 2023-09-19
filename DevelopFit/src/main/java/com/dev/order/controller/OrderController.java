@@ -11,6 +11,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.dev.member.dto.MemberDto;
 import com.dev.order.dto.OrderDto;
@@ -24,47 +25,98 @@ public class OrderController {
 	@Autowired
 	private OrderService orderService;
 	
+	// 장바구니 페이지
 	@RequestMapping(value = "/order/basket.do", method = {RequestMethod.GET, RequestMethod.POST})
 	public String basket(HttpSession session, Model model) {
 	    // Log4j
 	    log.info("Welcome OrderController basket! memberNumber: {}", session);
 	    
+	    try {
+	    	MemberDto memberDto = (MemberDto)session.getAttribute("member");
+		    
+		    List<OrderDto> basketList = orderService.selectBasketList(memberDto.getMemberNumber());
+		    model.addAttribute("basketList", basketList);
+	
+		    return "order/ShoppingBasket";
+		} catch (Exception e) {
+			// TODO: handle exception
+			return "auth/LoginForm";
+		}
 //	    if(session != null) {
-//		    MemberDto memberDto = (MemberDto)session.getAttribute("memberDto");
-//		    int memberNumber = memberDto.getMemberNumber();
-//		    List<OrderDto> basketList = orderService.basketList(memberNumber);
-//		    model.addAttribute("basketList", orderService.basketList(1));
+//		    MemberDto memberDto = (MemberDto)session.getAttribute("member");
+//		    
+//		    List<OrderDto> basketList = orderService.selectBasketList(memberDto.getMemberNumber());
+//		    model.addAttribute("basketList", basketList);
 //	
-//		    return "auth/LoginForm";
+//		    return "order/ShoppingBasket";
 //	    } else {
-//	    	return "order/ShoppingBasket";
+//	    	return "auth/LoginForm";
 //	    }
 	    
-	    model.addAttribute("basketList", orderService.selectBasketList(1));
-	    return "order/ShoppingBasket";
 	}
 	
+	
+	// 장바구니 삭제
+	@RequestMapping(value = "/order/basketCtr.do", method = RequestMethod.POST)
+	public String basketCtr(HttpSession session, @RequestParam(value = "product[]") List<String> product, Model model) {
+	    log.info("Welcome OrderController basketCtr! delete movieNumber: {}", product);
+	    System.out.println("product: " + product.size());
+	    
+//	    String[] productArr = product.split(",");
+//	    
+//	    if(session != null) {
+//		    for (int i = 0; i < productArr.length; i++) {
+//		    	orderService.deleteBasket(Integer.parseInt(productArr[i]));
+//			}
+		    return "redirect:basket.do";
+//	    } else {
+//	    	return "auth/LoginForm";
+//	    }
+	}
+	
+	
+	// 주문 성공 페이지
 	@RequestMapping(value = "/order/success.do", method = {RequestMethod.GET, RequestMethod.POST})
 	public String success(HttpSession session, Model model) {
 	    // Log4j
-	    log.info("Welcome OrderController success! memberNumber: {}", session);
+	    log.info("Welcome OrderController success Page!");
 	    
-	    
-//	    if(session != null) {
-//		    MemberDto memberDto = (MemberDto)session.getAttribute("memberDto");
-//		    int memberNumber = memberDto.getMemberNumber();
-//		    List<OrderDto> basketList = orderService.basketList(memberNumber);
-//		    model.addAttribute("basketList", orderService.basketList(1));
-//	
-//		    return "auth/LoginForm";
-//	    } else {
-//	    	return "order/ShoppingBasket";
-//	    }
-	    
-	    model.addAttribute("orderHistory", orderService.selectOrderHistory(1));
-	    return "order/OrderSuccess";
+	    if(session != null) {
+		    MemberDto memberDto = (MemberDto)session.getAttribute("member");
+		    
+		    model.addAttribute("orderHistory", orderService.selectOrderHistory(memberDto.getMemberNumber()));
+		    
+		    return "order/OrderSuccess";
+	    } else {
+	    	return "auth/LoginForm";
+	    }
 	}
 	
+	
+	// 주문 내역에 저장
+	@RequestMapping(value = "/order/successCtr.do", method = {RequestMethod.GET, RequestMethod.POST})
+	public String successCtr(HttpSession session, String product, Model model) {
+	    // Log4j
+	    log.info("Welcome OrderController success! successCtr");
+	    
+	    
+	    String[] productArr = product.split(",");
+	    
+	    if(session != null) {
+		    MemberDto memberDto = (MemberDto)session.getAttribute("member");
+		    
+		    for (int i = 0; i < productArr.length; i++) {
+		    	orderService.deleteBasket(Integer.parseInt(productArr[i])); // 장바구니 삭제
+		    	orderService.insertOrderHistory(memberDto.getMemberNumber(), Integer.parseInt(productArr[i])); //주문 내역 저장
+			}
+		    return "redirect:success.do";
+	    } else {
+	    	return "auth/LoginForm";
+	    }
+	}
+	
+	
+	// 주문 취소
 	@RequestMapping(value = "/order/cancel.do", method = {RequestMethod.GET, RequestMethod.POST})
 	public String cancel(Model model) {
 	    // Log4j

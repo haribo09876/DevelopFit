@@ -6,9 +6,12 @@
  	<typeAliases>
 		<typeAlias type="com.dev.member.dto.MemberDto" alias="memberDto"/>
 		<typeAlias type="com.dev.movie.dto.MovieDto" alias="movieDto"/>
-		<typeAlias type="com.dev.movieComment.dto.MovieCommentDto" alias="movieCommentDto"/>
 		<typeAlias type="com.dev.board.dto.BoardDto" alias="boardDto"/>
+<<<<<<< HEAD
 		<typeAlias type="com.dev.movieComment.dto.MovieCommentDto" alias="movieCommentDto"/>
+=======
+		<typeAlias type="com.dev.board.dto.BoardCommentDto" alias="boardCommentDto"/>
+>>>>>>> branch 'main' of https://github.com/haribo09876/DevelopFit.git
 		<typeAlias type="com.dev.order.dto.OrderDto" alias="orderDto"/>
 	</typeAliases>
 </configuration>
