@@ -5,14 +5,23 @@
 <mapper namespace="com.dev.board">
 
 	<resultMap type="boardDto" id="boardResultMap">
+<!-- 		게시판관련 -->
 		<id column="BOARD_NUMBER" property="boardNumber" />
 		<result column="BOARD_TITLE" property="boardTitle" />
 		<result column="BOARD_CONTENT" property="boardContent" />
 		<result column="BOARD_CREATE_DATE" property="boardCreateDate" 
 		javaType="java.util.Date" />
 		<result column="BOARD_HIT" property="boardHit" />
+		
+<!-- 		맴버관련(+ id컬럼인 보드넘은 공통) -->
 		<result column="MEMBER_ID" property="memberId" />
 		<result column="MEMBER_NUMBER" property="memberNumber" />
+		
+<!-- 		댓글관련 -->
+		<result column="POST_COMMENT_NUMBER" property="commentNumber" />
+		<result column="POST_COMMENT_CONTENT" property="commentContent" />
+		<result column="POST_COMMENT_DATE" property="commentCreateDate" 
+		javaType="java.util.Date" />
 	</resultMap>
 	
 <!-- 	게시글 리스트 = 게시판 -->
@@ -33,12 +42,12 @@
 		
 	</select>
 	
-<!-- 	게시글 상세페이지 -->
+	<!-- 	게시글 상세페이지 -->
 <!-- 여기서 멤버넘버도 셀랙해서 게시판 상세페이지에 멤버넘버를 가지고 있음 -->
 <!-- 수정버튼 누르면 상세페이지jsp폼에서 히든으로(화면에 안보이는) 가지고 있던 멤버 넘버를  -->
 <!-- 업데이트 폼으로 다른 정보와 같이보냄 > 수정버튼 누르면 업데이트 ctr 하면서 -->
 <!-- slq(아래 boardUpdateOne)로 멤버정보 보내서 검증 수행  -->
-	<select id="boardSelectOne" parameterType="int" resultMap="boardResultMap">
+	<select id="boardSelectOne" parameterType="map" resultMap="boardResultMap">
 		SELECT B.BOARD_NUMBER, M.MEMBER_ID, B.BOARD_TITLE, B.BOARD_CONTENT,
         B.BOARD_CREATE_DATE, B.BOARD_HIT, M.MEMBER_NUMBER
 		FROM MEMBER M JOIN BOARD B
@@ -54,6 +63,20 @@
 		</set>
 		WHERE BOARD_NUMBER = #{boardNumber}
 	</update>
+	
+	<!-- 	댓글리스트 -->
+	<select id="boardCommentSelectList" parameterType="map" resultMap="boardResultMap">
+		SELECT D.RN, D.BOARD_NUMBER, D.MEMBER_ID, D.POST_COMMENT_CONTENT, D.POST_COMMENT_DATE 
+		FROM ( SELECT ROWNUM AS RN, PRN.BOARD_NUMBER, PRN.MEMBER_ID, PRN.POST_COMMENT_CONTENT, PRN.POST_COMMENT_DATE 
+		FROM ( SELECT B.BOARD_NUMBER, M.MEMBER_ID, PC.POST_COMMENT_CONTENT, PC.POST_COMMENT_DATE 
+		FROM BOARD B JOIN POST_COMMENT PC 
+		ON B.BOARD_NUMBER = PC.BOARD_NUMBER
+		JOIN MEMBER M
+		ON PC.MEMBER_NUMBER = M.MEMBER_NUMBER 
+		ORDER BY PC.POST_COMMENT_DATE) PRN) D 
+		WHERE D.RN BETWEEN #{start} AND #{end}
+		AND D.BOARD_NUMBER = #{boardNumber}
+	</select>
 	
 <!-- 	게시글 생성 -->
 	<insert id="boardInsertOne" parameterType="boardDto"
@@ -93,6 +116,47 @@
 		FROM BOARD
 	</select>
 	
+<!-- 	댓글 생성 -->
+	<insert id="boardCommentInsertOne" parameterType="boardDto"
+		useGeneratedKeys="true" keyProperty="commentNumber">
+		<selectKey keyProperty="commentNumber" resultType="int" order="BEFORE">
+			SELECT POST_COMMENT_NUMBER_SEQ.NEXTVAL
+			FROM DUAL
+		</selectKey>
+		
+		INSERT INTO POST_COMMENT
+			(POST_COMMENT_NUMBER, POST_COMMENT_CONTENT, POST_COMMENT_DATE, 
+			BOARD_NUMBER, MEMBER_NUMBER)
+		VALUES(#{commentNumber}, #{commentContent}, SYSDATE, 
+		#{boardNumber}, #{memberNumber})
+	</insert>
+	
+	
+<!-- 	댓글 내용 업데이트 -->
+	<update id="boardCommentUpdateOne" parameterType="boardDto">
+		UPDATE POST_COMMENT
+ 		<set>
+ 			<if test="commentContent != null">POST_COMMENT_CONTENT = #{commentContent}</if>
+ 		</set>
+ 		WHERE BOARD_NUMBER = #{boardNumber}
+		AND MEMBER_NUMBER = #{memberNumber}
+		AND POST_COMMENT_NUMBER = #{commentNumber}
+	</update>
+		
+<!-- 	게시글 내용 삭제 -->
+	<delete id="boardCommentDeleteOne" parameterType="int">
+		DELETE FROM POST_COMMENT
+		WHERE BOARD_NUMBER = #{boardNumber}
+		AND MEMBER_NUMBER = #{memberNumber}
+		AND POST_COMMENT_NUMBER = #{commentNumber}
+	</delete>
+	
+<!-- 	페이징 기능을 위한 총 댓글 수 산출 -->
+	<select id="boardCommentSelectTotalCount" resultType="java.lang.Integer">
+		SELECT COUNT(*)
+		FROM POST_COMMENT
+	</select>
+
 
 </mapper>
 

@@ -53,31 +53,52 @@ public class BoardController {
 
 	    return "board/BoardListView";
 	}
-	
-	//게시글 상세 페이지
-	@RequestMapping(value = "/board/listOne.do", method = RequestMethod.GET)
-	public String memberListOne(int boardNumber, Model model) {
-		log.debug("Welcome BoardController boardListOne! - {}", boardNumber);
+	//게시글 상세 페이지(댓글 포함)
+	@RequestMapping(value = "/board/listOne.do", method = {RequestMethod.GET, RequestMethod.POST})
+	public String boardListOne(BoardDto boardDto, 
+			@RequestParam(defaultValue = "1") int curPage, Model model, int boardNumber) {
+		log.debug("Welcome BoardController boardListOne! - {}" + boardDto.getBoardNumber()
+		+ boardNumber);
+		
+		boardDto.getBoardNumber();
 		
 		boardService.viewCount(boardNumber);
 		
-		Map<String, Object> map = boardService.boardSelectOne(boardNumber);
+		Map<String, Object> map = boardService.boardSelectOne(boardDto);
 		
-		BoardDto boardDto = (BoardDto)map.get("boardDto");
+		map.get("boardDto");
 		
 		model.addAttribute("boardDto", boardDto);
 		
+		int totalCount = boardService.boardCommentSelectTotalCount();
+	    
+	    Paging boardCommentPaging = new Paging(totalCount, curPage);
+	    int start = boardCommentPaging.getPageBegin();
+		int end = boardCommentPaging.getPageEnd();
+	    
+	    // 댓글 리스트를 가져옵니다.
+	    List<BoardDto> boardCommentList = boardService.boardCommentSelectList(start, end,
+	    		boardDto, boardNumber);
+	    
+	    HashMap<String, Object> commentPagingMap = new HashMap<>();
+	    commentPagingMap.put("totalCount", totalCount);
+	    commentPagingMap.put("boardCommentPaging", boardCommentPaging);
+		
+		model.addAttribute("boardCommentList", boardCommentList);
+		model.addAttribute("commentPagingMap", commentPagingMap);
+
 		return "board/BoardListOneView";
+		
 	}
 	
 	//게시글 수정 화면으로
 	@RequestMapping(value = "/board/update.do", method = RequestMethod.POST)
-	public String boardUpdate(int boardNumber, Model model) {
-		log.info("Welcome boardUpdate!" + boardNumber);
+	public String boardUpdate(BoardDto boardDto, Model model) {
+		log.info("Welcome boardUpdate!" + boardDto);
 		
-		Map<String, Object> map = boardService.boardSelectOne(boardNumber);
+		Map<String, Object> map = boardService.boardSelectOne(boardDto);
 	
-		BoardDto boardDto = (BoardDto)map.get("boardDto");
+		map.get("boardDto");
 		
 		model.addAttribute("boardDto", boardDto);
 		
@@ -124,5 +145,39 @@ public class BoardController {
 					
 		return "redirect:/board/list.do";
 	}
+	
+	
+//	댓글 수정
+	@RequestMapping(value = "/board/commentUpdateCtr.do", method = RequestMethod.POST)
+	public String boardCommentUpdateCtr(BoardDto boardDto, Model model) {
+		log.info("Welcome BoardCommentController CommentUpdateCtr! boardCommentDto: {}", 
+				boardDto);
+		
+		int resultNum = 0;
+		
+		resultNum = boardService.boardCommentUpdateOne(boardDto);
+		
+		return "common/BoardsuccessPage";
+	}
+	
+//	댓글 추가
+	@RequestMapping(value = "/board/commentAddCtr.do", method = RequestMethod.POST)
+	public String boardCommentAddCtr(BoardDto boardDto, Model model) {
+		log.debug("Welcome BoardCommentController boardCommentAddCtr! " + boardDto);
 
+			boardService.boardCommentInsertOne(boardDto);
+		return "redirect:/board/listOne.do";
+	}
+	
+//	
+//	댓글 삭제
+	@RequestMapping(value = "/board/commentDelete.do", method = RequestMethod.POST)
+	public String boardCommentDeleteCtr(BoardDto boardDto, Model model) {
+		log.debug("Welcome BoardCommentController boardCommentDelete" + boardDto);
+		
+		boardService.boardCommentDeleteOne(boardDto);
+					
+		return "redirect:/board/listOne.do";
+	}
+	
 }

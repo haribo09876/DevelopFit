@@ -37,12 +37,12 @@ public class BoardServiceImpl implements BoardService{
 	}
 
 	@Override
-	public Map<String, Object> boardSelectOne(int no) {
+	public Map<String, Object> boardSelectOne(BoardDto boardDto) {
 		// TODO Auto-generated method stub
 		
 		Map<String, Object> resultMap = new HashMap<String, Object>();
 		
-		BoardDto boardDto = boardDao.boardSelectOne(no);
+		boardDao.boardSelectOne(boardDto);
 		resultMap.put("boardDto", boardDto);
 		
 		return resultMap;
@@ -74,4 +74,41 @@ public class BoardServiceImpl implements BoardService{
 		// TODO Auto-generated method stub
 		return boardDao.viewCount(no);
 	}
+	
+	@Override
+	public List<BoardDto> boardCommentSelectList(int start, int end, BoardDto boardDto
+			, int boardNumber) {
+		// TODO Auto-generated method stub
+		log.info("Welcome boardCommentServiceImpl SelectList!");
+		return boardDao.boardCommentSelectList(start, end, boardDto, boardNumber);
+	}
+	
+	@Override
+	public void boardCommentInsertOne(BoardDto boardDto){
+		boardDao.boardCommentInsertOne(boardDto);
+	}
+
+	@Override
+	public int boardCommentUpdateOne(BoardDto boardDto){
+		// TODO Auto-generated method stub
+		int resultNum = 0;
+		
+		resultNum = boardDao.boardCommentUpdateOne(boardDto);
+		
+		return resultNum;
+	}
+
+	@Override
+	public int boardCommentDeleteOne(BoardDto boardDto) {
+		// TODO Auto-generated method stub
+		return boardDao.boardCommentDeleteOne(boardDto);
+	}
+
+	@Override
+	public int boardCommentSelectTotalCount() {
+		// TODO Auto-generated method stub
+		return boardDao.boardCommentSelectTotalCount();
+	}
+
+	
 }

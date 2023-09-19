@@ -22,7 +22,7 @@ public class MemberDaoImpl implements MemberDao{
 		paramMap.put("memberId", memberId);
 		paramMap.put("memberPassword", memberPassword);
 		
-		return sqlSession.selectOne("com.test.member.memberExist", paramMap);
+		return sqlSession.selectOne("com.dev.member.memberExist", paramMap);
 	}
 
 

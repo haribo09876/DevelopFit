@@ -9,7 +9,6 @@
 		<typeAlias type="com.dev.movieComment.dto.MovieCommentDto" alias="movieCommentDto"/>
 		<typeAlias type="com.dev.board.dto.BoardDto" alias="boardDto"/>
 		<typeAlias type="com.dev.movieComment.dto.MovieCommentDto" alias="movieCommentDto"/>
-		<typeAlias type="com.dev.board.dto.BoardCommentDto" alias="boardCommentDto"/>
 		<typeAlias type="com.dev.order.dto.OrderDto" alias="orderDto"/>
 	</typeAliases>
 </configuration>
