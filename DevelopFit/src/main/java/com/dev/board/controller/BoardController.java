@@ -57,7 +57,7 @@ public class BoardController {
 	//게시글 상세 페이지
 	@RequestMapping(value = "/board/listOne.do", method = RequestMethod.GET)
 	public String memberListOne(int boardNumber, Model model) {
-		log.debug("Welcome MemberController memberListOne! - {}", boardNumber);
+		log.debug("Welcome BoardController boardListOne! - {}", boardNumber);
 		
 		boardService.viewCount(boardNumber);
 		

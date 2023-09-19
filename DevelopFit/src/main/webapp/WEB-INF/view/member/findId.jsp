@@ -9,6 +9,7 @@
 body {
 	background-color: #101322;
 	height: 100%;
+/* 	width: 1270px; */
 }
 
 div {
@@ -109,7 +110,6 @@ a {
 
 	<jsp:include page="/WEB-INF/view/Header.jsp" />
 
-	<div id="wrap">
 		<div id="wrap">
 			<div id="title">
 				<h2>아이디찾기</h2>
@@ -133,7 +133,6 @@ a {
 				</form>
 			</div>
 		</div>
-	</div>
 
 	<script type="text/javascript">
 	var inputEmail = document.getElementById('input-email');

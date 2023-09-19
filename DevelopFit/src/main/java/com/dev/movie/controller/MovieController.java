@@ -1,4 +1,4 @@
-package com.dev.movie.controlller;
+package com.dev.movie.controller;
 
 import java.util.HashMap;
 import java.util.List;
@@ -12,7 +12,6 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import com.dev.movie.dto.MovieDto;
 import com.dev.movie.service.MovieService;
@@ -43,7 +42,7 @@ public class MovieController {
 
 		HashMap<String, Object> pagingMap = new HashMap<>();
 		pagingMap.put("totalCount", totalCount);
-		pagingMap.put("memberPaging", moviePaging);
+		pagingMap.put("moviePaging", moviePaging);
 		
 		model.addAttribute("movieList", movieList);
 		model.addAttribute("pagingMap", pagingMap);
@@ -75,11 +74,11 @@ public class MovieController {
 
 //	 영화 등록
 	 @RequestMapping(value = "/movie/addCtr.do", method = RequestMethod.POST)
-	 public String movieAdd(MovieDto movieDto, MultipartHttpServletRequest multipartHttpServletRequest, Model model) {
+	 public String movieAdd(MovieDto movieDto, Model model) {
 		log.debug("Welcome MovieController movieAdd! " + movieDto);
 
 		try {
-			movieService.movieInsertOne(movieDto, multipartHttpServletRequest);
+			movieService.movieInsertOne(movieDto);
 		} catch (Exception e) {
 		// TODO: handle exception
 			System.out.println("오류 처리할 거 있으면 한다");
@@ -97,10 +96,7 @@ public class MovieController {
 
 		 MovieDto movieDto = (MovieDto)map.get("movieDto");
 	
-//		 List<Map<String, Object>> fileList = (List<Map<String, Object>>)map.get("fileList");
-	
 		 model.addAttribute("movieDto", movieDto);
-//		 model.addAttribute("fileList", fileList);
 	
 		 return "movie/MovieUpdateForm";
 	 }
@@ -108,15 +104,13 @@ public class MovieController {
 	 
 //	 영화 수정
 	 @RequestMapping(value = "/movie/updateCtr.do", method = RequestMethod.POST)
-	 public String movieUpdateCtr(MovieDto movieDto
-	, @RequestParam(value = "fileIdx", defaultValue = "-1") int fileIdx
-	, MultipartHttpServletRequest multipartHttpServletRequest, Model model) {
-		 log.info("Welcome MovieController movieUpdateCtr! movieDto: {}\n fileIdx: {}", movieDto, fileIdx);
+	 public String movieUpdateCtr(MovieDto movieDto, Model model) {
+		 log.info("Welcome MovieController movieUpdateCtr! movieDto: {}\n fileIdx: {}", movieDto);
 	
 		 int resultNum = 0;
 	
 		 try {
-			 resultNum = movieService.movieUpdateOne(movieDto, multipartHttpServletRequest, fileIdx);
+			 resultNum = movieService.movieUpdateOne(movieDto);
 		 } catch (Exception e) {
 			 // TODO: handle exception
 			 e.printStackTrace();

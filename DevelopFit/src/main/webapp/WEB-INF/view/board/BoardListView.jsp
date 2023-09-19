@@ -13,11 +13,12 @@
 		width: 1300px;
 		height: 1300px;
 		margin: auto;
+		color: white;
 		}
 	#container{
  		margin: 150px 60px 50px;
 		border-color: black;
- 		background-color: white;
+ 		background-color: #172036;
  		height: 800px;
  		width: 1200px;
 	}
@@ -30,7 +31,7 @@
 	}
 	#comunityboard{
 		margin-left: 70px;
-		height: 500px;
+		height: 450px;
 		width: 1000px;
 	}
 	#menuwrap{
@@ -39,7 +40,7 @@
 		margin-bottom: 10px;
 		width: 1000px;
 		height: 38px;
-		border-bottom: 1px solid black;
+		border-bottom: 1px solid white;
 	}
 	#menuBoardNum{
 		width: 70px;
@@ -122,17 +123,26 @@
 		overflow: hidden;
 		white-space: nowrap;
 	}
-/* 	#pagingwrap{ */
-/* 		width: 600px; */
-/* 		margin: auto; */
-/* 		height: 35px; */
-/* 	} */
+ 	#pagingwrap{
+ 		 float: left;
+ 		 margin-left:500px;
+ 		 background-color: #131826;
+ 		 margin-top: 28px;
+ 	} 
+ 	#write{
+ 		background-color: #0DA66E;
+ 		color: white;
+ 		float: right;
+ 		margin-right: 150px;
+ 		height: 30px;
+ 		width: 60px;
+ 	}
 </style>
 </head>
 <body>
 	<div id="container">
  		<div id="headtext">
- 			community
+ 			Community
  		</div>
 			<div id="menuwrap">
 				<div id="menuBoardNum">게시번호</div>
@@ -146,10 +156,13 @@
        		<c:forEach var="boardDto" items="${boardList}">
        			<div id="boardContentWrap">
 	            	<div id="boardNum">${boardDto.boardNumber}</div>
-					                
-	                <div id="boardTitle">${boardDto.boardTitle}</div>
-	               
+					<div id="boardTitle">${boardDto.boardTitle}</div>
+					
+<!-- 	               이거 댓글 땜에 폼으로 바꿀 건데 바꿀 때 member.memberNum 히든으로 보내기 
+						근데 지금 로그인 없으니 membernumber 밸류 1로 해서 보내자-->
 	                <a href='./listOne.do?boardNumber=${boardDto.boardNumber}'>
+<%-- 	                	<input type="hidden" value='${memberDto.memberNumber}'> --%>
+	                	<input type="hidden" name="memberNumber" value= 1>
 	                	${boardDto.boardContent}
 	                </a>
 	                
@@ -165,6 +178,12 @@
                     <input type="hidden" name="boardNumber" value="${boardDto.boardNumber}">
         </c:forEach>
 	</div>
+	
+	<form action="./add.do" id='AddForm' method="post">
+		<input type="hidden" name="memberNumber" value="${member.memberNumber}">
+		<input type="submit" id="write" value="글쓰기">
+	</form>
+	
 	<div id="pagingwrap">
 		<jsp:include page="/WEB-INF/view/common/BoardPaging.jsp">
 			<jsp:param value="${pagingMap}" name="pagingMap"/>
@@ -176,10 +195,7 @@
 		</form>
 	</div>
 	
-	<form action="./add.do" id='AddForm' method="post">
-		<input type="hidden" name="memberNumber" value="${boardDto.memberNumber}">
-		<input type="submit" value="글쓰기">
-	</form>
+	
 	
 <%-- 		<jsp:include page="/WEB-INF/view/Footer.jsp"/> --%>
 </div>

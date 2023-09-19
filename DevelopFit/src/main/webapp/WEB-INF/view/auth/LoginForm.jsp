@@ -9,6 +9,7 @@
 body {
 	background-color: #101322;
 	height: 100%;
+	width: 100%;
 }
 
 div {
@@ -170,13 +171,12 @@ a {
 		<div id="form-wrap">
 			<form class="form-login" name="loginForm" action="loginCtr.do"
 				method="post">
-				<input type="text" name="memberId" placeholder="아이디" id="input-id"
-					onfocus="this.placeholder=''" onblur="this.placeholder='아이디'"
-					onkeyup="enterKey();"><br> <input type="password"
-					name="memberPassword" placeholder="비밀번호" id="input-pw"
-					onfocus="this.placeholder=''" onblur="this.placeholder='비밀번호'"
-					onkeyup="enterKey();"><br> <input type="button"
-					value="로그인" id="input-btn" onclick="check();">
+				<input type="text" name="memberId" placeholder="아이디" id="input-id" onfocus="this.placeholder=''" 
+				onblur="this.placeholder='아이디'" onkeyup="enterKey();"><br> 
+				<input type="password" name="memberPassword" placeholder="비밀번호" id="input-pw" onfocus="this.placeholder=''" 
+				onblur="this.placeholder='비밀번호'" onkeyup="enterKey();"><br> 
+				
+				<input type="button" value="로그인" id="input-btn" onclick="check();">
 
 				<div id="signup" onclick="pageMove();">회원가입</div>
 

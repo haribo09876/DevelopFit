@@ -6,7 +6,7 @@
 <html>
 <head>
 	<meta charset="UTF-8">
-	<title>영화 수정 (MovieUpdateForm)</title>
+	<title>영화 한줄평 수정 (MovieCommentUpdateForm)</title>
 	<style>
 		body{
 			background-color: #101322;
@@ -97,20 +97,17 @@
 <body>
 	<jsp:include page="/WEB-INF/view/Header.jsp"/>
 			
-	<h3>영화 수정 (MovieUpdateForm)</h3>	
+	<h3>영화 한줄평 수정 (MovieCommentUpdateForm)</h3>	
 	<form action='./updateCtr.do' method='post' enctype="multipart/form-data">
-		<input type="hidden" name='movieNumber' value='${movieDto.movieNumber}'>
-		영화제목 :	<input type='text' name='movieTitle' value='${movieDto.movieTitle}'><br>
-		줄거리 :		<input type='text' name='movieSummary' value='${movieDto.movieSummary}'><br>
-		개봉일 :		<input type='date' name='movieReleaseDate' value='${movieDto.movieReleaseDate}'><br>
-		상영시간 :	<input type='number' name='movieRuntime' value='${movieDto.movieRuntime}'><br>
-		가격 :		<input type='number' name='moviePrice' value='${movieDto.moviePrice}'><br>
-		포스터 :		<input type='text' name='moviePoster' value='${movieDto.moviePoster}'><br>
-		예고편 :		<input type='text' name='moviePreview' value='${movieDto.moviePreview}'><br>
-
+	<input type="hidden" name='lineReviewNumber' value='${movieCommentDto.lineReviewNumber}'>
+				
+		한줄평 번호 :	<input type='number' name='lineReviewNumber' value='${movieCommentDto.lineReviewNumber}'><br>
+		한줄평 내용 :	<input type='text' name='lineReviewContext' value='${movieCommentDto.lineReviewContext}'><br>
+		회원번호 :		<input type='number' name='memberNumber' value='${movieCommentDto.memberNumber}'><br>
+		영화번호 : 		<input type='number' name='movieNumber' value='${movieCommentDto.movieNumber}'><br>
 		<input type='submit' value='저장하기'>
-		<a href='./list.do'>&#128281 회원목록으로</a>
-		<a href='./delete.do?movieNumber=${movieDto.movieNumber}'>&#128465 삭제하기</a>
+		<a href='./list.do'>&#128281 한줄평 목록으로</a>
+		<a href='./delete.do?lineReviewNumber=${movieCommentDto.lineReviewNumber}'>&#128465 삭제하기</a>
 	</form>
 
 	<jsp:include page="/WEB-INF/view/Footer.jsp" />

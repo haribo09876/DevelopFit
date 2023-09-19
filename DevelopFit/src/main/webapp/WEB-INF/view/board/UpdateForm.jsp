@@ -17,7 +17,7 @@
 	#container{
  		margin: 150px 60px 50px;
 		border-color: black;
- 		background-color: white;
+ 		background-color: #172036;
  		height: 1200px;
  		width: 1200px;
 	}
@@ -26,7 +26,7 @@
 		margin-left: 40px;
 		margin-bottom: 10px;
 		margin-top: 50px;
-		height: 600px;
+		height: 100px;
 		padding-top: 50px;
 	}
 	#iddatewrap{
@@ -42,6 +42,7 @@
  		text-align: center; 
  		float: left; 
  		height: 40px;
+ 		color: white;
  	}
  	#createdate{
  		font-size: 20px;
@@ -49,13 +50,13 @@
  		width: 250px;
  		height: 40px;
  		float: right;
+ 		color: white;
  	}
  	#title{ 
  		font-size: x-large; 
- 		margin-left: 60px;
+ 		margin-left: 120px;
  		width: 600px;
  		height: 40px;
- 		margin-top: 50px;
  		margin-bottom: 70px;
  	} 
  	#content{
@@ -64,13 +65,38 @@
  		height: 350px; 
  		margin-left: 120px;
  	}
- 	#boardhit{
- 		font-size: 20px;
- 		text-align: center;
- 		width: 150px;
- 		height: 40px;
- 		float: right;
- 		margin-right: 30px;
+ 	#content{
+ 		background-color: #172036;
+ 		border: none;
+ 		color: white;
+	}
+	#title{
+		background-color: #172036;
+		border: none;
+		color: white;
+	}
+	#textTitle{
+		width: 100px;
+		height: 50px;
+		color: white;
+		margin-left: 120px;
+		font-size: 22px;
+	}
+	#textContent{
+		width: 100px;
+		height: 50px;
+		color: white;
+		margin-left: 120px;
+		font-size: 22px;
+	}
+	#button{
+		margin-top:40px;
+		float: right;
+		margin-right: 175px;
+		width: 100px;
+		height: 30px;
+		color: white;
+		background-color: #0DA66E;
 	}
 </style>
 </head>
@@ -88,9 +114,16 @@
 		<form action='./updateCtr.do' method='post'>
 			<input type="hidden" name='boardNumber' value='${boardDto.boardNumber}'>
 			<input type="hidden" name='memberNumber' value='${boardDto.memberNumber}'>
-			제목:		<input id="title" type="text" name="boardTitle" value="${boardDto.boardTitle}"> 
-			내용:		<input id="content" type="text" name="boardContent" value="${boardDto.boardContent}"> 
-			<input type="submit" value="수정완료" />
+			
+			<div id="textTitle">제목:		</div>
+			<input id="title" type="text" name="boardTitle" value="${boardDto.boardTitle}"> 
+			
+			<div id="textContent">내용:		</div>
+			<textarea rows="1" cols="50" name="boardContent" id="content">${boardDto.boardContent}
+			</textarea>
+<%-- 			<input id="content" type="text" name="boardContent" value="${boardDto.boardContent}">  --%>
+			
+			<input type="submit" id="button" value="수정완료" />
 		</form>	
 
 	

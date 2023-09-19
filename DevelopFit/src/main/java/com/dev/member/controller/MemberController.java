@@ -9,7 +9,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import com.dev.member.dto.MemberDto;
 import com.dev.member.service.MemberService;
@@ -54,7 +53,7 @@ public class MemberController {
 			session.setAttribute("member", memberDto);
 			viewUrl = "redirect:/auth/login.do";
 
-			if (memberDto.getMemberId().equals("kj1109") && memberDto.getMemberPassword().equals("1109kj")) {
+			if (memberDto.getMemberId().equals("admin1") && memberDto.getMemberPassword().equals("admin1")) {
 				viewUrl = "redirect:/admin/admin.do";
 			} else {
 				viewUrl = "redirect:/auth/login.do";
@@ -157,7 +156,6 @@ public class MemberController {
 		String viewUrl = "";
 
 		if (memberDto != null) {
-			// 회원존재하면 세션에담는다
 			session.setAttribute("member", memberDto);
 			viewUrl = "/member/findPwSuccess";
 		} else {
@@ -169,9 +167,25 @@ public class MemberController {
 	// 마이페이지 페이지 이동
 	@RequestMapping(value = "/member/myPage.do", method = RequestMethod.GET)
 	public String myPage(Model model) {
+
 		log.debug("Welcome MemberController myPage!");
 
 		return "member/myPage";
 	}
+	
+	//회원수정
+		@RequestMapping(value ="/member/updateCtr.do", method = RequestMethod.POST)
+		public String memberUpdateCtr(MemberDto memberDto, Model model) {
+			
+			log.info("Welcome MemberController memberUpdateCtr", memberDto);
+			
+			try {
+				memberService.memberUpdateOne(memberDto);
+			} catch (Exception e) {
+				// TODO: handle exception
+				e.printStackTrace();
+			}
+		    return "/member/myPage";
+		}
 
 }

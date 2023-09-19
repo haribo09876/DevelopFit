@@ -3,7 +3,6 @@
 	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.dev.movie">
-
 	<resultMap id="movieResultMap" type="movieDto">
 		<id column="MOVIE_NUMBER" property="movieNumber" />
 		<result column="MOVIE_TITLE" property="movieTitle" />
@@ -18,11 +17,15 @@
 	</resultMap>
 
 	<select id="movieSelectList" parameterType="map" resultMap="movieResultMap">
-		SELECT MOVIE_NUMBER, MOVIE_TITLE, MOVIE_SUMMARY, MOVIE_RELEASE_DATE,
-							MOVIE_RUNTIME, MOVIE_PRICE, MOVIE_POSTER, MOVIE_PREVIEW, GENRE_NAME
-		FROM MOVIE M JOIN GENRE G
-		ON M.GENRE_NUMBER = G.GENRE_NUMBER
-		ORDER BY M.MOVIE_NUMBER DESC		
+		SELECT MOVIE.MOVIE_NUMBER, MOVIE.MOVIE_TITLE, MOVIE.MOVIE_SUMMARY, MOVIE.MOVIE_RELEASE_DATE, MOVIE.MOVIE_RUNTIME, MOVIE.MOVIE_PRICE, MOVIE.MOVIE_POSTER, MOVIE.MOVIE_PREVIEW, MOVIE.GENRE_NAME
+		FROM(	SELECT ROWNUM AS RNUM, MOVIE.MOVIE_NUMBER, MOVIE.MOVIE_TITLE, MOVIE.MOVIE_SUMMARY, MOVIE.MOVIE_RELEASE_DATE, MOVIE.MOVIE_RUNTIME, MOVIE.MOVIE_PRICE, MOVIE.MOVIE_POSTER, MOVIE.MOVIE_PREVIEW, MOVIE.GENRE_NAME
+						FROM(	SELECT M.MOVIE_NUMBER, M.MOVIE_TITLE, M.MOVIE_SUMMARY, M.MOVIE_RELEASE_DATE, M.MOVIE_RUNTIME, M.MOVIE_PRICE, M.MOVIE_POSTER, M.MOVIE_PREVIEW, G.GENRE_NAME
+										FROM MOVIE M JOIN GENRE G
+										ON M.GENRE_NUMBER = G.GENRE_NUMBER
+										ORDER BY MOVIE_NUMBER DESC
+									) MOVIE
+					) MOVIE
+		WHERE MOVIE.RNUM BETWEEN #{start} AND #{end}
 	</select>
 
 	<insert id="movieInsertOne" parameterType="movieDto" useGeneratedKeys="true" keyProperty="movieNumber">
@@ -66,32 +69,4 @@
 		SELECT COUNT(*)
 		FROM MOVIE
 	</select>
-	
-<!-- 	<insert id="insertFile" parameterType="map"> -->
-<!-- 		INSERT INTO TB_FILE -->
-<!-- 			(IDX, PARENT_SEQ, ORIGINAL_FILE_NAME, STORED_FILE_NAME -->
-<!-- 			, FILE_SIZE, CRE_DATE) -->
-<!-- 		VALUES -->
-<!-- 			(TB_FILE_IDX_SEQ.NEXTVAL, #{parentSeq}, #{original_file_name}, -->
-<!-- 			#{stored_file_name}, #{file_size}, SYSDATE) -->
-<!-- 	</insert> -->
-	
-<!-- 	<select id="fileSelectList" parameterType="int" resultType="map"> -->
-<!-- 		SELECT IDX, ORIGINAL_FILE_NAME, STORED_FILE_NAME -->
-<!-- 			, ROUND(FILE_SIZE/1024, 1) AS FILE_SIZE -->
-<!-- 		FROM TB_FILE -->
-<!-- 		WHERE PARENT_SEQ = #{movieNumber} -->
-<!-- 	</select> -->
-	
-<!-- 	<select id="fileSelectStoredFileName" parameterType="int" resultType="map"> -->
-<!-- 		SELECT IDX, STORED_FILE_NAME -->
-<!-- 		FROM TB_FILE -->
-<!-- 		WHERE PARENT_SEQ = #{parentSeq} -->
-<!-- 	</select> -->
-	
-<!-- 	<delete id="fileDelete" parameterType="int"> -->
-<!-- 		DELETE FROM TB_FILE -->
-<!-- 		WHERE PARENT_SEQ = #{movieNumber} -->
-<!-- 	</delete> -->
-
 </mapper>

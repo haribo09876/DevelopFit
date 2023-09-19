@@ -10,17 +10,17 @@
 		<result column="MEMBER_PASSWORD" property="memberPassword" />
 		<result column="MEMBER_NAME" property="memberName" />
 		<result column="MEMBER_EMAIL" property="memberEmail" />
-		<result column="MEMBER_BIRTH_DATE" property="memberBirthDate" javaType="java.util.Date" />
+		<result column="MEMBER_BIRTH_DATE" property="memberBirthDate" javaType="java.sql.Date" />
 		<result column="MEMBER_PHONE_NUMBER" property="memberPhoneNumber" />
 		<result column="MEMBER_GENDER" property="memberGender" />
-		<result column="MEMBER_CREATE_DATE" property="memberCreateDate" javaType="java.util.Date" />
-		<result column="MEMBER_MODIFY_DATE" property="memberModifyDate" javaType="java.util.Date" />
+		<result column="MEMBER_CREATE_DATE" property="memberCreateDate" javaType="java.sql.Date" />
+		<result column="MEMBER_MODIFY_DATE" property="memberModifyDate" javaType="java.sql.Date" />
 	</resultMap>
 
 <!-- 	로그인 기능 구현 -->
 	<select id="memberExist" parameterType="map"
 		resultMap="memberResultMap">
-		SELECT MEMBER_NUMBER, MEMBER_ID, MEMBER_PASSWORD, MEMBER_NAME, MEMBER_EMAIL, MEMBER_PHONE_NUMBER, MEMBER_GENDER
+		SELECT MEMBER_NUMBER, MEMBER_ID, MEMBER_PASSWORD, MEMBER_NAME, MEMBER_EMAIL, MEMBER_PHONE_NUMBER, MEMBER_GENDER, MEMBER_BIRTH_DATE, MEMBER_MODIFY_DATE, MEMBER_CREATE_DATE
 		FROM MEMBER
 		WHERE MEMBER_ID = #{memberId} AND MEMBER_PASSWORD = #{memberPassword}
 	</select>
@@ -48,4 +48,16 @@
 		WHERE MEMBER_ID = #{memberId} AND MEMBER_EMAIL = #{memberEmail}
 	</select>
 	
+	<update id="memberUpdateOne" parameterType="memberDto">
+		UPDATE MEMBER
+		<set>
+			<if test="memberName != null">MEMBER_NAME = #{memberName},</if>
+			<if test="memberId != null">MEMBER_ID = #{memberId},</if>
+			<if test="memberEmail != null">MEMBER_EMAIL = #{memberEmail},</if>
+			<if test="memberPhoneNumber != null">MEMBER_PHONE_NUMBER = #{memberPhoneNumber},</if>
+			<if test="memberBirthDate != null">MEMBER_BIRTH_DATE = #{memberBirthDate},</if>
+			MEMBER_MODIFY_DATE = SYSDATE
+		</set>
+		WHERE MEMBER_PASSWORD = #{memberPassword}
+	</update>
 </mapper>

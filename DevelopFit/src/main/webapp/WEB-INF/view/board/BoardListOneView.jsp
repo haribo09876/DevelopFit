@@ -9,15 +9,16 @@
 <title>boardListOneView</title>
 <style type="text/css">
 	body{
-		background-color: #101322;
+		background-color: #131826;
 		width: 1300px;
 		height: 1300px;
 		margin: auto;
+		color: white;
 		}
 	#container{
  		margin: 150px 60px 50px;
 		border-color: black;
- 		background-color: white;
+ 		background-color: #172036;
  		height: 1200px;
  		width: 1200px;
 	}
@@ -72,6 +73,33 @@
  		float: right;
  		margin-right: 30px;
 	}
+	#update{
+		color: white;
+		background-color: #0DA66E;
+		float: left;
+		width: 60px;
+		height: 30px;
+		margin-left: 920px;
+		margin-top: 40px;
+	}
+	#delete{
+		color: white;
+		background-color: #0DA66E;
+		float: right;
+		width: 60px;
+		height: 30px;
+		margin-right:137px;
+		margin-left: 0px;
+		margin-top: 40px;
+	}
+	#commentview{
+		float: left;
+		margin-left: 200px;
+		margin-top: 80px;
+	}
+	#commentpagingwrap{
+		margin-top: 400px;
+	}
 </style>
 </head>
 <body>
@@ -94,25 +122,46 @@
 		</div>
 			
 		</div>
-<%-- 		<c:if></c:if> --%>
+	<div>
+		<form action='./delete.do' method='post'>
+			<input type="hidden" name='boardNumber' value='${boardDto.boardNumber}'>
+<%--	<input type="hidden" name='memberNumber' value='${member.memberNumber}'> --%>
+			<input type="hidden" name='memberNumber' value= 1>
+			<input type="submit" id="delete" value="삭제">
+		</form>
 		<form action='./update.do' method='post'>
 			<input type="hidden" name='boardNumber' value='${boardDto.boardNumber}'>
 			<input type="hidden" name='memberNumber' value='${boardDto.memberNumber}'>
-			<input type="submit" value="수정">
+			<input type="submit" id="update" value="수정">
 		</form>
-		<form action='./delete.do' method='post'>
-			<input type="hidden" name='boardNumber' value='${boardDto.boardNumber}'>
-<%--	<input type="hidden" name='memberNumber' value='${memberDto.memberNumber}'> --%>
+	</div>	
+	<div id="commentview">
+		<div>댓글</div>
+	</div>
+	<c:forEach var="boardCommentDto" items="${boardCommentList}">
+    	<div id="boardCommentContent">${boardCommentDto.commentContent}</div>
+	</c:forEach>
+	
+	<form action='./commentUpdateCtr.do' method='post'>
+			<input type="hidden" name='commentNumber' value='${boardCommentDto.commentNumber}'>
 			<input type="hidden" name='memberNumber' value= 1>
-			<input type="submit" value="삭제">
+			<input type="hidden" id="boardNumber" value="${boardDto.boardNumber}">
+			<input type="submit" id="update" value="수정">
+	</form>
+	
+	<div id="commentpagingwrap">
+		<jsp:include page="/WEB-INF/view/common/BoardCommentPaging.jsp">
+			<jsp:param value="${commentPagingMap}" name="commentPagingMap"/>
+		</jsp:include>
+		
+		<form action="./commentList.do" id='pagingForm' method="post">
+			<input type="hidden" id='curPage' name='curPage' 
+				value="${commentPagingMap.boardCommentPaging.curPage}">
 		</form>
-		
-		
+	</div>
 </div>
 	
-		<div id="commentmenu">
-			<div>댓글</div>
-		</div>
+		
 	
 </body>
 </html>

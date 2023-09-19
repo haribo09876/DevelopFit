@@ -3,13 +3,16 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 	
+<script type="text/javascript" 
+	src="/DevelopFit/resources/js/jquery-3.7.1.js"></script>
+	
 <!DOCTYPE html>
 	<style type="text/css">
 		nav>ul {
 			list-style-type: none;
 			padding: 0;
 			overflow: hidden;
-			background-color: #FFFFFF;
+			background-color: #131826;
 			/*     width: 1000px; */ /* 넓이를 주면 고정  */
 			display: table; /* table을 주면  요소의 내용에 맞게 자동으로 크기 */
 			margin-left: auto;
@@ -22,10 +25,11 @@
 		
 		nav>ul>li>a {
 			display: block;
-			color: black;
 			text-align: center;
 			padding: 1px;
 			text-decoration: none;
+			width: 30px;
+			color: white;
 		}
 		
 		nav>ul>li>a:hover {
@@ -34,39 +38,41 @@
 			font-weight: bold;
 		}
 	</style>
-	<script type="text/javascript" src="/DevelopFit/resources/js/jquery-3.7.1.js">
+<body>
+	<script type="text/javascript">
 		function goPage(pageNumber) {
 			var curPageObj = $("#curPage");
 			curPageObj.val(pageNumber);
 			var pagingFormObj = $('#pagingForm');
 			pagingFormObj.submit();
 		}
-</script>
+	</script>
 
 	<nav class='jqueryTest'>
 		<ul>		
-			<c:if test="${pagingMap.moviePaging.prevBlock ne 1}">
+			<c:if test="${pagingMap.boardCommentPaging.prevBlock ne 1}">
 			<li>
-				<a href="#" onclick="goPage(${pagingMap.moviePaging.prevBlock});">
+				<a href="#" onclick="goPage(${pagingMap.boardCommentPaging.prevBlock});">
 					<span>≪</span>
 				</a>
 			</li>
 			</c:if>
 
-			<c:forEach var="num" begin="${pagingMap.moviePaging.prevBlock}"
-				end="${pagingMap.moviePaging.blockEnd}" >
+			<c:forEach var="num" begin="${pagingMap.boardCommentPaging.blockBegin}"
+				end="${pagingMap.boardCommentPaging.blockEnd}" >
 				<li>
 					<a href="#" onclick="goPage(${num})">${num}</a>
 				</li>
 			</c:forEach>
 			
 			<c:if
-				test="${pagingMap.moviePaging.curBlock < pagingMap.moviePaging.totBlock}">
+				test="${pagingMap.boardCommentPaging.curBlock < pagingMap.boardCommentPaging.totBlock}">
 			<li>
-				<a href="#" onclick="goPage(${pagingMap.moviePaging.nextBlock});">
+				<a href="#" onclick="goPage(${pagingMap.boardCommentPaging.nextBlock});">
 					<span>≫</span>
 				</a>
 			</li>
 			</c:if>
 		</ul>
 	</nav>
+</body>
