@@ -38,6 +38,12 @@ public class OrderServiceImpl implements OrderService{
 		
 	}
 
+	@Override
+	public void insertOrderHistory(int memberNumber, int movieNumber) {
+		// TODO Auto-generated method stub
+		orderDao.insertOrderHistory(memberNumber, movieNumber);
+	}
+
 	
 
 }

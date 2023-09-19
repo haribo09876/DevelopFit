@@ -19,7 +19,8 @@
 	</resultMap>
 	
 	<select id="selectBasketList" parameterType="int" resultMap="orderResultMap">
-		SELECT MV.MOVIE_NUMBER, MV.MOVIE_TITLE, MV.MOVIE_PRICE, MV.MOVIE_POSTER, MV.MOVIE_SUMMARY, MV.MOVIE_RUNTIME, MV.MOVIE_RELEASE_DATE
+		SELECT MV.MOVIE_NUMBER, MV.MOVIE_TITLE, MV.MOVIE_PRICE, MV.MOVIE_POSTER, MV.MOVIE_SUMMARY
+			, MV.MOVIE_RUNTIME, MV.MOVIE_RELEASE_DATE
 		FROM MEMBER M JOIN BASKET B
 		ON M.MEMBER_NUMBER = B.MEMBER_NUMBER
 		JOIN MOVIE MV
@@ -31,15 +32,26 @@
 	<delete id="deleteBasket" parameterType="int">
 		DELETE FROM BASKET
 		WHERE MOVIE_NUMBER = #{movieNumber}
-<!-- 		<foreach collection="array" item="item" index="index" separator=","> -->
-<!-- 			, MEMBER_NUMBER = #{memberNumber[index]} -->
-<!-- 		</foreach> -->
 	</delete>
 	
-	<insert id="insertOrderHistory">
-		<foreach collection="">
-			
-		</foreach>
+	<insert id="insertOrderHistory" parameterType="map">
+<!-- 		INSERT ALL -->
+<!--     		INTO ORDER_HISTORY -->
+<!-- 		    VALUE(ORDER_HISTORY_NUMBER, ORDER_HISTORY_TIME, MEMBER_NUMBER) -->
+<!-- 		    VALUES(ORDER_HISTORY_NUMBER_SEQ.NEXTVAL, SYSDATE, #{memberNumber}) -->
+<!-- 		    INTO ORDER_PRODUCT -->
+<!-- 		    VALUE(ORDER_PRODUCT_NUMBER, ORDER_HISTORY_NUMBER, MOVIE_NUMBER) -->
+<!-- 		    VALUES(ORDER_PRODUCT_NUMBER_SEQ.NEXTVAL, ORDER_HISTORY_NUMBER_SEQ.NEXTVAL, #{movieNumber}) -->
+<!-- 		SELECT * FROM DUAL -->
+		
+		INSERT ALL
+		    INTO ORDER_HISTORY
+		    (order_history_number, order_history_time, member_number)
+		    VALUES(ORDER_HISTORY_NUMBER_SEQ.NEXTVAL, SYSDATE, #{memberNumber})
+		    INTO ORDER_PRODUCT
+		    (order_product_number, order_history_number, movie_number)
+		    VALUES(ORDER_PRODUCT_NUMBER_SEQ.NEXTVAL, ORDER_HISTORY_NUMBER_SEQ.NEXTVAL, #{movieNumber})
+		SELECT * FROM DUAL
 	</insert>
 	
 	<select id="selectOrderHistory" parameterType="int" resultMap="orderResultMap">

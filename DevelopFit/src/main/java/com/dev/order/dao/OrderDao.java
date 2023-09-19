@@ -10,6 +10,7 @@ public interface OrderDao {
 
 	List<OrderDto> selectOrderHistory(int no);
 	
-//	void deleteBasket(String[] productArr);
 	void deleteBasket(int no);
+	
+	void insertOrderHistory(int memberNumber, int movieNumber);
 }

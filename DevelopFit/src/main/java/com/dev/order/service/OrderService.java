@@ -8,8 +8,10 @@ public interface OrderService {
 	
 	List<OrderDto> selectBasketList(int memberNumber);
 	
+	void deleteBasket(int no);
+
 	List<OrderDto> selectOrderHistory(int no);
 	
-	void deleteBasket(int no);
+	void insertOrderHistory(int memberNumber, int movieNumber);
 	
 }
