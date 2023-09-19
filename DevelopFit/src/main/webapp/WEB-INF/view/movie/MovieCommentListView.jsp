@@ -49,19 +49,20 @@
 				<th>한줄평 내용</th>
 			</tr>
 
-			<c:forEach var="movieCommentDto" items="${movieCommentList}">
+			<c:forEach var="movieDto" items="${movieCommentList}">
+				<input type="hidden" name='movieNumber' value='${movieDto.movieNumber}'>
 				<tr>
 					<td>
-						<a href='./listOne.do?lineReviewNumber=${movieCommentDto.lineReviewNumber}'>${movieCommentDto.lineReviewNumber}</a>
+						<a href='./commentListOne.do?lineReviewNumber=${movieDto.lineReviewNumber}'>${movieDto.lineReviewNumber}</a>
 					</td>
-					<td>${movieCommentDto.memberId}</td>
-					<td>${movieCommentDto.movieTitle}</td>
-					<td>${movieCommentDto.lineReviewContext}</td>
+					<td>${movieDto.memberId}</td>
+					<td>${movieDto.movieTitle}</td>
+					<td>${movieDto.lineReviewContext}</td>
 					<td>
-						<a href='./update.do?lineReviewNumber=${movieCommentDto.lineReviewNumber}'>&#128465 수정</a>
+						<a href='./commentUpdate.do?lineReviewNumber=${movieDto.lineReviewNumber}'>&#128465 수정</a>
 					</td>
 					<td>
-						<a href='./delete.do?lineReviewNumber=${movieCommentDto.lineReviewNumber}'>&#128465 삭제</a>
+						<a href='./commentDelete.do?lineReviewNumber=${movieDto.lineReviewNumber}'>&#128465 삭제</a>
 					</td>
 				</tr>
 			</c:forEach>

@@ -123,6 +123,4 @@ public class MovieServiceImpl implements MovieService{
 		return movieDao.movieCommentDeleteOne(movieNumber);
 	}
 	
-	
-	
 }

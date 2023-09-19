@@ -141,13 +141,13 @@ public class MovieController {
 		int start = moviePaging.getPageBegin();
 		int end = moviePaging.getPageEnd();
 		
-		List<MovieDto> movieList = movieService.movieCommentSelectList(start, end);
+		List<MovieDto> movieCommentList = movieService.movieCommentSelectList(start, end);
 
 		HashMap<String, Object> pagingMap = new HashMap<>();
 		pagingMap.put("totalCount", totalCount);
 		pagingMap.put("moviePaging", moviePaging);
 		
-		model.addAttribute("movieList", movieList);
+		model.addAttribute("movieCommentList", movieCommentList);
 		model.addAttribute("pagingMap", pagingMap);
 		
 		return "movie/MovieCommentListView";

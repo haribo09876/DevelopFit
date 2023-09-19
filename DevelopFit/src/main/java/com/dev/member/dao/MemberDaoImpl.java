@@ -24,14 +24,14 @@ public class MemberDaoImpl implements MemberDao{
 		paramMap.put("memberId", memberId);
 		paramMap.put("memberPassword", memberPassword);
 		
-		return sqlSession.selectOne("com.test.member.memberExist", paramMap);
+		return sqlSession.selectOne("com.dev.member.memberExist", paramMap);
 	}
 
 
 	@Override
 	public void memberInsertOne(MemberDto memberDto) {
 		// TODO Auto-generated method stub
-		sqlSession.insert("com.test.member.memberInsertOne", memberDto);
+		sqlSession.insert("com.dev.member.memberInsertOne", memberDto);
 	}
 
 
@@ -41,7 +41,7 @@ public class MemberDaoImpl implements MemberDao{
 		HashMap<String, Object> paramMap = new HashMap<String, Object>();
 		paramMap.put("memberEmail", memberEmail);
 		paramMap.put("memberPhoneNumber", memberPhoneNumber);
-		return sqlSession.selectOne("com.test.member.findId", paramMap);
+		return sqlSession.selectOne("com.dev.member.findId", paramMap);
 	}
 	
 	@Override
@@ -50,14 +50,14 @@ public class MemberDaoImpl implements MemberDao{
 		HashMap<String, Object> paramMap = new HashMap<String, Object>();
 		paramMap.put("memberId", memberId);
 		paramMap.put("memberEmail", memberEmail);
-		return sqlSession.selectOne("com.test.member.findPw", paramMap);
+		return sqlSession.selectOne("com.dev.member.findPw", paramMap);
 	}
 
 
 	@Override
 	public int memberUpdateOne(MemberDto memberDto) {
 		// TODO Auto-generated method stub
-		return sqlSession.update("com.test.member.memberUpdateOne", memberDto);
+		return sqlSession.update("com.dev.member.memberUpdateOne", memberDto);
 	}
 
 
@@ -67,7 +67,7 @@ public class MemberDaoImpl implements MemberDao{
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("start", start);
 		map.put("end", end);
-		return sqlSession.selectList("com.test.member.memberSelectList", map);
+		return sqlSession.selectList("com.dev.member.memberSelectList", map);
 	}
 
 
@@ -75,7 +75,7 @@ public class MemberDaoImpl implements MemberDao{
 	public MemberDto memberSelectOne(int memberNumber) {
 		// TODO Auto-generated method stub
 		
-		MemberDto memberDto = sqlSession.selectOne("com.test.member.memberSelectOne",memberNumber);
+		MemberDto memberDto = sqlSession.selectOne("com.dev.member.memberSelectOne",memberNumber);
 		
 		return memberDto;
 	}
@@ -84,7 +84,7 @@ public class MemberDaoImpl implements MemberDao{
 	@Override
 	public int memberSelectTotalCount() {
 		// TODO Auto-generated method stub
-		return (int)sqlSession.selectOne("com.test.member.memberSelectTotalCount");
+		return (int)sqlSession.selectOne("com.dev.member.memberSelectTotalCount");
 	}
 
 
