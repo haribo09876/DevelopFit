@@ -10,7 +10,7 @@ public interface BoardDao {
 
 	int boardInsertOne(BoardDto boardDto);
 
-	BoardDto boardSelectOne(int no);
+	BoardDto boardSelectOne(BoardDto boardDto);
 
 	int boardUpdateOne(BoardDto boardDto);
 
@@ -19,5 +19,15 @@ public interface BoardDao {
 	int boardSelectTotalCount();
 	
 	int viewCount(int no);
+	
+	List<BoardDto> boardCommentSelectList(int start, int end, BoardDto boardDto, int boardNumber);
+
+	int boardCommentInsertOne(BoardDto boardDto);
+
+	int boardCommentUpdateOne(BoardDto boardDto);
+
+	int boardCommentDeleteOne(BoardDto boardDto);
+
+	int boardCommentSelectTotalCount();
 
 }

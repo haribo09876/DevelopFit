@@ -46,6 +46,7 @@
 				<th>한줄평번호</th>
 				<th>회원 아이디</th>
 				<th>영화 제목</th>
+				<th>영화 번호</th>
 				<th>한줄평 내용</th>
 			</tr>
 
@@ -57,6 +58,7 @@
 					</td>
 					<td>${movieDto.memberId}</td>
 					<td>${movieDto.movieTitle}</td>
+					<td>${movieDto.movieNumber}</td>
 					<td>${movieDto.lineReviewContext}</td>
 					<td>
 						<a href='./commentUpdate.do?lineReviewNumber=${movieDto.lineReviewNumber}'>&#128465 수정</a>
@@ -68,13 +70,13 @@
 			</c:forEach>
 		</table>
 
-		<a href='./add.do'>새 한줄평 등록</a>
+		<a href='./commentAdd.do'>새 한줄평 등록</a>
 	
 <%-- 		<jsp:include page="/WEB-INF/view/common/MovieCommentPaging.jsp"> --%>
 			<jsp:param value="${pagingMap}" name="pagingMap"/>
 		</jsp:include>
 	
-		<form action="./list.do" id='pagingForm' method="post">
+		<form action="./commentList.do" id='pagingForm' method="post">
 			<input type="hidden" id='curPage' name='curPage' value="${pagingMap.movieCommentPaging.curPage}">
 		</form>
 	</div>

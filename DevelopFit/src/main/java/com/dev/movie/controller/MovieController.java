@@ -25,10 +25,32 @@ public class MovieController {
 	@Autowired
 	private MovieService movieService;
 
-//	 영화 리스트
+//	 영화 정보 추가 페이지로 이동
+	 @RequestMapping(value = "/movie/add.do", method = RequestMethod.GET)
+	 public String movieAdd(Model model) {
+		 log.debug("Welcome MovieController movieAdd!");
+
+		 return "movie/MovieForm";
+	 }
+
+//	 영화 정보 추가 (C)
+	 @RequestMapping(value = "/movie/addCtr.do", method = RequestMethod.POST)
+	 public String movieAdd(MovieDto movieDto, Model model) {
+		log.debug("Welcome MovieController movieAdd! " + movieDto);
+
+		try {
+			movieService.movieInsertOne(movieDto);
+		} catch (Exception e) {
+		// TODO: handle exception
+			System.out.println("오류 처리할 거 있으면 한다");
+			e.printStackTrace();
+		}
+		return "redirect:/movie/list.do";
+	 }	
+	
+//	 영화 정보 리스트 (R)
 	@RequestMapping(value = "/movie/list.do", method = {RequestMethod.GET, RequestMethod.POST})
 	public String movieList(@RequestParam(defaultValue = "1") int curPage, Model model) {
-//	 Log4j
 		log.info("Welcome MovieController list!: {}", curPage);
 
 		int totalCount = movieService.movieSelectTotalCount();
@@ -50,7 +72,7 @@ public class MovieController {
 		return "movie/MovieListView";
 	 }
 	
-//	 영화 상세
+//	 영화 정보 상세 (R)
 	 @RequestMapping(value = "/movie/listOne.do", method = RequestMethod.GET)
 	 public String movieListOne(int movieNumber, Model model) {
 		 log.debug("Welcome MovieController movieListOne! - {}", movieNumber);
@@ -63,31 +85,8 @@ public class MovieController {
 	
 		 return "movie/MovieListOneView";
 	 }
-
-//	 영화 등록 페이지 이동
-	 @RequestMapping(value = "/movie/add.do", method = RequestMethod.GET)
-	 public String movieAdd(Model model) {
-		 log.debug("Welcome MovieController movieAdd!");
-
-		 return "movie/MovieForm";
-	 }
-
-//	 영화 등록
-	 @RequestMapping(value = "/movie/addCtr.do", method = RequestMethod.POST)
-	 public String movieAdd(MovieDto movieDto, Model model) {
-		log.debug("Welcome MovieController movieAdd! " + movieDto);
-
-		try {
-			movieService.movieInsertOne(movieDto);
-		} catch (Exception e) {
-		// TODO: handle exception
-			System.out.println("오류 처리할 거 있으면 한다");
-			e.printStackTrace();
-		}
-		return "redirect:/movie/list.do";
-	 }
 	 
-//	 영화 수정 페이지 이동
+//	 영화 정보 수정 페이지로 이동
 	 @RequestMapping(value = "/movie/update.do", method = RequestMethod.GET)
 	 public String movieUpdate(int movieNumber, Model model) {
 		 log.info("Welcome movieUpdate!" + movieNumber);
@@ -101,7 +100,7 @@ public class MovieController {
 		 return "movie/MovieUpdateForm";
 	 }	
 	 
-//	 영화 수정
+//	 영화 정보 수정 (U)
 	 @RequestMapping(value = "/movie/updateCtr.do", method = RequestMethod.POST)
 	 public String movieUpdateCtr(MovieDto movieDto, Model model) {
 		 log.info("Welcome MovieController movieUpdateCtr! movieDto: {}\n fileIdx: {}", movieDto);
@@ -117,7 +116,7 @@ public class MovieController {
 		 return "redirect:/movie/list.do";
 	 }
 
-//	 영화 삭제
+//	 영화 정보 삭제 (D)
 	 @RequestMapping(value = "/movie/delete.do", method = RequestMethod.GET)
 	public String movieDeleteCtr(int movieNumber, Model model) {
 		log.debug("Welcome MovieController movieDelete" + movieNumber);
@@ -128,10 +127,32 @@ public class MovieController {
 	}
 
 
-//	 영화 한줄평 리스트
+//	 한줄평 추가 페이지로 이동
+	 @RequestMapping(value = "/movie/commentAdd.do", method = RequestMethod.GET)
+	 public String movieCommentAdd(Model model) {
+		 log.debug("Welcome MovieController movieCommentAdd!");
+
+		 return "movie/MovieCommentForm";
+	 }
+	 
+//	 한줄평 추가 (C)
+	 @RequestMapping(value = "/movie/commentAddCtr.do", method = RequestMethod.POST)
+	 public String movieCommentAdd(MovieDto movieDto, Model model) {
+		log.debug("Welcome MovieController movieCommentAdd! " + movieDto);
+
+		try {
+			movieService.movieCommentInsertOne(movieDto);
+		} catch (Exception e) {
+		// TODO: handle exception
+			System.out.println("오류 처리할 거 있으면 한다");
+			e.printStackTrace();
+		}
+		return "redirect:/movie/commentList.do";
+	 }
+
+//	 한줄평 리스트 (R)
 	@RequestMapping(value = "/movie/commentList.do", method = {RequestMethod.GET, RequestMethod.POST})
 	public String movieCommentList(@RequestParam(defaultValue = "1") int curPage, Model model) {
-//	 Log4j
 		log.info("Welcome MovieController list!: {}", curPage);
 
 		int totalCount = movieService.movieCommentSelectTotalCount();
@@ -153,49 +174,26 @@ public class MovieController {
 		return "movie/MovieCommentListView";
 	 }
 	
-//	 영화 한줄평 상세
+//	 한줄평 상세 (R)
 	 @RequestMapping(value = "/movie/commentListOne.do", method = RequestMethod.GET)
-	 public String movieCommentListOne(int movieNumber, Model model) {
-		 log.debug("Welcome MovieController movieCommentListOne! - {}", movieNumber);
+	 public String movieCommentListOne(int lineReviewNumber, Model model) {
+		 log.debug("Welcome MovieController movieCommentListOne! - {}", lineReviewNumber);
 
-		 Map<String, Object> map = movieService.movieCommentSelectOne(movieNumber);
-	
+		 Map<String, Object> map = movieService.movieCommentSelectOne(lineReviewNumber);
+
 		 MovieDto movieDto = (MovieDto)map.get("movieDto");
-	
+
 		 model.addAttribute("movieDto", movieDto);
-	
+
 		 return "movie/MovieCommentListOneView";
 	 }
 
-//	 영화 한줄평 등록 페이지 이동
-	 @RequestMapping(value = "/movie/commentAdd.do", method = RequestMethod.GET)
-	 public String movieCommentAdd(Model model) {
-		 log.debug("Welcome MovieController movieCommentAdd!");
-
-		 return "movie/MovieCommentForm";
-	 }
-	 
-//	 영화 한줄평 등록
-	 @RequestMapping(value = "/movie/commentAddCtr.do", method = RequestMethod.POST)
-	 public String movieCommentAdd(MovieDto movieDto, Model model) {
-		log.debug("Welcome MovieController movieCommentAdd! " + movieDto);
-
-		try {
-			movieService.movieCommentInsertOne(movieDto);
-		} catch (Exception e) {
-		// TODO: handle exception
-			System.out.println("오류 처리할 거 있으면 한다");
-			e.printStackTrace();
-		}
-		return "redirect:/movie/commentList.do";
-	 }	 
-
-//	 영화 한줄평 수정 페이지 이동
+//	 한줄평 수정 페이지로 이동
 	 @RequestMapping(value = "/movie/commentUpdate.do", method = RequestMethod.GET)
-	 public String movieCommentUpdate(int movieNumber, Model model) {
-		 log.info("Welcome movieCommentUpdate!" + movieNumber);
+	 public String movieCommentUpdate(int lineReviewNumber, Model model) {
+		 log.info("Welcome movieCommentUpdate!" + lineReviewNumber);
 	
-		 Map<String, Object> map = movieService.movieCommentSelectOne(movieNumber);
+		 Map<String, Object> map = movieService.movieCommentSelectOne(lineReviewNumber);
 
 		 MovieDto movieDto = (MovieDto)map.get("movieDto");
 	
@@ -204,7 +202,7 @@ public class MovieController {
 		 return "movie/MovieCommentUpdateForm";
 	 }
 
-//	 영화 한줄평 수정
+//	 한줄평 수정 (U)
 	 @RequestMapping(value = "/movie/commentUpdateCtr.do", method = RequestMethod.POST)
 	 public String movieCommentUpdateCtr(MovieDto movieDto, Model model) {
 		 log.info("Welcome MovieController movieCommentUpdateCtr! movieDto: {}\n fileIdx: {}", movieDto);
@@ -220,12 +218,12 @@ public class MovieController {
 		 return "redirect:/movie/commentList.do";
 	 }	 
 
-//	 영화 한줄평 삭제
+//	 한줄평 삭제 (D)
 	 @RequestMapping(value = "/movie/commentDelete.do", method = RequestMethod.GET)
-	public String movieCommentDeleteCtr(int movieNumber, Model model) {
-		log.debug("Welcome MovieController movieCommentDelete" + movieNumber);
+	public String movieCommentDeleteCtr(int lineReviewNumber, Model model) {
+		log.debug("Welcome MovieController movieCommentDelete" + lineReviewNumber);
 
-		movieService.movieCommentDeleteOne(movieNumber);
+		movieService.movieCommentDeleteOne(lineReviewNumber);
 
 		return "redirect:/movie/commentList.do";
 	}

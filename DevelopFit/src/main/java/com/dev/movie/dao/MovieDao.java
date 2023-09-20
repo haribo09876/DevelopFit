@@ -16,8 +16,8 @@ public interface MovieDao {
 	
 	List<MovieDto> movieCommentSelectList(int start, int end);
 	public int movieCommentInsertOne(MovieDto movieDto);
-	public MovieDto movieCommentSelectOne(int movieNumber);
+	public MovieDto movieCommentSelectOne(int lineReviewNumber);
 	public int movieCommentUpdateOne(MovieDto movieDto);
-	public int movieCommentDeleteOne(int movieNumber);
+	public int movieCommentDeleteOne(int lineReviewNumber);
 	public int movieCommentSelectTotalCount();
 }

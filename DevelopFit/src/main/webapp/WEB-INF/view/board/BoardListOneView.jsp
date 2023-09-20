@@ -138,14 +138,17 @@
 	<div id="commentview">
 		<div>댓글</div>
 	</div>
-	<c:forEach var="boardCommentDto" items="${boardCommentList}">
-    	<div id="boardCommentContent">${boardCommentDto.commentContent}</div>
+	<c:forEach var="boardDto" items="${boardCommentList}">
+		<input type="hidden" name='boardNumber' value='${boardDto.boardNumber}'>
+    	<input type="hidden" name='commentNumber' value='${boardDto.commentNumber}'>
+    	
+    	<div id="boardCommentContent">${boardDto.commentContent}</div>
 	</c:forEach>
 	
 	<form action='./commentUpdateCtr.do' method='post'>
-			<input type="hidden" name='commentNumber' value='${boardCommentDto.commentNumber}'>
+			<input type="hidden" name='commentNumber' value='${boardDto.commentNumber}'>
 			<input type="hidden" name='memberNumber' value= 1>
-			<input type="hidden" id="boardNumber" value="${boardDto.boardNumber}">
+			<input type="hidden" name="boardNumber" value="${boardDto.boardNumber}">
 			<input type="submit" id="update" value="수정">
 	</form>
 	
