@@ -94,28 +94,27 @@
 </head>
 <body>
 	<jsp:include page="/WEB-INF/view/Header.jsp"/>
-	
-	<a href='./list.do'>&#128281 한줄평목록으로</a>
-	<a href='./update.do?lineReviewNumber=${movieCommentDto.lineReviewNumber}'>&#128465 수정</a>
-	<a href='./delete.do?lineReviewNumber=${movieCommentDto.lineReviewNumber}'>&#128465 삭제</a>
-	
-	
+	<a href='./commentList.do'>&#128281 한줄평목록으로</a>
+	<a href='./commentUpdate.do?lineReviewNumber=${movieDto.lineReviewNumber}'>&#128465 수정</a>
+	<a href='./commentDelete.do?lineReviewNumber=${movieDto.lineReviewNumber}'>&#128465 삭제</a>
+
 	<h3>영화 한줄평 상세 (MovieListOneView)</h3>
 		<div id="thirdSectionDiv">
+		    <input type="hidden" name='lineReviewNumber' value='${movieDto.lineReviewNumber}'>
+		    <input type="hidden" name='memberId' value='${movieDto.memberId}'>  
 			<p>
-				한줄평 번호 :	${movieCommentDto.lineReviewNumber}
+				한줄평 번호 :	${movieDto.lineReviewNumber}
 			</p>
 			<p>
-				한줄평 내용 :	${movieCommentDto.lineReviewContext}
+				한줄평 내용 :	${movieDto.lineReviewContext}
 			</p>
 			<p>
-				회원 번호 :	${movieCommentDto.memberNumber}
+				회원 아이디 :	${movieDto.memberId}
 			</p>
 			<p>
-				영화 번호 :	${movieCommentDto.movieNumber}
+				영화 이름 :	${movieDto.movieTitle}
 			</p>
 		</div>
-	
 
 	<jsp:include page="/WEB-INF/view/Footer.jsp" />
 </body>

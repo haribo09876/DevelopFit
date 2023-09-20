@@ -148,7 +148,7 @@ public class MovieController {
 			e.printStackTrace();
 		}
 		return "redirect:/movie/commentList.do";
-	 }	 
+	 }
 
 //	 한줄평 리스트 (R)
 	@RequestMapping(value = "/movie/commentList.do", method = {RequestMethod.GET, RequestMethod.POST})
@@ -176,24 +176,24 @@ public class MovieController {
 	
 //	 한줄평 상세 (R)
 	 @RequestMapping(value = "/movie/commentListOne.do", method = RequestMethod.GET)
-	 public String movieCommentListOne(int movieNumber, Model model) {
-		 log.debug("Welcome MovieController movieCommentListOne! - {}", movieNumber);
+	 public String movieCommentListOne(int lineReviewNumber, Model model) {
+		 log.debug("Welcome MovieController movieCommentListOne! - {}", lineReviewNumber);
 
-		 Map<String, Object> map = movieService.movieCommentSelectOne(movieNumber);
-	
+		 Map<String, Object> map = movieService.movieCommentSelectOne(lineReviewNumber);
+
 		 MovieDto movieDto = (MovieDto)map.get("movieDto");
-	
+
 		 model.addAttribute("movieDto", movieDto);
-	
+
 		 return "movie/MovieCommentListOneView";
 	 }
 
 //	 한줄평 수정 페이지로 이동
 	 @RequestMapping(value = "/movie/commentUpdate.do", method = RequestMethod.GET)
-	 public String movieCommentUpdate(int movieNumber, Model model) {
-		 log.info("Welcome movieCommentUpdate!" + movieNumber);
+	 public String movieCommentUpdate(int lineReviewNumber, Model model) {
+		 log.info("Welcome movieCommentUpdate!" + lineReviewNumber);
 	
-		 Map<String, Object> map = movieService.movieCommentSelectOne(movieNumber);
+		 Map<String, Object> map = movieService.movieCommentSelectOne(lineReviewNumber);
 
 		 MovieDto movieDto = (MovieDto)map.get("movieDto");
 	
@@ -220,10 +220,10 @@ public class MovieController {
 
 //	 한줄평 삭제 (D)
 	 @RequestMapping(value = "/movie/commentDelete.do", method = RequestMethod.GET)
-	public String movieCommentDeleteCtr(int movieNumber, Model model) {
-		log.debug("Welcome MovieController movieCommentDelete" + movieNumber);
+	public String movieCommentDeleteCtr(int lineReviewNumber, Model model) {
+		log.debug("Welcome MovieController movieCommentDelete" + lineReviewNumber);
 
-		movieService.movieCommentDeleteOne(movieNumber);
+		movieService.movieCommentDeleteOne(lineReviewNumber);
 
 		return "redirect:/movie/commentList.do";
 	}

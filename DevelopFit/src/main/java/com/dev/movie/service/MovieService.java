@@ -16,8 +16,8 @@ public interface MovieService {
 	
 	public int movieCommentSelectTotalCount();
 	List<MovieDto> movieCommentSelectList(int start, int end);
-	public Map<String, Object> movieCommentSelectOne(int movieNumber);
+	public Map<String, Object> movieCommentSelectOne(int lineReviewNumber);
 	public void movieCommentInsertOne(MovieDto movieDto) throws Exception;
 	public int movieCommentUpdateOne(MovieDto movieDto) throws Exception;
-	public int movieCommentDeleteOne(int movieNumber);
+	public int movieCommentDeleteOne(int lineReviewNumber);
 }

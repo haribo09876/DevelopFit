@@ -98,16 +98,14 @@
 	<jsp:include page="/WEB-INF/view/Header.jsp"/>
 			
 	<h3>영화 한줄평 수정 (MovieCommentUpdateForm)</h3>	
-	<form action='./updateCtr.do' method='post' enctype="multipart/form-data">
-	<input type="hidden" name='lineReviewNumber' value='${movieCommentDto.lineReviewNumber}'>
-				
-		한줄평 번호 :	<input type='number' name='lineReviewNumber' value='${movieCommentDto.lineReviewNumber}'><br>
-		한줄평 내용 :	<input type='text' name='lineReviewContext' value='${movieCommentDto.lineReviewContext}'><br>
-		회원번호 :		<input type='number' name='memberNumber' value='${movieCommentDto.memberNumber}'><br>
-		영화번호 : 		<input type='number' name='movieNumber' value='${movieCommentDto.movieNumber}'><br>
+	<form action='./commentUpdateCtr.do' method='post' enctype="multipart/form-data">
+		<input type="hidden" name='lineReviewNumber' value='${movieDto.lineReviewNumber}'>
+		한줄평 내용 :	<input type='text' name='lineReviewContext' value='${movieDto.lineReviewContext}'><br>
+		회원 번호 :		<input type='number' name='memberNumber' value='${movieDto.memberNumber}'><br>
+		영화 번호 : 	<input type='number' name='movieNumber' value='${movieDto.movieNumber}'><br>
 		<input type='submit' value='저장하기'>
-		<a href='./list.do'>&#128281 한줄평 목록으로</a>
-		<a href='./delete.do?lineReviewNumber=${movieCommentDto.lineReviewNumber}'>&#128465 삭제하기</a>
+		<a href='./commentList.do'>&#128281 한줄평 목록으로</a>
+		<a href='./commentDelete.do?lineReviewNumber=${movieDto.lineReviewNumber}'>&#128465 삭제하기</a>
 	</form>
 
 	<jsp:include page="/WEB-INF/view/Footer.jsp" />
