@@ -19,7 +19,7 @@
  		margin: 150px 60px 50px;
 		border-color: black;
  		background-color: #172036;
- 		height: 1200px;
+ 		height: 100vh;
  		width: 1200px;
 	}
 	#topcontent{
