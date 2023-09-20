@@ -72,7 +72,7 @@
 
 		<a href='./commentAdd.do'>새 한줄평 등록</a>
 	
-		<jsp:include page="/WEB-INF/view/common/MovieCommentPaging.jsp">
+<%-- 		<jsp:include page="/WEB-INF/view/common/MovieCommentPaging.jsp"> --%>
 			<jsp:param value="${pagingMap}" name="pagingMap"/>
 		</jsp:include>
 	
