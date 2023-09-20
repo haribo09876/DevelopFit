@@ -61,12 +61,12 @@ public class MemberController {
 
 			if (memberDto.getMemberId().equals("admin1") && memberDto.getMemberPassword().equals("admin1")) {
 				viewUrl = "redirect:/admin/admin.do";
-			} else {
-<<<<<<< HEAD
+			} else if (memberDto.getMemberId().equals("aa")) {
 				viewUrl = "redirect:/order/basket.do";
-=======
+			} else if (memberDto.getMemberId().equals("ss")) {
 				viewUrl = "redirect:/board/list.do";
->>>>>>> branch 'main' of https://github.com/haribo09876/DevelopFit.git
+			} else if (memberDto.getMemberId().equals("dd")) {
+				viewUrl = "redirect:/movie/list.do";
 			}
 		} else {
 			viewUrl = "/auth/LoginFail";
@@ -77,11 +77,11 @@ public class MemberController {
 	// 로그아웃 기능구현
 	@RequestMapping(value = "/auth/logout.do", method = RequestMethod.GET)
 	public String logout(HttpSession session, Model model) {
-
+		
 		log.info("Welcome MemberController logout!");
-
+		
 		session.invalidate();
-
+		
 		return "redirect:/auth/login.do";
 	}
 
