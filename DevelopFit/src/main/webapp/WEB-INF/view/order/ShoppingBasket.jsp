@@ -60,7 +60,6 @@ h1 {
 	width: 900px;
 	height: auto;
 	margin: 50px auto;
-	background-color: skyblue;
 }
 
 #payDetail {
@@ -187,28 +186,46 @@ p {
 	padding-top: 8px;
 	display: inline-block;
 	cursor: pointer;
-	margin: auto;
+	margin: 50px 0px 0px 300px;
 }
 
 #totalPrice {
 	text-align: right;
 	display: inline-block;
-/* 	float: right; */
+	margin-left: 30px;
 }
 
 #payment {
-	width: 400px;
-	margin: 0px auto;
+	width: 700px;
+	height: 30px;
+	display: inline-block;
 }
 
 #consentOrder {
-	width: 400px;
-	margin: 0px auto;
+	width: 500px;
+	height: 100px;
 }
 
+#payAmount {
+	display: inline-block;
+}
+
+#customerAgree {
+	display: inline-block;
+	
+}
+
+input[name = agree] {
+	margin: 5px;
+}
+
+#buttonWrap {
+	width: 900px;
+	margin: 0px auto;
+}
 </style>
 
-
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script type="text/javascript">
 	function checkAllFnc() {
 		var checkBoxes = document.getElementsByName("product");
@@ -288,22 +305,20 @@ p {
 // 				formObj.setAttribute("action", "./basketCtr.do");
 // 				formObj.submit();
 				
-				var productArr = [];
-				for(var i = 0; i < document.getElementsByName("product").length; i++){
-					if(document.getElementsByName("product")[i].checked == true){
-						productArr.push(document.getElementsByName("product")[i].value);
-					}
-				}
-				
 				$.ajax({
-			        url: '/order/basketCtr.do'
-			        , type: 'post'
-			        , dataType: 'text'
-			        , data: {
-			            product: productArr
-			        }
-			    });
-				alert("asd");
+				    url: "${pageContext.request.contextPath}/order/basketCtr.do",
+				    type: 'post',
+				    data: 
+				    {
+				        product: checkStr()
+				    },
+				    success: function (data) {
+				        document.location.href = document.location.href; // 성공시 새로고침
+				    },
+				    error: function (error) {
+				        console.error("AJAX Error:", error);
+				    }
+				});
 			}
 		} else {
 			alert("삭제할 상품을 선택해주세요.");
@@ -388,15 +403,12 @@ p {
 					<h1>결제정보</h1>
 					<div id="payDetail">
 						<div id="payment">
-							<p>결제금액</p>
+							<h4 id="payAmount">결제금액</h4>
 							<p id="totalPrice">0원</p>
 						</div>
 						<div id="consentOrder">
-							<p>주문자 동의</p>
-							<ol>
-								<li><label><input type="checkbox" name="agree" value="1"> 만 14세 이상입니다.</label></li>
-								<li><label><input type="checkbox" name="agree" value="2"> 이용약관 </label></li>
-							</ol>
+							<h4 id="customerAgree">주문자 동의</h4>
+							<label><input type="checkbox" name="agree" value="주문자 동의"> 만 14세 이상입니다.</label>
 						</div>
 					</div>
 				</div>
@@ -417,8 +429,10 @@ p {
 					</div>
 				</div>
 				
-				<div id="movePageMovie" onclick="movePageMovieFnc();" style="color: white;">
-					영화페이지로
+				<div id="buttonWrap">
+					<div id="movePageMovie" onclick="movePageMovieFnc();">
+						영화페이지로
+					</div>
 				</div>
 			</c:otherwise>
 		</c:choose>

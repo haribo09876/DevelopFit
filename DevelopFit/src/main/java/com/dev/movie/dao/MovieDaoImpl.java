@@ -75,9 +75,9 @@ public class MovieDaoImpl implements MovieDao{
 	}
 	
 	@Override
-	public MovieDto movieCommentSelectOne(int movieNumber) {
+	public MovieDto movieCommentSelectOne(int lineReviewNumber) {
 		// TODO Auto-generated method stub
-		MovieDto movieDto = sqlSession.selectOne("com.dev.movie.movieCommentSelectOne", movieNumber);
+		MovieDto movieDto = sqlSession.selectOne("com.dev.movie.movieCommentSelectOne", lineReviewNumber);
 		return movieDto;
 	}
 	
@@ -88,9 +88,9 @@ public class MovieDaoImpl implements MovieDao{
 	}
 	
 	@Override
-	public int movieCommentDeleteOne(int movieNumber) {
+	public int movieCommentDeleteOne(int lineReviewNumber) {
 		// TODO Auto-generated method stub
-		return sqlSession.delete("com.dev.movie.movieCommentDeleteOne", movieNumber);
+		return sqlSession.delete("com.dev.movie.movieCommentDeleteOne", lineReviewNumber);
 	}
 	
 	@Override

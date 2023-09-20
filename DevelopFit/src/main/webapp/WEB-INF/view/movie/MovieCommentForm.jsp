@@ -97,11 +97,11 @@
 
 		<div id="contentsAreaDiv">
 			<h3>영화 한줄평 추가 (MovieCommentForm)</h3>
-			<form action="./addCtr.do" method="post" enctype="multipart/form-data">
+			<form action="./commentAddCtr.do" method="post" enctype="multipart/form-data">
 				회원 번호 :		<input type="number" name='memberNumber'><br>
 				영화 번호 :		<input type="number" name='movieNumber'><br>
 				한줄평 내용 :	<input type='text' name='lineReviewContext'><br>
-				<a href='./list.do'>&#128281 뒤로가기</a>
+				<a href='./commentList.do'>&#128281 뒤로가기</a>
 				<input type="submit" value="추가">
 			</form>
 		</div>

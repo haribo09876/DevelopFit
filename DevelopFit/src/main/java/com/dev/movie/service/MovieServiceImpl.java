@@ -86,12 +86,12 @@ public class MovieServiceImpl implements MovieService{
 	}
 
 	@Override
-	public Map<String, Object> movieCommentSelectOne(int movieNumber) {
+	public Map<String, Object> movieCommentSelectOne(int lineReviewNumber) {
 		// TODO Auto-generated method stub
 				
 		Map<String, Object> resultMap = new HashMap<String, Object>();
 		
-		MovieDto movieDto = movieDao.movieSelectOne(movieNumber);
+		MovieDto movieDto = movieDao.movieCommentSelectOne(lineReviewNumber);
 		resultMap.put("movieDto", movieDto);
 		
 		return resultMap;
@@ -118,9 +118,9 @@ public class MovieServiceImpl implements MovieService{
 	}
 	
 	@Override
-	public int movieCommentDeleteOne(int movieNumber) {
+	public int movieCommentDeleteOne(int lineReviewNumber) {
 		// TODO Auto-generated method stub
-		return movieDao.movieCommentDeleteOne(movieNumber);
+		return movieDao.movieCommentDeleteOne(lineReviewNumber);
 	}
 	
 }
