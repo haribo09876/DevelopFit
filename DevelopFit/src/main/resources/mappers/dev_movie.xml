@@ -19,6 +19,18 @@
 		<result column="LINE_REVIEW_CONTEXT" property="lineReviewContext" />
 	</resultMap>
 
+<!-- 영화 정보 추가 (C) -->
+	<insert id="movieInsertOne" parameterType="movieDto" useGeneratedKeys="true" keyProperty="movieNumber">
+		<selectKey keyProperty="movieNumber" resultType="int" order="BEFORE">
+			SELECT MOVIE_NUMBER_SEQ.NEXTVAL
+			FROM DUAL
+		</selectKey>
+		INSERT INTO MOVIE
+			(MOVIE_NUMBER, MOVIE_TITLE, MOVIE_SUMMARY, MOVIE_RELEASE_DATE, MOVIE_RUNTIME, MOVIE_PRICE, MOVIE_POSTER, MOVIE_PREVIEW, GENRE_NUMBER)
+		VALUES(#{movieNumber}, #{movieTitle}, #{movieSummary}, #{movieReleaseDate}, #{movieRuntime}, #{moviePrice}, #{moviePoster}, #{moviePreview}, #{genreNumber})
+	</insert>
+
+<!-- 영화 정보 리스트 (R) -->
 	<select id="movieSelectList" parameterType="map" resultMap="movieResultMap">
 		SELECT MOVIE.MOVIE_NUMBER, MOVIE.MOVIE_TITLE, MOVIE.MOVIE_SUMMARY, MOVIE.MOVIE_RELEASE_DATE, MOVIE.MOVIE_RUNTIME, MOVIE.MOVIE_PRICE, MOVIE.MOVIE_POSTER, MOVIE.MOVIE_PREVIEW, MOVIE.GENRE_NAME
 		FROM(	SELECT ROWNUM AS RNUM, MOVIE.MOVIE_NUMBER, MOVIE.MOVIE_TITLE, MOVIE.MOVIE_SUMMARY, MOVIE.MOVIE_RELEASE_DATE, MOVIE.MOVIE_RUNTIME, MOVIE.MOVIE_PRICE, MOVIE.MOVIE_POSTER, MOVIE.MOVIE_PREVIEW, MOVIE.GENRE_NAME
@@ -31,16 +43,7 @@
 		WHERE MOVIE.RNUM BETWEEN #{start} AND #{end}
 	</select>
 
-	<insert id="movieInsertOne" parameterType="movieDto" useGeneratedKeys="true" keyProperty="movieNumber">
-		<selectKey keyProperty="movieNumber" resultType="int" order="BEFORE">
-			SELECT MOVIE_NUMBER_SEQ.NEXTVAL
-			FROM DUAL
-		</selectKey>
-		INSERT INTO MOVIE
-			(MOVIE_NUMBER, MOVIE_TITLE, MOVIE_SUMMARY, MOVIE_RELEASE_DATE, MOVIE_RUNTIME, MOVIE_PRICE, MOVIE_POSTER, MOVIE_PREVIEW, GENRE_NUMBER)
-		VALUES(#{movieNumber}, #{movieTitle}, #{movieSummary}, #{movieReleaseDate}, #{movieRuntime}, #{moviePrice}, #{moviePoster}, #{moviePreview}, #{genreNumber})
-	</insert>
-	
+<!-- 영화 정보 상세 (R) -->
 	<select id="movieSelectOne" parameterType="int" resultMap="movieResultMap">
 		SELECT M.MOVIE_NUMBER, M.MOVIE_TITLE, M.MOVIE_SUMMARY, M.MOVIE_RELEASE_DATE, M.MOVIE_RUNTIME, M.MOVIE_PRICE, M.MOVIE_POSTER, M.MOVIE_PREVIEW, G.GENRE_NAME, LR.LINE_REVIEW_CONTEXT
 		FROM MOVIE M
@@ -49,7 +52,8 @@
 		WHERE M.MOVIE_NUMBER = #{movieNumber}
 		ORDER BY LR.LINE_REVIEW_NUMBER DESC
 	</select>
-	
+
+<!-- 영화 정보 수정 (U) -->
 	<update id="movieUpdateOne" parameterType="movieDto">
 		UPDATE MOVIE
 		<set>
@@ -63,17 +67,32 @@
 		</set>
 		WHERE MOVIE_NUMBER = #{movieNumber}
 	</update>
-	
+
+<!-- 영화 정보 삭제 (D) -->
 	<delete id="movieDeleteOne" parameterType="int">
 		DELETE FROM MOVIE
 		WHERE MOVIE_NUMBER = #{movieNumber}
 	</delete>
-	
+
+<!-- 영화 정보 카운트 -->
 	<select id="movieSelectTotalCount" resultType="java.lang.Integer">
 		SELECT COUNT(*)
 		FROM MOVIE
 	</select>
-	
+
+
+<!-- 한줄평 추가 (C) -->
+	<insert id="movieCommentInsertOne" parameterType="movieDto" useGeneratedKeys="true" keyProperty="lineReviewNumber">
+		<selectKey keyProperty="lineReviewNumber" resultType="int" order="BEFORE">
+			SELECT LINE_REVIEW_NUMBER_SEQ.NEXTVAL
+			FROM DUAL
+		</selectKey>
+		INSERT INTO LINE_REVIEW
+			(LINE_REVIEW_NUMBER, LINE_REVIEW_CONTEXT, MEMBER_NUMBER, MOVIE_NUMBER)
+		VALUES(#{lineReviewNumber}, #{lineReviewContext}, #{memberNumber}, #{movieNumber})
+	</insert>
+
+<!-- 한줄평 리스트 (R) -->
 	<select id="movieCommentSelectList" parameterType="map" resultMap="movieResultMap">
 		SELECT LINEREVIEW.MEMBER_ID, LINEREVIEW.MOVIE_TITLE, LINEREVIEW.LINE_REVIEW_NUMBER, LINEREVIEW.LINE_REVIEW_CONTEXT
 		FROM(   SELECT ROWNUM AS RNUM, LINEREVIEW.MEMBER_ID, LINEREVIEW.MOVIE_TITLE, LINEREVIEW.LINE_REVIEW_NUMBER, LINEREVIEW.LINE_REVIEW_CONTEXT
@@ -87,16 +106,7 @@
 		WHERE LINEREVIEW.RNUM BETWEEN #{start} AND #{end}
 	</select>
 
-	<insert id="movieCommentInsertOne" parameterType="movieDto" useGeneratedKeys="true" keyProperty="lineReviewNumber">
-		<selectKey keyProperty="lineReviewNumber" resultType="int" order="BEFORE">
-			SELECT LINE_REVIEW_NUMBER_SEQ.NEXTVAL
-			FROM DUAL
-		</selectKey>
-		INSERT INTO LINE_REVIEW
-			(LINE_REVIEW_NUMBER, LINE_REVIEW_CONTEXT, MEMBER_NUMBER, MOVIE_NUMBER)
-		VALUES(#{lineReviewNumber}, #{lineReviewContext}, #{memberNumber}, #{movieNumber})
-	</insert>
-	
+<!-- 한줄평 상세 (R) -->
 	<select id="movieCommentSelectOne" parameterType="int" resultMap="movieResultMap">
 		SELECT LR.LINE_REVIEW_NUMBER, LR.LINE_REVIEW_CONTEXT, M.MEMBER_ID, MV.MOVIE_TITLE
 		FROM LINE_REVIEW LR JOIN MEMBER M
@@ -104,7 +114,8 @@
 		                                                ON LR.MOVIE_NUMBER = MV.MOVIE_NUMBER
 		WHERE LINE_REVIEW_NUMBER = #{lineReviewNumber}
 	</select>
-	
+
+<!-- 한줄평 수정 (U) -->
 	<update id="movieCommentUpdateOne" parameterType="movieDto">
 		UPDATE LINE_REVIEW
 		<set>
@@ -114,12 +125,14 @@
 		</set>
 		WHERE LINE_REVIEW_NUMBER = #{lineReviewNumber}
 	</update>
-	
+
+<!-- 한줄평 삭제 (D) -->
 	<delete id="movieCommentDeleteOne" parameterType="int">
 		DELETE FROM LINE_REVIEW
 		WHERE LINE_REVIEW_NUMBER = #{lineReviewNumber}
 	</delete>
-	
+
+<!-- 한줄평 카운트 -->
 	<select id="movieCommentSelectTotalCount" resultType="java.lang.Integer">
 		SELECT COUNT(*)
 		FROM LINE_REVIEW
