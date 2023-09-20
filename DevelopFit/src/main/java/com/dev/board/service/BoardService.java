@@ -12,8 +12,8 @@ public interface BoardService {
 	List<BoardDto> boardSelectList(int start, int end);
 
 	void boardInsertOne(BoardDto boardDto);
-
-	Map<String, Object> boardSelectOne(BoardDto boardDto);
+	
+	public BoardDto boardSelectOne(int boardNumber);
 
 	int boardUpdateOne(BoardDto boardDto);
 
@@ -23,17 +23,5 @@ public interface BoardService {
 
 	int viewCount(int no);
 	
-	List<BoardDto> boardCommentSelectList(int start, int end, BoardDto boardDto, int boardNumber);
-	
-	void boardCommentInsertOne(BoardDto boardDto);
-
-	int boardCommentUpdateOne(BoardDto boardDto);
-
-	int boardCommentDeleteOne(BoardDto boardDto);
-
-	int boardCommentSelectTotalCount();
-
-	
-
 	
 }
