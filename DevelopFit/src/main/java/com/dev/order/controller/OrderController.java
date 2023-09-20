@@ -12,6 +12,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.dev.member.dto.MemberDto;
 import com.dev.order.dto.OrderDto;
@@ -57,21 +58,21 @@ public class OrderController {
 	
 	
 	// 장바구니 삭제
+	@ResponseBody
 	@RequestMapping(value = "/order/basketCtr.do", method = RequestMethod.POST)
-	public String basketCtr(HttpSession session, @RequestParam(value = "product[]") List<String> product, Model model) {
+	public String basketCtr(HttpSession session, @RequestParam(value="product") String product, Model model) {
 	    log.info("Welcome OrderController basketCtr! delete movieNumber: {}", product);
-	    System.out.println("product: " + product.size());
 	    
-//	    String[] productArr = product.split(",");
-//	    
-//	    if(session != null) {
-//		    for (int i = 0; i < productArr.length; i++) {
-//		    	orderService.deleteBasket(Integer.parseInt(productArr[i]));
-//			}
+	    String[] productArr = product.split(",");
+	    
+	    if(session != null) {
+		    for (int i = 0; i < productArr.length; i++) {
+		    	orderService.deleteBasket(Integer.parseInt(productArr[i]));
+			}
 		    return "redirect:basket.do";
-//	    } else {
-//	    	return "auth/LoginForm";
-//	    }
+	    } else {
+	    	return "auth/LoginForm";
+	    }
 	}
 	
 	
