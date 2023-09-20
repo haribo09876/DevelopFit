@@ -51,6 +51,7 @@
 
 			<c:forEach var="movieDto" items="${movieCommentList}">
 				<input type="hidden" name='movieNumber' value='${movieDto.movieNumber}'>
+    			<input type="hidden" name='lineReviewNumber' value='${movieDto.lineReviewNumber}'>		
 				<tr>
 					<td>
 						<a href='./commentListOne.do?lineReviewNumber=${movieDto.lineReviewNumber}'>${movieDto.lineReviewNumber}</a>
