@@ -156,25 +156,25 @@
 			<p class="actor">배우7</p>
 		</div>
 
-			<h3>한줄평 (MovieCommentList)</h3>
-			<c:forEach var="movieDto" items="${movieCommentList}">
-				<input type="hidden" name='movieNumber' value='${movieDto.movieNumber}'>
-    			<input type="hidden" name='lineReviewNumber' value='${movieDto.lineReviewNumber}'>		
-				<p>회원 아이디 : ${movieDto.memberId}</p>
-				<p>한줄평 내용 : ${movieDto.lineReviewContext}</p>
-				<a href='./commentUpdate.do?lineReviewNumber=${movieDto.lineReviewNumber}'>&#128465 수정</a>
-				<a href='./commentDelete.do?lineReviewNumber=${movieDto.lineReviewNumber}'>&#128465 삭제</a>
-			</c:forEach>
+		<h3>한줄평 (MovieCommentList)</h3>
+		<c:forEach var="movieDto" items="${movieCommentList}">
+			<input type="hidden" name='movieNumber' value='${movieDto.movieNumber}'>
+   			<input type="hidden" name='lineReviewNumber' value='${movieDto.lineReviewNumber}'>		
+			<p>회원 아이디 : ${movieDto.memberId}</p>
+			<p>한줄평 내용 : ${movieDto.lineReviewContext}</p>
+			<a href='./commentUpdate.do?lineReviewNumber=${movieDto.lineReviewNumber}'>&#128465 수정</a>
+			<a href='./commentDelete.do?lineReviewNumber=${movieDto.lineReviewNumber}'>&#128465 삭제</a>
+		</c:forEach>
+
+		<a href='./commentAdd.do'>새 한줄평 등록</a>
 	
-			<a href='./commentAdd.do'>새 한줄평 등록</a>
-		
-			<jsp:include page="/WEB-INF/view/common/MovieCommentPaging.jsp">
-				<jsp:param value="${pagingMap}" name="pagingMap"/>
-			</jsp:include>
-		
-			<form action="./list.do" id='pagingForm' method="post">
-				<input type="hidden" id='curPage' name='curPage' value="${pagingMap.movieCommentPaging.curPage}">
-			</form>
+		<jsp:include page="/WEB-INF/view/common/MovieCommentPaging.jsp">
+			<jsp:param value="${pagingMap}" name="pagingMap"/>
+		</jsp:include>
+	
+		<form action="./list.do" id='pagingForm' method="post">
+			<input type="hidden" id='curPage' name='curPage' value="${pagingMap.movieCommentPaging.curPage}">
+		</form>
 	</div>
 	
 	<jsp:include page="/WEB-INF/view/Footer.jsp" />
