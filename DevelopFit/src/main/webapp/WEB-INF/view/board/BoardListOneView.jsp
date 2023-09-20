@@ -27,7 +27,7 @@
 		margin-left: 40px;
 		margin-bottom: 10px;
 		margin-top: 50px;
-		height: 600px;
+		height: 550px;
 		padding-top: 50px;
 	}
 	#iddatewrap{
@@ -62,7 +62,7 @@
  	#content{
  		float: left;
  		width: 900px;
- 		height: 350px; 
+ 		height: 300px; 
  		margin-left: 120px;
  	}
  	#boardhit{
@@ -81,6 +81,7 @@
 		height: 30px;
 		margin-left: 920px;
 		margin-top: 40px;
+		margin-bottom: 20px;
 	}
 	#delete{
 		color: white;
@@ -91,14 +92,38 @@
 		margin-right:137px;
 		margin-left: 0px;
 		margin-top: 40px;
+		margin-bottom: 20px;
 	}
 	#commentview{
 		float: left;
 		margin-left: 200px;
-		margin-top: 80px;
+		margin-top: 30px;
+		margin-bottom: 10px;
+		height: 20px;
 	}
-	#commentpagingwrap{
-		margin-top: 400px;
+	#commentwrap{
+		margin-top:160px;
+		width: 600px;
+ 		margin-left: 100px; 
+	}
+	#commentMemberId{
+		width: 300px;
+		height: 30px;
+		margin-left: 300px;
+		text-align: left;
+	}
+	#commentCreateDate{
+		width: 200px;
+		height: 30px;
+		margin-left: 300px;
+		text-align: left;
+	}
+	#commentContent{
+		width: 400px;
+		height: 30px;
+		margin-left: 300px;
+		margin-bottom: 10px;
+		text-align: left;
 	}
 </style>
 </head>
@@ -107,7 +132,7 @@
 		<div id="topcontent">
 			<div id="iddatewrap">
 				<div>
-		 			<div id="memberid">글쓴이: ${boardDto.memberId}</div>
+					<div id="memberid">글쓴이: ${boardDto.memberId}</div>
 		 		</div>
 		 		<div id="createdate">작성일: 
 		 			<fmt:formatDate pattern="yyyy-MM-dd" value="${boardDto.boardCreateDate}"/>
@@ -135,33 +160,36 @@
 			<input type="submit" id="update" value="수정">
 		</form>
 	</div>	
-	<div id="commentview">
-		<div>댓글</div>
+	
+		<div id="commentview">댓글</div>
+		
+	<div id="commentwrap">
+		<c:forEach var="commentDto" items="${commentList}">
+			<div id="commentMemberId">아이디:		${commentDto.memberId}</div>
+	    	<div id="commentCreateDate">작성일:	
+	    		<fmt:formatDate pattern="yyyy-MM-dd" value="${commentDto.commentCreateDate}"/>
+	    	</div>
+	    	<div id="commentContent">${commentDto.commentContent}</div>
+		</c:forEach>
 	</div>
-	<c:forEach var="boardDto" items="${boardCommentList}">
-		<input type="hidden" name='boardNumber' value='${boardDto.boardNumber}'>
-    	<input type="hidden" name='commentNumber' value='${boardDto.commentNumber}'>
-    	
-    	<div id="boardCommentContent">${boardDto.commentContent}</div>
-	</c:forEach>
 	
 	<form action='./commentUpdateCtr.do' method='post'>
-			<input type="hidden" name='commentNumber' value='${boardDto.commentNumber}'>
+			<input type="hidden" name='commentNumber' value='${commentDto.commentNumber}'>
 			<input type="hidden" name='memberNumber' value= 1>
-			<input type="hidden" name="boardNumber" value="${boardDto.boardNumber}">
+			<input type="hidden" name="boardNumber" value="${commentDto.boardNumber}">
 			<input type="submit" id="update" value="수정">
 	</form>
 	
-	<div id="commentpagingwrap">
-		<jsp:include page="/WEB-INF/view/common/BoardCommentPaging.jsp">
-			<jsp:param value="${commentPagingMap}" name="commentPagingMap"/>
-		</jsp:include>
+<!-- 	<div id="commentpagingwrap"> -->
+<%-- 		<jsp:include page="/WEB-INF/view/common/BoardCommentPaging.jsp"> --%>
+<%-- 			<jsp:param value="${commentPagingMap}" name="commentPagingMap"/> --%>
+<%-- 		</jsp:include> --%>
 		
-		<form action="./commentList.do" id='pagingForm' method="post">
-			<input type="hidden" id='curPage' name='curPage' 
-				value="${commentPagingMap.boardCommentPaging.curPage}">
-		</form>
-	</div>
+<!-- 		<form action="./commentList.do" id='pagingForm' method="post"> -->
+<!-- 			<input type="hidden" id='curPage' name='curPage'  -->
+<%-- 				value="${commentPagingMap.boardCommentPaging.curPage}"> --%>
+<!-- 		</form> -->
+<!-- 	</div> -->
 </div>
 	
 		

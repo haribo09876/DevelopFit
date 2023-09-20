@@ -17,7 +17,9 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import com.dev.board.dto.BoardDto;
+import com.dev.board.dto.CommentDto;
 import com.dev.board.service.BoardService;
+import com.dev.board.service.CommentService;
 import com.dev.util.Paging;
 
 @Controller
@@ -27,6 +29,9 @@ public class BoardController {
 	
 	@Autowired
 	private BoardService boardService;
+	
+	@Autowired
+	private CommentService commentService;
 	
 	@RequestMapping(value = "/board/list.do",
 			method = {RequestMethod.GET, RequestMethod.POST})
@@ -55,50 +60,32 @@ public class BoardController {
 	}
 	//게시글 상세 페이지(댓글 포함)
 	@RequestMapping(value = "/board/listOne.do", method = {RequestMethod.GET, RequestMethod.POST})
-	public String boardListOne(BoardDto boardDto, 
-			@RequestParam(defaultValue = "1") int curPage, Model model, int boardNumber) {
-		log.debug("Welcome BoardController boardListOne! - {}" + boardDto.getBoardNumber()
-		+ boardNumber);
+	public String boardListOne(@RequestParam("boardNumber") int boardNumber,
+			Model model) {
 		
-		boardDto.getBoardNumber();
+		log.debug("Welcome BoardController boardListOne! - {}" + boardNumber);
+		
+		BoardDto boardDto = boardService.boardSelectOne(boardNumber);
 		
 		boardService.viewCount(boardNumber);
 		
-		Map<String, Object> map = boardService.boardSelectOne(boardDto);
-		
-		map.get("boardDto");
-		
 		model.addAttribute("boardDto", boardDto);
 		
-		int totalCount = boardService.boardCommentSelectTotalCount();
-	    
-	    Paging boardCommentPaging = new Paging(totalCount, curPage);
-	    int start = boardCommentPaging.getPageBegin();
-		int end = boardCommentPaging.getPageEnd();
-	    
 	    // 댓글 리스트를 가져옵니다.
-	    List<BoardDto> boardCommentList = boardService.boardCommentSelectList(start, end,
-	    		boardDto, boardNumber);
+	    List<CommentDto> commentList = commentService.commentSelectList(boardNumber);
 	    
-	    HashMap<String, Object> commentPagingMap = new HashMap<>();
-	    commentPagingMap.put("totalCount", totalCount);
-	    commentPagingMap.put("boardCommentPaging", boardCommentPaging);
-		
-		model.addAttribute("boardCommentList", boardCommentList);
-		model.addAttribute("commentPagingMap", commentPagingMap);
-
+	    model.addAttribute("commentList", commentList);
+	    
 		return "board/BoardListOneView";
 		
 	}
 	
 	//게시글 수정 화면으로
 	@RequestMapping(value = "/board/update.do", method = RequestMethod.POST)
-	public String boardUpdate(BoardDto boardDto, Model model) {
-		log.info("Welcome boardUpdate!" + boardDto);
+	public String boardUpdate(int boardNumber, Model model) {
+		log.info("Welcome boardUpdate!" + boardNumber);
 		
-		Map<String, Object> map = boardService.boardSelectOne(boardDto);
-	
-		map.get("boardDto");
+		BoardDto boardDto = boardService.boardSelectOne(boardNumber);
 		
 		model.addAttribute("boardDto", boardDto);
 		
@@ -147,37 +134,6 @@ public class BoardController {
 	}
 	
 	
-//	댓글 수정
-	@RequestMapping(value = "/board/commentUpdateCtr.do", method = RequestMethod.POST)
-	public String boardCommentUpdateCtr(BoardDto boardDto, Model model) {
-		log.info("Welcome BoardCommentController CommentUpdateCtr! boardCommentDto: {}", 
-				boardDto);
-		
-		int resultNum = 0;
-		
-		resultNum = boardService.boardCommentUpdateOne(boardDto);
-		
-		return "common/BoardsuccessPage";
-	}
 	
-//	댓글 추가
-	@RequestMapping(value = "/board/commentAddCtr.do", method = RequestMethod.POST)
-	public String boardCommentAddCtr(BoardDto boardDto, Model model) {
-		log.debug("Welcome BoardCommentController boardCommentAddCtr! " + boardDto);
-
-			boardService.boardCommentInsertOne(boardDto);
-		return "redirect:/board/listOne.do";
-	}
-	
-//	
-//	댓글 삭제
-	@RequestMapping(value = "/board/commentDelete.do", method = RequestMethod.POST)
-	public String boardCommentDeleteCtr(BoardDto boardDto, Model model) {
-		log.debug("Welcome BoardCommentController boardCommentDelete" + boardDto);
-		
-		boardService.boardCommentDeleteOne(boardDto);
-					
-		return "redirect:/board/listOne.do";
-	}
 	
 }
