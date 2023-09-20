@@ -62,7 +62,12 @@ public class MemberController {
 			if (memberDto.getMemberId().equals("admin1") && memberDto.getMemberPassword().equals("admin1")) {
 				viewUrl = "redirect:/admin/admin.do";
 			} else {
+<<<<<<< HEAD
 				viewUrl = "redirect:/movie/list.do";
+=======
+				viewUrl = "redirect:/order/basket.do";
+				viewUrl = "redirect:/board/list.do";
+>>>>>>> branch 'main' of https://github.com/haribo09876/DevelopFit.git
 			}
 		} else {
 			viewUrl = "/auth/LoginFail";

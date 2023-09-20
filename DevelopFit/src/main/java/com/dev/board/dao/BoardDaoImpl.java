@@ -39,10 +39,10 @@ public class BoardDaoImpl implements BoardDao{
 	}
 
 	@Override
-	public BoardDto boardSelectOne(BoardDto boardDto) {
+	public BoardDto boardSelectOne(int boardNumber) {
 		// TODO Auto-generated method stub
 		
-		return sqlSession.selectOne("com.dev.board.boardSelectOne", boardDto);
+		return sqlSession.selectOne("com.dev.board.boardSelectOne", boardNumber);
 	}
 	
 	@Override
@@ -68,42 +68,6 @@ public class BoardDaoImpl implements BoardDao{
 		return sqlSession.update("com.dev.board.viewCount", no);
 		// TODO Auto-generated method stub
 		
-	}
-	
-	@Override
-	public List<BoardDto> boardCommentSelectList(int start, int end, BoardDto boardDto
-			, int boardNumber) {
-		Map<String, Object> map = new HashMap<String, Object>();
-		map.put("start", start);
-		map.put("end", end);
-		map.put("boardDto", boardDto);
-		map.put("boardNumber", boardNumber);
-		
-		return sqlSession.selectList("com.dev.board.boardCommentSelectList", map);
-	}
-
-	@Override
-	public int boardCommentInsertOne(BoardDto boardDto) {
-		// TODO Auto-generated method stub
-		
-		return sqlSession.insert("com.dev.board.boardCommentInsertOne", boardDto);
-	}
-	
-	@Override
-	public int boardCommentUpdateOne(BoardDto boardDto) {
-		// TODO Auto-generated method stub
-		return sqlSession.update("com.dev.board.boardCommentUpdateOne", boardDto);
-	}
-
-	@Override
-	public int boardCommentDeleteOne(BoardDto boardDto) {
-		// TODO Auto-generated method stub
-		return sqlSession.delete("com.dev.board.boardCommentDeleteOne", boardDto);
-	}
-
-	@Override
-	public int boardCommentSelectTotalCount() {
-		return (int)sqlSession.selectOne("com.dev.board.boardCommentSelectTotalCount");
 	}
 	
 }

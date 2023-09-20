@@ -11,9 +11,9 @@ public class BoardDto {
 	private int boardHit;
 	private String memberId;
 	private int memberNumber;
-	private int commentNumber;
-	private String commentContent;
-	private Date commentCreateDate;
+//	private int commentNumber;
+//	private String commentContent;
+//	private Date commentCreateDate;
 	
 	public BoardDto() {
 		super();
@@ -29,9 +29,6 @@ public class BoardDto {
 		this.boardHit = boardHit;
 		this.memberId = memberId;
 		this.memberNumber = memberNumber;
-		this.commentNumber = commentNumber;
-		this.commentContent = commentContent;
-		this.commentCreateDate = commentCreateDate;
 	}
 
 	public int getBoardNumber() {
@@ -90,36 +87,12 @@ public class BoardDto {
 		this.memberNumber = memberNumber;
 	}
 
-	public int getCommentNumber() {
-		return commentNumber;
-	}
-
-	public void setCommentNumber(int commentNumber) {
-		this.commentNumber = commentNumber;
-	}
-
-	public String getCommentContent() {
-		return commentContent;
-	}
-
-	public void setCommentContent(String commentContent) {
-		this.commentContent = commentContent;
-	}
-
-	public Date getCommentCreateDate() {
-		return commentCreateDate;
-	}
-
-	public void setCommentCreateDate(Date commentCreateDate) {
-		this.commentCreateDate = commentCreateDate;
-	}
 
 	@Override
 	public String toString() {
 		return "BoardDto [boardNumber=" + boardNumber + ", boardTitle=" + boardTitle + ", boardContent=" + boardContent
 				+ ", boardCreateDate=" + boardCreateDate + ", boardHit=" + boardHit + ", memberId=" + memberId
-				+ ", memberNumber=" + memberNumber + ", commentNumber=" + commentNumber + ", commentContent="
-				+ commentContent + ", commentCreateDate=" + commentCreateDate + "]";
+				+ ", memberNumber=" + memberNumber + ", commentNumber=" + "]";
 	}
 	
 	
