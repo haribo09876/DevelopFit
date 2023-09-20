@@ -63,8 +63,7 @@ public class MemberController {
 				viewUrl = "redirect:/admin/admin.do";
 			} else {
 				viewUrl = "redirect:/movie/list.do";
-				viewUrl = "redirect:/order/basket.do";
-				viewUrl = "redirect:/board/list.do";
+
 			}
 		} else {
 			viewUrl = "/auth/LoginFail";
