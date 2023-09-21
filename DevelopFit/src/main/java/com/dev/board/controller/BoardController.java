@@ -60,14 +60,26 @@ public class BoardController {
 	}
 	//게시글 상세 페이지(댓글 포함)
 	@RequestMapping(value = "/board/listOne.do", method = {RequestMethod.GET, RequestMethod.POST})
-	public String boardListOne(@RequestParam("boardNumber") int boardNumber,
-			Model model) {
+	public String boardListOne(@RequestParam("boardNumber") int boardNumber, Model model
+			,HttpSession session) {
 		
 		log.debug("Welcome BoardController boardListOne! - {}" + boardNumber);
 		
 		BoardDto boardDto = boardService.boardSelectOne(boardNumber);
 		
 		boardService.viewCount(boardNumber);
+		
+		int sessionMemberNumber = (int) session.getAttribute("memberNumber");
+		
+//		boardDto.setMemberNumber(sessionMemberNumber);
+		
+		// 세션의 memberId와 게시글의 memberId가 일치하는 경우 수정 및 삭제 버튼을 표시합니다.
+	    if (sessionMemberNumber == boardDto.getMemberNumber()
+	    		|| sessionMemberNumber == 0) {
+	        model.addAttribute("canEdit", true);
+	    } else {
+	        model.addAttribute("canEdit", false);
+	    }
 		
 		model.addAttribute("boardDto", boardDto);
 		
@@ -95,7 +107,7 @@ public class BoardController {
 //	게시글 수정
 	@RequestMapping(value = "/board/updateCtr.do", method = RequestMethod.POST)
 	public String boardUpdateCtr(BoardDto boardDto, Model model) {
-		log.info("Welcome MemberController memberUpdateCtr! memberDto: {}", boardDto);
+		log.info("Welcome BoardController boardUpdateCtr! boardDto: {}", boardDto);
 		
 		int resultNum = 0;
 		

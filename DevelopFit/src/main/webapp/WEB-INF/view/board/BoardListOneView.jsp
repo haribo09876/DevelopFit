@@ -14,20 +14,25 @@
 		height: 1300px;
 		margin: auto;
 		color: white;
+		height: 100%;
 		}
+	html{
+		height: 100%;
+	}
 	#container{
  		margin: 150px 60px 50px;
 		border-color: black;
  		background-color: #172036;
- 		height: 100vh;
+ 		height: auto;
  		width: 1200px;
+ 		padding-bottom: 5px;
 	}
 	#topcontent{
 		margin-right: 40px;
 		margin-left: 40px;
 		margin-bottom: 10px;
 		margin-top: 50px;
-		height: 550px;
+		height: 650px;
 		padding-top: 50px;
 	}
 	#iddatewrap{
@@ -54,16 +59,19 @@
  	#title{ 
  		font-size: x-large; 
  		margin-left: 60px;
- 		width: 600px;
+ 		width: 840px;
  		height: 40px;
  		margin-top: 50px;
  		margin-bottom: 70px;
+ 		word-wrap: break-word;
+ 		white-space: pre-wrap;
  	} 
  	#content{
  		float: left;
- 		width: 900px;
+ 		width: 780px;
  		height: 300px; 
  		margin-left: 120px;
+ 		margin-top: 30px;
  	}
  	#boardhit{
  		font-size: 20px;
@@ -73,59 +81,63 @@
  		float: right;
  		margin-right: 30px;
 	}
+	#udwrap{
+		width: 130px;
+		height: 32px;
+		margin-left: 650px;
+		margin-right: 47px;
+		float: right;
+		margin-top: 20px;
+	}
 	#update{
 		color: white;
 		background-color: #0DA66E;
 		float: left;
 		width: 60px;
 		height: 30px;
-		margin-left: 920px;
-		margin-top: 40px;
-		margin-bottom: 20px;
 	}
 	#delete{
 		color: white;
-		background-color: #0DA66E;
+		background-color: #F24141;
 		float: right;
 		width: 60px;
 		height: 30px;
-		margin-right:137px;
-		margin-left: 0px;
-		margin-top: 40px;
-		margin-bottom: 20px;
 	}
 	#commentview{
+		font-size: x-large;
 		float: left;
-		margin-left: 200px;
-		margin-top: 30px;
-		margin-bottom: 10px;
-		height: 20px;
+		margin-left: 100px;
+		margin-top: 100px;
+		height: 30px;
 	}
 	#commentwrap{
-		margin-top:160px;
+		margin-top:200px;
 		width: 600px;
- 		margin-left: 100px; 
+ 		margin-left: -180px; 
+ 		
 	}
 	#commentMemberId{
-		width: 300px;
+		width: 800px;
 		height: 30px;
 		margin-left: 300px;
 		text-align: left;
 	}
 	#commentCreateDate{
-		width: 200px;
+		width: 400px;
 		height: 30px;
 		margin-left: 300px;
 		text-align: left;
 	}
 	#commentContent{
-		width: 400px;
+		width: 800px;
 		height: 30px;
 		margin-left: 300px;
-		margin-bottom: 10px;
+		margin-bottom: 30px;
 		text-align: left;
+		border-bottom: 1px solid gray;
 	}
 </style>
+
 </head>
 <body>
 	<div id="container">
@@ -138,31 +150,30 @@
 		 			<fmt:formatDate pattern="yyyy-MM-dd" value="${boardDto.boardCreateDate}"/>
 		 		</div>
 		 	</div>
-	 	<div id="boardhit">조회수: ${boardDto.boardHit}</div>
+		 	<div id="boardhit">조회수: ${boardDto.boardHit}</div>
+				
+			<div id="title">제목: ${boardDto.boardTitle}</div>
+				
+			<div id="content">
+				${boardDto.boardContent}
+			</div>
+			<div id="udwrap">
+				<form action='./delete.do' method='post'>
+					<input type="hidden" name='boardNumber' value='${boardDto.boardNumber}'>
+					<input type="hidden" name='memberNumber' value= '${member.memberNumber}'>
+					<input type="submit" id="delete" 
+					value="삭제" ${canEdit ? '' : 'style="display: none;"'}>
+				</form>
+				<form action='./update.do' method='post'>
+					<input type="hidden" name='boardNumber' value='${boardDto.boardNumber}'>
+					<input type="submit" id="update" value="수정"
+					 ${canEdit ? '' : 'style="display: none;"'}>
+				</form>
+			</div>		
 			
-		<div id="title">제목: ${boardDto.boardTitle}</div>
-			
-		<div id="content">
-			${boardDto.boardContent}
+			<div id="commentview">댓글</div>
 		</div>
-			
-		</div>
-	<div>
-		<form action='./delete.do' method='post'>
-			<input type="hidden" name='boardNumber' value='${boardDto.boardNumber}'>
-<%--	<input type="hidden" name='memberNumber' value='${member.memberNumber}'> --%>
-			<input type="hidden" name='memberNumber' value= 1>
-			<input type="submit" id="delete" value="삭제">
-		</form>
-		<form action='./update.do' method='post'>
-			<input type="hidden" name='boardNumber' value='${boardDto.boardNumber}'>
-			<input type="hidden" name='memberNumber' value='${boardDto.memberNumber}'>
-			<input type="submit" id="update" value="수정">
-		</form>
-	</div>	
 	
-		<div id="commentview">댓글</div>
-		
 	<div id="commentwrap">
 		<c:forEach var="commentDto" items="${commentList}">
 			<div id="commentMemberId">아이디:		${commentDto.memberId}</div>
@@ -172,14 +183,14 @@
 	    	<div id="commentContent">${commentDto.commentContent}</div>
 		</c:forEach>
 	</div>
-	
-	<form action='./commentUpdateCtr.do' method='post'>
-			<input type="hidden" name='commentNumber' value='${commentDto.commentNumber}'>
-			<input type="hidden" name='memberNumber' value= 1>
-			<input type="hidden" name="boardNumber" value="${commentDto.boardNumber}">
-			<input type="submit" id="update" value="수정">
-	</form>
-	
+	<div>
+		<form action='./commentUpdateCtr.do' method='post'>
+				<input type="hidden" name='commentNumber' value='${commentDto.commentNumber}'>
+				<input type="hidden" name='memberNumber' value= '${member.memberNumber}'>
+				<input type="hidden" name="boardNumber" value="${commentDto.boardNumber}">
+				<input type="submit" id="commentupdate" value="수정">
+		</form>
+	</div>
 <!-- 	<div id="commentpagingwrap"> -->
 <%-- 		<jsp:include page="/WEB-INF/view/common/BoardCommentPaging.jsp"> --%>
 <%-- 			<jsp:param value="${commentPagingMap}" name="commentPagingMap"/> --%>

@@ -158,11 +158,8 @@
 	            	<div id="boardNum">${boardDto.boardNumber}</div>
 					<div id="boardTitle">${boardDto.boardTitle}</div>
 					
-<!-- 	               이거 댓글 땜에 폼으로 바꿀 건데 바꿀 때 member.memberNum 히든으로 보내기 
-						근데 지금 로그인 없으니 membernumber 밸류 1로 해서 보내자-->
 	                <a href='./listOne.do?boardNumber=${boardDto.boardNumber}'>
-<%-- 	                	<input type="hidden" value='${memberDto.memberNumber}'> --%>
-	                	<input type="hidden" name="memberNumber" value= 1>
+	                	<input type="hidden" name="memberNumber" value= '${member.memberNumber}'>
 	                	${boardDto.boardContent}
 	                </a>
 	                

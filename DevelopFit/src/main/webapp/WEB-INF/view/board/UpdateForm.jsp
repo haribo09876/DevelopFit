@@ -113,7 +113,7 @@
 	 	
 		<form action='./updateCtr.do' method='post'>
 			<input type="hidden" name='boardNumber' value='${boardDto.boardNumber}'>
-			<input type="hidden" name='memberNumber' value='${boardDto.memberNumber}'>
+			<input type="hidden" name='memberNumber' value='${member.memberNumber}'>
 			
 			<div id="textTitle">제목:		</div>
 			<input id="title" type="text" name="boardTitle" value="${boardDto.boardTitle}"> 

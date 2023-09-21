@@ -75,18 +75,12 @@
 </head>
 <body>
 	<form action='./addCtr.do' method='post'>
-		<input type="hidden" name='memberNumber' value= 1>
-<%-- 	<input type="hidden" name='memberNumber' value= "${member.memberNumber}"> --%>
-<%-- 	로그인 기능 추가되면 78번줄코드 79번줄코드로 변경--%>
+		<input type="hidden" name='memberNumber' value= '${member.memberNumber}'>
 		제목:		<input id="title" type="text" name="boardTitle" value="${boardDto.boardTitle}"> 
 		내용:		<input id="content" type="text" name="boardContent" value="${boardDto.boardContent}"> 
 		<input type="submit" value="저장" />
 	</form>	
+		
 	
-		
-		
-	<div id="commentmenu">
-		<div>댓글</div>
-	</div>
 </body>
 </html>	 	

@@ -94,6 +94,7 @@ public class BoardDto {
 				+ ", boardCreateDate=" + boardCreateDate + ", boardHit=" + boardHit + ", memberId=" + memberId
 				+ ", memberNumber=" + memberNumber + ", commentNumber=" + "]";
 	}
+
 	
 	
 	

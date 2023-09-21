@@ -96,6 +96,7 @@
  		</set>
  		WHERE MEMBER_NUMBER = #{memberNumber}
 		AND BOARD_NUMBER = #{boardNumber}
+		
 	</update>
 		
 <!-- 	게시글 내용 삭제 -->
