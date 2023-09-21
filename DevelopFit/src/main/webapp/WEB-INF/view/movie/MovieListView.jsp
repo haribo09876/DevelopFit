@@ -6,7 +6,7 @@
 <html>
 <head>
 	<meta charset="UTF-8">
-	<title>영화 목록 (MovieListView)</title>
+	<title>영화 목록</title>
 	<style>
 		body{
 			background-color: #101322;
@@ -41,7 +41,7 @@
 	<jsp:include page="/WEB-INF/view/Header.jsp"/>
 
 	<div id="contentsAreaDiv">
-		<h3>영화 목록 (MovieListView)</h3>
+		<h3>영화 목록</h3>
 		<table id="movieListTable">
 			<tr>
 				<th>영화번호</th>
@@ -87,6 +87,6 @@
 		</form>
 	</div>
 	
-	<jsp:include page="/WEB-INF/view/Footer.jsp" />
+<%-- 	<jsp:include page="/WEB-INF/view/Footer.jsp" /> --%>
 </body>
 </html>

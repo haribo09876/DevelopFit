@@ -80,8 +80,11 @@ public class MovieController {
 		 Map<String, Object> map = movieService.movieSelectOne(movieNumber);
 	
 		 MovieDto movieDto = (MovieDto)map.get("movieDto");
+		 
+		 List<MovieDto> movieCommentList = (List<MovieDto>) map.get("movieCommentList");
 	
 		 model.addAttribute("movieDto", movieDto);
+		 model.addAttribute("movieCommentList", movieCommentList);
 	
 		 return "movie/MovieListOneView";
 	 }

@@ -6,7 +6,7 @@
 <html>
 <head>
 	<meta charset="UTF-8">
-	<title>영화 한줄평 상세 (MovieListOneView)</title>
+	<title>영화 한줄평 상세</title>
 	<style>
 		body{
 			background-color: #101322;
@@ -98,7 +98,7 @@
 	<a href='./commentUpdate.do?lineReviewNumber=${movieDto.lineReviewNumber}'>&#128465 수정</a>
 	<a href='./commentDelete.do?lineReviewNumber=${movieDto.lineReviewNumber}'>&#128465 삭제</a>
 
-	<h3>영화 한줄평 상세 (MovieListOneView)</h3>
+	<h3>영화 한줄평 상세</h3>
 		<div id="thirdSectionDiv">
 		    <input type="hidden" name='lineReviewNumber' value='${movieDto.lineReviewNumber}'>
 		    <input type="hidden" name='memberId' value='${movieDto.memberId}'>  

@@ -6,7 +6,7 @@
 <html>
 <head>
 	<meta charset="UTF-8">
-	<title>영화 수정 (MovieUpdateForm)</title>
+	<title>영화 수정</title>
 	<style>
 		body{
 			background-color: #101322;
@@ -97,7 +97,7 @@
 <body>
 	<jsp:include page="/WEB-INF/view/Header.jsp"/>
 			
-	<h3>영화 수정 (MovieUpdateForm)</h3>	
+	<h3>영화 수정</h3>	
 	<form action='./updateCtr.do' method='post' enctype="multipart/form-data">
 		<input type="hidden" name='movieNumber' value='${movieDto.movieNumber}'>
 		영화제목 :	<input type='text' name='movieTitle' value='${movieDto.movieTitle}'><br>

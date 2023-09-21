@@ -6,7 +6,7 @@
 <html>
 <head>
 	<meta charset="UTF-8">
-	<title>영화 한줄평 추가 (MovieCommentForm)</title>
+	<title>영화 한줄평 추가</title>
 	<style>
 		body{
 			background-color: #101322;
@@ -96,7 +96,7 @@
 	<jsp:include page="/WEB-INF/view/Header.jsp"/>
 
 		<div id="contentsAreaDiv">
-			<h3>영화 한줄평 추가 (MovieCommentForm)</h3>
+			<h3>영화 한줄평 추가</h3>
 			<form action="./commentAddCtr.do" method="post" enctype="multipart/form-data">
 				회원 번호 :		<input type="number" name='memberNumber'><br>
 				영화 번호 :		<input type="number" name='movieNumber'><br>

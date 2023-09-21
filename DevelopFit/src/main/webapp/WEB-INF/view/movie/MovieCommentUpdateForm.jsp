@@ -6,7 +6,7 @@
 <html>
 <head>
 	<meta charset="UTF-8">
-	<title>영화 한줄평 수정 (MovieCommentUpdateForm)</title>
+	<title>영화 한줄평 수정</title>
 	<style>
 		body{
 			background-color: #101322;
@@ -97,9 +97,9 @@
 <body>
 	<jsp:include page="/WEB-INF/view/Header.jsp"/>
 			
-	<h3>영화 한줄평 수정 (MovieCommentUpdateForm)</h3>	
+	<h3>영화 한줄평 수정</h3>	
 	<form action='./commentUpdateCtr.do' method='post' enctype="multipart/form-data">
-		<input type="hidden" name='lineReviewNumber' value='${movieDto.lineReviewNumber}'>
+		한줄평 번호 :	<input type='number' name='lineReviewNumber' value='${movieDto.lineReviewNumber}'><br>
 		한줄평 내용 :	<input type='text' name='lineReviewContext' value='${movieDto.lineReviewContext}'><br>
 		회원 번호 :		<input type='number' name='memberNumber' value='${movieDto.memberNumber}'><br>
 		영화 번호 : 	<input type='number' name='movieNumber' value='${movieDto.movieNumber}'><br>

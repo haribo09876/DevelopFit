@@ -6,7 +6,7 @@
 <html>
 <head>
 	<meta charset="UTF-8">
-	<title>영화 추가 (MovieForm)</title>
+	<title>영화 추가</title>
 	<style>
 		body{
 			background-color: #101322;
@@ -96,7 +96,7 @@
 	<jsp:include page="/WEB-INF/view/Header.jsp"/>
 
 		<div id="contentsAreaDiv">
-			<h3>영화 추가 (MovieForm)</h3>
+			<h3>영화 추가</h3>
 			<form action="./addCtr.do" method="post" enctype="multipart/form-data">
 				영화제목 :		<input type='text' name='movieTitle'><br>
 				줄거리 :			<input type='text' 	name='movieSummary'><br>

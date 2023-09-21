@@ -6,7 +6,7 @@
 <html>
 <head>
 	<meta charset="UTF-8">
-	<title>영화 한줄평 목록 (MovieCommentListView)</title>
+	<title>영화 한줄평 목록</title>
 	<style>
 		body{
 			background-color: #101322;
@@ -40,13 +40,13 @@
 	<jsp:include page="/WEB-INF/view/Header.jsp"/>
 	
 	<div id="contentsAreaDiv">
-		<h3>영화 한줄평 목록 (MovieCommentListView)</h3>
+		<h3>영화 한줄평 목록</h3>
 		<table id="movieListTable">
 			<tr>
-				<th>한줄평번호</th>
+				<th>한줄평 번호</th>
 				<th>회원 아이디</th>
-				<th>영화 제목</th>
 				<th>영화 번호</th>
+				<th>영화 제목</th>
 				<th>한줄평 내용</th>
 			</tr>
 
@@ -57,8 +57,8 @@
 						<a href='./commentListOne.do?lineReviewNumber=${movieDto.lineReviewNumber}'>${movieDto.lineReviewNumber}</a>
 					</td>
 					<td>${movieDto.memberId}</td>
-					<td>${movieDto.movieTitle}</td>
 					<td>${movieDto.movieNumber}</td>
+					<td>${movieDto.movieTitle}</td>
 					<td>${movieDto.lineReviewContext}</td>
 					<td>
 						<a href='./commentUpdate.do?lineReviewNumber=${movieDto.lineReviewNumber}'>&#128465 수정</a>

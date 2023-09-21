@@ -41,7 +41,11 @@ public class MovieServiceImpl implements MovieService{
 		Map<String, Object> resultMap = new HashMap<String, Object>();
 		
 		MovieDto movieDto = movieDao.movieSelectOne(movieNumber);
+		
+		List<MovieDto> movieCommentList = movieDao.movieCommentSelectList(1, 10);
+		
 		resultMap.put("movieDto", movieDto);
+		resultMap.put("movieCommentList", movieCommentList);
 		
 		return resultMap;
 	}
