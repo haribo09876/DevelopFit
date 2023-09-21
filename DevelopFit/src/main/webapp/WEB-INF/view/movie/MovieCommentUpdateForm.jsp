@@ -99,13 +99,11 @@
 			
 	<h3>영화 한줄평 수정</h3>	
 	<form action='./commentUpdateCtr.do' method='post' enctype="multipart/form-data">
-		한줄평 번호 :	<input type='number' name='lineReviewNumber' value='${movieDto.lineReviewNumber}'><br>
+		<input type="hidden" name='lineReviewNumber' value='${movieDto.lineReviewNumber}'>
 		한줄평 내용 :	<input type='text' name='lineReviewContext' value='${movieDto.lineReviewContext}'><br>
-		회원 번호 :		<input type='number' name='memberNumber' value='${movieDto.memberNumber}'><br>
-		영화 번호 : 	<input type='number' name='movieNumber' value='${movieDto.movieNumber}'><br>
-		<input type='submit' value='저장하기'>
 		<a href='./commentList.do'>&#128281 한줄평 목록으로</a>
 		<a href='./commentDelete.do?lineReviewNumber=${movieDto.lineReviewNumber}'>&#128465 삭제하기</a>
+		<input type='submit' value='저장하기'>
 	</form>
 
 	<jsp:include page="/WEB-INF/view/Footer.jsp" />

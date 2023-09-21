@@ -119,8 +119,6 @@
 		UPDATE LINE_REVIEW
 		<set>
 			LINE_REVIEW_CONTEXT = #{lineReviewContext},
-			MEMBER_NUMBER = #{memberNumber},
-			MOVIE_NUMBER = #{movieNumber}
 		</set>
 		WHERE LINE_REVIEW_NUMBER = #{lineReviewNumber}
 	</update>
