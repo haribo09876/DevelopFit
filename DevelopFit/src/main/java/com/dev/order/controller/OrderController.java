@@ -41,40 +41,46 @@ public class OrderController {
 		    return "order/ShoppingBasket";
 		} catch (Exception e) {
 			// TODO: handle exception
-			return "auth/LoginForm";
+			return "redirect:/auth/login.do";
 		}
-//	    if(session != null) {
-//		    MemberDto memberDto = (MemberDto)session.getAttribute("member");
-//		    
-//		    List<OrderDto> basketList = orderService.selectBasketList(memberDto.getMemberNumber());
-//		    model.addAttribute("basketList", basketList);
-//	
-//		    return "order/ShoppingBasket";
-//	    } else {
-//	    	return "auth/LoginForm";
-//	    }
 	    
 	}
 	
-	
 	// 장바구니 삭제
-	@ResponseBody
-	@RequestMapping(value = "/order/basketCtr.do", method = RequestMethod.POST)
-	public String basketCtr(HttpSession session, @RequestParam(value="product") String product, Model model) {
+	@RequestMapping(value = "/order/basketCtr.do", method = {RequestMethod.GET, RequestMethod.POST})
+	public String basketCtr(HttpSession session, @RequestParam List<String> product, Model model) {
 	    log.info("Welcome OrderController basketCtr! delete movieNumber: {}", product);
 	    
-	    String[] productArr = product.split(",");
-	    
-	    if(session != null) {
-		    for (int i = 0; i < productArr.length; i++) {
-		    	orderService.deleteBasket(Integer.parseInt(productArr[i]));
+	    try {
+	    	for (int i = 0; i < product.size(); i++) {
+		    	orderService.deleteBasket(Integer.parseInt(product.get(i)));
 			}
-		    return "redirect:basket.do";
-	    } else {
-	    	return "auth/LoginForm";
+	    	return "redirect:/order/basket.do";
+	    } catch (Exception e) {
+	    	// TODO: handle exception
+	    	return "redirect:/auth/login.do";
 	    }
 	}
 	
+	
+	// 결제 페이지
+	@RequestMapping(value = "/order/payment.do", method = {RequestMethod.GET, RequestMethod.POST})
+	public String payment(HttpSession session, Model model) {
+	    // Log4j
+	    log.info("Welcome OrderController success Page!");
+	    
+		return "order/OrderPayment";
+	}
+	
+	
+	// 결제하기
+	@RequestMapping(value = "/order/paymentCtr.do", method = {RequestMethod.GET, RequestMethod.POST})
+	public String paymentCtr(HttpSession session, Model model) {
+	    // Log4j
+	    log.info("Welcome OrderController success Page!");
+	    
+		return "order/OrderPayment";
+	}
 	
 	// 주문 성공 페이지
 	@RequestMapping(value = "/order/success.do", method = {RequestMethod.GET, RequestMethod.POST})

@@ -10,58 +10,10 @@
 
 <script type="text/javascript" src="/DevelopFit/resources/css/orderSuccess.js"></script>
 <link href="/DevelopFit/resources/css/orderSuccess.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript">
 
-<style type="text/css">
-body {
-	background-color: #131826;
-	color: white;
-}
+</script>
 
-
-#orderWrap {
-	width: 900px;
-	height: 300px;
-	margin: 30px auto;
-}
-
-#orderDetail {
-	width: 900px;
-	height: 200px;
-	background-color: #172036;
-	border-radius: 10px;
-	padding: 30px;
-}
-
-
-#selectWrap {
-	width: 556px;
-	height: 50px;
-	margin: 30px auto;
-}
-
-#goOrderDetail {
-	width: 250px;
-	height: 45px;
-	font-size: 25px;
-	background-color: #0DA66E;
-	border-radius: 5px;
-	text-align: center;
-	padding-top: 8px;
-	display: inline-block;
-	margin-right: 50px;
-}
-
-#orderCancel {
-	width: 250px;
-	height: 45px;
-	font-size: 25px;
-	background-color: #0DA66E;
-	border-radius: 5px;
-	text-align: center;
-	padding-top: 8px;
-	display: inline-block;
-}
-</style>
 </head>
 <body>
 	
