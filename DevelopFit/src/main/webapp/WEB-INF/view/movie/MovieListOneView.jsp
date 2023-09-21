@@ -168,24 +168,13 @@
 
 		<a href='./commentAdd.do'>새 한줄평 등록</a>
 	
-<%-- 		<jsp:include page="/WEB-INF/view/common/MovieCommentPaging.jsp"> --%>
+		<jsp:include page="/WEB-INF/view/common/MoviePaging.jsp">
 			<jsp:param value="${pagingMap}" name="pagingMap"/>
 		</jsp:include>
 	
 		<form action="./list.do" id='pagingForm' method="post">
 			<input type="hidden" id='curPage' name='curPage' value="${pagingMap.movieCommentPaging.curPage}">
 		</form>
-=======
-			<a href='./commentAdd.do'>새 한줄평 등록</a>
-		
-<%-- 			<jsp:include page="/WEB-INF/view/common/MovieCommentPaging.jsp"> --%>
-				<jsp:param value="${pagingMap}" name="pagingMap"/>
-			</jsp:include>
-		
-			<form action="./list.do" id='pagingForm' method="post">
-				<input type="hidden" id='curPage' name='curPage' value="${pagingMap.movieCommentPaging.curPage}">
-			</form>
->>>>>>> branch 'main' of https://github.com/haribo09876/DevelopFit.git
 	</div>
 	
 	<jsp:include page="/WEB-INF/view/Footer.jsp" />
