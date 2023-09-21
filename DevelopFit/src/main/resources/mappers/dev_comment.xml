@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.dev.comment">
+
+	<resultMap type="commentDto" id="commentResultMap">
+	
+<!-- 		맴버관련(+ id컬럼인 보드넘은 공통) -->
+		<id column="POST_COMMENT_NUMBER" property="commentNumber" />
+		<result column="MEMBER_ID" property="memberId" />
+		<result column="BOARD_NUMBER" property="boardNumber" />
+		<result column="MEMBER_NUMBER" property="memberNumber" />
+		
+<!-- 		댓글관련 -->
+		<result column="POST_COMMENT_CONTENT" property="commentContent" />
+		<result column="POST_COMMENT_DATE" property="commentCreateDate" 
+		javaType="java.util.Date" />
+	</resultMap>
+	
+<!--  		댓글리스트 -->
+	<select id="commentSelectList" parameterType="map" resultMap="commentResultMap">
+    	SELECT PC.POST_COMMENT_CONTENT, PC.POST_COMMENT_DATE, M.MEMBER_ID
+    	FROM POST_COMMENT PC JOIN MEMBER M
+    	ON PC.MEMBER_NUMBER = M.MEMBER_NUMBER
+    	WHERE BOARD_NUMBER = #{boardNumber}
+    </select>
+	
+<!-- 	댓글 생성 -->
+	<insert id="commentInsertOne" parameterType="commentDto"
+		useGeneratedKeys="true" keyProperty="commentNumber">
+		<selectKey keyProperty="commentNumber" resultType="int" order="BEFORE">
+			SELECT POST_COMMENT_NUMBER_SEQ.NEXTVAL
+			FROM DUAL
+		</selectKey>
+		
+		INSERT INTO POST_COMMENT
+			(POST_COMMENT_NUMBER, POST_COMMENT_CONTENT, POST_COMMENT_DATE, 
+			BOARD_NUMBER, MEMBER_NUMBER)
+		VALUES(#{commentNumber}, #{commentContent}, SYSDATE, 
+		#{boardNumber}, #{memberNumber})
+	</insert>
+	
+	
+<!-- 	댓글 업데이트 -->
+	<update id="commentUpdateOne" parameterType="boardDto">
+		UPDATE POST_COMMENT
+ 		<set>
+ 			<if test="commentContent != null">POST_COMMENT_CONTENT = #{commentContent}</if>
+ 		</set>
+ 		WHERE BOARD_NUMBER = #{boardNumber}
+		AND MEMBER_NUMBER = #{memberNumber}
+		AND POST_COMMENT_NUMBER = #{commentNumber}
+	</update>
+		
+<!-- 	댓글 삭제 -->
+	<delete id="commentDeleteOne" parameterType="int">
+		DELETE FROM POST_COMMENT
+		WHERE BOARD_NUMBER = #{boardNumber}
+		AND MEMBER_NUMBER = #{memberNumber}
+		AND POST_COMMENT_NUMBER = #{commentNumber}
+	</delete>
+	
+<!-- 	페이징 기능을 위한 총 댓글 수 산출 -->
+	<select id="boardCommentSelectTotalCount" resultType="java.lang.Integer">
+		SELECT COUNT(*)
+		FROM POST_COMMENT
+	</select>
+
+
+</mapper>
+
+
