@@ -14,6 +14,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import com.dev.util.Paging;
 import com.dev.member.dto.MemberDto;
@@ -51,27 +52,18 @@ public class MemberController {
 		log.info("Welcome MemberController loginCtr!" + memberId + ", " + memberPassword);
 
 		MemberDto memberDto = memberService.memberExist(memberId, memberPassword);
-		
+
 		String viewUrl = "";
 
 		if (memberDto != null) {
 			// 회원존재하면 세션에담는다
 			session.setAttribute("member", memberDto);
-			session.setAttribute("memberNumber", memberDto.getMemberNumber()); // 멤버넘버를 세션에 추가
-			
 			viewUrl = "redirect:/movie/list.do";
 
 			if (memberDto.getMemberId().equals("admin1") && memberDto.getMemberPassword().equals("admin1")) {
-				viewUrl = "redirect:/admin/admin.do";
-			} else if (memberDto.getMemberId().equals("aa")) {
-				viewUrl = "redirect:/order/basket.do";
-			} else if (memberDto.getMemberId().equals("ss")) {
-				viewUrl = "redirect:/board/list.do";
-			} else if (memberDto.getMemberId().equals("dd")) {
-				viewUrl = "redirect:/movie/list.do";
-			} else {
-				viewUrl = "redirect:/movie/list.do";
-			}
+				viewUrl = "redirect:/member/list.do";
+			} 
+
 		} else {
 			viewUrl = "/auth/LoginFail";
 		}
@@ -81,11 +73,11 @@ public class MemberController {
 	// 로그아웃 기능구현
 	@RequestMapping(value = "/auth/logout.do", method = RequestMethod.GET)
 	public String logout(HttpSession session, Model model) {
-		
+
 		log.info("Welcome MemberController logout!");
-		
+
 		session.invalidate();
-		
+
 		return "redirect:/auth/login.do";
 	}
 
@@ -188,17 +180,32 @@ public class MemberController {
 	
 	//회원수정
 		@RequestMapping(value ="/member/updateCtr.do", method = RequestMethod.POST)
-		public String memberUpdateCtr(MemberDto memberDto, Model model) {
+		public String memberUpdateCtr(MemberDto memberDto, HttpSession session, Model model) {
 			
 			log.info("Welcome MemberController memberUpdateCtr", memberDto);
 			
 			try {
 				memberService.memberUpdateOne(memberDto);
+				session.setAttribute("member", memberDto);
 			} catch (Exception e) {
 				// TODO: handle exception
 				e.printStackTrace();
 			}
 		    return "/member/myPage";
+		}
+		
+		@RequestMapping(value ="/member/updateCtr2.do", method = RequestMethod.POST)
+		public String memberUpdateCtr2(int no, MemberDto memberDto, Model model) {
+			
+			log.info("Welcome MemberController memberUpdateCtr2," + no);
+			memberDto.setMember_number(no);
+			try {
+				memberService.memberUpdateOne2(memberDto);
+			} catch (Exception e) {
+				// TODO: handle exception
+				e.printStackTrace();
+			}
+		    return "redirect:/member/list.do";
 		}
 		
 		@RequestMapping(value = "/member/listOne.do", method = RequestMethod.GET)
@@ -208,7 +215,8 @@ public class MemberController {
 			Map<String, Object> map = memberService.memberSelectOne(no);
 			
 			MemberDto memberDto = (MemberDto)map.get("memberDto");
-			
+			memberDto.setMember_number(no);
+			System.out.println(memberDto.getMemberNumber());
 			model.addAttribute("memberDto", memberDto);
 			
 			return "member/MemberListOneView";
@@ -241,6 +249,17 @@ public class MemberController {
 			model.addAttribute("pagingMap", pagingmap);
 			
 			return "member/MemberListView";
+		}
+		
+		//삭제
+		@RequestMapping(value ="/member/delete.do", method = RequestMethod.GET)
+		public String memberDelete(int no, Model model) {
+			
+			log.info("Welcome MemberController memberDelete! SUCCESS!" + no);
+
+			memberService.memberDeleteOne(no);
+			
+		    return "redirect:/member/list.do";
 		}
 
 }

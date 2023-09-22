@@ -5,111 +5,250 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<meta charset="UTF-8">
-	<title>영화 추가</title>
-	<style>
-		body{
-			background-color: #101322;
-		}
-		h3{
-			margin-top: 25px;
-			color: #FFFFFF;
-		}
-		#contentsAreaDiv{
-			width: 1250px;
-			margin-top: 30px;
-		  	position: absolute;
-		  	left: 50%;
-			transform: translateX(-50%);
-		}
-		#movieListTable {
-			background-color: #FFFFFF;
-		}
-		#poster{
-			width: 350px;
-			margin: 30px;
-		}
-		#ratingTable {
-			background-color: #FFFFFF;
-		}
-		table tr th td {
-			border:1px solid black;
-			background-color: #FFFFFF;
-		}
-		#firstSectionDiv {
-			padding : 30px;
-			float: right;
-			color: #FFFFFF;
-		}
-		#secondSectionDiv {
-			padding : 30px;
-			float: right;
-			color: #FFFFFF;
-		}
-		#thirdSectionDiv {
-			padding : 30px;
-			color: #FFFFFF;
-		}
-		#fourthSectionDiv {
-			position: relative;
-			height:0;
-			padding : 30px;
-			padding-bottom: 56.25%;
-		}
-		#fifthSectionDiv {
-			padding : 30px;
-		}
-		#sixthSectionDiv {
-			padding : 30px;
-			color: #FFFFFF;
-		}
-		#seventhSectionDiv {
-			padding : 30px;
-			color: #FFFFFF;
-		}
-		.actor{
-			color: #FFFFFF;
-		}	
-		.firstButton {
-			width: 160px;
-			height: 40px;
-			margin-bottom: 10px;
-			border-radius: 8px;
-		}
-		#secondButton {
-			width: 243px;
-			height: 40px;
-			border-radius: 8px;
-		}
-		#thirdButton {
-			width: 243px;
-			height: 40px;
-			background-color: #0E7356;
-			border-radius: 8px;
-			color: #FFFFFF;
-		}
-	</style>	
-	<script type="text/javascript">
-	</script>
+<meta charset="UTF-8">
+<title>영화 추가</title>
+<style>
+body {
+	background-color: #101322;
+	color: white;
+}
+
+#title {
+	width: 266px;
+	display: block;
+	margin: 0 auto;
+	text-align: center;
+	margin-top: 30px;
+}
+
+div {
+	display: block;
+	margin: 0 auto;
+}
+
+input {
+	font-size: 14px;
+	color: white;
+}
+
+input::placeholder {
+	color: white;
+}
+
+input:-webkit-autofill, input:-webkit-autofill:hover, input:-webkit-autofill:focus,
+	input:-webkit-autofill:active {
+	-webkit-text-fill-color: white;
+	-webkit-box-shadow: 0 0 0px 1000px #172036 inset;
+	transition: background-color 5000s ease-in-out 0s;
+}
+#contentsAreaDiv{
+	width: 346px;
+	display: block;
+	margin: 0 auto;
+}
+#movieTitle{
+	width: 346px;
+	height: 40px;
+	border: none;
+	border-radius: 6px;
+	background-color: #172036;
+	margin-top: 30px;
+	padding-left: 10px;
+}
+#movieSummary{
+	width: 346px;
+	height: 40px;
+	border: none;
+	border-radius: 6px;
+	background-color: #172036;
+	padding-left: 10px;
+	margin-top: 20px;
+}
+
+#movieReleaseDate{
+	width: 346px;
+	height: 40px;
+	border: none;
+	border-radius: 6px;
+	background-color: #172036;
+	padding-left: 10px;
+	margin-top: 20px;
+}
+
+#movieRuntime{
+	width: 346px;
+	height: 40px;
+	border: none;
+	border-radius: 6px;
+	background-color: #172036;
+	padding-left: 10px;
+	margin-top: 20px;
+}
+
+#moviePrice{
+	width: 346px;
+	height: 40px;
+	border: none;
+	border-radius: 6px;
+	background-color: #172036;
+	padding-left: 10px;
+	margin-top: 20px;
+}
+
+#moviePoster{
+	width: 346px;
+	height: 40px;
+	border: none;
+	border-radius: 6px;
+	background-color: #172036;
+	padding-left: 10px;
+	margin-top: 20px;
+}
+
+#moviePreview{
+	width: 346px;
+	height: 40px;
+	border: none;
+	border-radius: 6px;
+	background-color: #172036;
+	padding-left: 10px;
+	margin-top: 20px;
+}
+
+#genreNumber{
+	width: 346px;
+	height: 40px;
+	border: none;
+	border-radius: 6px;
+	background-color: #172036;
+	padding-left: 10px;
+	margin-top: 20px;
+}
+#btnList{
+	width: 346px;
+	height: 30px;
+	float: left;
+}
+#pageBack{
+	width: 150px;
+	height: 30px;
+	margin-top: 20px;
+	border-radius: 6px;
+	border: 2px solid #F24141;
+	background-color: #F24141;
+	color: white;
+	font-weight: bold;
+	font-size: 14px;
+	float: left;
+	text-align: center;
+	line-height: 30px;
+	margin-left: 8px;
+}
+#pageBack:hover {
+	opacity: .8;
+}
+
+#input-btn{
+	width: 164px;
+	height: 34px;
+	border: 2px solid #0E7356;
+	margin-top: 20px;
+	text-align: center;
+	margin-left: 20px;
+	background-color: #0E7356;
+	border-radius: 6px;
+	font-weight: bold;
+	font-size: 14px;
+	color: white;
+}
+#input-btn:hover {
+	opacity: .8;
+}
+</style>
+
 </head>
 <body>
 	<jsp:include page="/WEB-INF/view/Header.jsp"/>
 
 		<div id="contentsAreaDiv">
-			<h3>영화 추가</h3>
-			<form action="./addCtr.do" method="post" enctype="multipart/form-data">
-				영화제목 :		<input type='text' name='movieTitle'><br>
-				줄거리 :			<input type='text' 	name='movieSummary'><br>
-				개봉일 :			<input type='date' name='movieReleaseDate'><br>
-				상영시간 :		<input type='number' name='movieRuntime'><br>
-				가격 :			<input type='number' name='moviePrice'><br>
-				포스터 :			<input type='text' 	name='moviePoster'><br>
-				예고편 :			<input type='text' 	name='moviePreview'><br>
-				장르번호 :		<input type='number' name='genreNumber'><br>
-				<a href='./list.do'>&#128281 뒤로가기</a>
-				<input type="submit" value="추가">
+			<div id="title">
+				<h3>영화 추가</h3>
+			</div>
+			<form action="./addCtr.do" method="post" name="addMovie" enctype="multipart/form-data">
+				<input type='text' id="movieTitle" name='movieTitle' placeholder="영화제목" onfocus="this.placeholder=''" 
+				onblur="this.placeholder='영화제목'"><br>
+				<input type='text' id="movieSummary" name='movieSummary' placeholder="줄거리" onfocus="this.placeholder=''" 
+				onblur="this.placeholder='줄거리'"><br>
+				<input type='date' id="movieReleaseDate" name='movieReleaseDate' placeholder="개봉일" onfocus="this.placeholder=''" 
+				onblur="this.placeholder='개봉일'"><br>
+				<input type='number' id="movieRuntime" name='movieRuntime' placeholder="상영시간" onfocus="this.placeholder=''" 
+				onblur="this.placeholder='상영시간'"><br>
+				<input type='number' id="moviePrice" name='moviePrice' placeholder="가격" onfocus="this.placeholder=''" 
+				onblur="this.placeholder='가격'"><br>
+				<input type='text' 	id="moviePoster" name='moviePoster' placeholder="포스터" onfocus="this.placeholder=''" 
+				onblur="this.placeholder='포스터'"><br>
+				<input type='text' 	id="moviePreview" name='moviePreview' placeholder="예고편" onfocus="this.placeholder=''" 
+				onblur="this.placeholder='예고편'"><br>
+				<input type='number' id="genreNumber" name='genreNumber' placeholder="장르번호" onfocus="this.placeholder=''" 
+				onblur="this.placeholder='장르번호'"><br>
+				<div id="btnList">
+					<div id="pageBack">
+						<a href='./list.do'>뒤로가기</a>
+					</div>
+					<input type="button" value="추가하기" id="input-btn" onclick="check();">
+				</div>
 			</form>
 		</div>
 	<jsp:include page="/WEB-INF/view/Footer.jsp" />
+	
+<script type="text/javascript">
+var movieTitle = document.getElementById('movieTitle');
+var movieSummary = document.getElementById('movieSummary');
+var movieReleaseDate = document.getElementById('movieReleaseDate');
+var movieRuntime = document.getElementById('movieRuntime');
+var moviePrice = document.getElementById('moviePrice');
+var moviePoster = document.getElementById('moviePoster');
+var moviePreview = document.getElementById('moviePreview');
+var genreNumber = document.getElementById('genreNumber');
+
+function check() {
+	var form = document.addMovie;
+
+	if (movieTitle.value === '') {
+		alert('영화제목을 입력해 주세요.');
+		form.movieTitle.focus();
+		return false;
+	} else if (movieSummary.value === '') {
+		alert('줄거리를 입력해 주세요.');
+		form.movieSummary.focus();
+		return false;
+	} else if (movieReleaseDate.value === '') {
+		alert('개봉일을 입력해 주세요.');
+		form.movieReleaseDate.focus();
+		return false;
+	} else if (movieRuntime.value === '') {
+		alert('상영시간을 입력해 주세요.');
+		form.movieRuntime.focus();
+		return false;
+	} else if (moviePrice.value === '') {
+		alert('가격을 입력해 주세요.');
+		form.moviePrice.focus();
+		return false;
+	} else if (moviePoster.value === '') {
+		alert('포스터를 입력해 주세요.');
+		form.moviePoster.focus();
+		return false;
+	} else if (moviePreview.value === '') {
+		alert('예고편을 입력해 주세요.');
+		form.moviePreview.focus();
+		return false;
+	} else if (genreNumber.value === '') {
+		alert('장르번호 입력해 주세요.');
+		form.genreNumber.focus();
+		return false;
+	}
+	form.submit();
+}
+</script>
 </body>
 </html>

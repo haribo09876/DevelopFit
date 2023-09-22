@@ -4,6 +4,7 @@
 
 <mapper namespace="com.dev.member">
 
+
 	<resultMap type="memberDto" id="memberResultMap">
 		<id column="MEMBER_ID" property="memberId" />
 		<result column="MEMBER_NUMBER" property="memberNumber" />
@@ -16,6 +17,9 @@
 		<result column="MEMBER_CREATE_DATE" property="memberCreateDate" javaType="java.sql.Date" />
 		<result column="MEMBER_MODIFY_DATE" property="memberModifyDate" javaType="java.sql.Date" />
 	</resultMap>
+
+	
+	
 
 <!-- 	로그인 기능 구현 -->
 	<select id="memberExist" parameterType="map"
@@ -61,6 +65,19 @@
 		WHERE MEMBER_PASSWORD = #{memberPassword}
 	</update>
 	
+	<update id="memberUpdateOne2" parameterType="memberDto">
+		UPDATE MEMBER
+		<set>
+			<if test="memberName != null">MEMBER_NAME = #{memberName},</if>
+			<if test="memberId != null">MEMBER_ID = #{memberId},</if>
+			<if test="memberEmail != null">MEMBER_EMAIL = #{memberEmail},</if>
+			<if test="memberPhoneNumber != null">MEMBER_PHONE_NUMBER = #{memberPhoneNumber},</if>
+			<if test="memberBirthDate != null">MEMBER_BIRTH_DATE = #{memberBirthDate},</if>
+			MEMBER_MODIFY_DATE = SYSDATE
+		</set>
+		WHERE MEMBER_NUMBER = #{memberNumber}
+	</update>
+	
 <!-- 	전체 조회 -->
 	<select id="memberSelectTotalCount" resultType="java.lang.Integer">
 		SELECT COUNT(*)
@@ -89,4 +106,13 @@
 		WHERE MEMBER.RNUM BETWEEN #{start} AND #{end}
 	</select>
 	
+	<delete id="memberDeleteOne" parameterType="int">
+		DELETE FROM MEMBER
+		WHERE MEMBER_NUMBER = #{memberNumber}
+	</delete>
+
+	
 </mapper>
+
+
+

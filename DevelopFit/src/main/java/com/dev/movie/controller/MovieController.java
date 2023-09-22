@@ -4,6 +4,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.http.HttpSession;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -74,13 +76,13 @@ public class MovieController {
 	
 //	 영화 정보 상세 (R)
 	 @RequestMapping(value = "/movie/listOne.do", method = RequestMethod.GET)
-	 public String movieListOne(int movieNumber, Model model) {
+	 public String movieListOne(HttpSession session, int movieNumber, Model model) {
 		 log.debug("Welcome MovieController movieListOne! - {}", movieNumber);
 
 		 Map<String, Object> map = movieService.movieSelectOne(movieNumber);
 	
 		 MovieDto movieDto = (MovieDto)map.get("movieDto");
-		 
+		
 		 List<MovieDto> movieCommentList = (List<MovieDto>) map.get("movieCommentList");
 	
 		 model.addAttribute("movieDto", movieDto);

@@ -104,6 +104,21 @@
 		            ) LINEREVIEW
 		WHERE LINEREVIEW.RNUM BETWEEN #{start} AND #{end}
 	</select>
+	
+<!-- 	<select id="movieCommentSelectList" parameterType="map" resultMap="movieResultMap"> -->
+<!-- 		SELECT LINEREVIEW.MEMBER_ID, LINEREVIEW.MOVIE_NUMBER, LINEREVIEW.MOVIE_TITLE, LINEREVIEW.LINE_REVIEW_NUMBER, LINEREVIEW.LINE_REVIEW_CONTEXT -->
+<!-- 		FROM(   SELECT ROWNUM AS RNUM, LINEREVIEW.MEMBER_ID, LINEREVIEW.MOVIE_NUMBER, LINEREVIEW.MOVIE_TITLE, LINEREVIEW.LINE_REVIEW_NUMBER, LINEREVIEW.LINE_REVIEW_CONTEXT -->
+<!-- 		            FROM(   SELECT M.MEMBER_ID, MV.MOVIE_NUMBER, MV.MOVIE_TITLE, LR.LINE_REVIEW_NUMBER, LR.LINE_REVIEW_CONTEXT -->
+<!-- 		                        FROM LINE_REVIEW LR JOIN MEMBER M -->
+<!-- 		                        ON LR.MEMBER_NUMBER = M.MEMBER_NUMBER JOIN MOVIE MV -->
+<!-- 		                        ON LR.MOVIE_NUMBER = MV.MOVIE_NUMBER -->
+<!-- 		                        ORDER BY LINE_REVIEW_NUMBER DESC -->
+<!-- 		                    ) LINEREVIEW -->
+<!-- 		            ) LINEREVIEW movieNumber -->
+<!-- 		WHERE LINEREVIEW.MOVIE_NUMBER = #{movieNumber} -->
+<!-- 		AND LINEREVIEW.RNUM BETWEEN #{start} AND #{end} -->
+<!-- 	</select> -->
+	
 
 <!-- 한줄평 상세 (R) -->
 	<select id="movieCommentSelectOne" parameterType="int" resultMap="movieResultMap">

@@ -15,27 +15,54 @@
 			margin-top: 25px;
 			color: #FFFFFF;
 		}
+		p{
+			margin-bottom: 10px;
+		}
+		#btnList{
+			width: 1100px;
+			display: block;
+			margin: 0 auto;
+		}
+		#movieUpdate{
+			margin-left: 10px;
+		}
+		#movieDelete{
+			margin-left: 10px;
+		}
 		#contentsAreaDiv{
-			width: 1250px;
+			width: 1100px;
+			display: block;
+			margin: 0 auto;
 			margin-top: 30px;
 		  	position: absolute;
 		  	left: 50%;
 			transform: translateX(-50%);
 		}
 		#movieListTable {
-			background-color: #FFFFFF;
+			width: 1100px;
+			background-color: #172036;
+			text-align: center;
+			color: white;
+			padding: 6px;
+			border-radius: 6px;
+			margin-top: 30px;
+		}
+		#movieListTable tr{
+			padding: 9px;
+		}
+		#movieListTable tr td{
+			padding: 5px;
+			font-size: 14px;
 		}
 		#poster{
 			width: 350px;
 			margin: 30px;
+			margin-left: 0;
 		}
 		#ratingTable {
 			background-color: #FFFFFF;
 		}
-		table tr th td {
-			border:1px solid black;
-			background-color: #FFFFFF;
-		}
+		
 		#firstSectionDiv {
 			padding : 30px;
 			float: right;
@@ -48,6 +75,7 @@
 		}
 		#thirdSectionDiv {
 			padding : 30px;
+			padding-left: 0;
 			color: #FFFFFF;
 		}
 		#fourthSectionDiv {
@@ -58,9 +86,11 @@
 		}
 		#fifthSectionDiv {
 			padding : 30px;
+			padding-left: 0;
 		}
 		#sixthSectionDiv {
 			padding : 30px;
+			padding-left: 0;
 			color: #FFFFFF;
 		}
 		#seventhSectionDiv {
@@ -75,19 +105,26 @@
 			height: 40px;
 			margin-bottom: 10px;
 			border-radius: 8px;
+			border: 1px solid white;
+			background-color: white;
 		}
 		#secondButton {
 			width: 243px;
 			height: 40px;
+			border: 1px solid white;
 			border-radius: 8px;
 		}
 		#thirdButton {
 			width: 243px;
 			height: 40px;
+			border: 1px solid #0E7356;
 			background-color: #0E7356;
 			border-radius: 8px;
 			color: #FFFFFF;
 		}
+		button:hover {
+	opacity: .8;
+}
 	</style>	
 	<script type="text/javascript">
 	</script>
@@ -95,12 +132,16 @@
 <body>
 	<jsp:include page="/WEB-INF/view/Header.jsp"/>
 	
-	<a href='./list.do'>&#128281 영화목록으로</a>
-	<a href='./update.do?movieNumber=${movieDto.movieNumber}'>&#128465 수정</a>
-	<a href='./delete.do?movieNumber=${movieDto.movieNumber}'>&#128465 삭제</a>
+	<div id="btnList">
+		<a href='./list.do' id="movieList">&#128281 영화목록으로</a>
+		<a href='./update.do?movieNumber=${movieDto.movieNumber}' id="movieUpdate">&#128465 수정</a>
+		<a href='./delete.do?movieNumber=${movieDto.movieNumber}' id="movieDelete">&#128465 삭제</a>
+	</div>
 	
 	<div id="contentsAreaDiv">
-		<h3>영화 상세</h3>
+		<div id="title">
+			<h3>영화 상세</h3>
+		</div>
 		<img id="poster" alt="영화포스터" src="${movieDto.moviePoster}" />
 		<div id="firstSectionDiv">
 			<p>영화명 : ${movieDto.movieTitle}</p>
@@ -127,10 +168,12 @@
 		
 		<h3>예고편</h3>
 		<div id="fourthSectionDiv">
-			<iframe width="560" height="315" src="${movieDto.moviePreview}"
-				frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
-				allowfullscreen style="position: absolute; width:100%; height:100%;"></iframe>
+			<iframe width="560" height="315" src="${movieDto.moviePreview}" frameborder="0"
+				allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen
+				style="position: absolute; width:100%; height:100%;"></iframe>
 		</div>
+		<br>
+		<br>
 		
 		<h3>지수</h3>
 		<div id="fifthSectionDiv">
@@ -158,17 +201,21 @@
 	<div id="contentsAreaDiv">
 		<h3>한줄평</h3>
 		<table id="movieListTable">
+<%-- 		<c:if test="${sessionScope.movie.movieNumber eq movieDto.memberNumber}"> --%>
 			<tr>
 				<th>한줄평 번호</th>
 				<th>회원 아이디</th>
 				<th>영화 번호</th>
 				<th>영화 제목</th>
 				<th>한줄평 내용</th>
+				<c:if test="${(sessionScope.member.memberId eq 'admin1') || (sessionScope.member.memberId eq movieDto.memberId)}">
+					<th>수정 및 삭제</th>
+				</c:if>	
 			</tr>
 
 			<c:forEach var="movieDto" items="${movieCommentList}">
 				<input type="hidden" name='movieNumber' value='${movieDto.movieNumber}'>
-				<input type="hidden" name='movieNumber' value='${movieDto.lineReviewNumber}'>
+				<input type="hidden" name='lineReviewNumber' value='${movieDto.lineReviewNumber}'>
 				<tr>
 					<td>
 						<a href='./commentListOne.do?lineReviewNumber=${movieDto.lineReviewNumber}'>${movieDto.lineReviewNumber}</a>
@@ -177,14 +224,15 @@
 					<td>${movieDto.movieNumber}</td>
 					<td>${movieDto.movieTitle}</td>
 					<td>${movieDto.lineReviewContext}</td>
-					<td>
-						<a href='./commentUpdate.do?lineReviewNumber=${movieDto.lineReviewNumber}'>&#128465 수정</a>
-					</td>
-					<td>
-						<a href='./commentDelete.do?lineReviewNumber=${movieDto.lineReviewNumber}'>&#128465 삭제</a>
-					</td>
+					<c:if test="${(sessionScope.member.memberId eq 'admin1') || (sessionScope.member.memberId eq movieDto.memberId)}">
+						<td>
+							<a href='./commentUpdate.do?lineReviewNumber=${movieDto.lineReviewNumber}'>&#128465 수정</a>
+							<a href='./commentDelete.do?lineReviewNumber=${movieDto.lineReviewNumber}'>&#128465 삭제</a>
+						<td>
+					</c:if>
 				</tr>
 			</c:forEach>
+<%-- 			</c:if> --%>
 		</table>
 	
 		<jsp:include page="/WEB-INF/view/common/MoviePaging.jsp">

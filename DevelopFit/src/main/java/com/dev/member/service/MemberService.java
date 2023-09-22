@@ -1,5 +1,7 @@
 package com.dev.member.service;
 
+
+
 import java.util.List;
 import java.util.Map;
 
@@ -23,6 +25,8 @@ import com.dev.member.dto.MemberDto;
 
 	public Map<String, Object> memberSelectOne(int memberNumber);
 
+	public void memberUpdateOne2(MemberDto memberDto);
 
-	
+	public int memberDeleteOne(int no);
+
 }

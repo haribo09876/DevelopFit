@@ -1,5 +1,7 @@
 package com.dev.member.dao;
 
+
+
 import java.util.List;
 
 import com.dev.member.dto.MemberDto;
@@ -22,6 +24,9 @@ public interface MemberDao {
 
 	public MemberDto memberSelectOne(int memberNumber);
 
+	public int memberUpdateOne2(MemberDto memberDto);
+
+	public int memberDeleteOne(int no);
 
 	
 }

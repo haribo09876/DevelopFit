@@ -137,10 +137,10 @@ li {
 			</div>
 			<div id="menu">
 				<ul>
-					<li><a href="#" id="menu1">MENU1</a></li>
-					<li><a href="#" id="menu2">MENU2</a></li>
-					<li><a href="#" id="menu3">MENU3</a></li>
-					<li><a href="#" id="menu4">MENU4</a></li>
+					<li><a href="#" id="menu1">홈</a></li>
+					<li><a href="#" id="menu2">추천영화</a></li>
+					<li><a href="#" id="menu3">영화전체</a></li>
+					<li><a href="#" id="menu4">커뮤니티</a></li>
 				</ul>
 			</div>
 		</div>

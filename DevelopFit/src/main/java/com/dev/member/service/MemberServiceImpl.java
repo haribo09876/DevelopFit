@@ -1,5 +1,6 @@
 package com.dev.member.service;
 
+
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -74,5 +75,17 @@ public class MemberServiceImpl implements MemberService{
 		
 		return resultMap;
 	}
-	
+
+	@Override
+	public void memberUpdateOne2(MemberDto memberDto) {
+		// TODO Auto-generated method stub
+		memberDao.memberUpdateOne2(memberDto);
+	}
+
+	@Override
+	public int memberDeleteOne(int no) {
+		// TODO Auto-generated method stub
+		return memberDao.memberDeleteOne(no);
+	}
+
 }

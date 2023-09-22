@@ -25,15 +25,20 @@
 		.cardTable {
 		    min-width: 100%;
 			table-layout: fixed;
+			background-color: #172036;
+			border-radius: 6px;
+			padding: 9px;
 		}
 		.tableHead {
- 			background-color: #303846;
+ 			background-color: #172036;
     		color: #9ca3af;
+    		
 		}
 		.tableGroup {
 		    border-top-width: 1px;
-			border-color: #1f2937;
-			background-color: #374151;
+			border-color: #172036;
+			background-color: #172036;
+			text-align: center;
 		}
 		.movieTitle{
 			color: #D1D5DB;
@@ -51,6 +56,17 @@
 		  	position: absolute;
 		  	left: 50%;
 			transform: translateX(-50%);
+		}
+		#newMovie{
+			width: 100px;
+			height: 30px;
+			text-align: center;
+			line-height: 30px;
+			border-radius: 6px;
+			border: 1px solid #0E7356;
+			background-color: #0E7356;
+			float: right;
+			font-size: 14px;
 		}
 	</style>
 	<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.js">
@@ -76,7 +92,7 @@
 		<div class="swiper-pagination"></div>
 		<div class="autoplay-progress">
 			<svg></svg>
-			<span></span>
+			<span style="display:none;"></span>
 		</div>
 	</div>
 
@@ -109,7 +125,14 @@
   </script>
 
 	<div id="contentsAreaDiv">
-		<a class="sectionTitle">영화 목록</a><br><br>
+		<a class="sectionTitle">영화 목록</a>
+		<br>
+		<br>
+		<c:if test="${sessionScope.member.memberId eq 'admin1'}">
+			<a href='./add.do'>새 영화 등록</a>
+		</c:if>
+		<br>
+		<br>
 		<table class="cardTable">
 			<thead>
 				<tr class="tableHead">
@@ -120,7 +143,9 @@
 					<th>개봉일</th>
 					<th>런타임</th>
 					<th>가격</th>
-					<th>수정 및 삭제</th>
+					<c:if test="${sessionScope.member.memberId eq 'admin1'}">
+						<th>수정 및 삭제</th>
+					</c:if>
 				</tr>
 			</thead>
 
@@ -141,15 +166,15 @@
 					<td>${movieDto.movieReleaseDate}</td>
 					<td>${movieDto.movieRuntime} 분</td>
 					<td>${movieDto.moviePrice} 원</td>
-					<td>
-						<a href='./update.do?movieNumber=${movieDto.movieNumber}'>&#128465 수정</a>
-						<a href='./delete.do?movieNumber=${movieDto.movieNumber}'>&#128465 삭제</a>						
-					</td>
+					<c:if test="${sessionScope.member.memberId eq 'admin1'}">
+						<td>
+							<a href='./update.do?movieNumber=${movieDto.movieNumber}'>&#128465 수정</a>
+							<a href='./delete.do?movieNumber=${movieDto.movieNumber}'>&#128465 삭제</a>						
+						</td>
+					</c:if>
 				</tr>
 			</c:forEach>
 		</table>
-		<br>
-		<a href='./add.do'>새 영화 등록</a>
 		<br>
 		<div>
 			<jsp:include page="/WEB-INF/view/common/MoviePaging.jsp">
