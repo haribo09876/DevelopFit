@@ -53,18 +53,26 @@ public class CommentController {
 		log.debug("Welcome CommentController CommentAddCtr! " + commentDto);
 
 		commentService.commentInsertOne(commentDto);
-		return "redirect:/board/listOne.do";
+		
+		int boardNumber = commentDto.getBoardNumber();
+		
+		return "redirect:/board/listOne.do?boardNumber=" + boardNumber;
 	}
 	
 //	
 //	댓글 삭제
-	@RequestMapping(value = "/board/commentDelete.do", method = RequestMethod.POST)
-	public String commentDeleteCtr(CommentDto commentDto, Model model) {
+	@RequestMapping(value = "/board/commentDeleteCtr.do", method = RequestMethod.POST)
+	public String commentDeleteCtr(CommentDto commentDto, Model model, 
+			BoardDto boardDto) {
 		log.debug("Welcome CommentController CommentDelete" + commentDto);
 		
 		commentService.commentDeleteOne(commentDto);
-					
-		return "redirect:/board/listOne.do";
+		
+		int boardNumber = commentDto.getBoardNumber();
+		
+		return "forward:/board/listOne.do?boardNumber=" + boardNumber;
 	}
-	
+	//CommentDeleteCommentDto [boardNumber=0, memberId=null, memberNumber=0, commentNumber=113,
+//	commentContent=null, commentCreateDate=null] jsp에서 코맨트 넘버만 오고 보드넘버 안오는 듯
+	//멤버도 제대로 오는지 ss계정으로 해보자
 }

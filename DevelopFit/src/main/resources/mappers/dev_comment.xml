@@ -21,6 +21,7 @@
 <!--  		댓글리스트 -->
 	<select id="commentSelectList" parameterType="map" resultMap="commentResultMap">
     	SELECT PC.POST_COMMENT_CONTENT, PC.POST_COMMENT_DATE, M.MEMBER_ID
+    	, POST_COMMENT_NUMBER
     	FROM POST_COMMENT PC JOIN MEMBER M
     	ON PC.MEMBER_NUMBER = M.MEMBER_NUMBER
     	WHERE BOARD_NUMBER = #{boardNumber}
@@ -35,10 +36,9 @@
 		</selectKey>
 		
 		INSERT INTO POST_COMMENT
-			(POST_COMMENT_NUMBER, POST_COMMENT_CONTENT, POST_COMMENT_DATE, 
-			BOARD_NUMBER, MEMBER_NUMBER)
-		VALUES(#{commentNumber}, #{commentContent}, SYSDATE, 
-		#{boardNumber}, #{memberNumber})
+			(POST_COMMENT_NUMBER, POST_COMMENT_CONTENT, POST_COMMENT_DATE,
+			 BOARD_NUMBER, MEMBER_NUMBER)
+		VALUES(#{commentNumber}, #{commentContent}, SYSDATE, #{boardNumber}, #{memberNumber})
 	</insert>
 	
 	

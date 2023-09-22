@@ -160,6 +160,7 @@
 					
 	                <a href='./listOne.do?boardNumber=${boardDto.boardNumber}'>
 	                	<input type="hidden" name="memberNumber" value= '${member.memberNumber}'>
+	                	<input type="hidden" name="boardNumber" value= '${boardDto.boardNumber}'>
 	                	${boardDto.boardContent}
 	                </a>
 	                

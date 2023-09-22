@@ -8,6 +8,9 @@
 <meta charset="UTF-8">
 <title>boardListOneView</title>
 <style type="text/css">
+	html{
+		height: 100%;
+	}
 	body{
 		background-color: #131826;
 		width: 1300px;
@@ -16,16 +19,13 @@
 		color: white;
 		height: 100%;
 		}
-	html{
-		height: 100%;
-	}
 	#container{
  		margin: 150px 60px 50px;
 		border-color: black;
  		background-color: #172036;
  		height: auto;
  		width: 1200px;
- 		padding-bottom: 5px;
+ 		padding-bottom: 50px;
 	}
 	#topcontent{
 		margin-right: 40px;
@@ -110,32 +110,59 @@
 		margin-top: 100px;
 		height: 30px;
 	}
-	#commentwrap{
-		margin-top:200px;
-		width: 600px;
- 		margin-left: -180px; 
- 		
-	}
 	#commentMemberId{
-		width: 800px;
+		width: 400px;
 		height: 30px;
-		margin-left: 300px;
+		margin-left: 200px;
 		text-align: left;
+		float: left;
+		margin-bottom: 20px;
 	}
 	#commentCreateDate{
 		width: 400px;
 		height: 30px;
-		margin-left: 300px;
+		margin-left: 200px;
 		text-align: left;
+		float: right;
+		margin-bottom: 20px;
 	}
 	#commentContent{
 		width: 800px;
-		height: 30px;
-		margin-left: 300px;
+		height: 50px;
+		margin-left: 200px;
 		margin-bottom: 30px;
+		margin-top: 60px;
 		text-align: left;
 		border-bottom: 1px solid gray;
 	}
+	#contentwrap{
+		width: 820px;
+		height: 100px;
+	}
+	#addForm{
+		margin-left: 200px;
+		width: 820px;
+		margin-top: 70px;
+		margin-bottom: 20px;
+		height: 150px;
+	}
+	#commentInsert{
+		width: 800px;
+		height: 90px;
+		margin-bottom: 20px;
+		background-color: #273061;
+		color: white;
+		font-size: x-large;
+	}
+	#addButton{
+		width: 100px;
+		height: 30px;
+		color: white;
+		background-color: #0DA66E;
+		float: right;
+		margin-right: 10px;
+	}
+	
 </style>
 
 </head>
@@ -172,25 +199,41 @@
 			</div>		
 			
 			<div id="commentview">댓글</div>
-		</div>
+			</div>
 	
-	<div id="commentwrap">
+		<form action="./commentAddCtr.do" method="post" id="addForm">
+			<input type="hidden" name='boardNumber' value="${boardDto.boardNumber}">
+			<input type="hidden" name='memberNumber' value="${member.memberNumber}">
+			<textarea rows="1" cols="20" name="commentContent" id="commentInsert">
+			${commentDto.commentContent}
+			</textarea>	
+			<input type="submit" id="addButton" value="등록">
+		</form>
+		
 		<c:forEach var="commentDto" items="${commentList}">
-			<div id="commentMemberId">아이디:		${commentDto.memberId}</div>
+			<div id="commentMemberId">아이디:		'${commentDto.memberId}'</div>
 	    	<div id="commentCreateDate">작성일:	
 	    		<fmt:formatDate pattern="yyyy-MM-dd" value="${commentDto.commentCreateDate}"/>
 	    	</div>
 	    	<div id="commentContent">${commentDto.commentContent}</div>
-		</c:forEach>
-	</div>
-	<div>
-		<form action='./commentUpdateCtr.do' method='post'>
+	    	
+	    	<form action='./commentUpdateCtr.do' method='post' name="updateForm">
 				<input type="hidden" name='commentNumber' value='${commentDto.commentNumber}'>
 				<input type="hidden" name='memberNumber' value= '${member.memberNumber}'>
 				<input type="hidden" name="boardNumber" value="${commentDto.boardNumber}">
-				<input type="submit" id="commentupdate" value="수정">
-		</form>
-	</div>
+				<input type="submit" name="commentupdate" value="수정">
+			</form>
+		
+			<form action='./commentDeleteCtr.do' method='post' name="deleteForm">
+					<input type="hidden" name='commentNumber' value='${commentDto.commentNumber}'>
+					<input type="hidden" name='memberNumber' value= '${member.memberNumber}'>
+					<input type="hidden" name="boardNumber" value="${commentDto.boardNumber}">
+					<input type="submit" name="commentdelete" value="삭제">
+			</form>
+		</c:forEach>
+		
+		
+		
 <!-- 	<div id="commentpagingwrap"> -->
 <%-- 		<jsp:include page="/WEB-INF/view/common/BoardCommentPaging.jsp"> --%>
 <%-- 			<jsp:param value="${commentPagingMap}" name="commentPagingMap"/> --%>
@@ -201,7 +244,7 @@
 <%-- 				value="${commentPagingMap.boardCommentPaging.curPage}"> --%>
 <!-- 		</form> -->
 <!-- 	</div> -->
-</div>
+	</div>
 	
 		
 	

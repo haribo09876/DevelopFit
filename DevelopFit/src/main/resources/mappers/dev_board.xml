@@ -89,21 +89,22 @@
 	
 <!-- 	게시글 내용 업데이트 (제목, 내용) -->
 	<update id="boardUpdateOne" parameterType="boardDto">
-		UPDATE BOARD
- 		<set>
+ 		UPDATE BOARD b
+		<set>
  			<if test="boardTitle != null">BOARD_TITLE = #{boardTitle},</if>
  			<if test="boardContent != null">BOARD_CONTENT = #{boardContent}</if>
  		</set>
- 		WHERE MEMBER_NUMBER = #{memberNumber}
-		AND BOARD_NUMBER = #{boardNumber}
-		
+		WHERE b.BOARD_NUMBER = #{boardNumber}
+		   AND (b.MEMBER_NUMBER = 0 OR EXISTS (SELECT 1 FROM MEMBER m 
+		   										WHERE m.MEMBER_NUMBER = #{memberNumber}))
 	</update>
 		
 <!-- 	게시글 내용 삭제 -->
 	<delete id="boardDeleteOne" parameterType="int">
-		DELETE FROM BOARD
-		WHERE BOARD_NUMBER = #{boardNumber}
-		AND MEMBER_NUMBER = #{memberNumber}
+		DELETE FROM BOARD b
+		WHERE b.BOARD_NUMBER = #{boardNumber}
+		AND (b.MEMBER_NUMBER = 0 OR EXISTS 
+		   (SELECT 1 FROM MEMBER m WHERE m.MEMBER_NUMBER = #{memberNumber}))
 	</delete>
 	
 <!-- 	페이징 기능을 위한 총 게시글 수 산출 -->
