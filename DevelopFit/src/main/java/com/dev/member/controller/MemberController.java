@@ -57,12 +57,11 @@ public class MemberController {
 		if (memberDto != null) {
 			// 회원존재하면 세션에담는다
 			session.setAttribute("member", memberDto);
-			session.setAttribute("memberNumber", memberDto.getMemberNumber()); // 멤버넘버를 세션에 추가
 			
 			viewUrl = "redirect:/movie/list.do";
 
 			if (memberDto.getMemberId().equals("admin1") && memberDto.getMemberPassword().equals("admin1")) {
-				viewUrl = "redirect:/admin/admin.do";
+				viewUrl = "redirect:/board/list.do";
 			} else if (memberDto.getMemberId().equals("aa")) {
 				viewUrl = "redirect:/order/basket.do";
 			} else if (memberDto.getMemberId().equals("ss")) {

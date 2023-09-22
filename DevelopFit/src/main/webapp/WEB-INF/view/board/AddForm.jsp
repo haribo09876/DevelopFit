@@ -16,71 +16,77 @@
 	#container{
  		margin: 150px 60px 50px;
 		border-color: black;
- 		background-color: white;
+ 		background-color: #172036;
  		height: 1200px;
  		width: 1200px;
 	}
-	#topcontent{
-		margin-right: 40px;
-		margin-left: 40px;
-		margin-bottom: 10px;
-		margin-top: 50px;
-		height: 600px;
+	
+	#write{
+		color: white;
+		text-align: center;
+		font-size: xx-large;
 		padding-top: 50px;
 	}
-	#iddatewrap{
-		height: 60px;
- 		width: 1100px;
+	#form{
+		height: 900px;
+ 		width: 1000px;
+ 		margin-left: 150px;
 	}
- 	#memberid{ 
- 		text-overflow: ellipsis; 
- 		overflow: hidden; 
- 		white-space: nowrap; 
- 		font-size: 20px; 
- 		width: 250px; 
- 		text-align: center; 
- 		float: left; 
- 		height: 40px;
- 	}
- 	#createdate{
- 		font-size: 20px;
- 		text-align: center;
- 		width: 250px;
- 		height: 40px;
- 		float: right;
- 	}
  	#title{ 
  		font-size: x-large; 
- 		margin-left: 60px;
- 		width: 600px;
+ 		width: 900px;
  		height: 40px;
- 		margin-top: 50px;
  		margin-bottom: 70px;
+ 		background-color: #273061;
+		border: none;
+		color: white;
  	} 
  	#content{
  		float: left;
  		width: 900px;
  		height: 350px; 
- 		margin-left: 120px;
+ 		background-color: #273061;
+ 		border: none;
+ 		color: white;
  	}
- 	#boardhit{
- 		font-size: 20px;
- 		text-align: center;
- 		width: 150px;
- 		height: 40px;
- 		float: right;
- 		margin-right: 30px;
+ 	#textTitle{
+		width: 100px;
+		height: 50px;
+		color: white;
+		font-size: 22px;
+		padding-top: 100px;
+	}
+	#textContent{
+		width: 100px;
+		height: 50px;
+		color: white;
+		font-size: 22px;
+	}
+	#submit{
+		margin-top:40px;
+		float: right;
+		margin-right: 95px;
+		width: 100px;
+		height: 30px;
+		color: white;
+		background-color: #0DA66E;
 	}
 </style>
 </head>
 <body>
-	<form action='./addCtr.do' method='post'>
-		<input type="hidden" name='memberNumber' value= '${member.memberNumber}'>
-		제목:		<input id="title" type="text" name="boardTitle" value="${boardDto.boardTitle}"> 
-		내용:		<input id="content" type="text" name="boardContent" value="${boardDto.boardContent}"> 
-		<input type="submit" value="저장" />
-	</form>	
+	<div id="container">
+		<div id="write">글쓰기</div>
+		<form action='./addCtr.do' id="form" method='post'>
+			<input type="hidden" name='memberNumber' value= '${member.memberNumber}'>
+			<div id="textTitle">제목:			</div>
+			<input id="title" type="text" name="boardTitle" value="${boardDto.boardTitle}"> 
+			<div id="textContent">내용:		</div>
+			<textarea rows="1" cols="50" name="boardContent" id="content">${boardDto.boardContent}
+			</textarea>	
+			<input type="submit" id="submit" value="저장" />
+		</form>	
 		
+	</div>	
 	
 </body>
 </html>	 	

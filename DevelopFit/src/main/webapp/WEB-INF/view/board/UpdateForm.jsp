@@ -58,23 +58,19 @@
  		width: 600px;
  		height: 40px;
  		margin-bottom: 70px;
+ 		background-color: #273061;
+		border: none;
+		color: white;
  	} 
  	#content{
  		float: left;
  		width: 900px;
  		height: 350px; 
  		margin-left: 120px;
- 	}
- 	#content{
- 		background-color: #172036;
+ 		background-color: #273061;
  		border: none;
  		color: white;
-	}
-	#title{
-		background-color: #172036;
-		border: none;
-		color: white;
-	}
+ 	}
 	#textTitle{
 		width: 100px;
 		height: 50px;

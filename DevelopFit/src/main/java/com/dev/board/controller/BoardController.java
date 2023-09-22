@@ -20,6 +20,7 @@ import com.dev.board.dto.BoardDto;
 import com.dev.board.dto.CommentDto;
 import com.dev.board.service.BoardService;
 import com.dev.board.service.CommentService;
+import com.dev.member.dto.MemberDto;
 import com.dev.util.Paging;
 
 @Controller
@@ -62,18 +63,17 @@ public class BoardController {
 	@RequestMapping(value = "/board/listOne.do", method = {RequestMethod.GET, RequestMethod.POST})
 	public String boardListOne(@RequestParam("boardNumber") int boardNumber, Model model
 			,HttpSession session) {
-		
 		log.debug("Welcome BoardController boardListOne! - {}" + boardNumber);
 		
 		BoardDto boardDto = boardService.boardSelectOne(boardNumber);
 		
 		boardService.viewCount(boardNumber);
 		
-		int sessionMemberNumber = (int) session.getAttribute("memberNumber");
+		MemberDto memberDto = (MemberDto)session.getAttribute("member");
 		
-//		boardDto.setMemberNumber(sessionMemberNumber);
+		int sessionMemberNumber = memberDto.getMemberNumber();
 		
-		// 세션의 memberId와 게시글의 memberId가 일치하는 경우 수정 및 삭제 버튼을 표시합니다.
+		// 세션의 member넘버와 게시글의 member넘버가 일치하는 경우 수정 및 삭제 버튼을 표시합니다.
 	    if (sessionMemberNumber == boardDto.getMemberNumber()
 	    		|| sessionMemberNumber == 0) {
 	        model.addAttribute("canEdit", true);
