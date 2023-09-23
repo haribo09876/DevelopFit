@@ -58,18 +58,13 @@ public class MemberController {
 		if (memberDto != null) {
 			// 회원존재하면 세션에담는다
 			session.setAttribute("member", memberDto);
-<<<<<<< HEAD
-=======
-			
->>>>>>> branch 'main' of https://github.com/haribo09876/DevelopFit.git
+
 			viewUrl = "redirect:/movie/list.do";
 
 			if (memberDto.getMemberId().equals("admin1") && memberDto.getMemberPassword().equals("admin1")) {
-<<<<<<< HEAD
+
 				viewUrl = "redirect:/member/list.do";
 			} 
-
-=======
 				viewUrl = "redirect:/board/list.do";
 			} else if (memberDto.getMemberId().equals("aa")) {
 				viewUrl = "redirect:/order/basket.do";
@@ -78,10 +73,6 @@ public class MemberController {
 			} else if (memberDto.getMemberId().equals("dd")) {
 				viewUrl = "redirect:/movie/list.do";
 			} else {
-				viewUrl = "redirect:/movie/list.do";
-			}
->>>>>>> branch 'main' of https://github.com/haribo09876/DevelopFit.git
-		} else {
 			viewUrl = "/auth/LoginFail";
 		}
 		return viewUrl;
@@ -278,5 +269,4 @@ public class MemberController {
 			
 		    return "redirect:/member/list.do";
 		}
-
 }
