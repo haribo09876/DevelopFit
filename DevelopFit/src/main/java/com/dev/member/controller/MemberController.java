@@ -63,16 +63,15 @@ public class MemberController {
 
 			if (memberDto.getMemberId().equals("admin1") && memberDto.getMemberPassword().equals("admin1")) {
 
-				viewUrl = "redirect:/member/list.do";
-			} 
-				viewUrl = "redirect:/board/list.do";
-			} else if (memberDto.getMemberId().equals("aa")) {
-				viewUrl = "redirect:/order/basket.do";
-			} else if (memberDto.getMemberId().equals("ss")) {
-				viewUrl = "redirect:/board/list.do";
-			} else if (memberDto.getMemberId().equals("dd")) {
 				viewUrl = "redirect:/movie/list.do";
-			} else {
+			}
+		} else if (memberDto.getMemberId().equals("aa")) {
+			viewUrl = "redirect:/order/basket.do";
+		} else if (memberDto.getMemberId().equals("ss")) {
+			viewUrl = "redirect:/board/list.do";
+		} else if (memberDto.getMemberId().equals("dd")) {
+			viewUrl = "redirect:/movie/list.do";
+		} else {
 			viewUrl = "/auth/LoginFail";
 		}
 		return viewUrl;

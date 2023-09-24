@@ -17,6 +17,12 @@ public class MovieDaoImpl implements MovieDao{
 	SqlSessionTemplate sqlSession;
 	
 	String namespace = "com.dev.movie";
+
+	@Override
+	public int movieInsertOne(MovieDto movieDto) {
+		// TODO Auto-generated method stub
+		return sqlSession.insert("com.dev.movie.movieInsertOne", movieDto);
+	}
 	
 	@Override
 	public List<MovieDto> movieSelectList(int start, int end) {
@@ -25,12 +31,6 @@ public class MovieDaoImpl implements MovieDao{
 		map.put("end", end);
 
 		return sqlSession.selectList("com.dev.movie.movieSelectList", map);
-	}
-	
-	@Override
-	public int movieInsertOne(MovieDto movieDto) {
-		// TODO Auto-generated method stub
-		return sqlSession.insert("com.dev.movie.movieInsertOne", movieDto);
 	}
 	
 	@Override
@@ -60,18 +60,18 @@ public class MovieDaoImpl implements MovieDao{
 
 
 	@Override
+	public int movieCommentInsertOne(MovieDto movieDto) {
+		// TODO Auto-generated method stub
+		return sqlSession.insert("com.dev.movie.movieCommentInsertOne", movieDto);
+	}
+	
+	@Override
 	public List<MovieDto> movieCommentSelectList(int start, int end) {
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("start", start);
 		map.put("end", end);
 
 		return sqlSession.selectList("com.dev.movie.movieCommentSelectList", map);
-	}
-	
-	@Override
-	public int movieCommentInsertOne(MovieDto movieDto) {
-		// TODO Auto-generated method stub
-		return sqlSession.insert("com.dev.movie.movieCommentInsertOne", movieDto);
 	}
 	
 	@Override
@@ -98,5 +98,4 @@ public class MovieDaoImpl implements MovieDao{
 		// TODO Auto-generated method stub
 		return (int)sqlSession.selectOne("com.dev.movie.movieCommentSelectTotalCount");
 	}
-
 }

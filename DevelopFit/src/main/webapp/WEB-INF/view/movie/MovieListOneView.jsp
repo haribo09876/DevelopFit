@@ -123,8 +123,8 @@
 			color: #FFFFFF;
 		}
 		button:hover {
-	opacity: .8;
-}
+			opacity: .8;
+		}
 	</style>	
 	<script type="text/javascript">
 	</script>
