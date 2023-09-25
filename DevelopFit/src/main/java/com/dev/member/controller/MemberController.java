@@ -66,14 +66,15 @@ public class MemberController {
 			} 
 
 				viewUrl = "redirect:/board/list.do";
+				viewUrl = "redirect:/movie/list.do";
 			} else if (memberDto.getMemberId().equals("aa")) {
 				viewUrl = "redirect:/order/basket.do";
 			} else if (memberDto.getMemberId().equals("ss")) {
 				viewUrl = "redirect:/board/list.do";
 			} else if (memberDto.getMemberId().equals("dd")) {
 				viewUrl = "redirect:/movie/list.do";
-		} else {
-			viewUrl = "/auth/LoginFail";
+			} else {
+				viewUrl = "/auth/LoginFail";
 		}
 		return viewUrl;
 	}
@@ -206,7 +207,7 @@ public class MemberController {
 		public String memberUpdateCtr2(int no, MemberDto memberDto, Model model) {
 			
 			log.info("Welcome MemberController memberUpdateCtr2," + no);
-			memberDto.setMember_number(no);
+			memberDto.setMemberNumber(no);
 			try {
 				memberService.memberUpdateOne2(memberDto);
 			} catch (Exception e) {
@@ -223,7 +224,7 @@ public class MemberController {
 			Map<String, Object> map = memberService.memberSelectOne(no);
 			
 			MemberDto memberDto = (MemberDto)map.get("memberDto");
-			memberDto.setMember_number(no);
+			memberDto.setMemberNumber(no);
 			System.out.println(memberDto.getMemberNumber());
 			model.addAttribute("memberDto", memberDto);
 			
@@ -269,5 +270,4 @@ public class MemberController {
 			
 		    return "redirect:/member/list.do";
 		}
-
 }

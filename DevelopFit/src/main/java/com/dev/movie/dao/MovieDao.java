@@ -7,15 +7,15 @@ import com.dev.movie.dto.MovieDto;
 
 public interface MovieDao {
 	
-	List<MovieDto> movieSelectList(int start, int end);
 	public int movieInsertOne(MovieDto movieDto);
+	List<MovieDto> movieSelectList(int start, int end);
 	public MovieDto movieSelectOne(int movieNumber);
 	public int movieUpdateOne(MovieDto movieDto);
 	public int movieDeleteOne(int movieNumber);
 	public int movieSelectTotalCount();
-	
-	List<MovieDto> movieCommentSelectList(int start, int end);
+
 	public int movieCommentInsertOne(MovieDto movieDto);
+	List<MovieDto> movieCommentSelectList(int start, int end);
 	public MovieDto movieCommentSelectOne(int lineReviewNumber);
 	public int movieCommentUpdateOne(MovieDto movieDto);
 	public int movieCommentDeleteOne(int lineReviewNumber);
