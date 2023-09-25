@@ -134,8 +134,10 @@
 	
 	<div id="btnList">
 		<a href='./list.do' id="movieList">&#128281 영화목록으로</a>
-		<a href='./update.do?movieNumber=${movieDto.movieNumber}' id="movieUpdate">&#128465 수정</a>
-		<a href='./delete.do?movieNumber=${movieDto.movieNumber}' id="movieDelete">&#128465 삭제</a>
+		<c:if test="${(sessionScope.member.memberId eq 'admin1') || (sessionScope.member.memberId eq movieDto.memberId)}">
+			<a href='./update.do?movieNumber=${movieDto.movieNumber}' id="movieUpdate">&#128465 수정</a>
+			<a href='./delete.do?movieNumber=${movieDto.movieNumber}' id="movieDelete">&#128465 삭제</a>
+		</c:if>	
 	</div>
 	
 	<div id="contentsAreaDiv">

@@ -45,6 +45,7 @@
 		}
 		.swiperPoster{
 			width: 300px;
+			margin-top: 100px;
 			margin-left: 42%;
 		}
 		.listPoster{
