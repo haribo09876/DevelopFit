@@ -47,7 +47,7 @@ public class BoardController {
 	    int start = boardPaging.getPageBegin();
 		int end = boardPaging.getPageEnd();
 	    
-	    // 게시글 리스트를 가져옵니다.
+	    // 게시글 리스트
 	    List<BoardDto> boardList = boardService.boardSelectList(start, end);
 	    
 	    HashMap<String, Object> pagingMap = new HashMap<>();
@@ -73,7 +73,8 @@ public class BoardController {
 		
 		int sessionMemberNumber = memberDto.getMemberNumber();
 		
-		// 세션의 member넘버와 게시글의 member넘버가 일치하는 경우 수정 및 삭제 버튼을 표시합니다.
+		
+		// 세션의 member넘버와 게시글의 member넘버가 일치하는 경우 수정 및 삭제 버튼을 표시
 	    if (sessionMemberNumber == boardDto.getMemberNumber()
 	    		|| sessionMemberNumber == 0) {
 	        model.addAttribute("canEdit", true);
