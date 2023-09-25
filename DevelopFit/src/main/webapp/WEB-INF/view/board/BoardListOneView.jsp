@@ -221,7 +221,6 @@
 			<input type="hidden" name='boardNumber' value="${boardDto.boardNumber}">
 			<input type="hidden" name='memberNumber' value="${member.memberNumber}">
 			<textarea rows="1" cols="20" name="commentContent" id="commentInsert">
-			${commentDto.commentContent}
 			</textarea>	
 			<input type="submit" id="addButton" value="등록">
 		</form>
@@ -244,13 +243,13 @@
 							<input type="submit" id="commentDelete" value="삭제">
 					</form>
 				</c:if>
-				
 			    	
 			    <c:if test="${commentDto.memberNumber == member.memberNumber || member.memberNumber == 0}">
-			    	<form action='./commentUpdateCtr.do' method='post' name="updateForm">
+			    	<form action='./commentUpdate.do' method='post' name="updateForm">
 						<input type="hidden" name='commentNumber' value='${commentDto.commentNumber}'>
 						<input type="hidden" name='memberNumber' value= '${member.memberNumber}'>
 						<input type="hidden" name="boardNumber" value="${commentDto.boardNumber}">
+						<input type="hidden" name="commentContent" value="${commentDto.commentContent}">
 						<input type="submit" id="commentUpdate" value="수정">
 					</form>
 				</c:if>

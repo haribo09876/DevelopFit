@@ -46,18 +46,17 @@
 	<update id="commentUpdateOne" parameterType="commentDto">
 		UPDATE POST_COMMENT
  		<set>
- 			<if test="commentContent != null">#{commentContent} = POST_COMMENT_CONTENT</if>
+ 			<if test="commentContent != null">POST_COMMENT_CONTENT = #{commentContent}</if>
  		</set>
  		WHERE BOARD_NUMBER = #{boardNumber}
-		AND MEMBER_NUMBER = #{memberNumber}
-		AND POST_COMMENT_NUMBER = #{commentNumber}
+ 		AND POST_COMMENT_NUMBER = #{commentNumber}
+		
 	</update>
 		
 <!-- 	댓글 삭제 -->
 	<delete id="commentDeleteOne" parameterType="commentDto">
 		DELETE FROM POST_COMMENT
-		WHERE MEMBER_NUMBER = #{memberNumber}
-		AND POST_COMMENT_NUMBER = #{commentNumber}
+		WHERE POST_COMMENT_NUMBER = #{commentNumber}
 	</delete>
 	
 <!-- 	페이징 기능을 위한 총 댓글 수 산출 -->
