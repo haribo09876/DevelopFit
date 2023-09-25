@@ -34,6 +34,20 @@ public class CommentController {
 	private CommentService commentService;
 	
 	
+//댓글 수정 페이지로 이동
+	@RequestMapping(value = "/board/commentUpdate.do", method = RequestMethod.POST)
+	public String commentAdd(Model model, CommentDto commentDto) {
+		
+		log.debug("Welcome CommentController commentUpdate!");
+		
+		model.addAttribute(commentDto);
+		
+		return "board/CommentUpdateForm";
+//		return "redirect:/CommentUpdateForm";
+//		return "forward:/board/CommentUpdateForm";
+//		return "board/CommentUpdateForm";
+	}
+	
 //	댓글 수정
 	@RequestMapping(value = "/board/commentUpdateCtr.do", method = RequestMethod.POST)
 	public String commentUpdateCtr(CommentDto commentDto, Model model) {
@@ -44,7 +58,9 @@ public class CommentController {
 		
 		resultNum = commentService.commentUpdateOne(commentDto);
 		
-		return "common/CommentsuccessPage";
+		int boardNumber = commentDto.getBoardNumber();
+		
+		return "forward:/board/listOne.do?boardNumber=" + boardNumber;
 	}
 	
 //	댓글 추가
