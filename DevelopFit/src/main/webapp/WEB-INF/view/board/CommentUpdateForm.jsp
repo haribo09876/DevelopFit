@@ -78,6 +78,13 @@
    function pageBack(){
       history.back();
    }
+   
+   window.onload = function () {
+	   var originalString = "${commentDto.commentContent}";
+	   var trimmedString = originalString.trim();
+	   var con = document.getElementById("content");
+	   con.innerHTML = trimmedString;
+}
 </script>
 </head>
 <body>
@@ -92,7 +99,7 @@
          <input type="hidden" name='memberNumber' value= '${member.memberNumber}'>
          <input type="hidden" name="boardNumber" value="${commentDto.boardNumber}">
          <textarea rows="1" cols="50" name="commentContent" id="content" 
-         >${commentDto.commentContent}</textarea>
+         placeholder="${commentDto.commentContent}">>${commentDto.commentContent}</textarea>
          <div id="btnList">   
          <div id="pageBack" onclick="pageBack();">취소</div>
          <input type="submit" id="submit" value="저장" />

@@ -95,6 +95,14 @@
 		background-color: #0DA66E;
 	}
 </style>
+<script type="text/javascript">
+	window.onload = function () {
+	   var originalString = "${boardDto.boardContent}";
+	   var trimmedString = originalString.trim();
+	   var con = document.getElementById("content");
+	   con.innerHTML = trimmedString;
+	}
+</script>
 </head>
 <body>
 	<div id="container">

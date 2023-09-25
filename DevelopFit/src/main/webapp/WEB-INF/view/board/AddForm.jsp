@@ -85,14 +85,13 @@
 
    <div id="container">
       <div id="title">
-            <h2>글쓰기</h2>
    </div>
       <form action='./addCtr.do' id="form" method='post'>
          <input type="hidden" name='memberNumber' value= '${member.memberNumber}'>
          <input id="boardTitle" type="text" name="boardTitle" value="${boardDto.boardTitle}" placeholder="제목"><br>
          <textarea rows="1" cols="50" name="boardContent" id="content" placeholder="내용을 입력해주세요."></textarea>
          <div id="btnList">   
-             <div id="pageBack" onclick="pageBack();">취소</div>
+            <div id="pageBack" onclick="pageBack();">취소</div>
             <input type="submit" id="submit" value="저장" />
             
          </div>
