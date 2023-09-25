@@ -62,8 +62,7 @@ public class CommentController {
 //	
 //	댓글 삭제
 	@RequestMapping(value = "/board/commentDeleteCtr.do", method = RequestMethod.POST)
-	public String commentDeleteCtr(CommentDto commentDto, Model model, 
-			BoardDto boardDto) {
+	public String commentDeleteCtr(CommentDto commentDto, Model model) {
 		log.debug("Welcome CommentController CommentDelete" + commentDto);
 		
 		commentService.commentDeleteOne(commentDto);

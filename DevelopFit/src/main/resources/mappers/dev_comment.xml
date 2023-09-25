@@ -21,7 +21,7 @@
 <!--  		댓글리스트 -->
 	<select id="commentSelectList" parameterType="map" resultMap="commentResultMap">
     	SELECT PC.POST_COMMENT_CONTENT, PC.POST_COMMENT_DATE, M.MEMBER_ID
-    	, POST_COMMENT_NUMBER
+    	, POST_COMMENT_NUMBER, BOARD_NUMBER, PC.MEMBER_NUMBER
     	FROM POST_COMMENT PC JOIN MEMBER M
     	ON PC.MEMBER_NUMBER = M.MEMBER_NUMBER
     	WHERE BOARD_NUMBER = #{boardNumber}
@@ -43,10 +43,10 @@
 	
 	
 <!-- 	댓글 업데이트 -->
-	<update id="commentUpdateOne" parameterType="boardDto">
+	<update id="commentUpdateOne" parameterType="commentDto">
 		UPDATE POST_COMMENT
  		<set>
- 			<if test="commentContent != null">POST_COMMENT_CONTENT = #{commentContent}</if>
+ 			<if test="commentContent != null">#{commentContent} = POST_COMMENT_CONTENT</if>
  		</set>
  		WHERE BOARD_NUMBER = #{boardNumber}
 		AND MEMBER_NUMBER = #{memberNumber}
@@ -54,10 +54,9 @@
 	</update>
 		
 <!-- 	댓글 삭제 -->
-	<delete id="commentDeleteOne" parameterType="int">
+	<delete id="commentDeleteOne" parameterType="commentDto">
 		DELETE FROM POST_COMMENT
-		WHERE BOARD_NUMBER = #{boardNumber}
-		AND MEMBER_NUMBER = #{memberNumber}
+		WHERE MEMBER_NUMBER = #{memberNumber}
 		AND POST_COMMENT_NUMBER = #{commentNumber}
 	</delete>
 	

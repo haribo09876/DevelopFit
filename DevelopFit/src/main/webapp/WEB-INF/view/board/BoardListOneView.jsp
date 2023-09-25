@@ -128,7 +128,7 @@
 	}
 	#commentContent{
 		width: 800px;
-		height: 50px;
+		height: 80px;
 		margin-left: 200px;
 		margin-bottom: 30px;
 		margin-top: 60px;
@@ -162,8 +162,24 @@
 		float: right;
 		margin-right: 10px;
 	}
-	
+	#commentUpdate{
+		color: white;
+		background-color: #0DA66E;
+		float: right;
+		width: 60px;
+		height: 30px;
+	}
+	#commentDelete{
+		color: white;
+		background-color: #F24141;
+		float: right;
+		width: 60px;
+		height: 30px;
+		margin-right: 50px;
+	}
 </style>
+<script type="text/javascript">
+</script>
 
 </head>
 <body>
@@ -188,8 +204,8 @@
 				<form action='./delete.do' method='post'>
 					<input type="hidden" name='boardNumber' value='${boardDto.boardNumber}'>
 					<input type="hidden" name='memberNumber' value= '${member.memberNumber}'>
-					<input type="submit" id="delete" 
-					value="삭제" ${canEdit ? '' : 'style="display: none;"'}>
+					<input type="submit" id="delete" value="삭제" 
+					${canEdit ? '' : 'style="display: none;"'}>
 				</form>
 				<form action='./update.do' method='post'>
 					<input type="hidden" name='boardNumber' value='${boardDto.boardNumber}'>
@@ -215,21 +231,32 @@
 	    	<div id="commentCreateDate">작성일:	
 	    		<fmt:formatDate pattern="yyyy-MM-dd" value="${commentDto.commentCreateDate}"/>
 	    	</div>
-	    	<div id="commentContent">${commentDto.commentContent}</div>
 	    	
-	    	<form action='./commentUpdateCtr.do' method='post' name="updateForm">
-				<input type="hidden" name='commentNumber' value='${commentDto.commentNumber}'>
-				<input type="hidden" name='memberNumber' value= '${member.memberNumber}'>
-				<input type="hidden" name="boardNumber" value="${commentDto.boardNumber}">
-				<input type="submit" name="commentupdate" value="수정">
-			</form>
+	    	<div id="commentContent">${commentDto.commentContent}
+	   
+			   <c:if test="${commentDto.memberNumber == member.memberNumber || 
+			   				member.memberNumber == 0}">
+					<form action='./commentDeleteCtr.do' method='post' name="deleteForm">
+							<input type="hidden" name='commentNumber' value=
+							'${commentDto.commentNumber}'>
+							<input type="hidden" name='memberNumber' value= '${member.memberNumber}'>
+							<input type="hidden" name="boardNumber" value="${commentDto.boardNumber}">
+							<input type="submit" id="commentDelete" value="삭제">
+					</form>
+				</c:if>
+				
+			    	
+			    <c:if test="${commentDto.memberNumber == member.memberNumber || member.memberNumber == 0}">
+			    	<form action='./commentUpdateCtr.do' method='post' name="updateForm">
+						<input type="hidden" name='commentNumber' value='${commentDto.commentNumber}'>
+						<input type="hidden" name='memberNumber' value= '${member.memberNumber}'>
+						<input type="hidden" name="boardNumber" value="${commentDto.boardNumber}">
+						<input type="submit" id="commentUpdate" value="수정">
+					</form>
+				</c:if>
+			
+			</div>
 		
-			<form action='./commentDeleteCtr.do' method='post' name="deleteForm">
-					<input type="hidden" name='commentNumber' value='${commentDto.commentNumber}'>
-					<input type="hidden" name='memberNumber' value= '${member.memberNumber}'>
-					<input type="hidden" name="boardNumber" value="${commentDto.boardNumber}">
-					<input type="submit" name="commentdelete" value="삭제">
-			</form>
 		</c:forEach>
 		
 		

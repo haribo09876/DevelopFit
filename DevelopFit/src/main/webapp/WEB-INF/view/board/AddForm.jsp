@@ -7,86 +7,98 @@
 <meta charset="UTF-8">
 <title>AddForm</title>
 <style type="text/css">
-	body{
-		background-color: #101322;
-		width: 1300px;
-		height: 1300px;
-		margin: auto;
-		}
-	#container{
- 		margin: 150px 60px 50px;
-		border-color: black;
- 		background-color: #172036;
- 		height: 1200px;
- 		width: 1200px;
-	}
-	
-	#write{
-		color: white;
-		text-align: center;
-		font-size: xx-large;
-		padding-top: 50px;
-	}
-	#form{
-		height: 900px;
- 		width: 1000px;
- 		margin-left: 150px;
-	}
- 	#title{ 
- 		font-size: x-large; 
- 		width: 900px;
- 		height: 40px;
- 		margin-bottom: 70px;
- 		background-color: #273061;
-		border: none;
-		color: white;
- 	} 
- 	#content{
- 		float: left;
- 		width: 900px;
- 		height: 350px; 
- 		background-color: #273061;
- 		border: none;
- 		color: white;
- 	}
- 	#textTitle{
-		width: 100px;
-		height: 50px;
-		color: white;
-		font-size: 22px;
-		padding-top: 100px;
-	}
-	#textContent{
-		width: 100px;
-		height: 50px;
-		color: white;
-		font-size: 22px;
-	}
-	#submit{
-		margin-top:40px;
-		float: right;
-		margin-right: 95px;
-		width: 100px;
-		height: 30px;
-		color: white;
-		background-color: #0DA66E;
-	}
+   body{
+      background-color: #101322;
+      color: white;
+      }
+      #title{
+         width: 300px;
+         display: block;
+         margin: 0 auto;
+         text-align: center;
+         margin-top: 30px;
+      }
+      #container{
+         width: 900px;
+         display: block;
+         margin: 0 auto;
+      }
+      #boardTitle{
+         width: 900px;
+         height: 30px;
+         margin-top: 30px;
+         border-radius: 6px;
+         border: none;
+	     background-color: #172036;
+	     padding-left: 10px;
+	     color: white;
+      }
+      #content{
+         width: 900px;
+         height: 400px;
+         margin-top: 10px;
+         border-radius: 6px;
+         border: none;
+	     background-color: #172036;
+	     padding-left: 10px;
+	     color: white;
+      }
+      #btnList{
+         width: 210px;
+         height: 42px;
+         float: right;
+      }
+      #submit {
+      width: 100px;
+      height: 42px;
+      margin-top: 20px;
+      border-radius: 6px;
+      border: 2px solid #0E7356;
+      background-color: #0E7356;
+      color: white;
+      font-size: 14px;
+      float: left;
+   }
+   #pageBack{
+      width: 96px;
+      height: 38px;
+      text-align: center;
+      line-height: 38px;
+      margin-top: 20px;
+      margin-left: 10px;
+      border-radius: 6px;
+      border: 2px solid #F24141;
+      background-color: #F24141;
+      color: white;
+      font-size: 14px;
+      float: right;
+   }
 </style>
+<script type="text/javascript">
+   function pageBack(){
+      history.back();
+   }
+</script>
 </head>
 <body>
-	<div id="container">
-		<div id="write">글쓰기</div>
-		<form action='./addCtr.do' id="form" method='post'>
-			<input type="hidden" name='memberNumber' value= '${member.memberNumber}'>
-			<div id="textTitle">제목:			</div>
-			<input id="title" type="text" name="boardTitle" value="${boardDto.boardTitle}"> 
-			<div id="textContent">내용:		</div>
-			<textarea rows="1" cols="50" name="boardContent" id="content">${boardDto.boardContent}
-			</textarea>	
-			<input type="submit" id="submit" value="저장" />
-		</form>	
-		
-	</div>	
-	
+   <jsp:include page="/WEB-INF/view/Header.jsp" />
+
+   <div id="container">
+      <div id="title">
+            <h2>글쓰기</h2>
+   </div>
+      <form action='./addCtr.do' id="form" method='post'>
+         <input type="hidden" name='memberNumber' value= '${member.memberNumber}'>
+         <input id="boardTitle" type="text" name="boardTitle" value="${boardDto.boardTitle}" placeholder="제목"><br>
+         <textarea rows="1" cols="50" name="boardContent" id="content" placeholder="내용을 입력해주세요."></textarea>
+         <div id="btnList">   
+             <div id="pageBack" onclick="pageBack();">취소</div>
+            <input type="submit" id="submit" value="저장" />
+            
+         </div>
+      </form>   
+      
+   </div>   
+   
 </body>
-</html>	 	
+</html> 

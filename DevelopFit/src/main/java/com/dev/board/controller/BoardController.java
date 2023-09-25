@@ -62,7 +62,7 @@ public class BoardController {
 	//게시글 상세 페이지(댓글 포함)
 	@RequestMapping(value = "/board/listOne.do", method = {RequestMethod.GET, RequestMethod.POST})
 	public String boardListOne(@RequestParam("boardNumber") int boardNumber, Model model
-			,HttpSession session) {
+			,HttpSession session, CommentDto commentDto) {
 		log.debug("Welcome BoardController boardListOne! - {}" + boardNumber);
 		
 		BoardDto boardDto = boardService.boardSelectOne(boardNumber);
