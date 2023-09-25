@@ -63,8 +63,6 @@ public class MemberController {
 
 			if (memberDto.getMemberId().equals("admin1") && memberDto.getMemberPassword().equals("admin1")) {
 				viewUrl = "redirect:/member/list.do";
-			} 
-
 				viewUrl = "redirect:/board/list.do";
 				viewUrl = "redirect:/movie/list.do";
 			} else if (memberDto.getMemberId().equals("aa")) {
@@ -73,9 +71,10 @@ public class MemberController {
 				viewUrl = "redirect:/board/list.do";
 			} else if (memberDto.getMemberId().equals("dd")) {
 				viewUrl = "redirect:/movie/list.do";
+			}
 			} else {
 				viewUrl = "/auth/LoginFail";
-		}
+			}
 		return viewUrl;
 	}
 
