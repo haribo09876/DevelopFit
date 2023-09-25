@@ -21,7 +21,13 @@ public class OrderDaoImpl implements OrderDao{
 		
 		return sqlSession.selectList("com.dev.order.selectBasketList", memberNumber);
 	}
-
+	
+	@Override
+	public OrderDto selectProduct(int movieNumber) {
+		// TODO Auto-generated method stub
+		return sqlSession.selectOne("com.dev.order.selectProduct", movieNumber);
+	}
+	
 	@Override
 	public List<OrderDto> selectOrderHistory(int no) {
 		// TODO Auto-generated method stub

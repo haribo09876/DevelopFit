@@ -8,6 +8,8 @@ public interface OrderDao {
 
 	List<OrderDto> selectBasketList(int memberNumber);
 
+	OrderDto selectProduct(int movieNumber);
+	
 	List<OrderDto> selectOrderHistory(int no);
 	
 	void deleteBasket(int no);

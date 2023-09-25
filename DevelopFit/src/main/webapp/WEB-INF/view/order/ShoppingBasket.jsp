@@ -76,12 +76,12 @@
 		
 		if (checkStr() == "") {
 			alert("상품을 선택해주세요.");
-		} else if (checkStr() != ""){
-			if(customerAgreeFnc() == true){
+		} else if (checkStr() != "") {
+			if(customerAgreeFnc()){
 				formObj.setAttribute("method", "post");
-				formObj.setAttribute("action", "./successCtr.do");
+				formObj.setAttribute("action", "./payment.do");
 				formObj.submit();
-			} else if(customerAgreeFnc() == false) {
+			} else if(!customerAgreeFnc()) {
 				alert("필수동의를 체크해주세요.");
 			}
 			
@@ -163,17 +163,13 @@ h1 {
 	cursor: pointer;
 }
 
-#productInfo {
-	display: inline-block;
-}
-
-#payWrap {
+#orderWrap {
 	width: 900px;
 	height: auto;
 	margin: 50px auto;
 }
 
-#payDetail {
+#orderDetail {
 	width: 830px;
 	height: 90px;
 	background-color: #172036;
@@ -220,17 +216,14 @@ h1 {
 	float: left;
 }
 
-.productInfo {
-	display: inline-block;
-	float: left;
-}
-
 .productName {
 	width: 380px;
 	height: 150px;
 	margin: 0px 10px 10px 16px;
 	float: left;
 	display: inline-block;
+/* 	line-height: 150px; */
+	text-align: center;
 }
 
 .productPrice {
@@ -314,7 +307,7 @@ p {
 	margin-left: 30px;
 }
 
-#payment {
+#orderPrice {
 	width: 700px;
 	height: 30px;
 	display: inline-block;
@@ -374,8 +367,6 @@ input[name=agree] {
 								</div>
 								<div class="productName">
 									<h2>${basketList.movieTitle}</h2>
-									<br />
-									<p>${basketList.movieSummary}</p>
 								</div>
 								<div class="productOtherInfo">
 									<h4>개봉일</h4>
@@ -410,12 +401,12 @@ input[name=agree] {
 
 
 
-				<!-- 	결제정보 -->
-				<div id="payWrap">
-					<h1>결제정보</h1>
-					<div id="payDetail">
-						<div id="payment">
-							<h4 id="payAmount">결제금액</h4>
+				<!-- 	주문금액 -->
+				<div id="orderWrap">
+					<h1>주문금액</h1>
+					<div id="orderDetail">
+						<div id="orderPrice">
+							<h4 id="payAmount">주문금액</h4>
 							<p id="totalPrice">0원</p>
 						</div>
 						<div id="consentOrder">
@@ -431,7 +422,7 @@ input[name=agree] {
 				<!-- 	구매취소버튼 -->
 				<div id="selectWrap">
 					<div id="cancel" onclick="이전페이지">취소</div>
-					<div id="buy" onclick="buyFnc();">구매</div>
+					<div id="buy" onclick="buyFnc();">주문</div>
 				</div>
 			</c:when>
 

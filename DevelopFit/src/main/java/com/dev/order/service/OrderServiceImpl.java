@@ -26,6 +26,12 @@ public class OrderServiceImpl implements OrderService{
 	}
 
 	@Override
+	public OrderDto selectProduct(int movieNumber) {
+		// TODO Auto-generated method stub
+		return orderDao.selectProduct(movieNumber);
+	}
+	
+	@Override
 	public List<OrderDto> selectOrderHistory(int no) {
 		// TODO Auto-generated method stub
 		log.info("Welcome OrderServiceImpl selectOrderHistory!");
@@ -43,7 +49,5 @@ public class OrderServiceImpl implements OrderService{
 		// TODO Auto-generated method stub
 		orderDao.insertOrderHistory(memberNumber, movieNumber);
 	}
-
-	
 
 }

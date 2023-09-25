@@ -1,5 +1,6 @@
 package com.dev.order.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.http.HttpSession;
@@ -12,7 +13,6 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.dev.member.dto.MemberDto;
 import com.dev.order.dto.OrderDto;
@@ -65,21 +65,50 @@ public class OrderController {
 	
 	// 결제 페이지
 	@RequestMapping(value = "/order/payment.do", method = {RequestMethod.GET, RequestMethod.POST})
-	public String payment(HttpSession session, Model model) {
+	public String payment(HttpSession session, @RequestParam List<String> product, Model model) {
 	    // Log4j
-	    log.info("Welcome OrderController success Page!");
+	    log.info("Welcome OrderController payment Page! {}", product);
+
+	    try {
+		    List<OrderDto> productList = new ArrayList<OrderDto>();
+		    
+	    	for (int i = 0; i < product.size(); i++) {
+		    	productList.add(orderService.selectProduct(Integer.parseInt(product.get(i))));
+			}
+	    	
+		    model.addAttribute("productList", productList);
+		    
+		    return "order/OrderPayment";
+		} catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
+			return "redirect:/auth/login.do";
+		}
 	    
-		return "order/OrderPayment";
 	}
 	
 	
 	// 결제하기
 	@RequestMapping(value = "/order/paymentCtr.do", method = {RequestMethod.GET, RequestMethod.POST})
-	public String paymentCtr(HttpSession session, Model model) {
+	public String paymentCtr(HttpSession session, int calResult, @RequestParam List<String> product, Model model) {
 	    // Log4j
-	    log.info("Welcome OrderController success Page!");
+	    log.info("Welcome OrderController paymentCtr!");
 	    
-		return "order/OrderPayment";
+	    try {
+	    	MemberDto memberDto = (MemberDto)session.getAttribute("member");
+	    	
+	    	for (int i = 0; i < product.size(); i++) {
+		    	orderService.deleteBasket(Integer.parseInt(product.get(i)));
+		    	orderService.insertOrderHistory(memberDto.getMemberNumber(), Integer.parseInt(product.get(i)));
+			}
+	    	
+	    	return "redirect:success.do";
+		} catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
+			return "redirect:/auth/login.do";
+		}
+	    
 	}
 	
 	// 주문 성공 페이지
@@ -105,7 +134,6 @@ public class OrderController {
 	public String successCtr(HttpSession session, String product, Model model) {
 	    // Log4j
 	    log.info("Welcome OrderController success! successCtr");
-	    
 	    
 	    String[] productArr = product.split(",");
 	    
