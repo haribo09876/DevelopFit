@@ -17,12 +17,13 @@ public class MemberDto {
 	String memberGender;
 	Date memberCreateDate;
 	Date memberModifyDate;
-
-
+	
+	
 	public MemberDto() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
+
 
 	public MemberDto(int memberNumber, String memberId, String memberPassword, String memberName, String memberEmail,
 			Date memberBirthDate, String memberPhoneNumber, String memberGender, Date memberCreateDate,
@@ -40,86 +41,114 @@ public class MemberDto {
 		this.memberModifyDate = memberModifyDate;
 	}
 
+
 	public int getMemberNumber() {
 		return memberNumber;
 	}
 
-	public void setMember_number(int memberNumber) {
+
+	public void setMemberNumber(int memberNumber) {
 		this.memberNumber = memberNumber;
 	}
+
 
 	public String getMemberId() {
 		return memberId;
 	}
 
+
 	public void setMemberId(String memberId) {
 		this.memberId = memberId;
 	}
+
 
 	public String getMemberPassword() {
 		return memberPassword;
 	}
 
+
 	public void setMemberPassword(String memberPassword) {
 		this.memberPassword = memberPassword;
 	}
+
 
 	public String getMemberName() {
 		return memberName;
 	}
 
+
 	public void setMemberName(String memberName) {
 		this.memberName = memberName;
 	}
+
 
 	public String getMemberEmail() {
 		return memberEmail;
 	}
 
+
 	public void setMemberEmail(String memberEmail) {
 		this.memberEmail = memberEmail;
 	}
+
 
 	public Date getMemberBirthDate() {
 		return memberBirthDate;
 	}
 
+
 	public void setMemberBirthDate(Date memberBirthDate) {
 		this.memberBirthDate = memberBirthDate;
 	}
+
 
 	public String getMemberPhoneNumber() {
 		return memberPhoneNumber;
 	}
 
+
 	public void setMemberPhoneNumber(String memberPhoneNumber) {
 		this.memberPhoneNumber = memberPhoneNumber;
 	}
+
 
 	public String getMemberGender() {
 		return memberGender;
 	}
 
+
 	public void setMemberGender(String memberGender) {
 		this.memberGender = memberGender;
 	}
+
 
 	public Date getMemberCreateDate() {
 		return memberCreateDate;
 	}
 
+
 	public void setMemberCreateDate(Date memberCreateDate) {
 		this.memberCreateDate = memberCreateDate;
 	}
+
 
 	public Date getMemberModifyDate() {
 		return memberModifyDate;
 	}
 
+
 	public void setMemberModifyDate(Date memberModifyDate) {
 		this.memberModifyDate = memberModifyDate;
 	}
-	
+
+
+	@Override
+	public String toString() {
+		return "MemberDto [memberNumber=" + memberNumber + ", memberId=" + memberId + ", memberPassword="
+				+ memberPassword + ", memberName=" + memberName + ", memberEmail=" + memberEmail + ", memberBirthDate="
+				+ memberBirthDate + ", memberPhoneNumber=" + memberPhoneNumber + ", memberGender=" + memberGender
+				+ ", memberCreateDate=" + memberCreateDate + ", memberModifyDate=" + memberModifyDate + "]";
+	}
 	
 }
 
