@@ -13,6 +13,7 @@
 		<result column="MEMBER_EMAIL" property="memberEmail" />
 		<result column="MEMBER_BIRTH_DATE" property="memberBirthDate" javaType="java.sql.Date" />
 		<result column="MEMBER_PHONE_NUMBER" property="memberPhoneNumber" />
+		<result column="MEMBER_MONEY" property="memberMoney" />
 		<result column="MEMBER_GENDER" property="memberGender" />
 		<result column="MEMBER_CREATE_DATE" property="memberCreateDate" javaType="java.sql.Date" />
 		<result column="MEMBER_MODIFY_DATE" property="memberModifyDate" javaType="java.sql.Date" />
@@ -24,7 +25,7 @@
 <!-- 	로그인 기능 구현 -->
 	<select id="memberExist" parameterType="map"
 		resultMap="memberResultMap">
-		SELECT MEMBER_NUMBER, MEMBER_ID, MEMBER_PASSWORD, MEMBER_NAME, MEMBER_EMAIL, MEMBER_PHONE_NUMBER, MEMBER_GENDER, MEMBER_BIRTH_DATE, MEMBER_MODIFY_DATE, MEMBER_CREATE_DATE
+		SELECT MEMBER_NUMBER, MEMBER_ID, MEMBER_PASSWORD, MEMBER_NAME, MEMBER_EMAIL, MEMBER_PHONE_NUMBER, MEMBER_MONEY, MEMBER_GENDER, MEMBER_BIRTH_DATE, MEMBER_MODIFY_DATE, MEMBER_CREATE_DATE
 		FROM MEMBER
 		WHERE MEMBER_ID = #{memberId} AND MEMBER_PASSWORD = #{memberPassword}
 	</select>
