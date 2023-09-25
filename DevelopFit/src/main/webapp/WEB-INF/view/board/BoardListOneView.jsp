@@ -221,7 +221,6 @@
 			<input type="hidden" name='boardNumber' value="${boardDto.boardNumber}">
 			<input type="hidden" name='memberNumber' value="${member.memberNumber}">
 			<textarea rows="1" cols="20" name="commentContent" id="commentInsert">
-			${commentDto.commentContent}
 			</textarea>	
 			<input type="submit" id="addButton" value="등록">
 		</form>

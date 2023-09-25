@@ -60,7 +60,8 @@ public class CommentController {
 		
 		int boardNumber = commentDto.getBoardNumber();
 		
-		return "forward:/board/listOne.do?boardNumber=" + boardNumber;
+		return "redirect:/board/listOne.do?boardNumber=" + boardNumber;
+//		return "forward:/board/listOne.do?boardNumber=" + boardNumber;
 	}
 	
 //	댓글 추가
