@@ -35,19 +35,31 @@ public class OrderDaoImpl implements OrderDao{
 	}
 
 	@Override
-	public void deleteBasket(int no) {
+	public void deleteBasket(int movieNumber) {
 		// TODO Auto-generated method stub
-		sqlSession.delete("com.dev.order.deleteBasket", no);
+		sqlSession.delete("com.dev.order.deleteBasket", movieNumber);
 	}
 
 	@Override
-	public void insertOrderHistory(int memberNumber, int movieNumber) {
+	public void insertOrderHistory(int memberNumber) {
+		// TODO Auto-generated method stub
+		sqlSession.insert("com.dev.order.insertOrderHistory", memberNumber);
+	}
+	
+	@Override
+	public void insertOrderProduct(int movieNumber) {
+		// TODO Auto-generated method stub
+		sqlSession.insert("com.dev.order.insertOrderProduct", movieNumber);
+	}
+
+	@Override
+	public void updateMemberMoney(int memberNumber, int memberMoney) {
 		// TODO Auto-generated method stub
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("memberNumber", memberNumber);
-		map.put("movieNumber", movieNumber);
+		map.put("memberMoney", memberMoney);
 		
-		sqlSession.insert("com.dev.order.insertOrderHistory", map);
+		sqlSession.update("com.dev.order.updateMemberMoney", map);
 	}
 
 }

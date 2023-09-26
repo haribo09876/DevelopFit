@@ -7,6 +7,7 @@
 	<resultMap type="orderDto" id="orderResultMap">
 		<id column="MEMBER_NUMBER" property="memberNumber" />
 		<result column="MEMBER_ID" property="memberId" />
+		<result column="MEMBER_MONEY" property="memberMoney" />
 		<result column="MOVIE_NUMBER" property="movieNumber" />
 		<result column="MOVIE_TITLE" property="movieTitle" />
 		<result column="MOVIE_SUMMARY" property="movieSummary" />
@@ -18,6 +19,8 @@
 		<result column="ORDER_HISTORY_TIME" property="orderHistoryTime" />
 	</resultMap>
 	
+	
+<!-- 	장바구니리스트 가져오기 -->
 	<select id="selectBasketList" parameterType="int" resultMap="orderResultMap">
 		SELECT MV.MOVIE_NUMBER, MV.MOVIE_TITLE, MV.MOVIE_PRICE, MV.MOVIE_POSTER, MV.MOVIE_SUMMARY
 			, MV.MOVIE_RUNTIME, MV.MOVIE_RELEASE_DATE
@@ -28,6 +31,8 @@
 		WHERE M.MEMBER_NUMBER = #{memberNumber}
 	</select>
 	
+	
+<!-- 	선택제품 가져오기 -->
 	<select id="selectProduct" parameterType="int" resultMap="orderResultMap">
 		SELECT MV.MOVIE_NUMBER, MV.MOVIE_TITLE, MV.MOVIE_PRICE, MV.MOVIE_POSTER, MV.MOVIE_SUMMARY
 			, MV.MOVIE_RUNTIME, MV.MOVIE_RELEASE_DATE
@@ -38,31 +43,50 @@
 		WHERE MV.MOVIE_NUMBER = #{movieNumber}
 	</select>
 	
+	
+<!-- 	제품 삭제하기 -->
 	<delete id="deleteBasket" parameterType="int">
 		DELETE FROM BASKET
 		WHERE MOVIE_NUMBER = #{movieNumber}
 	</delete>
 	
-	<insert id="insertOrderHistory" parameterType="map">
-<!-- 		INSERT ALL -->
-<!--     		INTO ORDER_HISTORY -->
-<!-- 		    VALUE(ORDER_HISTORY_NUMBER, ORDER_HISTORY_TIME, MEMBER_NUMBER) -->
-<!-- 		    VALUES(ORDER_HISTORY_NUMBER_SEQ.NEXTVAL, SYSDATE, #{memberNumber}) -->
-<!-- 		    INTO ORDER_PRODUCT -->
-<!-- 		    VALUE(ORDER_PRODUCT_NUMBER, ORDER_HISTORY_NUMBER, MOVIE_NUMBER) -->
-<!-- 		    VALUES(ORDER_PRODUCT_NUMBER_SEQ.NEXTVAL, ORDER_HISTORY_NUMBER_SEQ.NEXTVAL, #{movieNumber}) -->
-<!-- 		SELECT * FROM DUAL -->
-		
-		INSERT ALL
-		    INTO ORDER_HISTORY
-		    (order_history_number, order_history_time, member_number)
-		    VALUES(ORDER_HISTORY_NUMBER_SEQ.NEXTVAL, SYSDATE, #{memberNumber})
-		    INTO ORDER_PRODUCT
-		    (order_product_number, order_history_number, movie_number)
-		    VALUES(ORDER_PRODUCT_NUMBER_SEQ.NEXTVAL, ORDER_HISTORY_NUMBER_SEQ.NEXTVAL, #{movieNumber})
-		SELECT * FROM DUAL
+	
+<!-- 	주문내역 저장하기 -->
+	<insert id="insertOrderHistory" parameterType="int">
+		INSERT INTO ORDER_HISTORY
+		VALUE(ORDER_HISTORY_NUMBER, ORDER_HISTORY_TIME, MEMBER_NUMBER)
+		VALUES(ORDER_HISTORY_NUMBER_SEQ.NEXTVAL, SYSDATE, #{memberNumber})
+	</insert>
+<!-- 	해당 주문내역에 상품저장하기 -->
+	<insert id="insertOrderProduct" parameterType="int">
+		INSERT INTO ORDER_PRODUCT
+		VALUE(ORDER_PRODUCT_NUMBER, ORDER_HISTORY_NUMBER, MOVIE_NUMBER)
+		VALUES(ORDER_PRODUCT_NUMBER_SEQ.NEXTVAL, ORDER_HISTORY_NUMBER_SEQ.CURRVAL, #{movieNumber})
 	</insert>
 	
+	
+<!-- 	가장 최신 주문내역 가져오기 -->
+	<select id="selectLastestOrderHistory">
+		SELECT MV.MOVIE_TITLE, MV.MOVIE_PRICE, MV.MOVIE_POSTER, MV.MOVIE_SUMMARY
+			, MV.MOVIE_RUNTIME, MV.MOVIE_RELEASE_DATE
+		FROM MEMBER M JOIN ORDER_HISTORY OH
+		                ON M.MEMBER_NUMBER = OH.MEMBER_NUMBER
+		                JOIN ORDER_PRODUCT OP
+		                ON OP.ORDER_HISTORY_NUMBER = OH.ORDER_HISTORY_NUMBER
+		                JOIN MOVIE MV
+		                ON OP.MOVIE_NUMBER = MV.MOVIE_NUMBER
+		WHERE OH.ORDER_HISTORY_NUMBER = (   SELECT LASTESTNO.ORDER_HISTORY_NUMBER
+		                                    FROM (SELECT OH.ORDER_HISTORY_NUMBER
+		                                    FROM ORDER_PRODUCT OP
+		                                    JOIN ORDER_HISTORY OH
+		                                    ON OP.ORDER_HISTORY_NUMBER = OH.ORDER_HISTORY_NUMBER
+		                                    ORDER BY OP.ORDER_HISTORY_NUMBER DESC) LASTESTNO
+		                                    WHERE ROWNUM = 1)
+		AND M.MEMBER_NUMBER = #{memberNumber}
+	</select>
+	
+	
+<!-- 	전체 주문내역 가져오기 -->
 	<select id="selectOrderHistory" parameterType="int" resultMap="orderResultMap">
 		SELECT OH.ORDER_HISTORY_NUMBER, M.MEMBER_ID, MV.MOVIE_TITLE, OH.ORDER_HISTORY_TIME
 		FROM MEMBER M JOIN ORDER_HISTORY OH
@@ -74,6 +98,11 @@
 		WHERE M.MEMBER_NUMBER = #{memberNumber}
 	</select>
 	
-	
+<!-- 	유저 머니 갱신 -->
+	<update id="updateMemberMoney" parameterType="map">
+		UPDATE MEMBER
+		SET MEMBER_MONEY = #{memberMoney}
+		WHERE MEMBER_NUMBER = #{memberNumber}
+	</update>
 	
 </mapper>

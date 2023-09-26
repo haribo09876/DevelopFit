@@ -39,15 +39,27 @@ public class OrderServiceImpl implements OrderService{
 	}
 
 	@Override
-	public void deleteBasket(int no) {
-		orderDao.deleteBasket(no);
+	public void deleteBasket(int movieNumber) {
+		orderDao.deleteBasket(movieNumber);
 		
 	}
 
 	@Override
-	public void insertOrderHistory(int memberNumber, int movieNumber) {
+	public void insertOrderHistory(int memberNumber) {
 		// TODO Auto-generated method stub
-		orderDao.insertOrderHistory(memberNumber, movieNumber);
+		orderDao.insertOrderHistory(memberNumber);
+	}
+	
+	@Override
+	public void insertOrderProduct(int movieNumber) {
+		// TODO Auto-generated method stub
+		orderDao.insertOrderProduct(movieNumber);
+	}
+
+	@Override
+	public void updateMemberMoney(int memberNumber, int memberMoney) {
+		// TODO Auto-generated method stub
+		orderDao.updateMemberMoney(memberNumber, memberMoney);
 	}
 
 }

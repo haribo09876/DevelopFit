@@ -12,8 +12,11 @@ public interface OrderService {
 	
 	List<OrderDto> selectOrderHistory(int no);
 
-	void deleteBasket(int no);
+	void deleteBasket(int movieNumber);
 	
-	void insertOrderHistory(int memberNumber, int movieNumber);
+	void insertOrderHistory(int memberNumber);
 	
+	void insertOrderProduct(int movieNumber);
+	
+	void updateMemberMoney(int memberNumber, int memberMoney);
 }

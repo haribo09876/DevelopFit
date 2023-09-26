@@ -129,19 +129,21 @@
 
 
 <script type="text/javascript">
+	
+	// 서브밋
 	function paymentFnc() {
 		var payFormObj = document.getElementById("payForm");
+		var userMoney = parseInt("${member.memberMoney}");
 		
 		if(confirm("결제하시겠습니까?") == true){
-			if(totalAmountFnc() < "${member.memberMoney}"){
-				formObj.setAttribute("method", "post");
-				formObj.setAttribute("action", "./paymentCtr.do");
-				formObj.setAttribute("calResult", calResultFnc());
+			if(totalAmountFnc() <= userMoney){
+				payFormObj.setAttribute("method", "post");
+				payFormObj.setAttribute("action", "./paymentCtr.do");
 				
-				formObj.submit();
-				
+				payFormObj.submit();
 				alert("결제되었습니다.");
-			} else if (totalAmountFnc() > "${member.memberMoney}"){
+				
+			} else if (totalAmountFnc() > userMoney){
 				alert("잔액이 부족합니다.");
 			}
 			
@@ -153,6 +155,7 @@
 		location.href = "./basket.do";
 	}
 	
+	// 결제할 금액
 	function totalAmountFnc() {
 		var totalAmount = 0;
 		
@@ -163,17 +166,20 @@
 		return totalAmount;
 	}
 	
+	//결제 후 잔액
 	function calResultFnc() {
 		var calResultObj = document.getElementById("calResult");
 		var result = 0;
 		
-		return result = "${member.memberMoney}" - totalAmountFnc();
+		return result = parseInt("${member.memberMoney}") - totalAmountFnc();
 	}
 	
 	window.onload = function() {
 		var totalPriceObj = document.getElementById("totalPrice");
 		totalPriceObj.innerHTML = totalAmountFnc() + "원";
 		
+		var balanceObj = document.getElementById("balance");
+		balanceObj.innerHTML = calResultFnc() + "원";
 		
 	}
 </script>
@@ -217,6 +223,7 @@
 					<div class="productPrice">
 						<h4>상품금액</h4>
 						<p>${productList.moviePrice}원</p>
+						<input hidden="" value="${productList.moviePrice}" name="moviePrice">
 					</div>
 				</div>
 			</c:forEach>
@@ -232,10 +239,12 @@
 				<p id="totalPrice"></p>
 			</div>
 			<div id="myMoney">
-				${member.memberMoney}원
+				<div>M Money</div>
+				<p>${member.memberMoney}원</p>
 			</div>
 			<div id="calResult">
-				
+				<div>결제 후 잔액</div>
+				<p id="balance"></p>
 			</div>
 		</div>
 		
