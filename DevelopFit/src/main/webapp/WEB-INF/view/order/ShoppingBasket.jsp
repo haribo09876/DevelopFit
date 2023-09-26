@@ -362,7 +362,7 @@ input[name=agree] {
 							<div class="productDetail">
 								<div class="productImg">
 									<a href="../movie/listOne.do?movieNumber=${basketList.movieNumber}">
-										<img class="productPoster" src="${basketList.moviePoster}" />
+										<img class="productPoster" src="${basketList.movieMainPoster}" />
 									</a>
 								</div>
 								<div class="productName">

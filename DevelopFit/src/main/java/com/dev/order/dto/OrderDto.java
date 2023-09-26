@@ -13,7 +13,7 @@ public class OrderDto {
 	String movieRuntime;
 	Date movieReleaseDate;
 	String moviePrice;
-	String moviePoster;
+	String movieMainPoster;
 	int orderHistoryNumber;
 	Date orderHistoryTime;
 	
@@ -25,7 +25,7 @@ public class OrderDto {
 
 
 	public OrderDto(int memberNumber, String memberId, int memberMoney, String movieTitle, int movieNumber,
-			String movieSummary, String movieRuntime, Date movieReleaseDate, String moviePrice, String moviePoster,
+			String movieSummary, String movieRuntime, Date movieReleaseDate, String moviePrice, String movieMainPoster,
 			int orderHistoryNumber, Date orderHistoryTime) {
 		super();
 		this.memberNumber = memberNumber;
@@ -37,7 +37,7 @@ public class OrderDto {
 		this.movieRuntime = movieRuntime;
 		this.movieReleaseDate = movieReleaseDate;
 		this.moviePrice = moviePrice;
-		this.moviePoster = moviePoster;
+		this.movieMainPoster = movieMainPoster;
 		this.orderHistoryNumber = orderHistoryNumber;
 		this.orderHistoryTime = orderHistoryTime;
 	}
@@ -133,13 +133,13 @@ public class OrderDto {
 	}
 
 
-	public String getMoviePoster() {
-		return moviePoster;
+	public String getMovieMainPoster() {
+		return movieMainPoster;
 	}
 
 
-	public void setMoviePoster(String moviePoster) {
-		this.moviePoster = moviePoster;
+	public void setMovieMainPoster(String movieMainPoster) {
+		this.movieMainPoster = movieMainPoster;
 	}
 
 
@@ -168,7 +168,7 @@ public class OrderDto {
 		return "OrderDto [memberNumber=" + memberNumber + ", memberId=" + memberId + ", memberMoney=" + memberMoney
 				+ ", movieTitle=" + movieTitle + ", movieNumber=" + movieNumber + ", movieSummary=" + movieSummary
 				+ ", movieRuntime=" + movieRuntime + ", movieReleaseDate=" + movieReleaseDate + ", moviePrice="
-				+ moviePrice + ", moviePoster=" + moviePoster + ", orderHistoryNumber=" + orderHistoryNumber
+				+ moviePrice + ", movieMainPoster=" + movieMainPoster + ", orderHistoryNumber=" + orderHistoryNumber
 				+ ", orderHistoryTime=" + orderHistoryTime + "]";
 	}
 	

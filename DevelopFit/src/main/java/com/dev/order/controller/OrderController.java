@@ -5,6 +5,7 @@ import java.util.List;
 
 import javax.servlet.http.HttpSession;
 
+import org.apache.ibatis.reflection.SystemMetaObject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -34,7 +35,7 @@ public class OrderController {
 	    
 	    try {
 	    	MemberDto memberDto = (MemberDto)session.getAttribute("member");
-		    
+		    System.out.println(memberDto.getMemberNumber());
 		    List<OrderDto> basketList = orderService.selectBasketList(memberDto.getMemberNumber()); //장바구니 목록 가져오기
 		    model.addAttribute("basketList", basketList);
 		    

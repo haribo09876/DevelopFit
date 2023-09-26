@@ -14,7 +14,7 @@
 		<result column="MOVIE_RUNTIME" property="movieRuntime" />
 		<result column="MOVIE_RELEASE_DATE" property="movieReleaseDate" />
 		<result column="MOVIE_PRICE" property="moviePrice" />
-		<result column="MOVIE_POSTER" property="moviePoster" />
+		<result column="MOVIE_MAIN_POSTER" property="movieMainPoster" />
 		<result column="ORDER_HISTORY_NUMBER" property="orderHistoryNumber" />
 		<result column="ORDER_HISTORY_TIME" property="orderHistoryTime" />
 	</resultMap>
@@ -22,7 +22,7 @@
 	
 <!-- 	장바구니리스트 가져오기 -->
 	<select id="selectBasketList" parameterType="int" resultMap="orderResultMap">
-		SELECT MV.MOVIE_NUMBER, MV.MOVIE_TITLE, MV.MOVIE_PRICE, MV.MOVIE_POSTER, MV.MOVIE_SUMMARY
+		SELECT MV.MOVIE_NUMBER, MV.MOVIE_TITLE, MV.MOVIE_PRICE, MV.MOVIE_MAIN_POSTER, MV.MOVIE_SUMMARY
 			, MV.MOVIE_RUNTIME, MV.MOVIE_RELEASE_DATE
 		FROM MEMBER M JOIN BASKET B
 		ON M.MEMBER_NUMBER = B.MEMBER_NUMBER
@@ -34,7 +34,7 @@
 	
 <!-- 	선택제품 가져오기 -->
 	<select id="selectProduct" parameterType="int" resultMap="orderResultMap">
-		SELECT MV.MOVIE_NUMBER, MV.MOVIE_TITLE, MV.MOVIE_PRICE, MV.MOVIE_POSTER, MV.MOVIE_SUMMARY
+		SELECT MV.MOVIE_NUMBER, MV.MOVIE_TITLE, MV.MOVIE_PRICE, MV.MOVIE_MAIN_POSTER, MV.MOVIE_SUMMARY
 			, MV.MOVIE_RUNTIME, MV.MOVIE_RELEASE_DATE
 		FROM MEMBER M JOIN BASKET B
 		ON M.MEMBER_NUMBER = B.MEMBER_NUMBER
@@ -67,7 +67,7 @@
 	
 <!-- 	가장 최신 주문내역 가져오기 -->
 	<select id="selectLastestOrderHistory">
-		SELECT MV.MOVIE_TITLE, MV.MOVIE_PRICE, MV.MOVIE_POSTER, MV.MOVIE_SUMMARY
+		SELECT MV.MOVIE_TITLE, MV.MOVIE_PRICE, MV.MOVIE_MAIN_POSTER, MV.MOVIE_SUMMARY
 			, MV.MOVIE_RUNTIME, MV.MOVIE_RELEASE_DATE
 		FROM MEMBER M JOIN ORDER_HISTORY OH
 		                ON M.MEMBER_NUMBER = OH.MEMBER_NUMBER
