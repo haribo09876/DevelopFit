@@ -115,8 +115,8 @@
    }
    #aTag{
       color: inherit;
-        text-decoration: none;
-        width: 300px;
+      text-decoration: none;
+      width: 300px;
       text-align: center;
       float: left;
       text-overflow: ellipsis;
@@ -138,6 +138,7 @@
        width: 60px;
        border-radius: 6px;
        border-color: #0DA66E;
+       margin-top: 30px;
     }
     #write:hover {
    opacity: .8;

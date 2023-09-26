@@ -14,11 +14,19 @@
 		height: 1300px;
 		margin: auto;
 		}
+	#supertitle{
+		width: 300px;
+		display: block;
+		margin: 0 auto;
+		text-align: center;
+		margin-top: 50px;
+		color: white;
+	}
 	#container{
- 		margin: 150px 60px 50px;
+ 		margin: 50px 60px 50px;
 		border-color: black;
  		background-color: #172036;
- 		height: 1200px;
+ 		height: 900px;
  		width: 1200px;
 	}
 	#topcontent{
@@ -105,6 +113,11 @@
 </script>
 </head>
 <body>
+
+	<jsp:include page="/WEB-INF/view/Header.jsp" />
+	
+	<div id="supertitle"><h2>게시글 수정</h2></div>
+	
 	<div id="container">
 		<div id="topcontent">
 			<div id="iddatewrap">

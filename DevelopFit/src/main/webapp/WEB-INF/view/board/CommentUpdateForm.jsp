@@ -88,12 +88,11 @@
 </script>
 </head>
 <body>
-   <jsp:include page="/WEB-INF/view/Header.jsp" />
+	<jsp:include page="/WEB-INF/view/Header.jsp" />
 
-   <div id="container">
-      <div id="title">
-            <h2>댓글수정</h2>
-   </div>
+	<div id="container">
+	<div id="title"><h2>댓글수정</h2></div>
+	
       <form action='./commentUpdateCtr.do' id="form" method='post'>
          <input type="hidden" name='commentNumber' value='${commentDto.commentNumber}'>
          <input type="hidden" name='memberNumber' value= '${member.memberNumber}'>

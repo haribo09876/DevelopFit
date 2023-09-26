@@ -72,6 +72,7 @@
  		height: 300px; 
  		margin-left: 120px;
  		margin-top: 30px;
+ 		word-break:break-all;
  	}
  	#boardhit{
  		font-size: 20px;
@@ -121,10 +122,11 @@
 	#commentCreateDate{
 		width: 330px;
 		height: 30px;
-		margin-left: 200px;
+		margin-left: 175px;
 		text-align: left;
 		float: right;
 		margin-bottom: 20px;
+		margin-right: 10px;
 	}
 	#commentContentWrap{
 		width: 800px;
@@ -140,6 +142,8 @@
 		height: 80px;
 		text-align: left;
 		margin-top: 10px;
+		float: left;
+		word-break:break-all;
 	}
 	#addForm{
 		margin-left: 200px;
@@ -180,7 +184,7 @@
 	#btnwrap{
 		margin-top: 40px;
 		width: 130px;
-		margin-left: 690px;
+		margin-left: 682px;
 	}
 </style>
 <script type="text/javascript">
@@ -188,6 +192,9 @@
 
 </head>
 <body>
+	
+	<jsp:include page="/WEB-INF/view/Header.jsp" />
+
 	<div id="container">
 		<div id="topcontent">
 			<div id="iddatewrap">

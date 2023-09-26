@@ -52,6 +52,17 @@
 	<div id="title">
 		<h1>회원목록</h1>
 	</div>
+	<div id="adminMenu">
+		<div id="adminMenu1"><a href='#'>주문내역</a></div>
+<%-- 		<div id="adminMenu2"><a href='./order/basket.do?memberNumber=${member.memberNumber}'>장바구니</a></div> --%>
+		<div id="adminMenu3"><a href='../board/list.do?memberNumber=${member.memberNumber}'>작성게시물</a></div>
+		<div id="adminMenu4"><a href='./admin.do?memberNumber=${member.memberNumber}'>회원정보</a></div>
+<%-- 		<div id="adminMenu5"><a href='./adminMemberListOneView.do?memberNumber=${member.memberNumber}'> --%>
+<!-- 			회원수정</a></div> -->
+		<div id="adminMenu6"><a href='../movie/list.do?memberNumber=${member.memberNumber}'>영화정보수정</a></div>
+<%-- 		<div><a href='./board/listOne.do?memberNumber=${member.memberNumber}'>게시물수정</a></div> --%>
+<!-- 		<div id="adminMenu8"><a href="#">상품수정</a></div> -->
+	</div>
 	
 	<table>
 		<tr id="tr-title">
@@ -71,8 +82,8 @@
 					${memberDto.memberBirthDate}
 				</td>
 				<td>
-					<a href='./listOne.do?no=${memberDto.memberNumber}' style="color: green;">[수정]</a>
-					<a href='./delete.do?no=${memberDto.memberNumber}' style="color: #F24141;">[삭제]</a>
+					<a href='./adminMemberListOneView.do?no=${memberDto.memberNumber}' style="color: green;">[수정]</a>
+					<a href='./adminDelete.do?no=${memberDto.memberNumber}' style="color: #F24141;">[삭제]</a>
 				</td>
 			</tr>
 		
@@ -86,7 +97,7 @@
 	</jsp:include>
 	
 <!-- 	정보를 넘기기 위해서 폼을 만들었다 -->
-	<form action="./list.do" id="pagingForm" method="post">
+	<form action="./admin.do" id="pagingForm" method="post">
       <input type="hidden" id="curPage" name="curPage"
          value="${pagingMap.memberPaging.curPage}">
    </form>

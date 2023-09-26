@@ -144,9 +144,13 @@ li {
          <div id="menu">
             <ul>
                <li><a href="../movie/list.do" id="menu1">홈</a></li>
-               <li><a href="#" id="menu2">추천영화</a></li>
-               <li><a href="#" id="menu3">영화전체</a></li>
-               <li><a href="../board/list.do" id="menu4">커뮤니티</a></li>
+<!--                <li><a href="#" id="menu2">추천영화</a></li> -->
+               <li><a href="#" id="menu2">영화전체</a></li>
+               <li><a href="../board/list.do" id="menu3">커뮤니티</a></li>
+<!--                관리자인 경우 관리자 메뉴 -->
+                <c:if test="${sessionScope.member.memberId eq 'admin1'}">
+                     <li><a href="../admin/admin.do" id="menu4">관리자 페이지</a></li>
+                </c:if>
             </ul>
          </div>
       </div>

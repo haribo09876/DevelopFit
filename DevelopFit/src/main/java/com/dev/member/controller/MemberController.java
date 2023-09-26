@@ -89,15 +89,7 @@ public class MemberController {
 		return "redirect:/auth/login.do";
 	}
 
-	// 관리자 페이지 이동
-	@RequestMapping(value = "/admin/admin.do", method = RequestMethod.GET)
-	public String adminPage(Model model) {
-
-		log.debug("Welcome MemberController admin!");
-
-		return "admin/admin";
-	}
-
+	
 	// 회원가입 페이지 이동
 	@RequestMapping(value = "/member/add.do", method = RequestMethod.GET)
 	public String memberAdd(Model model) {
@@ -268,5 +260,73 @@ public class MemberController {
 			memberService.memberDeleteOne(no);
 			
 		    return "redirect:/member/list.do";
+		}
+		
+		// 관리자 페이지 이동
+		@RequestMapping(value = "/admin/admin.do",
+				method = {RequestMethod.GET, RequestMethod.POST})
+		public String adminPage(@RequestParam(defaultValue = "1") int curPage, Model model) {
+
+			log.debug("Welcome MemberController admin!");
+			
+			int totalCount = memberService.memberSelectTotalCount();
+			
+			Paging memberPaging = new Paging(totalCount, curPage);
+			
+			int start = memberPaging.getPageBegin();
+			int end = memberPaging.getPageEnd();
+			
+			List<MemberDto> memberList = memberService.memberSelectList(start, end);
+			
+			HashMap<String, Object> pagingmap = new HashMap<>();
+			pagingmap.put("totalCount", totalCount);
+			pagingmap.put("memberPaging", memberPaging);
+			
+			System.out.println(totalCount);
+			System.out.println(memberPaging);
+			
+			model.addAttribute("memberList", memberList);
+			model.addAttribute("pagingMap", pagingmap);
+			
+			return "admin/AdminMemberListView";
+		}
+		
+		// 관리자 회원수정 페이지 이동
+		@RequestMapping(value = "/admin/adminMemberListOneView.do", method = RequestMethod.GET)
+		public String adminMemberListOne(int no, Model model) {
+			log.debug("Welcome MemberController adminMemberListOne! - {}", no);
+			
+			Map<String, Object> map = memberService.memberSelectOne(no);
+			
+			MemberDto memberDto = (MemberDto)map.get("memberDto");
+			memberDto.setMemberNumber(no);
+			System.out.println(memberDto.getMemberNumber());
+			model.addAttribute("memberDto", memberDto);
+			
+			return "admin/AdminMemberListOneView";
+		}
+		//관리자 회원정보 수정
+		@RequestMapping(value ="admin/adminUpdateCtr2.do", method = RequestMethod.POST)
+		public String adminUpdateCtr2(int no, MemberDto memberDto, Model model) {
+			
+			log.info("Welcome MemberController adminMemberUpdateCtr2," + no);
+			memberDto.setMemberNumber(no);
+			try {
+				memberService.memberUpdateOne2(memberDto);
+			} catch (Exception e) {
+				// TODO: handle exception
+				e.printStackTrace();
+			}
+		    return "redirect:/admin/admin.do";
+		}
+		//관리자 회원정보 삭제
+		@RequestMapping(value ="/admin/adminDelete.do", method = RequestMethod.GET)
+		public String adminDelete(int no, Model model) {
+			
+			log.info("Welcome MemberController adminmemberDelete! SUCCESS!" + no);
+
+			memberService.memberDeleteOne(no);
+			
+		    return "redirect:/admin/admin.do";
 		}
 }
