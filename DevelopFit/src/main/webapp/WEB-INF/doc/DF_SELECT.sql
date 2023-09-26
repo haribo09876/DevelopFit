@@ -9,7 +9,7 @@ ON M.MEMBER_NUMBER = PG.MEMBER_NUMBER;
 
 -- 가입자의 게시글 보기
 SELECT B.BOARD_NUMBER 게시번호, M.MEMBER_ID 작성자, B.BOARD_TITLE 제목, B.BOARD_CONTENT 내용,
-        B.BOARD_CREATE_DATE 작성일, B.BOARD_HIT 조회수
+        B.BOARD_CREATE_DATE 작성일, B.BOARD_HIT 조회수, b.member_number
 FROM MEMBER M JOIN BOARD B
 ON M.MEMBER_NUMBER = B.MEMBER_NUMBER;
 
@@ -39,20 +39,13 @@ ON PC.MEMBER_NUMBER = M.MEMBER_NUMBER;
 
 
 -- 영화 정보 보기
-SELECT m.movie_number 영화번호, m.movie_title 영화제목, m.movie_summary 줄거리, m.movie_release_date 개봉일,
-        m.movie_runtime 상영시간, m.movie_price 가격, m.movie_poster 포스터, m.movie_preview 예고편, g.genre_name 장르명
-FROM MOVIE M JOIN GENRE G
-ON M.GENRE_NUMBER = G.GENRE_NUMBER;
-
-
--- 영화 출연자 보기
-SELECT M.MOVIE_NUMBER, m.movie_title, d.director_name, a.actor_name
+SELECT M.MOVIE_NUMBER, M.MOVIE_TITLE, A.ACTOR_NAME, d.director_name
 FROM MOVIE M JOIN CAST_MEMBER CM
 ON M.MOVIE_NUMBER = CM.MOVIE_NUMBER
 JOIN DIRECTOR D
-ON CM.DIRECTOR_NUMBER = D.DIRECTOR_NUMBER
+ON D.DIRECTOR_NUMBER = M.MOVIE_NUMBER
 JOIN ACTOR A
-ON CM.ACTOR_NUMBER = A.ACTOR_NUMBER;
+ON A.ACTOR_NUMBER = CM.ACTOR_NUMBER;
 
 
 -- 회원 장바구니 보기
