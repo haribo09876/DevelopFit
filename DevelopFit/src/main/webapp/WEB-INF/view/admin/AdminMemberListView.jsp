@@ -41,8 +41,28 @@
 		text-align: center;
 	}
 	#adminMenu{
-		float: left;
+		width: 800px;
+		height: 100px;
+		text-align: center;
+		float: right;
+		border-bottom: 1px solid gray;
 	}
+	#adminMenu1{
+		font-size: 16px;
+		margin-bottom: 30px;
+	}
+	#adminMenu3{
+		font-size: 16px;
+		margin-bottom: 30px;
+	}#adminMenu4{
+		font-size: 16px;
+		margin-bottom: 30px;
+	}#adminMenu6{
+		font-size: 16px;
+		margin-bottom: 30px;
+	}
+	
+	
 </style>
 </head>
 
@@ -52,6 +72,12 @@
 	<div id="title">
 		<h1>회원목록</h1>
 	</div>
+	
+<!-- 	<ul> -->
+<!--                <li><a href="#" id="menu1" onclick="alertFnc();">홈</a></li> -->
+<!--                <li><a href="#" id="menu3" onclick="alertFnc();">영화전체</a></li> -->
+<!--                <li><a href="#" id="menu4" onclick="alertFnc();">커뮤니티</a></li> -->
+<!--             </ul> -->
 	<div id="adminMenu">
 		<div id="adminMenu1"><a href='#'>주문내역</a></div>
 <%-- 		<div id="adminMenu2"><a href='./order/basket.do?memberNumber=${member.memberNumber}'>장바구니</a></div> --%>
