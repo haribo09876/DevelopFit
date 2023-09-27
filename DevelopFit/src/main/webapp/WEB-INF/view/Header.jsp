@@ -100,6 +100,7 @@ li {
 
 #menu1:hover, #menu2:hover, #menu3:hover, #menu4:hover {
    color: #F24141;
+   text-decoration: underline;
 }
 
 #login:hover {
@@ -109,6 +110,19 @@ li {
 #logout:hover {
    border-bottom: 1px solid white;
 }
+#subMenu{
+   width: 1200px;
+   height: 50px;
+   display: block;
+   margin: 0 auto;
+}
+#submenu1{
+   width: 110px;
+   height: 50px;
+   line-height: 50px;
+   text-align: center;
+}
+
 </style>
 <script>
    function alertFnc(){
@@ -144,13 +158,9 @@ li {
          <div id="menu">
             <ul>
                <li><a href="../movie/list.do" id="menu1">홈</a></li>
-<!--                <li><a href="#" id="menu2">추천영화</a></li> -->
-               <li><a href="#" id="menu2">영화전체</a></li>
-               <li><a href="../board/list.do" id="menu3">커뮤니티</a></li>
-<!--                관리자인 경우 관리자 메뉴 -->
-                <c:if test="${sessionScope.member.memberId eq 'admin1'}">
-                     <li><a href="../admin/admin.do" id="menu4">관리자 페이지</a></li>
-                </c:if>
+               <li><a href="#" id="menu2">추천영화</a></li>
+               <li><a href="#" id="menu3">영화전체</a></li>
+               <li><a href="../board/list.do" id="menu4">커뮤니티</a></li>
             </ul>
          </div>
       </div>
@@ -173,6 +183,8 @@ li {
                onblur="this.placeholder='검색어를 입력하세요.'">
          </div>
       </c:if>
+      
+      
 
       <!--       로그인전 -->
       <c:if test="${sessionScope.member.memberId == null }">
@@ -190,6 +202,12 @@ li {
                onblur="this.placeholder='검색어를 입력하세요.'">
          </div>
       </c:if>
+      
+      
    </div>
 
 </div>
+
+<c:if test="${sessionScope.member.memberId == 'admin1' }">
+   <jsp:include page="/WEB-INF/view/adminHeader.jsp"/>
+</c:if>

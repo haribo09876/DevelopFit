@@ -61,10 +61,10 @@ public class MemberController {
 			
 			viewUrl = "redirect:/movie/list.do";
 
-			if (memberDto.getMemberId().equals("admin1") && memberDto.getMemberPassword().equals("admin1")) {
+			if (memberDto.getMemberId().equals("admin") && memberDto.getMemberPassword().equals("admin12")) {
 //				viewUrl = "redirect:/member/list.do";
-				viewUrl = "redirect:/board/list.do";
-//				viewUrl = "redirect:/movie/list.do";
+//				viewUrl = "redirect:/board/list.do";
+				viewUrl = "redirect:/movie/list.do";
 			} else if (memberDto.getMemberId().equals("aa")) {
 				viewUrl = "redirect:/order/basket.do";
 			} else if (memberDto.getMemberId().equals("ss")) {
