@@ -52,43 +52,23 @@
 	
 	
 <!-- 	주문내역 저장하기 -->
-	<insert id="insertOrderHistory" parameterType="int">
+	<insert id="insertOrderHistory" parameterType="orderDto">
 		INSERT INTO ORDER_HISTORY
 		VALUE(ORDER_HISTORY_NUMBER, ORDER_HISTORY_TIME, MEMBER_NUMBER)
-		VALUES(ORDER_HISTORY_NUMBER_SEQ.NEXTVAL, SYSDATE, #{memberNumber})
+		VALUES(#{orderHistoryNumber}, SYSDATE, #{memberNumber})
 	</insert>
 <!-- 	해당 주문내역에 상품저장하기 -->
-	<insert id="insertOrderProduct" parameterType="int">
+	<insert id="insertOrderProduct" parameterType="orderDto">
 		INSERT INTO ORDER_PRODUCT
 		VALUE(ORDER_PRODUCT_NUMBER, ORDER_HISTORY_NUMBER, MOVIE_NUMBER)
-		VALUES(ORDER_PRODUCT_NUMBER_SEQ.NEXTVAL, ORDER_HISTORY_NUMBER_SEQ.CURRVAL, #{movieNumber})
+		VALUES(ORDER_PRODUCT_NUMBER_SEQ.NEXTVAL, #{orderHistoryNumber}, #{movieNumber})
 	</insert>
 	
 	
-<!-- 	가장 최신 주문내역 가져오기 -->
-	<select id="selectLastestOrderHistory">
-		SELECT MV.MOVIE_TITLE, MV.MOVIE_PRICE, MV.MOVIE_MAIN_POSTER, MV.MOVIE_SUMMARY
-			, MV.MOVIE_RUNTIME, MV.MOVIE_RELEASE_DATE
-		FROM MEMBER M JOIN ORDER_HISTORY OH
-		                ON M.MEMBER_NUMBER = OH.MEMBER_NUMBER
-		                JOIN ORDER_PRODUCT OP
-		                ON OP.ORDER_HISTORY_NUMBER = OH.ORDER_HISTORY_NUMBER
-		                JOIN MOVIE MV
-		                ON OP.MOVIE_NUMBER = MV.MOVIE_NUMBER
-		WHERE OH.ORDER_HISTORY_NUMBER = (   SELECT LASTESTNO.ORDER_HISTORY_NUMBER
-		                                    FROM (SELECT OH.ORDER_HISTORY_NUMBER
-		                                    FROM ORDER_PRODUCT OP
-		                                    JOIN ORDER_HISTORY OH
-		                                    ON OP.ORDER_HISTORY_NUMBER = OH.ORDER_HISTORY_NUMBER
-		                                    ORDER BY OP.ORDER_HISTORY_NUMBER DESC) LASTESTNO
-		                                    WHERE ROWNUM = 1)
-		AND M.MEMBER_NUMBER = #{memberNumber}
-	</select>
-	
-	
-<!-- 	전체 주문내역 가져오기 -->
-	<select id="selectOrderHistory" parameterType="int" resultMap="orderResultMap">
-		SELECT OH.ORDER_HISTORY_NUMBER, M.MEMBER_ID, MV.MOVIE_TITLE, OH.ORDER_HISTORY_TIME
+<!-- 	주문내역 가져오기 -->
+	<select id="selectOrderHistory" parameterType="orderDto" resultMap="orderResultMap">
+		SELECT MV.MOVIE_NUMBER, MV.MOVIE_TITLE, MV.MOVIE_PRICE, MV.MOVIE_MAIN_POSTER, MV.MOVIE_SUMMARY
+			, MV.MOVIE_RUNTIME, MV.MOVIE_RELEASE_DATE, OH.ORDER_HISTORY_TIME, OH.ORDER_HISTORY_NUMBER
 		FROM MEMBER M JOIN ORDER_HISTORY OH
 		ON M.MEMBER_NUMBER = OH.MEMBER_NUMBER
 		JOIN ORDER_PRODUCT OP
@@ -96,6 +76,32 @@
 		JOIN MOVIE MV
 		ON OP.MOVIE_NUMBER = MV.MOVIE_NUMBER
 		WHERE M.MEMBER_NUMBER = #{memberNumber}
+		AND OH.ORDER_HISTORY_NUMBER = #{orderHistoryNumber}
+	</select>
+	
+	
+	<select id="selectOrderHistoryNumber" parameterType="int" resultType="int">
+		select distinct(oh.order_history_number)
+		from order_history oh join order_product op
+		on oh.order_history_number = op.order_history_number
+		join member m
+		on m.member_number = oh.member_number
+		where m.member_number = #{memberNumber}
+	</select>
+	
+	
+<!-- 	전체 주문내역 가져오기 -->
+	<select id="selectAllOrderHistoryList" parameterType="map" resultMap="orderResultMap">
+		SELECT MV.MOVIE_NUMBER, MV.MOVIE_TITLE, MV.MOVIE_PRICE, MV.MOVIE_MAIN_POSTER, MV.MOVIE_SUMMARY
+			, MV.MOVIE_RUNTIME, MV.MOVIE_RELEASE_DATE, OH.ORDER_HISTORY_TIME, OH.ORDER_HISTORY_NUMBER
+		FROM MEMBER M JOIN ORDER_HISTORY OH
+		ON M.MEMBER_NUMBER = OH.MEMBER_NUMBER
+		JOIN ORDER_PRODUCT OP
+		ON OP.ORDER_HISTORY_NUMBER = OH.ORDER_HISTORY_NUMBER
+		JOIN MOVIE MV
+		ON OP.MOVIE_NUMBER = MV.MOVIE_NUMBER
+		WHERE M.MEMBER_NUMBER = #{memberNumber}
+		AND OH.ORDER_HISTORY_NUMBER = #{orderHistoryNumber}
 	</select>
 	
 <!-- 	유저 머니 갱신 -->
@@ -104,5 +110,12 @@
 		SET MEMBER_MONEY = #{memberMoney}
 		WHERE MEMBER_NUMBER = #{memberNumber}
 	</update>
+	
+<!-- 	영화 가격 가져오기 -->
+	<select id="selectMoviePrice" parameterType="int" resultType="int">
+		SELECT M.MOVIE_PRICE
+		FROM MOVIE M
+		WHERE M.MOVIE_NUMBER = #{movieNumber}
+	</select>
 	
 </mapper>

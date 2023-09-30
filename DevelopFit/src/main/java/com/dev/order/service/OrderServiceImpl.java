@@ -1,5 +1,7 @@
 package com.dev.order.service;
 
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 
 import org.slf4j.Logger;
@@ -14,9 +16,15 @@ import com.dev.order.dto.OrderDto;
 public class OrderServiceImpl implements OrderService{
 	
 	private static final Logger log = LoggerFactory.getLogger(OrderServiceImpl.class);
+	private int orderCount = 1;
+	private String saveDate = "";
 	
 	@Autowired
 	public OrderDao orderDao;
+	
+	public void setOrderCount(int orderCount) {
+		this.orderCount = orderCount;
+	}
 	
 	@Override
 	public List<OrderDto> selectBasketList(int memberNumber) {
@@ -32,28 +40,55 @@ public class OrderServiceImpl implements OrderService{
 	}
 	
 	@Override
-	public List<OrderDto> selectOrderHistory(int no) {
+	public List<OrderDto> selectAllOrderHistoryList(int memberNumber, int orderHistoryNumber) {
 		// TODO Auto-generated method stub
 		log.info("Welcome OrderServiceImpl selectOrderHistory!");
-		return orderDao.selectOrderHistory(no);
+		return orderDao.selectAllOrderHistoryList(memberNumber, orderHistoryNumber);
 	}
 
 	@Override
-	public void deleteBasket(int movieNumber) {
-		orderDao.deleteBasket(movieNumber);
-		
-	}
-
-	@Override
-	public void insertOrderHistory(int memberNumber) {
+	public List<OrderDto> selectOrderHistory(OrderDto orderDto) {
 		// TODO Auto-generated method stub
-		orderDao.insertOrderHistory(memberNumber);
+		return orderDao.selectOrderHistory(orderDto);
 	}
 	
 	@Override
-	public void insertOrderProduct(int movieNumber) {
+	public List<Integer> selectOrderHistoryNumber(int memberNumber) {
+		return orderDao.selectOrderHistoryNumber(memberNumber);
+	}
+	
+	@Override
+	public int selectMoviePrice(int movieNumber) {
 		// TODO Auto-generated method stub
-		orderDao.insertOrderProduct(movieNumber);
+		return orderDao.selectMoviePrice(movieNumber);
+	}
+	
+	@Override
+	public void deleteBasket(int movieNumber) {
+		orderDao.deleteBasket(movieNumber);
+	}
+
+	@Override
+	public void insertOrderHistory(OrderDto orderDto) {
+		// TODO Auto-generated method stub
+		LocalDate now = LocalDate.now(); //현재날짜
+		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyMMdd"); //포맷형식
+		
+		if(!saveDate.equals(now.format(formatter))) {
+			saveDate = now.format(formatter);
+			orderCount = 1;
+			orderDto.setOrderHistoryNumber(Integer.parseInt(saveDate + String.format("%03d", orderCount++)));
+		} else {
+			orderDto.setOrderHistoryNumber(Integer.parseInt(saveDate + String.format("%03d", orderCount++)));
+		}
+		
+		orderDao.insertOrderHistory(orderDto);
+	}
+	
+	@Override
+	public void insertOrderProduct(OrderDto orderDto) {
+		// TODO Auto-generated method stub
+		orderDao.insertOrderProduct(orderDto);
 	}
 
 	@Override

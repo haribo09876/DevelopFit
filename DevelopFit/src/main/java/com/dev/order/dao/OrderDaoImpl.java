@@ -29,11 +29,32 @@ public class OrderDaoImpl implements OrderDao{
 	}
 	
 	@Override
-	public List<OrderDto> selectOrderHistory(int no) {
+	public List<OrderDto> selectAllOrderHistoryList(int memberNumber, int orderHistoryNumber) {
 		// TODO Auto-generated method stub
-		return sqlSession.selectList("com.dev.order.selectOrderHistory", no);
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("memberNumber", memberNumber);
+		map.put("orderHistoryNumber", orderHistoryNumber);
+		
+		return sqlSession.selectList("com.dev.order.selectAllOrderHistoryList", map);
 	}
 
+	@Override
+	public List<OrderDto> selectOrderHistory(OrderDto orderDto) {
+		// TODO Auto-generated method stub
+		return sqlSession.selectList("com.dev.order.selectOrderHistory", orderDto);
+	}
+	
+	@Override
+	public List<Integer> selectOrderHistoryNumber(int memberNumber) {
+		return sqlSession.selectList("com.dev.order.selectOrderHistoryNumber", memberNumber);
+	}
+	
+	@Override
+	public int selectMoviePrice(int movieNumber) {
+		// TODO Auto-generated method stub
+		return sqlSession.selectOne("com.dev.order.selectMoviePrice", movieNumber);
+	}
+	
 	@Override
 	public void deleteBasket(int movieNumber) {
 		// TODO Auto-generated method stub
@@ -41,15 +62,15 @@ public class OrderDaoImpl implements OrderDao{
 	}
 
 	@Override
-	public void insertOrderHistory(int memberNumber) {
+	public void insertOrderHistory(OrderDto orderDto) {
 		// TODO Auto-generated method stub
-		sqlSession.insert("com.dev.order.insertOrderHistory", memberNumber);
+		sqlSession.insert("com.dev.order.insertOrderHistory", orderDto);
 	}
 	
 	@Override
-	public void insertOrderProduct(int movieNumber) {
+	public void insertOrderProduct(OrderDto orderDto) {
 		// TODO Auto-generated method stub
-		sqlSession.insert("com.dev.order.insertOrderProduct", movieNumber);
+		sqlSession.insert("com.dev.order.insertOrderProduct", orderDto);
 	}
 
 	@Override
@@ -61,5 +82,6 @@ public class OrderDaoImpl implements OrderDao{
 		
 		sqlSession.update("com.dev.order.updateMemberMoney", map);
 	}
+
 
 }

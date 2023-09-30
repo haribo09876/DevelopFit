@@ -10,13 +10,19 @@ public interface OrderDao {
 
 	OrderDto selectProduct(int movieNumber);
 	
-	List<OrderDto> selectOrderHistory(int no);
+	List<OrderDto> selectAllOrderHistoryList(int memberNumber, int orderHistoryNumber);
+	
+	List<OrderDto> selectOrderHistory(OrderDto orderDto);
+	
+	List<Integer> selectOrderHistoryNumber(int memberNumber);
+	
+	int selectMoviePrice(int movieNumber);
 	
 	void deleteBasket(int movieNumber);
 	
-	void insertOrderHistory(int memberNumber);
+	void insertOrderHistory(OrderDto orderDto);
 	
-	void insertOrderProduct(int movieNumber);
+	void insertOrderProduct(OrderDto orderDto);
 	
 	void updateMemberMoney(int memberNumber, int memberMoney);
 }

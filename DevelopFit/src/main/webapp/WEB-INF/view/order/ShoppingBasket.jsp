@@ -127,7 +127,7 @@
 <style type="text/css">
 
 body {
-   background-color: #131826;
+   background-color: #101322;
    color: white;
 }
 
@@ -142,11 +142,10 @@ h1 {
 }
 
 #selectAll {
-   width: 900px;
+   width: 83px;
    height: 20px;
-   display: block;
-   margin: 0 auto;
-   text-align: right;
+   display: inline-block;
+   margin-left: 683px;
 }
 
 .productDetail {
@@ -164,6 +163,33 @@ h1 {
    cursor: pointer;
 }
 
+.productPoster {
+   width: 100px;
+   height: 150px;
+   float: left;
+}
+
+.productName {
+   width: 380px;
+   height: 150px;
+   margin: 0px 10px 10px 16px;
+   float: left;
+   display: inline-block;
+/*    line-height: 150px; */
+   text-align: center;
+}
+
+.productPrice {
+   width: 100px;
+   height: 90px;
+   margin: 0px 10px 10px 12px;
+   padding-top: 60px;
+   float: left;
+   text-align: center;
+   vertical-align: middle;
+   display: inline-block;
+}
+
 #orderWrap {
    width: 900px;
    height: auto;
@@ -176,7 +202,7 @@ h1 {
    background-color: #172036;
    border-radius: 13px;
    padding: 30px 30px 30px 40px;
-   margin-top: 30px;
+   margin-top: 10px;
    margin-bottom: 15px;
    font-size: 18px;
 }
@@ -209,33 +235,6 @@ h1 {
    text-align: center;
    cursor: pointer;
    float: right;
-}
-
-.productPoster {
-   width: 100px;
-   height: 150px;
-   float: left;
-}
-
-.productName {
-   width: 380px;
-   height: 150px;
-   margin: 0px 10px 10px 16px;
-   float: left;
-   display: inline-block;
-/*    line-height: 150px; */
-   text-align: center;
-}
-
-.productPrice {
-   width: 100px;
-   height: 90px;
-   margin: 0px 10px 10px 12px;
-   padding-top: 60px;
-   float: left;
-   text-align: center;
-   vertical-align: middle;
-   display: inline-block;
 }
 
 .productSelect {
@@ -316,7 +315,7 @@ p {
 }
 
 #consentOrder {
-   width: 500px;
+   width: 700px;
    height: 100px;
 }
 
@@ -326,6 +325,7 @@ p {
 
 #customerAgree {
    display: inline-block;
+   float: left;
 }
 
 input[name=agree] {
@@ -337,6 +337,19 @@ input[name=agree] {
    margin: 0px auto;
 }
 
+label {
+	cursor: pointer;
+	display: block;
+}
+
+input {
+	cursor: pointer;
+}
+
+#agreeBox {
+	display: inline-block;
+	margin-left: 5px;
+}
 </style>
 
 </head>
@@ -349,14 +362,14 @@ input[name=agree] {
 
    <!--    장바구니 -->
    <div id="productWrap">
-      <h3>장바구니</h3>
+      <h1>장바구니</h1>
 
       <c:choose>
          <c:when test="${not empty basketList}">
 
 
-            <div id="selectAll">
-               전체선택 <input type="checkbox" name="allCheck" onclick="checkAllFnc(); sumPriceFnc();">
+            <div id="selectAll" >
+               <label><input type="checkbox" name="allCheck" onclick="checkAllFnc(); sumPriceFnc();"> 전체선택</label>
             </div>
             
             <form id="formTag">
@@ -405,17 +418,26 @@ input[name=agree] {
 
             <!--    주문금액 -->
             <div id="orderWrap">
-               <h3>주문금액</h3>
+               <h1>주문금액</h1>
                <div id="orderDetail">
+               
                   <div id="orderPrice">
                      <h4 id="payAmount">주문금액</h4>
                      <p id="totalPrice">0원</p>
                   </div>
+
                   <div id="consentOrder">
                      <h4 id="customerAgree">주문자 동의</h4>
-                     <label><input type="checkbox" name="agree" value="주문자 동의">
-                        만 14세 이상입니다.</label>
+                     <div id="agreeBox">
+	                     <label>
+	                     	<input type="checkbox" name="agree" value="주문자 동의">만 14세 이상입니다.
+	                     </label>
+	                     <label>
+	                     	<input type="checkbox" name="agree" value="주문자 동의">7일 이내 환불 가능합니다.
+	                     </label>
+                     </div>
                   </div>
+                  
                </div>
             </div>
 
