@@ -115,9 +115,9 @@
       예고편<input type='text' name='moviePreview' id="moviePreview" value='${movieDto.moviePreview}'><br>
       
       <div id="btnList">
-         <input type='submit' value='저장하기' id="updateMovieForm">
-         <a href='./list.do' id="pageMoveList">회원목록으로</a>
-         <a href='./delete.do?movieNumber=${movieDto.movieNumber}' id="deleteBtn">삭제하기</a>
+		<a href='./list.do' id="pageMoveList">회원목록으로</a>
+		<a href='./delete.do?movieNumber=${movieDto.movieNumber}' id="deleteBtn">삭제하기</a>
+		<input type='submit' value='저장하기' id="updateMovieForm">
       </div>
    </form>
 

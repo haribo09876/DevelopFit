@@ -7,7 +7,7 @@
 		<id column="MOVIE_NUMBER" property="movieNumber" />
 		<result column="MOVIE_TITLE" property="movieTitle" />
 		<result column="MOVIE_SUMMARY" property="movieSummary" />
-		<result column="MOVIE_RELEASE_DATE" property="movieReleaseDate" />
+		<result column="MOVIE_RELEASE_DATE" property="movieReleaseDate" javaType="java.sql.Date"/>
 		<result column="MOVIE_RUNTIME" property="movieRuntime" />
 		<result column="MOVIE_PRICE" property="moviePrice" />
 		<result column="MOVIE_MAIN_POSTER" property="moviePoster" />

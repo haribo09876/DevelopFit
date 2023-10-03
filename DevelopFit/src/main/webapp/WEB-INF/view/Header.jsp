@@ -142,7 +142,7 @@ li {
          <div id="menu">
             <ul>
                <li><a href="#" id="menu1" onclick="alertFnc();">홈</a></li>
-               <li><a href="#" id="menu2" onclick="alertFnc();">추천영화</a></li>
+               <li><a href="#" id="menu2" onclick="alert('준비 중입니다');return false;">추천영화</a></li>
                <li><a href="#" id="menu3" onclick="alertFnc();">영화전체</a></li>
                <li><a href="#" id="menu4" onclick="alertFnc();">커뮤니티</a></li>
             </ul>

@@ -109,10 +109,10 @@
          <div id="pageMoveList">
             <a href='./commentList.do'>한줄평 목록으로</a>
          </div>
-         <input type='submit' value='저장하기' id='commentUpdate'>
          <div id="commentDelete">
             <a href='./commentDelete.do?lineReviewNumber=${movieDto.lineReviewNumber}'>삭제하기</a>
          </div>
+		<input type='submit' value='저장하기' id='commentUpdate'>
       </div>
    </form>
 
