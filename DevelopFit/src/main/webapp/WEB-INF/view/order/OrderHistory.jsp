@@ -91,8 +91,20 @@ body {
 	display: inline-block;
 }
 
+.confirmed {
+	width: 64px;
+	margin-left: 610px;
+	text-align: right;
+	display: inline-block;
+	float: right;
+}
+
+.orderNumberWrap {
+	width: 900px;
+}
+
 .orderNumber {
-	width: 220px;
+	width: auto;
 	display: inline-block;
 }
 
@@ -122,23 +134,35 @@ body {
 	<div id="historyWrap">
 		<h1>주문내역</h1>
 		<br>
-		<c:forEach var="historyList" items="${historyList2d}" varStatus="varStatus">
-			<div class="orderNumber">
-				<h3>주문번호 ${historyList[0].orderHistoryNumber}</h3>
+		<c:forEach var="historyList1d" items="${historyList2d}" varStatus="varStatus">
+			<div class="orderNumberWrap">
+				<div class="orderNumber">
+					<h3>주문번호 ${historyList1d[0].orderHistoryNumber}</h3>
+				</div>
+				
+				<!-- 환불날짜 계산 -->
+				<c:set var="now" value="<%=new java.util.Date()%>" />
+				<fmt:parseNumber var="today" value="${now.time}" />
+				<fmt:parseNumber var="weekAfterPurchase" value="${historyList1d[0].orderHistoryTime.time + (1000*60*60*24*7)}" />
+				
+				<!-- 7일 이내시 환불버튼 -->
+				<c:if test="${weekAfterPurchase > today and historyList1d[0].orderHistoryState eq 'N'}">
+					<div class="refund" onclick="location.href='./cancel.do?orderNumber=${historyList1d[0].orderHistoryNumber}'">환불하기</div>
+				</c:if>
+				
+				<!-- 구매 확정 -->
+				<c:if test="${weekAfterPurchase < today and historyList1d[0].orderHistoryState eq 'Y'}">
+					<div class="confirmed">구매확정</div>
+				</c:if>
+				
+				<!-- 환불 완료 -->
+				<c:if test="${historyList1d[0].orderHistoryState eq 'R'}">
+					<div class="confirmed">환불완료</div>
+				</c:if>
 			</div>
 			
-			<!-- 환불날짜 계산 -->
-			<c:set var="now" value="<%=new java.util.Date()%>" />
-			<fmt:parseNumber var="today" value="${now.time}" />
-			<fmt:parseNumber var="weekAfterPurchase" value="${historyList[0].orderHistoryTime.time + (1000*60*60*24*7)}" />
-			
-			<!-- 7일 이내시 환불버튼 -->
-			<c:if test="${weekAfterPurchase > today}">
-				<div class="refund" onclick="location.href='./cancel.do?orderNumber=${historyList[0].orderHistoryNumber}'">환불하기</div>
-			</c:if>
-			
 			<div class="orderUnit">
-				<c:forEach var="historyList" items="${historyList}" varStatus="status">
+				<c:forEach var="historyList" items="${historyList1d}" varStatus="status">
 					<div class="productDetail">
 						<div class="productImg">
 							<a href="../movie/listOne.do?movieNumber=${historyList.movieNumber}">
@@ -187,10 +211,18 @@ body {
 			
 		</c:forEach>
 		
-		
 	</div>
 	
-	
+	<div id="pagingwrap">
+      <jsp:include page="/WEB-INF/view/common/OrderHistoryPaging.jsp">
+         <jsp:param value="${pagingMap}" name="pagingMap"/>
+      </jsp:include>
+      
+      <form action="./history.do" id='pagingForm' method="post">
+         <input type="hidden" id='curPage' name='curPage' 
+            value="${pagingMap.orderHistoryPaging.curPage}">
+      </form>
+   </div>
 	
 </body>
 </html>

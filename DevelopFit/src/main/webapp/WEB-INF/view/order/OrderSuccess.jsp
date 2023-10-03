@@ -179,7 +179,7 @@ body {
 
 
 	<div id="selectWrap">
-		<div id="orderCancel" onclick="location.href='./cancel.do'">주문 취소</div>
+		<div id="orderCancel" onclick="location.href='./cancel.do?orderNumber=${orderHistory[0].orderHistoryNumber}'">주문 취소</div>
 		<div id="goOrderDetail" onclick="location.href='./history.do'">주문내역으로 이동</div>
 	</div>
 

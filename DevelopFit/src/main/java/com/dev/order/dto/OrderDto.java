@@ -16,6 +16,7 @@ public class OrderDto {
 	String movieMainPoster;
 	int orderHistoryNumber;
 	Date orderHistoryTime;
+	String orderHistoryState;
 	
 	
 	public OrderDto() {
@@ -26,7 +27,7 @@ public class OrderDto {
 
 	public OrderDto(int memberNumber, String memberId, int memberMoney, String movieTitle, int movieNumber,
 			String movieSummary, String movieRuntime, Date movieReleaseDate, String moviePrice, String movieMainPoster,
-			int orderHistoryNumber, Date orderHistoryTime) {
+			int orderHistoryNumber, Date orderHistoryTime, String orderHistoryState) {
 		super();
 		this.memberNumber = memberNumber;
 		this.memberId = memberId;
@@ -40,6 +41,7 @@ public class OrderDto {
 		this.movieMainPoster = movieMainPoster;
 		this.orderHistoryNumber = orderHistoryNumber;
 		this.orderHistoryTime = orderHistoryTime;
+		this.orderHistoryState = orderHistoryState;
 	}
 
 
@@ -163,13 +165,23 @@ public class OrderDto {
 	}
 
 
+	public String getOrderHistoryState() {
+		return orderHistoryState;
+	}
+
+
+	public void setOrderHistoryState(String orderHistoryState) {
+		this.orderHistoryState = orderHistoryState;
+	}
+
+
 	@Override
 	public String toString() {
 		return "OrderDto [memberNumber=" + memberNumber + ", memberId=" + memberId + ", memberMoney=" + memberMoney
 				+ ", movieTitle=" + movieTitle + ", movieNumber=" + movieNumber + ", movieSummary=" + movieSummary
 				+ ", movieRuntime=" + movieRuntime + ", movieReleaseDate=" + movieReleaseDate + ", moviePrice="
 				+ moviePrice + ", movieMainPoster=" + movieMainPoster + ", orderHistoryNumber=" + orderHistoryNumber
-				+ ", orderHistoryTime=" + orderHistoryTime + "]";
+				+ ", orderHistoryTime=" + orderHistoryTime + ", orderHistoryState=" + orderHistoryState + "]";
 	}
 	
 }

@@ -161,8 +161,11 @@ body {
 
 	function refundFnc() {
 		var FormObj = document.getElementById("form");
-
-		FormObj.submit();
+		
+		if(confirm("환불하시겠습니까?") == true) {
+			alert("환불되었습니다.");
+			FormObj.submit();
+		}
 	}
 </script>
 

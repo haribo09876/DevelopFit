@@ -12,9 +12,11 @@ public interface OrderService {
 	
 	List<OrderDto> selectAllOrderHistoryList(int memberNumber, int orderHistoryNumber);
 	
+	int selectOrderHistoryTotalCount(int memberNumber);
+	
 	List<OrderDto> selectOrderHistory(OrderDto orderDto);
 	
-	List<Integer> selectOrderHistoryNumber(int memberNumber);
+	List<Integer> selectOrderHistoryNumber(int memberNumber, int start, int end);
 	
 	int selectMoviePrice(int movieNumber);
 
@@ -25,4 +27,7 @@ public interface OrderService {
 	void insertOrderProduct(OrderDto orderDto);
 	
 	void updateMemberMoney(int memberNumber, int memberMoney);
+	
+	void updateOrderHistoryState(int orderHistoryNumber);
+	
 }

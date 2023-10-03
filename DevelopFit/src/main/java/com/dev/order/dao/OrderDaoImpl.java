@@ -37,7 +37,13 @@ public class OrderDaoImpl implements OrderDao{
 		
 		return sqlSession.selectList("com.dev.order.selectAllOrderHistoryList", map);
 	}
-
+	
+	@Override
+	public int selectOrderHistoryTotalCount(int memberNumber) {
+		// TODO Auto-generated method stub
+		return sqlSession.selectOne("com.dev.order.selectOrderHistoryTotalCount", memberNumber);
+	}
+	
 	@Override
 	public List<OrderDto> selectOrderHistory(OrderDto orderDto) {
 		// TODO Auto-generated method stub
@@ -45,8 +51,12 @@ public class OrderDaoImpl implements OrderDao{
 	}
 	
 	@Override
-	public List<Integer> selectOrderHistoryNumber(int memberNumber) {
-		return sqlSession.selectList("com.dev.order.selectOrderHistoryNumber", memberNumber);
+	public List<Integer> selectOrderHistoryNumber(int memberNumber, int start, int end) {
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("memberNumber", memberNumber);
+		map.put("start", start);
+		map.put("end", end);
+		return sqlSession.selectList("com.dev.order.selectOrderHistoryNumber", map);
 	}
 	
 	@Override
@@ -81,6 +91,13 @@ public class OrderDaoImpl implements OrderDao{
 		map.put("memberMoney", memberMoney);
 		
 		sqlSession.update("com.dev.order.updateMemberMoney", map);
+	}
+
+	@Override
+	public void updateOrderHistoryState(int orderHistoryNumber) {
+		// TODO Auto-generated method stub
+		
+		sqlSession.update("com.dev.order.updateOrderHistoryState", orderHistoryNumber);
 	}
 
 

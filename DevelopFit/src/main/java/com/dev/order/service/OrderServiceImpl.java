@@ -45,7 +45,13 @@ public class OrderServiceImpl implements OrderService{
 		log.info("Welcome OrderServiceImpl selectOrderHistory!");
 		return orderDao.selectAllOrderHistoryList(memberNumber, orderHistoryNumber);
 	}
-
+	
+	@Override
+	public int selectOrderHistoryTotalCount(int memberNumber) {
+		// TODO Auto-generated method stub
+		return orderDao.selectOrderHistoryTotalCount(memberNumber);
+	}
+	
 	@Override
 	public List<OrderDto> selectOrderHistory(OrderDto orderDto) {
 		// TODO Auto-generated method stub
@@ -53,8 +59,8 @@ public class OrderServiceImpl implements OrderService{
 	}
 	
 	@Override
-	public List<Integer> selectOrderHistoryNumber(int memberNumber) {
-		return orderDao.selectOrderHistoryNumber(memberNumber);
+	public List<Integer> selectOrderHistoryNumber(int memberNumber, int start, int end) {
+		return orderDao.selectOrderHistoryNumber(memberNumber, start, end);
 	}
 	
 	@Override
@@ -95,6 +101,13 @@ public class OrderServiceImpl implements OrderService{
 	public void updateMemberMoney(int memberNumber, int memberMoney) {
 		// TODO Auto-generated method stub
 		orderDao.updateMemberMoney(memberNumber, memberMoney);
+	}
+
+	@Override
+	public void updateOrderHistoryState(int orderHistoryNumber) {
+		// TODO Auto-generated method stub
+		
+		orderDao.updateOrderHistoryState(orderHistoryNumber);
 	}
 
 }

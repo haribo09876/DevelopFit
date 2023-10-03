@@ -1,7 +1,7 @@
 package com.dev.order.controller;
 
 import java.util.ArrayList;
-import java.util.Iterator;
+import java.util.HashMap;
 import java.util.List;
 
 import javax.servlet.http.HttpSession;
@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import com.dev.member.dto.MemberDto;
 import com.dev.order.dto.OrderDto;
 import com.dev.order.service.OrderService;
+import com.dev.util.Paging;
 
 @Controller
 public class OrderController {
@@ -157,29 +158,62 @@ public class OrderController {
 	
 	// 주문 전체 내역
 	@RequestMapping(value = "/order/history.do", method = {RequestMethod.GET, RequestMethod.POST})
-	public String history(HttpSession session, Model model) {
+	public String history(HttpSession session, @RequestParam(defaultValue = "1")int curPage, Model model) {
 	    // Log4j
 	    log.info("Welcome OrderController history! memberNumber:");
 	    
-	    MemberDto member = (MemberDto)session.getAttribute("member");
+//	    MemberDto member = (MemberDto)session.getAttribute("member");
+//	    
+//	    List<Integer> historyNumber = orderService.selectOrderHistoryNumber(member.getMemberNumber());
+//	    historyNumber.sort(Comparator.reverseOrder());
+//	    
+//	    List<List<OrderDto>> historyList = new ArrayList<List<OrderDto>>();
+//	    
+//	    for(int i = 0; i < historyNumber.size(); i++) {
+//	    	historyList.add(orderService.selectAllOrderHistoryList(member.getMemberNumber(), historyNumber.get(i)));
+//	    }
+//	    
+//	    model.addAttribute("historyList2d", historyList);
+	    try {
+	    	System.out.println("curPage: " + curPage);
+		    MemberDto member = (MemberDto)session.getAttribute("member");
+			
+			int totalCount = orderService.selectOrderHistoryTotalCount(member.getMemberNumber());
+			
+			Paging orderHistoryPaging = new Paging(totalCount, curPage);
+			
+			int start = orderHistoryPaging.getPageBegin();
+			int end = orderHistoryPaging.getPageEnd();
+			
+			// 주문번호 리스트
+			List<Integer> historyNumber = orderService.selectOrderHistoryNumber(member.getMemberNumber(), start, end);
+		    
+			// 주문내역 리스트
+		    List<List<OrderDto>> historyList = new ArrayList<List<OrderDto>>();
+		    
+		    for(int i = 0; i < historyNumber.size(); i++) {
+		    	historyList.add(orderService.selectAllOrderHistoryList(member.getMemberNumber(), historyNumber.get(i)));
+		    }
+		    
+		    // 페이징
+		    HashMap<String, Object> pagingMap = new HashMap<>();
+			pagingMap.put("totalCount", totalCount);
+			pagingMap.put("orderHistoryPaging", orderHistoryPaging);
+		    
+		    model.addAttribute("historyList2d", historyList);
+		    model.addAttribute("pagingMap", pagingMap);
+		    
+		    return "order/OrderHistory";
+		} catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
+			return "redirect:/auth/login.do";
+		}
 	    
-	    List<Integer> historyNumber = orderService.selectOrderHistoryNumber(member.getMemberNumber());
-	    
-	    List<List<OrderDto>> historyList = new ArrayList<List<OrderDto>>();
-	    
-	    for(int i = 0; i < historyNumber.size(); i++) {
-	    	System.out.println("historyNumber.get(i)" + historyNumber.get(i));
-	    	historyList.add(orderService.selectAllOrderHistoryList(member.getMemberNumber(), historyNumber.get(i)));
-	    }
-	    
-	    
-	    model.addAttribute("historyList2d", historyList);
-	    
-	    return "order/OrderHistory";
 	}
 	
 	
-	// 주문 취소
+	// 주문 취소 페이지
 	@RequestMapping(value = "/order/cancel.do", method = {RequestMethod.GET, RequestMethod.POST})
 	public String cancel(HttpSession session, int orderNumber, Model model) {
 	    // Log4j
@@ -205,6 +239,7 @@ public class OrderController {
 	}
 	
 	
+	// 주문 취소하기
 	@RequestMapping(value = "/order/cancelCtr.do", method = {RequestMethod.GET, RequestMethod.POST})
 	public String cancelCtr(HttpSession session, @RequestParam List<String> movieNumber, int orderHistoryNumber, Model model) {
 	    // Log4j
@@ -221,6 +256,10 @@ public class OrderController {
 		    int userMoney = member.getMemberMoney() + totalPrice;
 		    int memberNumber = member.getMemberNumber();
 		    
+		    // 주문 상태 변경
+		    orderService.updateOrderHistoryState(orderHistoryNumber);
+		    
+		    // 유저 머니 환불완료
 		    orderService.updateMemberMoney(memberNumber, userMoney);
 		    
 		    member.setMemberMoney(userMoney);
@@ -238,21 +277,73 @@ public class OrderController {
 	
 	// 머니 충전 페이지
 	@RequestMapping(value = "/order/charging.do", method = {RequestMethod.GET, RequestMethod.POST})
-	public String Charging(Model model) {
+	public String Charging(HttpSession session, Model model) {
+		log.info("Welcome OrderController charging!");
+		try {
+			return "order/OrderCharging";
+		} catch (Exception e) {
+			// TODO: handle exception
+			return "redirect:/auth/login.do";
+		}
 		
-		
-		return "order/OrderCharging";
 	}
 	
-	
+	// 머니 충전하기
+		@RequestMapping(value = "/order/chargingCtr.do", method = {RequestMethod.GET, RequestMethod.POST})
+		public String ChargingCtr(HttpSession session, int chargingMoney, Model model) {
+			log.info("Welcome OrderController chargingCtr!");
+			
+			try {
+				MemberDto member = (MemberDto)session.getAttribute("member");
+				int memberNumber = member.getMemberNumber();
+				int memberMoney = member.getMemberMoney();
+				
+				int userMoney = memberMoney + chargingMoney;
+				
+				orderService.updateMemberMoney(memberNumber, userMoney);
+				
+				member.setMemberMoney(userMoney);
+				session.setAttribute("member", member);
+				
+				return "order/ChargingSuccess";
+			} catch (Exception e) {
+				e.printStackTrace();
+				return "redirect:/auth/login.do";
+			}
+			
+		}
+		
+		
 	// 관리자 페이지
 	@RequestMapping(value = "/admin/history.do", method = {RequestMethod.GET, RequestMethod.POST})
-	public String admin(Model model) {
+	public String admin(HttpSession session, @RequestParam(defaultValue = "1") int curPage, Model model) {
 		
+		int totalCount = orderService.selectOrderHistoryTotalCount(1);
 		
-		return "order/history";
+		Paging orderHistoryPaging = new Paging(totalCount, curPage);
+		
+		int start = orderHistoryPaging.getPageBegin();
+		int end = orderHistoryPaging.getPageEnd();
+		
+		// 주문내역 리스트
+		List<Integer> historyNumber = orderService.selectOrderHistoryNumber(1, start, end);
+//	    historyNumber.sort(Comparator.reverseOrder());
+	    
+	    List<List<OrderDto>> historyList = new ArrayList<List<OrderDto>>();
+	    
+	    for(int i = 0; i < historyNumber.size(); i++) {
+	    	historyList.add(orderService.selectAllOrderHistoryList(1, historyNumber.get(i)));
+	    }
+	    
+	    // 페이징
+	    HashMap<String, Object> pagingMap = new HashMap<>();
+		pagingMap.put("totalCount", totalCount);
+		pagingMap.put("orderHistoryPaging", orderHistoryPaging);
+	    
+	    model.addAttribute("historyList2d", historyList);
+	    model.addAttribute("pagingMap", pagingMap);
+		
+		return "admin/AdminOrderHistory";
 	}
-	
-	
 	
 }

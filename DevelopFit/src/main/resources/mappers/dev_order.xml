@@ -17,6 +17,7 @@
 		<result column="MOVIE_MAIN_POSTER" property="movieMainPoster" />
 		<result column="ORDER_HISTORY_NUMBER" property="orderHistoryNumber" />
 		<result column="ORDER_HISTORY_TIME" property="orderHistoryTime" />
+		<result column="ORDER_HISTORY_STATE" property="orderHistoryState" />
 	</resultMap>
 	
 	
@@ -54,8 +55,8 @@
 <!-- 	주문내역 저장하기 -->
 	<insert id="insertOrderHistory" parameterType="orderDto">
 		INSERT INTO ORDER_HISTORY
-		VALUE(ORDER_HISTORY_NUMBER, ORDER_HISTORY_TIME, MEMBER_NUMBER)
-		VALUES(#{orderHistoryNumber}, SYSDATE, #{memberNumber})
+		VALUE(ORDER_HISTORY_NUMBER, ORDER_HISTORY_TIME, ORDER_HISTORY_STATE, MEMBER_NUMBER)
+		VALUES(#{orderHistoryNumber}, SYSDATE, 'N', #{memberNumber})
 	</insert>
 <!-- 	해당 주문내역에 상품저장하기 -->
 	<insert id="insertOrderProduct" parameterType="orderDto">
@@ -63,6 +64,14 @@
 		VALUE(ORDER_PRODUCT_NUMBER, ORDER_HISTORY_NUMBER, MOVIE_NUMBER)
 		VALUES(ORDER_PRODUCT_NUMBER_SEQ.NEXTVAL, #{orderHistoryNumber}, #{movieNumber})
 	</insert>
+	
+	
+<!-- 	주문내역 갯수 -->
+	<select id="selectOrderHistoryTotalCount" parameterType="int" resultType="int">
+		SELECT COUNT(ORDER_HISTORY_NUMBER)
+		FROM ORDER_HISTORY
+		where member_number = #{memberNumber}
+	</select>
 	
 	
 <!-- 	주문내역 가져오기 -->
@@ -79,21 +88,32 @@
 		AND OH.ORDER_HISTORY_NUMBER = #{orderHistoryNumber}
 	</select>
 	
-	
-	<select id="selectOrderHistoryNumber" parameterType="int" resultType="int">
-		select distinct(oh.order_history_number)
-		from order_history oh join order_product op
-		on oh.order_history_number = op.order_history_number
-		join member m
-		on m.member_number = oh.member_number
-		where m.member_number = #{memberNumber}
+<!-- 	주문번호 가져오기 -->
+	<select id="selectOrderHistoryNumber" parameterType="map" resultType="int">
+<!-- 		select distinct(oh.order_history_number) -->
+<!-- 		from order_history oh join order_product op -->
+<!-- 		on oh.order_history_number = op.order_history_number -->
+<!-- 		join member m -->
+<!-- 		on m.member_number = oh.member_number -->
+<!-- 		where m.member_number = #{memberNumber} -->
+
+		SELECT ORDER_HISTORY_NUMBER
+		FROM (  SELECT ROWNUM RN, ORDER_HISTORY_NUMBER
+		        FROM (  SELECT DISTINCT(OH.ORDER_HISTORY_NUMBER)
+		                FROM ORDER_HISTORY OH JOIN ORDER_PRODUCT OP
+		                ON OH.ORDER_HISTORY_NUMBER = OP.ORDER_HISTORY_NUMBER
+		                JOIN MEMBER M
+		                ON M.MEMBER_NUMBER = OH.MEMBER_NUMBER
+		                WHERE M.MEMBER_NUMBER = #{memberNumber}
+		                ORDER BY ORDER_HISTORY_NUMBER DESC))
+		WHERE RN BETWEEN #{start} AND #{end}
 	</select>
 	
 	
 <!-- 	전체 주문내역 가져오기 -->
 	<select id="selectAllOrderHistoryList" parameterType="map" resultMap="orderResultMap">
 		SELECT MV.MOVIE_NUMBER, MV.MOVIE_TITLE, MV.MOVIE_PRICE, MV.MOVIE_MAIN_POSTER, MV.MOVIE_SUMMARY
-			, MV.MOVIE_RUNTIME, MV.MOVIE_RELEASE_DATE, OH.ORDER_HISTORY_TIME, OH.ORDER_HISTORY_NUMBER
+			, MV.MOVIE_RUNTIME, MV.MOVIE_RELEASE_DATE, OH.ORDER_HISTORY_TIME, OH.ORDER_HISTORY_NUMBER, OH.ORDER_HISTORY_STATE
 		FROM MEMBER M JOIN ORDER_HISTORY OH
 		ON M.MEMBER_NUMBER = OH.MEMBER_NUMBER
 		JOIN ORDER_PRODUCT OP
@@ -104,12 +124,14 @@
 		AND OH.ORDER_HISTORY_NUMBER = #{orderHistoryNumber}
 	</select>
 	
+	
 <!-- 	유저 머니 갱신 -->
 	<update id="updateMemberMoney" parameterType="map">
 		UPDATE MEMBER
 		SET MEMBER_MONEY = #{memberMoney}
 		WHERE MEMBER_NUMBER = #{memberNumber}
 	</update>
+	
 	
 <!-- 	영화 가격 가져오기 -->
 	<select id="selectMoviePrice" parameterType="int" resultType="int">
@@ -118,4 +140,11 @@
 		WHERE M.MOVIE_NUMBER = #{movieNumber}
 	</select>
 	
+	
+<!-- 	주문 상태 변경 -->
+	<update id="updateOrderHistoryState" parameterType="int">
+		UPDATE ORDER_HISTORY
+		SET ORDER_HISTORY_STATE = 'R'
+		WHERE ORDER_HISTORY_NUMBER = #{orderHistoryNumber}
+	</update>
 </mapper>

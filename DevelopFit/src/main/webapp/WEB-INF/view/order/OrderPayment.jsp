@@ -47,7 +47,6 @@
       margin: 0px 20px 16px;
       float: left;
       display: inline-block;
-      line-height: 150px;
       text-align: center;
    }
    
@@ -125,6 +124,7 @@
    text-align: center;
    margin-right: 50px;
    float: left;
+   cursor: pointer;
    }
    
    #payment {
@@ -136,6 +136,7 @@
    border-radius: 5px;
    text-align: center;
    float: right;
+   cursor: pointer;
    }
 </style>
 
@@ -156,7 +157,9 @@
             alert("결제되었습니다.");
             
          } else if (totalAmountFnc() > userMoney){
-            alert("잔액이 부족합니다.");
+            if(confirm("잔액이 부족합니다. 충전하시겠습니까?") == true){
+            	var popup = window.open('./charging.do', '', 'width=300px,height=300px');
+            }
          }
          
       }
@@ -194,6 +197,7 @@
       balanceObj.innerHTML = calResultFnc() + "원";
       
    }
+   
 </script>
 
 
@@ -251,11 +255,11 @@
             <p id="totalPrice"></p>
          </div>
          <div id="myMoney">
-            <div>M Money</div>
+            <h4>M Money</h4>
             <p>${member.memberMoney}원</p>
          </div>
          <div id="calResult">
-            <div>결제 후 잔액</div>
+            <h4>결제 후 잔액</h4>
             <p id="balance"></p>
          </div>
       </div>

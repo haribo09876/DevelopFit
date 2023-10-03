@@ -73,7 +73,7 @@ public class MemberController {
 				viewUrl = "redirect:/movie/list.do";
 			}
 			} else {
-				viewUrl = "/auth/LoginFail";
+				viewUrl = "redirect:/auth/login.do";
 			}
 		return viewUrl;
 	}
@@ -111,7 +111,7 @@ public class MemberController {
 			e.printStackTrace();
 		}
 
-		return "/auth/LoginForm";
+		return "redirect:/auth/login.do";
 	}
 
 	// 아이디찾기 페이지 이동
