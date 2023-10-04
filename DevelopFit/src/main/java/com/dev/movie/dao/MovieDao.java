@@ -20,4 +20,5 @@ public interface MovieDao {
 	public int movieCommentUpdateOne(MovieDto movieDto);
 	public int movieCommentDeleteOne(int lineReviewNumber);
 	public int movieCommentSelectTotalCount();
+	public List<MovieDto> searchMovies(String keyword);
 }

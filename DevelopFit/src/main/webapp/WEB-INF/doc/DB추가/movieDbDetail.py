@@ -18,7 +18,6 @@ for cell in movieCd_col:
     movieCdList.append(cell.value)
 
 
-
 # movieNmList 저장
 read_xlsx = load_workbook(
     r'C:/Users/ErYK/Desktop/Coding/팀 프로젝트/DB추가/movieCdTitle.xlsx')
@@ -29,6 +28,16 @@ movieNmList = []
 for cell in movieNm_col:
     movieNmList.append(cell.value)
 
+
+# movieSummaryInfo 저장
+read_xlsx = load_workbook(
+    r'C:/Users/ErYK/Desktop/Coding/팀 프로젝트/DB추가/movieDbSecond.xlsx')
+read_sheet = read_xlsx.active
+
+movieSummaryInfo_col = read_sheet['E']
+sentences = []
+for cell in movieSummaryInfo_col:
+    sentences.append(cell.value)
 
 
 # # <영화 정보 저장>
@@ -118,7 +127,6 @@ for cell in movieNm_col:
 # wbFirst.close()
 
 
-
 # # <영화 예고편 링크 저장>
 # wbFirst = Workbook()
 # wsFirst = wbFirst.active
@@ -143,53 +151,72 @@ for cell in movieNm_col:
 # wbFirst.close()
 
 
+# # <영화 관람가 파싱 및 저장>
+# wbFirst = Workbook()
+# wsFirst = wbFirst.active
+# wsFirst.append(['관람가'])
 
-# <영화 사이드포스터, 스틸컷, 주연배우 정보 저장>
-wbFirst = Workbook()
-wsFirst = wbFirst.active
-wsFirst.append(['영화코드', '사이드포스터', '스틸컷', '주연배우'])
+# # 정규표현식을 사용하여 '관람'이 포함된 단어 추출
+# pattern = r'\b\w*관람\w*\b'
 
-browser = webdriver.Chrome()
+# for sentence in sentences:
+#     match = re.search(pattern, sentence)
+#     if match:
+#         print(match.group())
+#         wsFirst.append([match.group()])
+#     else:
+#         print("")
+#         wsFirst.append([""])
+# wbFirst.save('C:/Users/ErYK/Desktop/Coding/팀 프로젝트/DB추가/movieInfo5.xlsx')
+# wbFirst.close()
 
-for n in range(1, 3074):
-    browser.get("https://www.kobis.or.kr/kobis/business/mast/mvie/searchUserMovCdList.do")
 
-    # 영화 코드로 검색
-    try:
-        inoutObj = browser.find_element(By.NAME, "movieCd")
-        inoutObj.send_keys(movieCdList[n])
-        searchButtonObj = browser.find_element(By.XPATH, "//*[@id='searchForm']/div[1]/div[7]/button")
-        searchButtonObj.click()
-    except:
-        pass
-    time.sleep(1)
+# # <영화 사이드포스터, 스틸컷, 주연배우 정보 저장>
+# wbFirst = Workbook()
+# wsFirst = wbFirst.active
+# wsFirst.append(['영화코드', '사이드포스터', '스틸컷', '주연배우'])
 
-    # <영화 사이드포스터>
-    try:
-        for m in range(1, 6):
-            sidePosterObj = browser.find_elements(By.XPATH, "/html/body/div[2]/div[2]/div/div[1]/div[3]/div[1]/div/div/div/div[" + m + "]/a/img")
-            sidePoster = sidePosterObj.get_attribute("src")
-    except:
-        pass
+# browser = webdriver.Chrome()
 
-    # # <영화 스틸컷>
-    # try:
-    #     for l in range(1, 21):
-    #         stillImageObj = browser.find_element(By.XPATH, "/html/body/div[2]/div[2]/div/div[1]/div[4]/div[1]/div/div[1]/div/div[" + l + "]/a/img")
-    #         stillImage = stillImageObj.get_attribute("src")
-    # except:
-    #     pass
+# for n in range(1, 3074):
+#     browser.get("https://www.kobis.or.kr/kobis/business/mast/mvie/searchUserMovCdList.do")
 
-    # # <영화 주연배우>
-    # try:
-    #     for k in range(1, 11):
-    #         castObj = browser.find_element(By.XPATH, "/html/body/div[2]/div[2]/div/div[1]/div[6]/div/dl/div[2]/dd/table/tbody/tr/td/a[" + k + "]")
-    #         cast = castObj.text
-    # except:
-    #     pass
-    # time.sleep(1)
+#     # 영화 코드로 검색
+#     try:
+#         inoutObj = browser.find_element(By.NAME, "movieCd")
+#         inoutObj.send_keys(movieCdList[n])
+#         searchButtonObj = browser.find_element(By.XPATH, "//*[@id='searchForm']/div[1]/div[7]/button")
+#         searchButtonObj.click()
+#     except:
+#         pass
+#     time.sleep(1)
 
-    print(movieNmList[n], "", sidePoster)
-    wsFirst.append([movieNmList[n], sidePoster])
-    wbFirst.save('C:/Users/ErYK/Desktop/Coding/팀 프로젝트/DB추가/movieTest.xlsx')
-wbFirst.close()
+#     # <영화 사이드포스터>
+#     try:
+#         for m in range(1, 6):
+#             sidePosterObj = browser.find_elements(By.XPATH, "/html/body/div[2]/div[2]/div/div[1]/div[3]/div[1]/div/div/div/div[" + m + "]/a/img")
+#             sidePoster = sidePosterObj.get_attribute("src")
+#     except:
+#         pass
+
+#     # # <영화 스틸컷>
+#     # try:
+#     #     for l in range(1, 21):
+#     #         stillImageObj = browser.find_element(By.XPATH, "/html/body/div[2]/div[2]/div/div[1]/div[4]/div[1]/div/div[1]/div/div[" + l + "]/a/img")
+#     #         stillImage = stillImageObj.get_attribute("src")
+#     # except:
+#     #     pass
+
+#     # # <영화 주연배우>
+#     # try:
+#     #     for k in range(1, 11):
+#     #         castObj = browser.find_element(By.XPATH, "/html/body/div[2]/div[2]/div/div[1]/div[6]/div/dl/div[2]/dd/table/tbody/tr/td/a[" + k + "]")
+#     #         cast = castObj.text
+#     # except:
+#     #     pass
+#     # time.sleep(1)
+
+#     print(movieNmList[n], "", sidePoster)
+#     wsFirst.append([movieNmList[n], sidePoster])
+#     wbFirst.save('C:/Users/ErYK/Desktop/Coding/팀 프로젝트/DB추가/movieTest.xlsx')
+# wbFirst.close()

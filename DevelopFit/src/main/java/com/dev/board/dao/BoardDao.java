@@ -20,4 +20,5 @@ public interface BoardDao {
 	
 	int viewCount(int no);
 	
+	List<BoardDto> searchBoards(String keyword);
 }

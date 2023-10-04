@@ -124,11 +124,6 @@ li {
 }
 
 </style>
-<script>
-   function alertFnc(){
-      alert("로그인 후 이용 가능합니다.");
-   }
-</script>
 
 <div id="header">
 
@@ -142,7 +137,7 @@ li {
          <div id="menu">
             <ul>
                <li><a href="#" id="menu1" onclick="alertFnc();">홈</a></li>
-               <li><a href="#" id="menu2" onclick="alert('준비 중입니다');return false;">추천영화</a></li>
+               <li><a href="#" id="menu2" onclick="alertReadyFnc();">추천영화</a></li>
                <li><a href="#" id="menu3" onclick="alertFnc();">영화전체</a></li>
                <li><a href="#" id="menu4" onclick="alertFnc();">커뮤니티</a></li>
             </ul>
@@ -158,7 +153,7 @@ li {
          <div id="menu">
             <ul>
                <li><a href="../movie/list.do" id="menu1">홈</a></li>
-               <li><a href="#" id="menu2">추천영화</a></li>
+               <li><a href="#" id="menu2"  onclick="alertReadyFnc();">추천영화</a></li>
                <li><a href="#" id="menu3">영화전체</a></li>
                <li><a href="../board/list.do" id="menu4">커뮤니티</a></li>
             </ul>
@@ -168,25 +163,31 @@ li {
    
    
       <!--       로그인 성공시 -->
-      <c:if test="${sessionScope.member.memberId ne null }">
-         <div id="content-right">
-            <div id="loginout">
-               <div id="login">
-                  <a href="../member/myPage.do">${member.memberName}</a>
-               </div>
-               <div id="logout">
-                  <a href="<%=request.getContextPath()%>/auth/logout.do">로그아웃</a>
-               </div>
-            </div>
-            <input id="search" type="text" placeholder="검색어를 입력하세요."
-               onfocus="this.placeholder=''"
-               onblur="this.placeholder='검색어를 입력하세요.'">
-         </div>
-      </c:if>
-      
-      
+		<c:if test="${sessionScope.member.memberId ne null }">
+			<div id="content-right">
+				<div id="loginout">
+					<div id="login">
+						<a href="../member/myPage.do">${member.memberName}</a>
+					</div>
+					<div id="logout">
+						<a href="<%=request.getContextPath()%>/auth/logout.do">로그아웃</a>
+					</div>
+				</div>
+				<select id="searchOption">
+					<option value="all">전체</option>
+					<option value="movie">영화</option>
+					<option value="post">게시글</option>
+				</select>
+				<form id="searchForm" action="" method="post">
+					<input id="keyword" type="text" placeholder="검색어를 입력하세요."
+						onfocus="this.placeholder=''"
+						onblur="this.placeholder='검색어를 입력하세요.'" name="keyword"> <input
+						id="searchBtn" type="submit" value="검색">
+				</form>
+			</div>
+		</c:if>
 
-      <!--       로그인전 -->
+		<!--       로그인전 -->
       <c:if test="${sessionScope.member.memberId == null }">
          <div id="content-right">
             <div id="loginout">
@@ -211,3 +212,42 @@ li {
 <c:if test="${sessionScope.member.memberId == 'admin1' }">
    <jsp:include page="/WEB-INF/view/adminHeader.jsp"/>
 </c:if>
+
+<script>
+   function alertFnc(){
+      alert("로그인 후 이용 가능합니다.");
+   }
+   function alertReadyFnc(){
+		alert("준비 중입니다.");
+	}
+   
+   document.addEventListener('DOMContentLoaded', function () {
+	   var searchOption = document.getElementById('searchOption');
+	   var searchForm = document.getElementById('searchForm');
+
+	   searchForm.addEventListener('submit', function (event) {
+	      event.preventDefault(); // 폼 제출을 중단
+
+	      var selectedOption = searchOption.value;
+
+	      switch (selectedOption) {
+	         case 'movie':
+	            // 영화 옵션인 경우 영화 검색 URL로 폼 제출
+	            submitForm(searchForm, '../board/searchMoviesCtr.do');
+	            break;
+	         case 'post':
+	            // 게시글 옵션인 경우 게시글 검색 URL로 폼 제출
+	            submitForm(searchForm, '../board/searchBoardsCtr.do');
+	            break;
+	         case 'all':
+	        	submitForm(searchForm, '../board/searchAllCtr.do');
+	            break;
+	      }
+	   });
+
+	   function submitForm(form, action) {
+	      form.action = action;
+	      form.submit();
+	   }
+	});
+</script>

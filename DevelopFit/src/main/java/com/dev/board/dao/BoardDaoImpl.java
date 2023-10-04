@@ -70,4 +70,12 @@ public class BoardDaoImpl implements BoardDao{
 		
 	}
 	
+	@Override
+	public List<BoardDto> searchBoards(String keyword) {
+	    Map<String, Object> map = new HashMap<>();
+	    map.put("keyword", keyword); // 검색어를 맵에 추가
+
+	    return sqlSession.selectList("com.dev.board.searchBoards", map);
+	}
+	
 }

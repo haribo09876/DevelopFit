@@ -154,6 +154,25 @@
 <!-- 		FROM POST_COMMENT -->
 <!-- 	</select> -->
 
+<!-- 게시판 검색 -->
+<select id="searchBoards" parameterType="map" resultMap="boardResultMap">
+    SELECT C.BOARD_NUMBER, C.BOARD_TITLE, C.BOARD_CONTENT, C.MEMBER_ID,
+    C.BOARD_CREATE_DATE, C.BOARD_HIT, C.MEMBER_NUMBER
+    FROM (
+        SELECT ROWNUM AS RNUM, B.BOARD_NUMBER, B.BOARD_TITLE, B.BOARD_CONTENT,
+        M.MEMBER_ID, B.BOARD_CREATE_DATE, B.BOARD_HIT, M.MEMBER_NUMBER
+        FROM MEMBER M
+        JOIN BOARD B ON M.MEMBER_NUMBER = B.MEMBER_NUMBER
+        WHERE
+        <if test="keyword != null and keyword != ''">
+            (B.BOARD_TITLE LIKE '%' || #{keyword} || '%'
+            OR B.BOARD_CONTENT LIKE '%' || #{keyword} || '%'
+            OR M.MEMBER_ID LIKE '%' || #{keyword} || '%')
+        </if>
+        ORDER BY B.BOARD_NUMBER DESC
+    ) C
+    ORDER BY C.BOARD_NUMBER DESC
+</select>
 
 </mapper>
 

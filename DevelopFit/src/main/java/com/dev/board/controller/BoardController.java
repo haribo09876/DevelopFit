@@ -2,7 +2,6 @@ package com.dev.board.controller;
 
 import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import javax.servlet.http.HttpSession;
 
@@ -14,12 +13,12 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import com.dev.board.dto.BoardDto;
 import com.dev.board.dto.CommentDto;
 import com.dev.board.service.BoardService;
 import com.dev.board.service.CommentService;
+import com.dev.board.service.SearchService;
 import com.dev.member.dto.MemberDto;
 import com.dev.util.Paging;
 
@@ -33,6 +32,11 @@ public class BoardController {
 	
 	@Autowired
 	private CommentService commentService;
+	
+	@Autowired
+	
+	private SearchService searchService;
+	
 	
 	@RequestMapping(value = "/board/list.do",
 			method = {RequestMethod.GET, RequestMethod.POST})
@@ -208,4 +212,44 @@ public class BoardController {
 		
 	}
 	
+	//게시글검색
+	  @RequestMapping(value = "/board/searchBoardsCtr.do", 
+			  method = {RequestMethod.GET, RequestMethod.POST})
+	  	public String searchBoards(@RequestParam("keyword") String keyword, Model model) {
+		  log.debug("Welcome searchBoards! - {}" + keyword);
+		  List<Object> searchBoardsResults = searchService.searchBoards(keyword);
+
+	      model.addAttribute("searchBoardsResults", searchBoardsResults);
+
+	      return "/SearchListView";
+	    }
+	  
+	//영화검색
+	  @RequestMapping(value = "/board/searchMoviesCtr.do", 
+			  method = {RequestMethod.GET, RequestMethod.POST})
+	  	public String searchMovies(@RequestParam("keyword") String keyword, Model model) {
+		  log.debug("Welcome searchMovies! - {}" + keyword);
+		  List<Object> searchMoviesResults = searchService.searchMovies(keyword);
+
+	      model.addAttribute("searchMoviesResults", searchMoviesResults);
+
+	      return "/SearchListView";
+	    }
+	
+	//전체검색
+	  @RequestMapping(value = "/board/searchAllCtr.do", 
+			  method = {RequestMethod.GET, RequestMethod.POST})
+	  	public String searchAll(@RequestParam("keyword") String keyword, Model model) {
+		  log.debug("Welcome searchAll! - {}" + keyword);
+		  List<Object> searchBoardsResults = searchService.searchBoards(keyword);
+
+	      model.addAttribute("searchBoardsResults", searchBoardsResults);
+	      
+	      List<Object> searchMoviesResults = searchService.searchMovies(keyword);
+
+	      model.addAttribute("searchMoviesResults", searchMoviesResults);
+	      
+	      return "/SearchListView";
+	    }
+	  
 }
