@@ -98,4 +98,13 @@ public class MovieDaoImpl implements MovieDao{
 		// TODO Auto-generated method stub
 		return (int)sqlSession.selectOne("com.dev.movie.movieCommentSelectTotalCount");
 	}
+	
+	@Override
+	public List<MovieDto> searchMovies(String keyword) {
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("keyword", keyword);
+		
+		return sqlSession.selectList("com.dev.movie.searchMovies", map);
+	}
+	
 }
