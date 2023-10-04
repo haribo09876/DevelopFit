@@ -12,7 +12,8 @@
 		var formObj = document.getElementById("formTag");
 		
 		formObj.submit();
-		opener.location.reload();
+		
+		
 	}
 </script>
 

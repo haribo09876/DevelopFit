@@ -89,6 +89,7 @@ body {
 	margin-left: 610px;
 	text-align: right;
 	display: inline-block;
+	float: right;
 }
 
 .confirmed {
