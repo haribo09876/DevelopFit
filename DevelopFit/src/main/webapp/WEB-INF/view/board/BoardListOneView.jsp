@@ -96,6 +96,7 @@
 		float: left;
 		width: 60px;
 		height: 30px;
+		border-radius: 6px;
 	}
 	#delete{
 		color: white;
@@ -103,6 +104,7 @@
 		float: right;
 		width: 60px;
 		height: 30px;
+		border-radius: 6px;
 	}
 	#commentview{
 		font-size: x-large;
@@ -167,6 +169,7 @@
 		background-color: #0DA66E;
 		float: right;
 		margin-right: 10px;
+		border-radius: 6px;
 	}
 	#commentUpdate{
 		color: white;
@@ -174,18 +177,37 @@
 		width: 60px;
 		height: 30px;
 		float: left;
+		border-radius: 6px;
 	}
 	#commentDelete{
 		color: white;
 		background-color: #F24141;
 		width: 60px;
 		height: 30px;
+		border-radius: 6px;
 	}
 	#btnwrap{
 		margin-top: 40px;
 		width: 130px;
 		margin-left: 682px;
 	}
+	
+	#update:hover {
+		opacity: .8;
+	}
+	#delete:hover {
+		opacity: .8;
+	}
+	#addButton:hover {
+		opacity: .8;
+	}
+	#commentUpdate:hover {
+		opacity: .8;
+	}
+	#commentDelete:hover {
+		opacity: .8;
+	}
+	
 </style>
 <script type="text/javascript">
 </script>

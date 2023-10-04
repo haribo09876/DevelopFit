@@ -67,13 +67,13 @@ li {
 #content-right {
    width: 200px;
    float: right;
+   line-height: 100px;
 }
 
 #loginout {
    width: 208px;
    text-align: center;
    font-size: 12px;
-   margin-top: 30px;
 }
 
 #login {
@@ -123,10 +123,40 @@ li {
    text-align: center;
 }
 
+#searchwrap{
+	width: 300px;
+	height: 25px;
+	float: right;
+	margin: 10px;
+}
+
+#searchOption{
+	float: left;
+	align-content: center;
+	height: 25px;
+	border-radius: 6px;
+}
+#searchBtn{
+	float: right;
+	align-content: center;
+	height: 25px;
+	color: white;
+	background-color: #0DA66E;
+	border-radius: 6px;
+}
+
+#keyword{
+	align-content: center;
+	height: 19px;
+	border-radius: 6px;
+}
+
+#searchBtn:hover {
+   opacity: .8;
+}
 </style>
 
 <div id="header">
-
 
    <div id="header-content">
    <c:if test="${sessionScope.member.memberId == null }">
@@ -173,6 +203,8 @@ li {
 						<a href="<%=request.getContextPath()%>/auth/logout.do">로그아웃</a>
 					</div>
 				</div>
+			</div>
+			<div id="searchwrap">
 				<select id="searchOption">
 					<option value="all">전체</option>
 					<option value="movie">영화</option>
@@ -181,10 +213,10 @@ li {
 				<form id="searchForm" action="" method="post">
 					<input id="keyword" type="text" placeholder="검색어를 입력하세요."
 						onfocus="this.placeholder=''"
-						onblur="this.placeholder='검색어를 입력하세요.'" name="keyword"> <input
-						id="searchBtn" type="submit" value="검색">
+						onblur="this.placeholder='검색어를 입력하세요.'" name="keyword"> 
+					<input id="searchBtn" type="submit" value="검색">
 				</form>
-			</div>
+			</div>	
 		</c:if>
 
 		<!--       로그인전 -->
@@ -209,7 +241,7 @@ li {
 
 </div>
 
-<c:if test="${sessionScope.member.memberId == 'admin1' }">
+<c:if test="${sessionScope.member.memberId == 'admin' }">
    <jsp:include page="/WEB-INF/view/adminHeader.jsp"/>
 </c:if>
 

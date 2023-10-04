@@ -238,7 +238,7 @@
 		<br>
 		<br>
 		
-		<h3>지수</h3>
+<!-- 		<h3>지수</h3>
 		<div id="fifthSectionDiv">
 			<table id="ratingTable">
 				<tr>
@@ -248,7 +248,7 @@
 					<td>카카오영화 지수 : </td>
 				</tr>
 			</table>
-		</div>
+		</div> -->
       
 		<h3>출연진</h3>
 		<div id="sixthSectionDiv">
