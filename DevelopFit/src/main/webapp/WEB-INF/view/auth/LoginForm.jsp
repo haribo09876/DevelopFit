@@ -180,7 +180,7 @@ a {
 
 				<div id="signup" onclick="pageMove();">회원가입</div>
 
-				<div id="signup-kakao" onclick="alert('준비 중입니다');return false;">카카오로 회원가입</div>
+				<div id="signup-kakao" onclick="alert('준비 중입니다.');return false;">카카오로 회원가입</div>
 				<br>
 
 				<div id="link-form">
