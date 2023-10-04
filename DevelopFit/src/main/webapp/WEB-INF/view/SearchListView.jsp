@@ -9,7 +9,7 @@
 <title>boardListView</title>
 <style type="text/css">
    body{
-      background-color: #101322;
+   	  background-color: #101322;
       width: 1300px;
       height: 1300px;
       margin: auto;
@@ -17,21 +17,22 @@
       }
    #container{
        margin: 0px 60px 50px;
-      border-color: black;
-       background-color: #101322;
-       height: 550px;
+       border-color: black;
+       background-color: #172036;
+       height: auto;
        width: 1200px;
+       margin-top: 40px;
    }
    #headtext{
       height:30px;
       width:30px;
-      padding-top: 100px;
+      padding-top: 50px;
       padding-left: 70px;
       font-size: 30px;
    }
    #comunityboard{
       margin-left: 70px;
-      height: 250px;
+      height: auto;
       width: 1000px;
    }
    #menuwrap{
@@ -111,6 +112,7 @@
       float: right;
    }
    #headtext{
+   
 /*       float: right; */
    }
    #aTag{
@@ -143,8 +145,13 @@
     #write:hover {
    opacity: .8;
 	}
+	#headText{
+		margin-top: 100px;
+		font-size: 30px;
+	}
 	.cardTable {
 	    min-width: 100%;
+	    margin-top: 30px;
 		table-layout: fixed;
 		background-color: #172036;
 		border-radius: 6px;
@@ -153,7 +160,6 @@
 	.tableHead {
 			background-color: #172036;
    		color: #9ca3af;
-   		
 	}
 	.tableGroup {
 	    border-top-width: 1px;
@@ -202,7 +208,7 @@
                    <div id="boardCreDate">
                        <fmt:formatDate pattern="yyyy-MM-dd" value="${boardsresult.boardCreateDate}"/>
                    </div>
-                   
+                   <div id="BoardBoardHit">${boardsresult.boardHit}</div>
                 </div>
                 <input type="hidden" name="boardNumber" value="${boardsresult.boardNumber}">
         	  </c:forEach>
@@ -214,6 +220,7 @@
    <table class="cardTable" id="Table">
 			<thead>
 			<c:if test="${not empty searchMoviesResults}">
+				<div id="headText">Movie</div>
 				<tr class="tableHead">
 					<th>영화번호</th>
 					<th>포스터</th>

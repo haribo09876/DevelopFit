@@ -2,10 +2,13 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <style>
+	#adminHeader{
+	}
 	#subMenu{
 		width: 1000px;
 		display: block;
 		margin: 0 auto;
+		margin-right: 500px;
 	}
 	#submenu1{
 		width: 130px;
@@ -27,9 +30,6 @@
 			<li id="submenu1"><a href="#" id="submenu1-1">subMenu2</a></li>
 			<li id="submenu1"><a href="#" id="submenu1-1">subMenu3</a></li>
 			<li id="submenu1"><a href="#" id="submenu1-1">subMenu4</a></li>
-			<li id="submenu1"><a href="#" id="submenu1-1">subMenu5</a></li>
-			<li id="submenu1"><a href="#" id="submenu1-1">subMenu6</a></li>
-			<li id="submenu1"><a href="#" id="submenu1-1">subMenu7</a></li>
 		</ul>
 	</div>
 
