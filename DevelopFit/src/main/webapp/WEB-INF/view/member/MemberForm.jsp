@@ -150,8 +150,8 @@ div {
 	float: left;
 	margin-left: 10px;
 	border-radius: 6px;
-	border: 1px solid #F24141;
-	background-color: #F24141;
+	border: 1px solid #0E7356;
+	background-color: #0E7356;
 	text-align: center;
 	line-height: 21px;
 	color: white;
