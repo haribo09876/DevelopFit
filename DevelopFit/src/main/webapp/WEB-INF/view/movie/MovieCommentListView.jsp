@@ -84,7 +84,7 @@
 				<th>영화 번호</th>
 				<th>영화 제목</th>
 				<th>한줄평 내용</th>
-				<c:if test="${movieDto.memberId eq 'admin1'}">
+				<c:if test="${movieDto.memberId eq 'admin'}">
 					<th>수정 및 삭제</th>
 				</c:if>	
 			</tr>
@@ -100,7 +100,7 @@
 					<td>${movieDto.movieNumber}</td>
 					<td>${movieDto.movieTitle}</td>
 					<td>${movieDto.lineReviewContext}</td>
-					<c:if test="${movieDto.memberId eq 'admin1'}">
+					<c:if test="${movieDto.memberId eq 'admin'}">
 						<td>
 							<a href='./commentUpdate.do?lineReviewNumber=${movieDto.lineReviewNumber}'>&#128465 수정</a>
 							<a href='./commentDelete.do?lineReviewNumber=${movieDto.lineReviewNumber}'>&#128465 삭제</a>

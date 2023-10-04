@@ -137,14 +137,16 @@
 		<table class="cardTable">
 			<thead>
 				<tr class="tableHead">
-					<th>영화번호</th>
+					<c:if test="${sessionScope.member.memberId eq 'admin'}">
+						<th>영화번호</th>
+					</c:if>
 					<th>포스터</th>
 					<th>영화명</th>
 					<th>장르</th>
 					<th>개봉일</th>
 					<th>런타임</th>
 					<th>가격</th>
-					<c:if test="${sessionScope.member.memberId eq 'admin1'}">
+					<c:if test="${sessionScope.member.memberId eq 'admin'}">
 						<th>수정 및 삭제</th>
 					</c:if>
 				</tr>
@@ -152,7 +154,9 @@
 
 			<c:forEach var="movieDto" items="${movieList}">
 				<tr class="tableGroup">
-					<td>${movieDto.movieNumber}</td>
+					<c:if test="${sessionScope.member.memberId eq 'admin'}">
+						<td>${movieDto.movieNumber}</td>
+					</c:if>
 					<td>
 						<a href='./listOne.do?movieNumber=${movieDto.movieNumber}'>
 							<img class="listPoster" alt="포스터" src="${movieDto.moviePoster}">			
@@ -167,7 +171,7 @@
 					<td>${movieDto.movieReleaseDate}</td>
 					<td>${movieDto.movieRuntime} 분</td>
 					<td>${movieDto.moviePrice} 원</td>
-					<c:if test="${sessionScope.member.memberId eq 'admin1'}">
+					<c:if test="${sessionScope.member.memberId eq 'admin'}">
 						<td>
 							<a href='./update.do?movieNumber=${movieDto.movieNumber}'>&#128465 수정</a>
 							<a href='./delete.do?movieNumber=${movieDto.movieNumber}'>&#128465 삭제</a>						

@@ -221,6 +221,7 @@
 
 		<h3>한줄평</h3>
 		<div id="seventhSectionDiv">
+		<a href='./commentAdd.do'>한줄평 추가</a>
 		<table id="movieListTable">
 			<tr>
 				<th>한줄평 번호</th>

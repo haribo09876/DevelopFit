@@ -128,6 +128,9 @@ li {
    function alertFnc(){
       alert("로그인 후 이용 가능합니다.");
    }
+   function alertReadyFnc(){
+		alert("준비 중입니다.");
+	}
 </script>
 
 <div id="header">
@@ -142,7 +145,7 @@ li {
          <div id="menu">
             <ul>
                <li><a href="#" id="menu1" onclick="alertFnc();">홈</a></li>
-               <li><a href="#" id="menu2" onclick="alert('준비 중입니다');return false;">추천영화</a></li>
+               <li><a href="#" id="menu2" onclick="alertReadyFnc();">추천영화</a></li>
                <li><a href="#" id="menu3" onclick="alertFnc();">영화전체</a></li>
                <li><a href="#" id="menu4" onclick="alertFnc();">커뮤니티</a></li>
             </ul>
@@ -158,7 +161,7 @@ li {
          <div id="menu">
             <ul>
                <li><a href="../movie/list.do" id="menu1">홈</a></li>
-               <li><a href="#" id="menu2">추천영화</a></li>
+               <li><a href="#" id="menu2"  onclick="alertReadyFnc();">추천영화</a></li>
                <li><a href="#" id="menu3">영화전체</a></li>
                <li><a href="../board/list.do" id="menu4">커뮤니티</a></li>
             </ul>
