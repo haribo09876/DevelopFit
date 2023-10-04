@@ -26,6 +26,8 @@ public interface OrderService {
 	
 	void insertOrderProduct(OrderDto orderDto);
 	
+	void insertBasket(int memberNumber, int movieNumber);
+	
 	void updateMemberMoney(int memberNumber, int memberMoney);
 	
 	void updateOrderHistoryState(int orderHistoryNumber);

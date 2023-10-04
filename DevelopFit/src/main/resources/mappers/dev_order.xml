@@ -21,6 +21,13 @@
 	</resultMap>
 	
 	
+<!-- 	장바구니 담기 -->
+	<insert id="insertBasket" parameterType="map">
+		INSERT INTO BASKET
+		VALUE(BASKET_NO, MEMBER_NUMBER, MOVIE_NUMBER)
+		VALUES(BASKET_NUMBER_SEQ.NEXTVAL, #{memberNumber}, #{movieNumber})
+	</insert>
+	
 <!-- 	장바구니리스트 가져오기 -->
 	<select id="selectBasketList" parameterType="int" resultMap="orderResultMap">
 		SELECT MV.MOVIE_NUMBER, MV.MOVIE_TITLE, MV.MOVIE_PRICE, MV.MOVIE_MAIN_POSTER, MV.MOVIE_SUMMARY

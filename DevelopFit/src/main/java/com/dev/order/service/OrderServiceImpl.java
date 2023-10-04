@@ -96,7 +96,13 @@ public class OrderServiceImpl implements OrderService{
 		// TODO Auto-generated method stub
 		orderDao.insertOrderProduct(orderDto);
 	}
-
+	
+	@Override
+	public void insertBasket(int memberNumber, int movieNumber) {
+		// TODO Auto-generated method stub
+		orderDao.insertBasket(memberNumber, movieNumber);
+	}
+	
 	@Override
 	public void updateMemberMoney(int memberNumber, int memberMoney) {
 		// TODO Auto-generated method stub

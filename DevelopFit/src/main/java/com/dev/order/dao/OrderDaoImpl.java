@@ -82,7 +82,16 @@ public class OrderDaoImpl implements OrderDao{
 		// TODO Auto-generated method stub
 		sqlSession.insert("com.dev.order.insertOrderProduct", orderDto);
 	}
-
+	
+	@Override
+	public void insertBasket(int memberNumber, int movieNumber) {
+		// TODO Auto-generated method stub
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("memberNumber", memberNumber);
+		map.put("movieNumber", movieNumber);
+		sqlSession.insert("com.dev.order.insertBasket", map);
+	}
+	
 	@Override
 	public void updateMemberMoney(int memberNumber, int memberMoney) {
 		// TODO Auto-generated method stub

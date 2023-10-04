@@ -86,20 +86,20 @@
       width: 250px;
       height: 30px;
       float: left;
-      padding-left: 70px;
-      padding-top: 20px;
+      margin-left: 50px;
+      display: inline-block;
    }
    #myMoney {
-      width: 250px;
+      width: 130px;
       height: 30px;
       float: left;
-      padding-top: 20px;
+      display: inline-block;
    }
    #calResult {
-      width: 250px;
+      width: 130px;
       height: 30px;
       float: right;
-      padding-top: 20px;
+      display: inline-block;
    }
    
    
@@ -137,6 +137,30 @@
    text-align: center;
    float: right;
    cursor: pointer;
+   }
+   
+   
+   #customerAgree {
+		width: 100px;
+		display: inline-block;
+		float: left;
+   }
+   
+   #agreeBox {
+   		width: 250px;
+   		display: inline-block;
+   		float: left;
+   		margin-left: 10px;
+   }
+   
+   .h4Inline {
+   	width:100px;
+   	display: inline-bloack;
+   }
+   
+   .pInline {
+  	 width:100px;
+   	display: inline-bloack;
    }
 </style>
 
@@ -249,21 +273,37 @@
    
    <div id="paymentWrap">
       <h1>결제상세</h1>
-      <div id="orderDetail">
-         <div id="orderPrice">
-            <h4 id="payAmount">주문금액</h4>
-            <p id="totalPrice"></p>
-         </div>
-         <div id="myMoney">
-            <h4>M Money</h4>
-            <p>${member.memberMoney}원</p>
-         </div>
-         <div id="calResult">
-            <h4>결제 후 잔액</h4>
-            <p id="balance"></p>
-         </div>
-      </div>
       
+      
+      	<div id="orderDetail">
+			<div id="consentOrder">
+               <h4 id="customerAgree">주문자 동의</h4>
+               <div id="agreeBox">
+                <label>
+                	<input type="checkbox" name="agree" value="주문자 동의">만 14세 이상입니다.
+                </label>
+                <br>
+                <label>
+                	<input type="checkbox" name="agree" value="주문자 동의">7일 이내 환불 가능합니다.
+                </label>
+               </div>
+            </div>
+        
+        
+        
+         <div id="orderPrice">
+            <h4 id="payAmount" class="h4Inline">주문금액</h4>
+            <p id="totalPrice" class="pInline"></p>
+         </div>
+<!--          <div id="myMoney"> -->
+<!--             <h4 class="h4Inline">M Money</h4> -->
+<%--             <p class="pInline">${member.memberMoney}원</p> --%>
+<!--          </div> -->
+<!--          <div id="calResult"> -->
+<!--             <h4 class="h4Inline">결제 후 잔액</h4> -->
+<!--             <p id="balance" class="pInline"></p> -->
+<!--          </div> -->
+      </div>
       
    </div>
    

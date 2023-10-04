@@ -209,7 +209,7 @@ h1 {
 
 #selectWrap {
    width: 500px;
-   margin: 50px auto;
+   margin: 80px auto;
 }
 
 #cancel {
@@ -308,20 +308,6 @@ p {
    margin-left: 30px;
 }
 
-#orderPrice {
-   width: 700px;
-   height: 30px;
-   display: inline-block;
-}
-
-#consentOrder {
-   width: 700px;
-   height: 100px;
-}
-
-#payAmount {
-   display: inline-block;
-}
 
 #customerAgree {
    display: inline-block;
@@ -414,32 +400,6 @@ input {
                <div id="deleteSelect" onclick="deleteSelectFnc();">선택삭제</div>
             </div>
 
-
-
-            <!--    주문금액 -->
-            <div id="orderWrap">
-               <h1>주문금액</h1>
-               <div id="orderDetail">
-               
-                  <div id="orderPrice">
-                     <h4 id="payAmount">주문금액</h4>
-                     <p id="totalPrice">0원</p>
-                  </div>
-
-                  <div id="consentOrder">
-                     <h4 id="customerAgree">주문자 동의</h4>
-                     <div id="agreeBox">
-	                     <label>
-	                     	<input type="checkbox" name="agree" value="주문자 동의">만 14세 이상입니다.
-	                     </label>
-	                     <label>
-	                     	<input type="checkbox" name="agree" value="주문자 동의">7일 이내 환불 가능합니다.
-	                     </label>
-                     </div>
-                  </div>
-                  
-               </div>
-            </div>
 
 
 

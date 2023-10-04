@@ -11,9 +11,11 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.dev.member.dto.MemberDto;
 import com.dev.order.dto.OrderDto;
@@ -27,6 +29,14 @@ public class OrderController {
 	
 	@Autowired
 	private OrderService orderService;
+	
+	
+	@GetMapping(value = "/basketList.do")
+	@ResponseBody
+	public List<OrderDto> basketList(@RequestParam("memberNumber") int memberNumber) {
+		return orderService.selectBasketList(memberNumber);
+	}
+	
 	
 	// 장바구니 페이지
 	@RequestMapping(value = "/order/basket.do", method = {RequestMethod.GET, RequestMethod.POST})
@@ -58,6 +68,23 @@ public class OrderController {
 		    	orderService.deleteBasket(Integer.parseInt(product.get(i))); // 장바구니 삭제
 			}
 	    	return "redirect:/order/basket.do"; //장바구니
+	    } catch (Exception e) {
+	    	// TODO: handle exception
+	    	return "redirect:/auth/login.do";
+	    }
+	}
+	
+	// 장바구니 추가
+	@RequestMapping(value = "/order/basketInsertCtr.do", method = {RequestMethod.GET, RequestMethod.POST})
+	public String basketInsertCtr(HttpSession session, int movieNumber, Model model) {
+	    log.info("Welcome OrderController basketCtr! delete movieNumber: {}", movieNumber);
+	    
+	    try {
+	    	MemberDto member = (MemberDto)session.getAttribute("member");
+	    	
+		    orderService.insertBasket(member.getMemberNumber(), movieNumber);
+		    
+	    	return "redirect:/movie/listOne.do?movieNumber=" + movieNumber;
 	    } catch (Exception e) {
 	    	// TODO: handle exception
 	    	return "redirect:/auth/login.do";

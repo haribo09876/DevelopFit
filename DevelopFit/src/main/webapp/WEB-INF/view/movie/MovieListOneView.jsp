@@ -153,7 +153,49 @@
 			navigator.clipboard.writeText(nowUrl).then(res=>{
 			alert("주소가 복사되었습니다");
 			})
-		}   	
+		} 
+		
+		function insertBasketFnc() {
+			var result = [];
+			var basketCheck = false;
+			
+			$.ajax({
+				type: 'get',
+				url: '../basketList.do',
+				dataType: 'json',
+				data: {
+					memberNumber: "${member.memberNumber}",
+				},
+				async: false,
+				success: function (data) {
+                    result = data;
+                },
+                error: function() {
+                    alert("에러 발생");
+                }
+			});
+			
+			for (var i = 0; i < result.length; i++) {
+				if(result[i].movieNumber == ${movieDto.movieNumber}){
+					basketCheck = true;
+					break;
+				}
+			}
+			
+			if(basketCheck == true){
+				alert("장바구니에 담겨있습니다.");
+			} else {
+				alert("장바구니에 담았습니다.");
+				location.href="../order/basketInsertCtr.do?movieNumber=${movieDto.movieNumber}";
+			}
+		}
+		
+		
+		function buyMovieFnc() {
+			location.href="../order/payment.do?product=${movieDto.movieNumber}";
+			
+		}
+		
 	</script>
 </head>
 <body>
@@ -178,8 +220,8 @@
 			<button class="firstButton1" onclick="alert('준비 중입니다');return false;">&#x1F44D  좋아요</button>
 			<button class="firstButton" onclick="alert('준비 중입니다');return false;">&#x2714  봤어요</button>
 			<button class="firstButton" onclick="copyUrl()">&#x1F517  공유하기</button>
-			<button id="secondButton">&#128722 장바구니추가</button>
-			<button id="thirdButton">&#127916 구매하기</button>         
+			<button id="secondButton" onclick="insertBasketFnc();">&#128722 장바구니추가</button>
+			<button id="thirdButton" onclick="buyMovieFnc();">&#127916 구매하기</button>         
 		</div>
 
 		<h3>영화내용</h3>
