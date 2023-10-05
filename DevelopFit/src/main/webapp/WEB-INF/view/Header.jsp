@@ -124,30 +124,33 @@ li {
 }
 
 #searchwrap{
-	width: 300px;
+	width: 280px;
 	height: 25px;
 	float: right;
 	margin: 10px;
 }
 
 #searchOption{
-	float: left;
+	float: right;
 	align-content: center;
 	height: 25px;
 	border-radius: 6px;
 }
+
+#keyword{
+	float: right;
+	align-content: center;
+	height: 19px;
+	width: 130px;
+	border-radius: 6px;
+}
+
 #searchBtn{
 	float: right;
 	align-content: center;
 	height: 25px;
 	color: white;
 	background-color: #0DA66E;
-	border-radius: 6px;
-}
-
-#keyword{
-	align-content: center;
-	height: 19px;
 	border-radius: 6px;
 }
 
