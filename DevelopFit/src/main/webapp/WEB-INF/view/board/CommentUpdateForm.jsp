@@ -84,7 +84,17 @@
 	   var trimmedString = originalString.trim();
 	   var con = document.getElementById("content");
 	   con.innerHTML = trimmedString;
-}
+   }
+   function check() {
+		var contentObj = document.getElementById("content");
+		
+		if (contentObj === null || contentObj.value.trim() === '') {
+			alert("내용을 확인해주세요.");
+			return false;
+		}
+		
+		return true;
+	}
 </script>
 </head>
 <body>
@@ -93,12 +103,12 @@
 	<div id="container">
 	<div id="title"><h2>댓글수정</h2></div>
 	
-      <form action='./commentUpdateCtr.do' id="form" method='post'>
+      <form action='./commentUpdateCtr.do' id="form" method='post' onsubmit="return check();">
          <input type="hidden" name='commentNumber' value='${commentDto.commentNumber}'>
          <input type="hidden" name='memberNumber' value= '${member.memberNumber}'>
          <input type="hidden" name="boardNumber" value="${commentDto.boardNumber}">
-         <textarea rows="1" cols="50" name="commentContent" id="content" 
-         placeholder="${commentDto.commentContent}">>${commentDto.commentContent}</textarea>
+         <textarea rows="1" cols="50" name="commentContent" id="content" maxlength="33" 
+         placeholder="${commentDto.commentContent}">${commentDto.commentContent}</textarea>
          <div id="btnList">   
          <div id="pageBack" onclick="pageBack();">취소</div>
          <input type="submit" id="submit" value="저장" />

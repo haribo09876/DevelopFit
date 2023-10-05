@@ -75,7 +75,7 @@
 	</script>
 </head>
 <body>
-	<jsp:include page="/WEB-INF/view/Header.jsp"/>
+	<jsp:include page="/WEB-INF/view/Header.jsp"/><br><br><br>
 	
 	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.css"/>
 

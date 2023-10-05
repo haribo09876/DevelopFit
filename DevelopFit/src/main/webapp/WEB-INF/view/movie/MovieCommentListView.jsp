@@ -73,10 +73,6 @@
 		<div id="title">
 			<h3>영화 한줄평 목록</h3>
 		</div>
-			<a>관리자 메뉴 1</a><br>
-			<a>관리자 메뉴 2</a><br>
-			<a>관리자 메뉴 3</a><br>
-			<a>관리자 메뉴 4</a><br>
 		<table id="movieListTable">
 			<tr>
 				<th>한줄평 번호</th>

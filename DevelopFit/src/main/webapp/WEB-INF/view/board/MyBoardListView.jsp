@@ -191,6 +191,7 @@ table tr th td {
     text-overflow: ellipsis;
     overflow: hidden;
     white-space: nowrap;
+    width: 450px;
 }
 
 #udwrap{
@@ -243,7 +244,7 @@ table tr th td {
 			
 			<c:forEach var="boardDto" items="${boardList}">
 				<tr class="tableGroup">
-					<td>${boardDto.boardNumber}</td>
+					<td width="10%">${boardDto.boardNumber}</td>
 					<td>
 						<div class="ellipsis">
 							<a href='./listOne.do?boardNumber=${boardDto.boardNumber}'>
@@ -252,13 +253,12 @@ table tr th td {
 							<input type="hidden" name="memberNumber" value='${member.memberNumber}'>
 						</div>
 					</td>
-					<td>${boardDto.memberId} <input type="hidden"
+					<td width="180px;">${boardDto.memberId} <input type="hidden"
 						name="boardNumber" value="${boardDto.boardNumber}">
 					</td>
-					<td><fmt:formatDate pattern="yyyy-MM-dd"
+					<td width="100px;"><fmt:formatDate pattern="yyyy-MM-dd"
 							value="${boardDto.boardCreateDate}" /></td>
-					<td>${boardDto.boardHit}</td>
-					<c:if test="${canEdit == true}">
+					<td width="100px;">${boardDto.boardHit}</td>
 					<td id="udwrap">
 						<form action='./delete.do' method='post'>
 							<input type="hidden" name='boardNumber'value='${boardDto.boardNumber}'>
@@ -268,10 +268,10 @@ table tr th td {
 						</form>
 						<form action='./update.do' method='post'>
 							<input type="hidden" name='boardNumber' value='${boardDto.boardNumber}'>
-							<input type="submit" id="update" value="수정">
+							<input type="submit" id="update" value="수정"
+								${canEdit ? '' : 'style="display: none;"'}>
 						</form>
 					</td>
-					</c:if>
 				</tr>
 				
 			</c:forEach>

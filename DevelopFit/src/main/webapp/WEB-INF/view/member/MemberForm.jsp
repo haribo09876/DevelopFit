@@ -4,8 +4,12 @@
 <html>
 <head>
 <meta charset="UTF-8">
+<<<<<<< HEAD
 <title>회원 가입</title>
 <script src="https://code.jquery.com/jquery-3.7.0.min.js"></script>
+=======
+<title>회원가입</title>
+>>>>>>> branch 'main' of https://github.com/haribo09876/DevelopFit.git
 <style type="text/css">
 body {
 	background-color: #101322;
@@ -274,26 +278,81 @@ div {
 					<option value="" hidden="">성별</option>
 					<option value="M">M</option>
 					<option value="F">F</option>
-				</select> <br> <select name="favorite1" id="favorite1">
-					<option value="" hidden="">선호장르1</option>
-					<option value="액션">액션</option>
-					<option value="로맨스">로맨스</option>
-					<option value="공포">공포</option>
-					<option value="SF">SF</option>
-				</select> <select name="favorite2" id="favorite2">
-					<option value="" hidden="">선호장르2</option>
-					<option value="액션">액션</option>
-					<option value="로맨스">로맨스</option>
-					<option value="공포">공포</option>
-					<option value="SF">SF</option>
-				</select> <select name="favorite3" id="favorite3">
-					<option value="" hidden="">선호장르3</option>
-					<option value="액션">액션</option>
-					<option value="로맨스">로맨스</option>
-					<option value="공포">공포</option>
-					<option value="SF">SF</option>
-				</select> <br>
-
+				</select>
+				<br>
+				<select name="favorite1" id="favorite1">
+					<option value="" disabled selected hidden>선호장르1</option>
+					<option value="0">없음</option>
+					<option value="1">SF</option>
+					<option value="2">가족</option>
+					<option value="3">공연</option>
+					<option value="4">공포(호러)</option>
+					<option value="5">기타</option>
+					<option value="6">다큐멘터리</option>
+					<option value="7">드라마</option>
+					<option value="8">멜로/로멘스</option>
+					<option value="9">뮤지컬</option>
+					<option value="10">미스테리</option>
+					<option value="11">범죄</option>
+					<option value="12">사극</option>
+					<option value="13">서부극(웨스턴)</option>
+					<option value="14">스릴러</option>
+					<option value="15">애니메이션</option>
+					<option value="16">액션</option>
+					<option value="17">어드벤쳐</option>
+					<option value="18">전쟁</option>
+					<option value="19">코미디</option>
+					<option value="20">판타지</option>
+				</select>
+				<select name="favorite2" id="favorite2">
+					<option value="" disabled selected hidden>선호장르2</option>
+					<option value="0">없음</option>
+					<option value="1">SF</option>
+					<option value="2">가족</option>
+					<option value="3">공연</option>
+					<option value="4">공포(호러)</option>
+					<option value="5">기타</option>
+					<option value="6">다큐멘터리</option>
+					<option value="7">드라마</option>
+					<option value="8">멜로/로멘스</option>
+					<option value="9">뮤지컬</option>
+					<option value="10">미스테리</option>
+					<option value="11">범죄</option>
+					<option value="12">사극</option>
+					<option value="13">서부극(웨스턴)</option>
+					<option value="14">스릴러</option>
+					<option value="15">애니메이션</option>
+					<option value="16">액션</option>
+					<option value="17">어드벤쳐</option>
+					<option value="18">전쟁</option>
+					<option value="19">코미디</option>
+					<option value="20">판타지</option>
+				</select>
+				<select name="favorite3" id="favorite3">
+					<option value="" disabled selected hidden>선호장르3</option>
+					<option value="0">없음</option>
+					<option value="1">SF</option>
+					<option value="2">가족</option>
+					<option value="3">공연</option>
+					<option value="4">공포(호러)</option>
+					<option value="5">기타</option>
+					<option value="6">다큐멘터리</option>
+					<option value="7">드라마</option>
+					<option value="8">멜로/로멘스</option>
+					<option value="9">뮤지컬</option>
+					<option value="10">미스테리</option>
+					<option value="11">범죄</option>
+					<option value="12">사극</option>
+					<option value="13">서부극(웨스턴)</option>
+					<option value="14">스릴러</option>
+					<option value="15">애니메이션</option>
+					<option value="16">액션</option>
+					<option value="17">어드벤쳐</option>
+					<option value="18">전쟁</option>
+					<option value="19">코미디</option>
+					<option value="20">판타지</option>
+				</select>
+				<br>
 				<div id="input-date">
 					생년월일 <input type="date" max="2010-01-01" 
 					min="1900-01-01"name="memberBirthDate" id="date-select">

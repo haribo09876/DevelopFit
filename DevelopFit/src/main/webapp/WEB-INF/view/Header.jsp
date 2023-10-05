@@ -131,14 +131,14 @@ li {
 }
 
 #searchOption{
-	float: right;
+	float: left;
 	align-content: center;
 	height: 25px;
 	border-radius: 6px;
 }
 
 #keyword{
-	float: right;
+	float: left;
 	align-content: center;
 	height: 19px;
 	width: 130px;
@@ -223,7 +223,7 @@ li {
 		</c:if>
 
 		<!--       로그인전 -->
-      <c:if test="${sessionScope.member.memberId == null }">
+      <c:if test="${sessionScope.member.memberId == null}">
          <div id="content-right">
             <div id="loginout">
                <div id="login">
