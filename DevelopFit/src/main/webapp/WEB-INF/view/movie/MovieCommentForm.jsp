@@ -81,6 +81,19 @@
       }
    </style>   
    <script type="text/javascript">
+		window.onload = function(){
+			var lineReviewContext = document.getElementById('lineReviewContext');
+		}
+		function check() {
+			var form = document.addCommentForm;
+		
+			if (lineReviewContext.value === '') {
+				alert('한줄평 내용을 입력해 주세요.');
+				form.lineReviewContext.focus();
+				return false;
+			}
+			form.submit();
+		}
    </script>
 </head>
 <body>
@@ -90,15 +103,15 @@
          <div id="title">
             <h3>영화 한줄평 추가</h3>
          </div>
-         <form action="./commentAddCtr.do" method="post" id="addCommentForm" enctype="multipart/form-data">
+         <form action="./commentAddCtr.do" method="post" id="addCommentForm" name="addCommentForm" enctype="multipart/form-data">
             <input type="hidden" name='memberNumber' value= '${member.memberNumber}'><br>
             <input type="hidden" name='movieNumber' value= '${movieDto.movieNumber}'><br>
-            <input type='text' name='lineReviewContext' id='lineReviewContext' placeholder="내용을 입력해주세요."><br>
+            <input type='text' name='lineReviewContext' id='lineReviewContext' placeholder="내용을 입력해주세요." maxlength="33"><br>
             <div id="btnList">
                <div id="pageBack">
                   <a href='./commentList.do'>뒤로가기</a>
                </div>
-               <input type="submit" id="addComment" value="추가">
+               <input type="button" id="addComment" value="추가" onclick="check();">
             </div>
          </form>
       </div>

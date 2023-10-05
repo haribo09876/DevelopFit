@@ -198,7 +198,7 @@
 				form.moviePreview.focus();
 				return false;
 			} else if (genreNumber.value === '') {
-				alert('장르번호 입력해 주세요.');
+				alert('장르를 입력해 주세요.');
 				form.genreNumber.focus();
 				return false;
 			}
@@ -214,37 +214,42 @@
 			</div>
 			<form action="./addCtr.do" method="post" name="addMovie" enctype="multipart/form-data">
 				<input type='text' id="movieTitle" name='movieTitle' placeholder="영화제목" onfocus="this.placeholder=''" 
-				onblur="this.placeholder='영화제목'"><br>
+				onblur="this.placeholder='영화제목'" maxlength="33"><br>
 				<input type='text' id="movieSummary" name='movieSummary' placeholder="줄거리" onfocus="this.placeholder=''" 
-				onblur="this.placeholder='줄거리'"><br>
+				onblur="this.placeholder='줄거리'" maxlength="1333"><br>
 				<input type='date' id="movieReleaseDate" name='movieReleaseDate' placeholder="개봉일" onfocus="this.placeholder=''" 
 				onblur="this.placeholder='개봉일'"><br>
 				<input type='number' id="movieRuntime" name='movieRuntime' placeholder="상영시간" onfocus="this.placeholder=''" 
-				onblur="this.placeholder='상영시간'"><br>
+				onblur="this.placeholder='상영시간'" maxlength="3"><br>
 				<input type='number' id="moviePrice" name='moviePrice' placeholder="가격" onfocus="this.placeholder=''" 
 				onblur="this.placeholder='가격'"><br>
 				<input type='text' 	id="moviePoster" name='moviePoster' placeholder="포스터" onfocus="this.placeholder=''" 
-				onblur="this.placeholder='포스터'"><br>
+				onblur="this.placeholder='포스터'" maxlength="200"><br>
 				<input type='text' 	id="moviePreview" name='moviePreview' placeholder="예고편" onfocus="this.placeholder=''" 
-				onblur="this.placeholder='예고편'"><br>
+				onblur="this.placeholder='예고편'" maxlength="333"><br>
 				<select name="genreNumber" id="genreNumber">
 					<option value="" disabled selected hidden>영화 장르를 선택해주세요.</option>
+					<option value="0">없음</option>
 					<option value="1">SF</option>
-					<option value="2">공포</option>
-					<option value="3">로맨스</option>
-					<option value="4">멜로</option>
-					<option value="5">뮤지컬</option>
-					<option value="6">범죄</option>
-					<option value="7">스릴러</option>
-					<option value="8">스포츠</option>
-					<option value="9">액션</option>
-					<option value="10">음악</option>
-					<option value="11">전쟁</option>
-					<option value="12">코미디</option>
-					<option value="13">판타지</option>
-					<option value="14">미스터리</option>
-					<option value="15">드라마</option>
-					<option value="16">애니메이션</option>
+					<option value="2">가족</option>
+					<option value="3">공연</option>
+					<option value="4">공포(호러)</option>
+					<option value="5">기타</option>
+					<option value="6">다큐멘터리</option>
+					<option value="7">드라마</option>
+					<option value="8">멜로/로멘스</option>
+					<option value="9">뮤지컬</option>
+					<option value="10">미스테리</option>
+					<option value="11">범죄</option>
+					<option value="12">사극</option>
+					<option value="13">서부극(웨스턴)</option>
+					<option value="14">스릴러</option>
+					<option value="15">애니메이션</option>
+					<option value="16">액션</option>
+					<option value="17">어드벤쳐</option>
+					<option value="18">전쟁</option>
+					<option value="19">코미디</option>
+					<option value="20">판타지</option>
 				</select>
 				<div id="btnList">
 					<div id="pageBack">
