@@ -107,6 +107,7 @@
 		#genreNumber{
 			width: 346px;
 			height: 40px;
+			color: white;
 			border: none;
 			border-radius: 6px;
 			background-color: #172036;
@@ -226,8 +227,25 @@
 				onblur="this.placeholder='포스터'"><br>
 				<input type='text' 	id="moviePreview" name='moviePreview' placeholder="예고편" onfocus="this.placeholder=''" 
 				onblur="this.placeholder='예고편'"><br>
-				<input type='number' id="genreNumber" name='genreNumber' placeholder="장르번호" onfocus="this.placeholder=''" 
-				onblur="this.placeholder='장르번호'"><br>
+				<select name="genreNumber" id="genreNumber">
+					<option value="" disabled selected hidden>영화 장르를 선택해주세요.</option>
+					<option value="1">SF</option>
+					<option value="2">공포</option>
+					<option value="3">로맨스</option>
+					<option value="4">멜로</option>
+					<option value="5">뮤지컬</option>
+					<option value="6">범죄</option>
+					<option value="7">스릴러</option>
+					<option value="8">스포츠</option>
+					<option value="9">액션</option>
+					<option value="10">음악</option>
+					<option value="11">전쟁</option>
+					<option value="12">코미디</option>
+					<option value="13">판타지</option>
+					<option value="14">미스터리</option>
+					<option value="15">드라마</option>
+					<option value="16">애니메이션</option>
+				</select>
 				<div id="btnList">
 					<div id="pageBack">
 						<a href='./list.do'>뒤로가기</a>

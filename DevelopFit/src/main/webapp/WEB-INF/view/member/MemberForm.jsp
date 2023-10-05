@@ -273,26 +273,66 @@ div {
 					<option value="" hidden="">성별</option>
 					<option value="M">M</option>
 					<option value="F">F</option>
-				</select> <br> <select name="favorite1" id="favorite1">
-					<option value="" hidden="">선호장르1</option>
-					<option value="액션">액션</option>
-					<option value="로맨스">로맨스</option>
-					<option value="공포">공포</option>
-					<option value="SF">SF</option>
-				</select> <select name="favorite2" id="favorite2">
-					<option value="" hidden="">선호장르2</option>
-					<option value="액션">액션</option>
-					<option value="로맨스">로맨스</option>
-					<option value="공포">공포</option>
-					<option value="SF">SF</option>
-				</select> <select name="favorite3" id="favorite3">
-					<option value="" hidden="">선호장르3</option>
-					<option value="액션">액션</option>
-					<option value="로맨스">로맨스</option>
-					<option value="공포">공포</option>
-					<option value="SF">SF</option>
-				</select> <br>
-
+				</select>
+				<br>
+				<select name="favorite1" id="favorite1">
+					<option value="" disabled selected hidden>선호장르1</option>
+					<option value="1">SF</option>
+					<option value="2">공포</option>
+					<option value="3">로맨스</option>
+					<option value="4">멜로</option>
+					<option value="5">뮤지컬</option>
+					<option value="6">범죄</option>
+					<option value="7">스릴러</option>
+					<option value="8">스포츠</option>
+					<option value="9">액션</option>
+					<option value="10">음악</option>
+					<option value="11">전쟁</option>
+					<option value="12">코미디</option>
+					<option value="13">판타지</option>
+					<option value="14">미스터리</option>
+					<option value="15">드라마</option>
+					<option value="16">애니메이션</option>
+				</select>
+				<select name="favorite2" id="favorite2">
+					<option value="" disabled selected hidden>선호장르2</option>
+					<option value="1">SF</option>
+					<option value="2">공포</option>
+					<option value="3">로맨스</option>
+					<option value="4">멜로</option>
+					<option value="5">뮤지컬</option>
+					<option value="6">범죄</option>
+					<option value="7">스릴러</option>
+					<option value="8">스포츠</option>
+					<option value="9">액션</option>
+					<option value="10">음악</option>
+					<option value="11">전쟁</option>
+					<option value="12">코미디</option>
+					<option value="13">판타지</option>
+					<option value="14">미스터리</option>
+					<option value="15">드라마</option>
+					<option value="16">애니메이션</option>
+				</select>
+				<select name="favorite3" id="favorite3">
+					<option value="" disabled selected hidden>선호장르3</option>
+					<option value="1">SF</option>
+					<option value="2">공포</option>
+					<option value="3">로맨스</option>
+					<option value="4">멜로</option>
+					<option value="5">뮤지컬</option>
+					<option value="6">범죄</option>
+					<option value="7">스릴러</option>
+					<option value="8">스포츠</option>
+					<option value="9">액션</option>
+					<option value="10">음악</option>
+					<option value="11">전쟁</option>
+					<option value="12">코미디</option>
+					<option value="13">판타지</option>
+					<option value="14">미스터리</option>
+					<option value="15">드라마</option>
+					<option value="16">애니메이션</option>
+				</select>
+				<br>
 				<div id="input-date">
 					생년월일 <input type="date" name="memberBirthDate" id="date-select">
 				</div>
