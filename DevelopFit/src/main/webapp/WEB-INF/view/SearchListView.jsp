@@ -20,8 +20,10 @@
        border-color: black;
        background-color: #172036;
        height: auto;
-       width: 1200px;
+       width: 1250px;
        margin-top: 40px;
+       padding-top: 1px;
+       border-radius: 6px;
    }
    #headtext{
       height:30px;
@@ -36,12 +38,13 @@
       width: 1000px;
    }
    #menuwrap{
-      margin-top: 40px;
-      margin-left: 70px;
+      margin-top: 50px;
+      margin-left: 125px;
       margin-bottom: 10px;
       width: 1000px;
       height: 38px;
-      border-bottom: 1px solid white;
+      color: #9ca3af;
+      font-weight: bold;
    }
    #menuBoardNum{
       width: 70px;
@@ -79,6 +82,7 @@
       margin-top: 2px;
       padding-top: 5px;
       padding-bottom: 5px;
+      margin-left: 55px;
    }
    #boardNum{
       width: 70px;
@@ -92,6 +96,7 @@
       text-overflow: ellipsis;
       overflow: hidden;
       white-space: nowrap;
+      
    }
    #boardMemberId{
       width: 150px;
@@ -180,10 +185,10 @@
 
     <jsp:include page="/WEB-INF/view/Header.jsp" />
     <c:if test="${not empty searchBoardsResults}">
-    <div id="container">
        <div id="headtext">
           Community
        </div>
+       <div id="container">
          <div id="menuwrap">
             <div id="menuBoardNum">게시번호</div>
             <div id="menuTitle">제목</div>

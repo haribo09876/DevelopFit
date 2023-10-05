@@ -40,7 +40,8 @@ public class BoardController {
 	
 	@RequestMapping(value = "/board/list.do",
 			method = {RequestMethod.GET, RequestMethod.POST})
-	public String boardList(@RequestParam(defaultValue = "1") int curPage, Model model) {
+	public String boardList(@RequestParam(defaultValue = "1") int curPage, Model model
+			, HttpSession session) {
 	    // Log4j
 	    log.info("Welcome BoardController list!: {}", curPage);
 
@@ -57,6 +58,17 @@ public class BoardController {
 	    HashMap<String, Object> pagingMap = new HashMap<>();
 		pagingMap.put("totalCount", totalCount);
 		pagingMap.put("boardPaging", boardPaging);
+		
+		MemberDto memberDto = (MemberDto)session.getAttribute("member");
+		
+		int sessionMemberNumber = memberDto.getMemberNumber();
+		
+		// 관리자인 경우 수정 및 삭제 버튼을 표시
+	    if (sessionMemberNumber == 0) {
+	        model.addAttribute("canEdit", true);
+	    } else {
+	        model.addAttribute("canEdit", false);
+	    }
 		
 		model.addAttribute("boardList", boardList);
 		model.addAttribute("pagingMap", pagingMap);
@@ -150,68 +162,6 @@ public class BoardController {
 		return "redirect:/board/list.do";
 	}
 	
-	
-	//관리자 보드 리스트 뷰
-	@RequestMapping(value = "/admin/adminBoardList.do",
-			method = {RequestMethod.GET, RequestMethod.POST})
-	public String adminBoardList(@RequestParam(defaultValue = "1") int curPage, Model model) {
-	    // Log4j
-	    log.info("Welcome adminBoardController list!: {}", curPage);
-
-	    int totalCount = boardService.boardSelectTotalCount();
-	    
-	    Paging boardPaging = new Paging(totalCount, curPage);
-	    
-	    int start = boardPaging.getPageBegin();
-		int end = boardPaging.getPageEnd();
-	    
-	    // 게시글 리스트
-	    List<BoardDto> boardList = boardService.boardSelectList(start, end);
-	    
-	    HashMap<String, Object> pagingMap = new HashMap<>();
-		pagingMap.put("totalCount", totalCount);
-		pagingMap.put("boardPaging", boardPaging);
-		
-		model.addAttribute("boardList", boardList);
-		model.addAttribute("pagingMap", pagingMap);
-
-	    return "admin/AdminBoardListView";
-	}
-	
-	//관리자 게시글 상세 페이지(댓글 포함)
-	@RequestMapping(value = "/admin/adminListOne.do", method = {RequestMethod.GET, RequestMethod.POST})
-	public String adminListOne(@RequestParam("boardNumber") int boardNumber, Model model
-			,HttpSession session, CommentDto commentDto) {
-		log.debug("Welcome BoardController boardListOne! - {}" + boardNumber);
-		
-		BoardDto boardDto = boardService.boardSelectOne(boardNumber);
-		
-		boardService.viewCount(boardNumber);
-		
-		MemberDto memberDto = (MemberDto)session.getAttribute("member");
-		
-		int sessionMemberNumber = memberDto.getMemberNumber();
-		
-		
-		// 세션의 member넘버와 게시글의 member넘버가 일치하거나 관리자인 경우 수정 및 삭제 버튼을 표시
-	    if (sessionMemberNumber == boardDto.getMemberNumber()
-	    		|| sessionMemberNumber == 0) {
-	        model.addAttribute("canEdit", true);
-	    } else {
-	        model.addAttribute("canEdit", false);
-	    }
-		
-		model.addAttribute("boardDto", boardDto);
-		
-	    // 댓글 리스트를 가져옵니다.
-	    List<CommentDto> commentList = commentService.commentSelectList(boardNumber);
-	    
-	    model.addAttribute("commentList", commentList);
-	    
-		return "admin/AdminBoardListOneView";
-		
-	}
-	
 	//게시글검색
 	  @RequestMapping(value = "/board/searchBoardsCtr.do", 
 			  method = {RequestMethod.GET, RequestMethod.POST})
@@ -252,4 +202,35 @@ public class BoardController {
 	      return "/SearchListView";
 	    }
 	  
+	//내 게시물
+	  @RequestMapping(value = "/board/myList.do",
+				method = {RequestMethod.GET, RequestMethod.POST})
+		public String boardMyList(@RequestParam(defaultValue = "1") int curPage, Model model
+				, HttpSession session) {
+		    // Log4j
+		    log.info("Welcome BoardController mylist!: {}", curPage);
+
+		    int totalCount = boardService.boardSelectTotalCount();
+		    
+		    Paging boardPaging = new Paging(totalCount, curPage);
+		    
+		    int start = boardPaging.getPageBegin();
+			int end = boardPaging.getPageEnd();
+		    
+		    // 게시글 리스트
+		    List<BoardDto> boardList = boardService.boardSelectList(start, end);
+		    
+		    HashMap<String, Object> pagingMap = new HashMap<>();
+			pagingMap.put("totalCount", totalCount);
+			pagingMap.put("boardPaging", boardPaging);
+			
+			MemberDto memberDto = (MemberDto)session.getAttribute("member");
+			
+			int sessionMemberNumber = memberDto.getMemberNumber();
+			
+			model.addAttribute("boardList", boardList);
+			model.addAttribute("pagingMap", pagingMap);
+
+		    return "board/MyBoardListView";
+	  }
 }
