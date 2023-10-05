@@ -7,8 +7,7 @@
 	#subMenu{
 		width: 1000px;
 		display: block;
-		margin: 0 auto;
-		margin-right: 500px;
+		margin-right: 602px;
 	}
 	#submenu1{
 		width: 130px;

@@ -78,6 +78,23 @@
    function pageBack(){
       history.back();
    }
+	function check() {
+		var boardTitleObj = document.getElementById("boardTitle");
+		var contentObj = document.getElementById("content");
+		
+		if (boardTitleObj === null || boardTitleObj.value.trim() === '') {
+			alert("제목을 확인해주세요.");
+			return false;
+		}
+		
+		if (contentObj === null || contentObj.value.trim() === '') {
+			alert("내용을 확인해주세요.");
+			return false;
+		}
+		
+		return true;
+	}
+	
 </script>
 </head>
 <body>
@@ -86,14 +103,20 @@
    <div id="container">
       <div id="title">
    </div>
-      <form action='./addCtr.do' id="form" method='post'>
-         <input type="hidden" name='memberNumber' value= '${member.memberNumber}'>
-         <input id="boardTitle" type="text" name="boardTitle" value="${boardDto.boardTitle}" placeholder="제목"><br>
-         <textarea rows="1" cols="50" name="boardContent" id="content" placeholder="내용을 입력해주세요."></textarea>
+      <form action='./addCtr.do' id="form" method='post' onsubmit="return check();">
+         <input type="hidden" name='memberNumber' id ="memberNumber"
+          value= '${member.memberNumber}'>
+          
+         <input id="boardTitle" type="text" name="boardTitle" 
+          value="${boardDto.boardTitle}" placeholder="제목" maxlength="33"><br>
+         
+         <textarea rows="1" cols="50" name="boardContent" id="content" maxlength="1000" 
+         placeholder="내용을 입력해주세요.">
+         </textarea>
+         
          <div id="btnList">   
             <div id="pageBack" onclick="pageBack();">취소</div>
-            <input type="submit" id="submit" value="저장" />
-            
+            <input type="submit" id="submit" value="저장" onclick="return check();"/>
          </div>
       </form>   
       

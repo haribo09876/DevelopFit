@@ -134,9 +134,9 @@ public class BoardController {
 	@RequestMapping(value = "/board/addCtr.do", method = RequestMethod.POST)
 	public String boardAdd(BoardDto boardDto, Model model) {
 		log.debug("Welcome BoardController boardAdd! " + boardDto);
-
+		
 			boardService.boardInsertOne(boardDto);
-		return "redirect:/board/list.do";
+			return "redirect:/board/list.do";
 	}
 	
 //	

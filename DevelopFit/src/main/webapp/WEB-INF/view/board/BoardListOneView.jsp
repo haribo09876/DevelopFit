@@ -26,6 +26,7 @@
  		height: auto;
  		width: 1200px;
  		padding-bottom: 50px;
+ 		border-radius: 6px;
 	}
 	#topcontent{
 		margin-right: 40px;
@@ -210,8 +211,16 @@
 	
 </style>
 <script type="text/javascript">
+	function check() {
+		var commentInsertObj = document.getElementById("commentInsert");
+		
+		if (commentInsertObj === null || commentInsertObj.value.trim() === '') {
+			alert("내용을 확인해주세요.");
+			return false;
+		}
+		return true;
+	}
 </script>
-
 </head>
 <body>
 	
@@ -251,10 +260,11 @@
 			<div id="commentview">댓글</div>
 			</div>
 	
-		<form action="./commentAddCtr.do" method="post" id="addForm">
+		<form action="./commentAddCtr.do" method="post" id="addForm" onsubmit="return check();">
 			<input type="hidden" name='boardNumber' value="${boardDto.boardNumber}">
 			<input type="hidden" name='memberNumber' value="${member.memberNumber}">
-			<textarea rows="1" cols="20" name="commentContent" id="commentInsert"></textarea>	
+			<textarea rows="1" cols="20" name="commentContent" id="commentInsert" 
+			maxlength="33"></textarea>	
 			<input type="submit" id="addButton" value="등록">
 		</form>
 		

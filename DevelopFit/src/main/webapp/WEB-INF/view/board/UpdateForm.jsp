@@ -110,6 +110,24 @@
 	   var con = document.getElementById("content");
 	   con.innerHTML = trimmedString;
 	}
+	
+	function check() {
+		var titleObj = document.getElementById("title");
+		var contentObj = document.getElementById("content");
+		
+		if (titleObj === null || titleObj.value.trim() === '') {
+			alert("제목을 확인해주세요.");
+			return false;
+		}
+		
+		if (contentObj === null || contentObj.value.trim() === '') {
+			alert("내용을 확인해주세요.");
+			return false;
+		}
+		
+		return true;
+	}
+	
 </script>
 </head>
 <body>
@@ -128,15 +146,17 @@
 		 	</div>
 		</div>
 	 	
-		<form action='./updateCtr.do' method='post'>
+		<form action='./updateCtr.do' method='post' onsubmit="return check();">
 			<input type="hidden" name='boardNumber' value='${boardDto.boardNumber}'>
 			<input type="hidden" name='memberNumber' value='${member.memberNumber}'>
 			
 			<div id="textTitle">제목:		</div>
-			<input id="title" type="text" name="boardTitle" value="${boardDto.boardTitle}"> 
+			<input id="title" type="text" name="boardTitle" maxlength="33" 
+			value="${boardDto.boardTitle}"> 
 			
 			<div id="textContent">내용:		</div>
-			<textarea rows="1" cols="50" name="boardContent" id="content">${boardDto.boardContent}
+			<textarea rows="1" cols="50" name="boardContent" id="content" 
+			maxlength="1000">${boardDto.boardContent}
 			</textarea>
 <%-- 			<input id="content" type="text" name="boardContent" value="${boardDto.boardContent}">  --%>
 			
