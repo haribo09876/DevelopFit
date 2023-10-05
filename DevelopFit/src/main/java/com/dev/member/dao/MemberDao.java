@@ -7,7 +7,11 @@ import java.util.List;
 import com.dev.member.dto.MemberDto;
 
 public interface MemberDao {
+	
+	public String idExist(String inputId);
 
+	public String emailExist(String inputEmail);
+	
 	public MemberDto memberExist(String memberId, String memberPassword);
 
 	public void memberInsertOne(MemberDto memberDto);

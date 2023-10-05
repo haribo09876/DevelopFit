@@ -122,7 +122,7 @@ h1 {
 #productWrap {
    width: 900px;
    height: auto;
-   margin: 30px auto 0px;
+   margin: 50px auto 0px;
 }
 
 #selectAll {
@@ -352,6 +352,8 @@ input {
                         </div>
                         <div class="productName">
                            <h2>${basketList.movieTitle}</h2>
+                           <br>
+                           <a>${basketList.movieSummary}</a>
                         </div>
                         <div class="productOtherInfo">
                            <h4>개봉일</h4>
@@ -381,7 +383,7 @@ input {
 
 
             <div id="deleteWrap">
-               <div id="deleteSelect" onclick="deleteSelectFnc();">선택삭제</div>
+               <div id="deleteSelect" onclick="deleteSelectFnc();"><a>선택삭제</a></div>
             </div>
 
 
@@ -389,20 +391,21 @@ input {
 
             <!--    구매취소버튼 -->
             <div id="selectWrap">
-               <div id="cancel" onclick="이전페이지">취소</div>
-               <div id="buy" onclick="buyFnc();">주문</div>
+               <div id="cancel" onclick="이전페이지"><a>취소</a></div>
+               <div id="buy" onclick="buyFnc();"><a>주문</a></div>
             </div>
          </c:when>
 
          <c:otherwise>
             <div id="emptyBasket">
                <div id="emptyBasketContent">
-                  장바구니가 비어있어요..<br>영화를 담아주세요!
+                 <a>장바구니가 비어있어요..<br>영화를 담아주세요!</a>
                </div>
             </div>
 
             <div id="buttonWrap">
-               <div id="movePageMovie" onclick="moveMovieListFnc();">영화페이지로
+               <div id="movePageMovie" onclick="moveMovieListFnc();">
+               	<a>영화페이지로</a>
                </div>
             </div>
          </c:otherwise>
@@ -410,10 +413,10 @@ input {
 
    </div>
    <!-- productWrap end -->
-
-
-
-   <%--    <jsp:include page="/WEB-INF/view/Footer.jsp"/> --%>
+	
+	
+	
+<%--       <jsp:include page="/WEB-INF/view/Footer.jsp"/> --%>
 
 </body>
 </html>

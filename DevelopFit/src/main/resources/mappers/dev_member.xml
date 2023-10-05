@@ -20,7 +20,19 @@
 	</resultMap>
 
 	
+<!-- 	ID존재 확인 -->
+	<select id="idExist" parameterType="String" resultType="String">
+		SELECT MEMBER_ID
+		FROM MEMBER
+		WHERE MEMBER_ID = #{inputId}
+	</select>
 	
+<!-- 	Email존재 확인 -->
+	<select id="emailExist" parameterType="String" resultType="String">
+		SELECT MEMBER_EMAIL
+		FROM MEMBER
+		WHERE MEMBER_EMAIL = #{inputEmail}
+	</select>
 
 <!-- 	로그인 기능 구현 -->
 	<select id="memberExist" parameterType="map"

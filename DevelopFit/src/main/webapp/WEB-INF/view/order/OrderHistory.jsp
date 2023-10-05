@@ -148,17 +148,17 @@ body {
 				
 				<!-- 7일 이내시 환불버튼 -->
 				<c:if test="${weekAfterPurchase > today and historyList1d[0].orderHistoryState eq 'N'}">
-					<div class="refund" onclick="location.href='./cancel.do?orderNumber=${historyList1d[0].orderHistoryNumber}'">환불하기</div>
+					<div class="refund" onclick="location.href='./cancel.do?orderNumber=${historyList1d[0].orderHistoryNumber}'"><a>환불하기</a></div>
 				</c:if>
 				
 				<!-- 구매 확정 -->
 				<c:if test="${weekAfterPurchase < today and historyList1d[0].orderHistoryState eq 'Y'}">
-					<div class="confirmed">구매확정</div>
+					<div class="confirmed"><a>구매확정</a></div>
 				</c:if>
 				
 				<!-- 환불 완료 -->
 				<c:if test="${historyList1d[0].orderHistoryState eq 'R'}">
-					<div class="confirmed">환불완료</div>
+					<div class="confirmed"><a>환불완료</a></div>
 				</c:if>
 			</div>
 			
@@ -225,5 +225,7 @@ body {
       </form>
    </div>
 	
+	
+<%-- 	<jsp:include page="/WEB-INF/view/Footer.jsp"/> --%>
 </body>
 </html>

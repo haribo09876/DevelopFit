@@ -87,5 +87,17 @@ public class MemberServiceImpl implements MemberService{
 		// TODO Auto-generated method stub
 		return memberDao.memberDeleteOne(no);
 	}
+
+	@Override
+	public String idExist(String inputId) {
+		// TODO Auto-generated method stub
+		return memberDao.idExist(inputId);
+	}
+
+	@Override
+	public String emailExist(String inputEmail) {
+		// TODO Auto-generated method stub
+		return memberDao.emailExist(inputEmail);
+	}
 	
 }

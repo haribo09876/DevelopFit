@@ -83,19 +83,19 @@ body {
 }
 
 #orderPrice {
-	width: 250px;
+	width: 200px;
 	height: 30px;
 }
 
 #myMoney {
-	width: 250px;
+	width: 200px;
 	height: 30px;
 	margin-top: 3px;
 	margin-bottom: 3px;
 }
 
 #calResult {
-	width: 250px;
+	width: 200px;
 	height: 30px;
 }
 
@@ -167,16 +167,16 @@ body {
 	float: left;
 }
 
-#orderPrice > p {
-	margin-left: 40px;
+#orderPrice > a{
+	float: right;
 }
 
-#myMoney > p {
-	margin-left: 30px;
+#myMoney > a{
+	float: right;
 }
 
-#calResult > p {
-	margin-left: 10px;
+#calResult > a{
+	float: right;
 }
 
 </style>
@@ -330,16 +330,16 @@ body {
 			<div id="payWrap">
 				<div id="orderPrice">
 					<h4 id="payAmount" class="h4InlineBlock">주문금액</h4>
-					<p id="totalPrice" class="pInlineBlock"></p>
+					<a id="totalPrice" class="pInlineBlock"></a>
 				</div>
 				<div id="myMoney">
 					<h4  class="h4InlineBlock">M Money</h4>
-					<p class="pInlineBlock">${member.memberMoney}원</p>
+					<a class="pInlineBlock">${member.memberMoney}원</a>
 				</div>
 				<div></div>
 				<div id="calResult">
 					<h4  class="h4InlineBlock">결제 후 잔액</h4>
-					<p id="balance" class="pInlineBlock"></p>
+					<a id="balance" class="pInlineBlock"></a>
 				</div>
 			</div>
 			

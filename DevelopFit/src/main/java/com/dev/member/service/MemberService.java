@@ -7,8 +7,12 @@ import java.util.Map;
 
 import com.dev.member.dto.MemberDto;
 
-	public interface MemberService {
+public interface MemberService {
+	
+	public String idExist(String inputId);
 
+	public String emailExist(String inputEmail);
+	
 	public MemberDto memberExist(String id, String password);
 
 	public void memberInsertOne(MemberDto memberDto) throws Exception;
