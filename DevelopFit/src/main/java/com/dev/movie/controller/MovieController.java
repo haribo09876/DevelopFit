@@ -134,15 +134,17 @@ public class MovieController {
 
 //	 한줄평 추가 페이지로 이동
 	 @RequestMapping(value = "/movie/commentAdd.do", method = RequestMethod.GET)
-	 public String movieCommentAdd(Model model) {
+	 public String movieCommentAdd(MovieDto movieDto, Model model) {
 		 log.debug("Welcome MovieController movieCommentAdd!");
 
+		 model.addAttribute("movieDto", movieDto);
+		 
 		 return "movie/MovieCommentForm";
 	 }
 	 
 //	 한줄평 추가 (C)
 	 @RequestMapping(value = "/movie/commentAddCtr.do", method = RequestMethod.POST)
-	 public String movieCommentAdd(MovieDto movieDto, Model model) {
+	 public String movieCommentAddCtr(MovieDto movieDto, Model model) {
 		log.debug("Welcome MovieController movieCommentAdd! " + movieDto);
 
 		try {

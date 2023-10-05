@@ -77,14 +77,9 @@
       if (checkStr() == "") {
          alert("상품을 선택해주세요.");
       } else if (checkStr() != "") {
-         if(customerAgreeFnc()){
-            formObj.setAttribute("method", "post");
-            formObj.setAttribute("action", "./payment.do");
-            formObj.submit();
-         } else if(!customerAgreeFnc()) {
-            alert("필수동의를 체크해주세요.");
-         }
-         
+         formObj.setAttribute("method", "post");
+         formObj.setAttribute("action", "./payment.do");
+         formObj.submit();
       }
 
    }
@@ -109,18 +104,7 @@
       location.href = "../movie/list.do";
    }
    
-   function customerAgreeFnc() {
-      var agreeCheckBoxes = document.getElementsByName("agree");
-      var agreeBoolean = true;
-      
-      for(i = 0; i < agreeCheckBoxes.length; i++){
-         if(agreeCheckBoxes[i].checked == false){
-            agreeBoolean = false;
-         }
-      }
-      
-      return agreeBoolean;
-   }
+   
    
 </script>
 

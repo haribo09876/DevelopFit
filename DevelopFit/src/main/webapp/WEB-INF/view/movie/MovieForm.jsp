@@ -154,15 +154,17 @@
 		}
 	</style>
 	<script type="text/javascript">
-		var movieTitle = document.getElementById('movieTitle');
-		var movieSummary = document.getElementById('movieSummary');
-		var movieReleaseDate = document.getElementById('movieReleaseDate');
-		var movieRuntime = document.getElementById('movieRuntime');
-		var moviePrice = document.getElementById('moviePrice');
-		var moviePoster = document.getElementById('moviePoster');
-		var moviePreview = document.getElementById('moviePreview');
-		var genreNumber = document.getElementById('genreNumber');
-
+		window.onload = function(){
+			var movieTitle = document.getElementById('movieTitle');
+			var movieSummary = document.getElementById('movieSummary');
+			var movieReleaseDate = document.getElementById('movieReleaseDate');
+			var movieRuntime = document.getElementById('movieRuntime');
+			var moviePrice = document.getElementById('moviePrice');
+			var moviePoster = document.getElementById('moviePoster');
+			var moviePreview = document.getElementById('moviePreview');
+			var genreNumber = document.getElementById('genreNumber');
+		}
+		
 		function check() {
 			var form = document.addMovie;
 		

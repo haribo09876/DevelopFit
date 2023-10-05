@@ -10,9 +10,9 @@
 		margin-right: 602px;
 	}
 	#submenu1{
-		width: 130px;
+		width: 100px;
 	}
-	#submenu1-1:hover{
+	.submenu1-1:hover{
 		color: #F24141;
 		text-decoration: underline;
 	}
@@ -25,11 +25,16 @@
 
 	<div id="subMenu">
 		<ul>
-			<li id="submenu1"><a href="#" id="submenu1-1">subMenu1</a></li>
-			<li id="submenu1"><a href="#" id="submenu1-1">subMenu2</a></li>
-			<li id="submenu1"><a href="#" id="submenu1-1">subMenu3</a></li>
-			<li id="submenu1"><a href="#" id="submenu1-1">subMenu4</a></li>
-		</ul>
+			<li id="submenu1"><a href="#" class="submenu1-1">개인정보</a></li>
+			<li id="submenu1"><a href="#" class="submenu1-1">장바구니</a></li>
+			<li id="submenu1"><a href="#" class="submenu1-1">주문내역</a></li>
+			<li id="submenu1"><a href="#" class="submenu1-1">내 게시물</a></li>
+			<li id="submenu1"><a href="#" class="submenu1-1">전체회원</a></li>
+			<li id="submenu1"><a href="#" class="submenu1-1">전체영화</a></li>
+			<li id="submenu1"><a href="#" class="submenu1-1">전체게시물</a></li>
+			<li id="submenu1"><a href="#" class="submenu1-1">전체주문내역</a></li>
+			<li id="submenu1"><a href="#" class="submenu1-1">전체한줄평</a></li>
+			</ul>
 	</div>
 
 </div>

@@ -10,6 +10,7 @@
 	window.onload = function() {
 		alert("충전되었습니다.");
 		window.close();
+		opener.location.reload();
 	}
 </script>
 </head>

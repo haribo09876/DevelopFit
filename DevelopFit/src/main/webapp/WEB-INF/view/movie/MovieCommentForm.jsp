@@ -91,8 +91,8 @@
             <h3>영화 한줄평 추가</h3>
          </div>
          <form action="./commentAddCtr.do" method="post" id="addCommentForm" enctype="multipart/form-data">
-            <input type="hidden" name='memberNumber'><br>
-            <input type="hidden" name='movieNumber'><br>
+            <input type="hidden" name='memberNumber' value= '${member.memberNumber}'><br>
+            <input type="hidden" name='movieNumber' value= '${movieDto.movieNumber}'><br>
             <input type='text' name='lineReviewContext' id='lineReviewContext' placeholder="내용을 입력해주세요."><br>
             <div id="btnList">
                <div id="pageBack">

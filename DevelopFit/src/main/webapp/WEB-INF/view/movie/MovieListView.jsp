@@ -151,6 +151,7 @@
 					</c:if>
 				</tr>
 			</thead>
+			
 
 			<c:forEach var="movieDto" items="${movieList}">
 				<tr class="tableGroup">

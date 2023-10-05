@@ -133,11 +133,12 @@ function check() {
 		<div id="memberUpdateForm">
 			<form action='./updateCtr.do' name='updateForm' method='post'>
 				<input type='hidden' name='memberNumber' value='${member.memberNumber}' readonly>
-				<input type='text' name='memberName' id="updateName" value='${member.memberName}'><br>
-				<input type='text' name='memberId' id="updateId" value='${member.memberId}'><br>
-				<input type="email" name='memberEmail' id="updateEmail" value='${member.memberEmail}'><br>
+				<input type='text' name='memberName' id="updateName" value='${member.memberName}' readonly><br>
+				<input type='text' name='memberId' id="updateId" value='${member.memberId}' readonly><br>
+				<input type="email" name='memberEmail' id="updateEmail" value='${member.memberEmail}' readonly><br>
 				<input type='text' name='memberPhoneNumber' id="updatePhoneNumber" value='${member.memberPhoneNumber}'><br>
 				<input type='date' name='memberBirthDate' id="updateBirthDate" value='${member.memberBirthDate}'><br>
+				<input type='text' name='memberMoney' id="updateMoney" value='${member.memberMoney}' readonly><br>
 				<input type="password" name="memberPassword" id="updatePW" placeholder="비밀번호를 입력해주세요." onfocus="this.placeholder=''"
 							onblur="this.placeholder='비밀번호를 입력해주세요.'" value="" required="required"><br>
 				<input type="button" value="수정하기" id="updateBtn" onclick="check();">
