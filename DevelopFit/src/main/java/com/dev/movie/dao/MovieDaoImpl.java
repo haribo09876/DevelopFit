@@ -64,12 +64,22 @@ public class MovieDaoImpl implements MovieDao{
 		// TODO Auto-generated method stub
 		return sqlSession.insert("com.dev.movie.movieCommentInsertOne", movieDto);
 	}
-	
+
 	@Override
 	public List<MovieDto> movieCommentSelectList(int start, int end) {
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("start", start);
 		map.put("end", end);
+
+		return sqlSession.selectList("com.dev.movie.movieCommentSelectList", map);
+	}
+		
+	@Override
+	public List<MovieDto> movieCommentSelectList(int start, int end, int movieNumber) {
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("start", start);
+		map.put("end", end);
+		map.put("movieNumber", movieNumber);
 
 		return sqlSession.selectList("com.dev.movie.movieCommentSelectList", map);
 	}

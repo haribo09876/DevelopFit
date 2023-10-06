@@ -42,7 +42,7 @@ public class MovieServiceImpl implements MovieService{
 		
 		MovieDto movieDto = movieDao.movieSelectOne(movieNumber);
 		
-		List<MovieDto> movieCommentList = movieDao.movieCommentSelectList(1, 10);
+		List<MovieDto> movieCommentList = movieDao.movieCommentSelectList(1, 10, movieNumber);
 		
 		resultMap.put("movieDto", movieDto);
 		resultMap.put("movieCommentList", movieCommentList);
@@ -82,11 +82,17 @@ public class MovieServiceImpl implements MovieService{
 		// TODO Auto-generated method stub
 		return movieDao.movieCommentSelectTotalCount();
 	}
-
+	
 	@Override
 	public List<MovieDto> movieCommentSelectList(int start, int end) {
 		// TODO Auto-generated method stub
 		return movieDao.movieCommentSelectList(start, end);
+	}
+
+	@Override
+	public List<MovieDto> movieCommentSelectList(int start, int end, int movieNumber) {
+		// TODO Auto-generated method stub
+		return movieDao.movieCommentSelectList(start, end, movieNumber);
 	}
 
 	@Override

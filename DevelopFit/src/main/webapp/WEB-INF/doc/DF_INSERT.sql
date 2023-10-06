@@ -59,37 +59,47 @@ SELECT* FROM PREFER_GENRE;
 
 INSERT INTO GENRE
 VALUE(GENRE_NUMBER, GENRE_NAME)
+VALUES(0, '없음');
+INSERT INTO GENRE
 VALUES(1, 'SF');
 INSERT INTO GENRE
-VALUES(2, '공포');
+VALUES(2, '가족');
 INSERT INTO GENRE
-VALUES(3, '로맨스');
+VALUES(3, '공연');
 INSERT INTO GENRE
-VALUES(4, '멜로');
+VALUES(4, '공포(호러)');
 INSERT INTO GENRE
-VALUES(5, '뮤지컬');
+VALUES(5, '기타');
 INSERT INTO GENRE
-VALUES(6, '범죄');
+VALUES(6, '다큐멘터리');
 INSERT INTO GENRE
-VALUES(7, '스릴러');
+VALUES(7, '드라마');
 INSERT INTO GENRE
-VALUES(8, '스포츠');
+VALUES(8, '멜로/로맨스');
 INSERT INTO GENRE
-VALUES(9, '액션');
+VALUES(9, '뮤지컬');
 INSERT INTO GENRE
-VALUES(10, '음악');
+VALUES(10, '미스테리');
 INSERT INTO GENRE
-VALUES(11, '전쟁');
+VALUES(11, '범죄');
 INSERT INTO GENRE
-VALUES(12, '코미디');
+VALUES(12, '사극');
 INSERT INTO GENRE
-VALUES(13, '판타지');
+VALUES(13, '서부극(웨스턴)');
 INSERT INTO GENRE
-VALUES(14, '미스터리');
+VALUES(14, '스릴러');
 INSERT INTO GENRE
-VALUES(15, '드라마');
+VALUES(15, '애니메이션');
 INSERT INTO GENRE
-VALUES(16, '애니메이션');
+VALUES(16, '액션');
+INSERT INTO GENRE
+VALUES(17, '어드벤쳐');
+INSERT INTO GENRE
+VALUES(18, '전쟁');
+INSERT INTO GENRE
+VALUES(19, '코미디');
+INSERT INTO GENRE
+VALUES(20, '판타지');
 SELECT* FROM GENRE;
 
 
@@ -97,7 +107,7 @@ INSERT INTO MOVIE
 VALUE(MOVIE_NUMBER, MOVIE_TITLE, MOVIE_SUMMARY, MOVIE_RELEASE_DATE, MOVIE_RUNTIME, MOVIE_PRICE, MOVIE_PREVIEW, MOVIE_RATING, MOVIE_MAIN_POSTER, GENRE_NUMBER)
 VALUES(MOVIE_NUMBER_SEQ.NEXTVAL, '잠', '행복한 신혼부부 ‘현수’(이선균)와 ‘수진’(정유미). 어느 날, 옆에 잠든 남편 ‘현수’가 이상한 말을 중얼거린다.', '2023-09-06', 94, 10000, 'https://www.youtube.com/embed/aRxQDCXnfOc', '15세 관람가', 'https://search.pstatic.net/common?quality=75&direct=true&src=https%3A%2F%2Fmovie-phinf.pstatic.net%2F20230906_145%2F1693965381891wjuK6_JPEG%2Fmovie_image.jpg', 14);
 INSERT INTO MOVIE
-VALUES(MOVIE_NUMBER_SEQ.NEXTVAL, '콘크리트 유토피아', '“아파트는 주민의 것” 온 세상을 집어삼킨 대지진, 그리고 하루아침에 폐허가 된 서울. 모든 것이 무너졌지만 오직 황궁 아파트만은 그대로다.', '2023-08-09', 130, 10000, 'https://www.youtube.com/embed/hAO9a1xSo3M?si=QmCb2R7glajd4FGK', '15세 관람가', 'https://search.pstatic.net/common?quality=75&direct=true&src=https%3A%2F%2Fmovie-phinf.pstatic.net%2F20230809_114%2F1691559109714F3JPy_JPEG%2Fmovie_image.jpg', 15);
+VALUES(MOVIE_NUMBER_SEQ.NEXTVAL, '콘크리트 유토피아', '“아파트는 주민의 것” 온 세상을 집어삼킨 대지진, 그리고 하루아침에 폐허가 된 서울. 모든 것이 무너졌지만 오직 황궁 아파트만은 그대로다.아파트는 주민의 것” 온 세상을 집어삼킨 대지진, 그리고 하루아침에 폐허가 된 서울. 모든 것이 무너졌지만 오직 황궁 아파트만은 그대로다.아파트는 주민의 것” 온 세상을 집어삼킨 대지진, 그리고 하루아침에 폐허가 된 서울. 모든 것이 무너졌지만 오직 황궁 아파트만은 그대로다.', '2023-08-09', 130, 10000, 'https://www.youtube.com/embed/hAO9a1xSo3M?si=QmCb2R7glajd4FGK', '15세 관람가', 'https://search.pstatic.net/common?quality=75&direct=true&src=https%3A%2F%2Fmovie-phinf.pstatic.net%2F20230809_114%2F1691559109714F3JPy_JPEG%2Fmovie_image.jpg', 15);
 INSERT INTO MOVIE
 VALUES(MOVIE_NUMBER_SEQ.NEXTVAL, '엘리멘탈', '불, 물, 공기, 흙 4개의 원소들이 살고 있는 ‘엘리멘트 시티’ 재치 있고 불처럼 열정 넘치는 ‘앰버’', '2023-06-14', 109, 11000, 'https://www.youtube.com/embed/BOqFRHCrN-k?si=PlibcbCbekEBTlBw', '전체 관람가', 'https://search.pstatic.net/common?quality=75&direct=true&src=https%3A%2F%2Fmovie-phinf.pstatic.net%2F20230526_154%2F1685060493223yFUCL_JPEG%2Fmovie_image.jpg', 16);
 INSERT INTO MOVIE
@@ -119,7 +129,7 @@ BEGIN
     LOOP
     INSERT INTO BOARD
     VALUE(BOARD_NUMBER, BOARD_TITLE, BOARD_CONTENT, BOARD_CREATE_DATE, BOARD_HIT, MEMBER_NUMBER)
-    VALUES(BOARD_NUMBER_SEQ.NEXTVAL, '아 집가고싶다', '집에 가고싶은데 팀플 해야해', sysdate, 14, 1);
+    VALUES(BOARD_NUMBER_SEQ.NEXTVAL, '아 집가고싶다', '집에 <br> 가고싶은데 팀플 해야해sadfasdfsadf', sysdate, 14, 1);
     INSERT INTO BOARD
     VALUES(BOARD_NUMBER_SEQ.NEXTVAL, '제목 추천 좀', '안녕하세요. 새로 가입했습니다^^', sysdate, 10, 2);
     INSERT INTO BOARD

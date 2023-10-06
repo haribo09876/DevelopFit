@@ -5,7 +5,6 @@ import java.sql.Date;
 
 //Bean Spec
 public class MemberDto {
-
 	
 	int memberNumber;
 	String memberId;
