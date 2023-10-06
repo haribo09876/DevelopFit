@@ -339,7 +339,6 @@ label {
    <jsp:include page="/WEB-INF/view/Header.jsp" />
 
 
-
    <!--    장바구니 -->
    <div id="productWrap">
       <h1>장바구니</h1>

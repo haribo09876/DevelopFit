@@ -14,7 +14,7 @@
 	
 	
 	function homeFnc() {
-		
+		location.href = "../auth/login.do";
 	}
 	
 </script>
