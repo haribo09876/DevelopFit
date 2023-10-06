@@ -23,4 +23,6 @@ public interface BoardDao {
 	List<BoardDto> searchBoards(String keyword);
 	
 	List<BoardDto> boardSelectMyList(int start, int end, int memberNumber);
+
+	int boardSelectMyTotalCount(int memberNumber);
 }

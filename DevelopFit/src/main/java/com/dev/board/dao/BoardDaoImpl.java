@@ -87,5 +87,12 @@ public class BoardDaoImpl implements BoardDao{
 		
 		return sqlSession.selectList("com.dev.board.boardSelectMyList", map);
 	}
+
+
+	@Override
+	public int boardSelectMyTotalCount(int memberNumber) {
+		// TODO Auto-generated method stub
+		return (int)sqlSession.selectOne("com.dev.board.boardSelectMyTotalCount", memberNumber);
+	}
 	
 }

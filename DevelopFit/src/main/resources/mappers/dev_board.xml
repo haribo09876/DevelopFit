@@ -113,6 +113,13 @@
 		FROM BOARD
 	</select>
 	
+<!-- 	내 게시물 페이징 기능을 위한 총 게시글 수 산출 -->
+	<select id="boardSelectMyTotalCount" resultType="java.lang.Integer">
+		SELECT COUNT(*)
+		FROM BOARD
+		WHERE MEMBER_NUMBER = #{memberNumber} 
+	</select>
+	
 <!-- 	댓글 생성 -->
 <!-- 	<insert id="boardCommentInsertOne" parameterType="boardDto" -->
 <!-- 		useGeneratedKeys="true" keyProperty="commentNumber"> -->
@@ -185,10 +192,10 @@
 		SELECT B.BOARD_NUMBER, B.BOARD_TITLE, B.BOARD_CONTENT, M.MEMBER_ID, 
 		B.BOARD_CREATE_DATE, B.BOARD_HIT, M.MEMBER_NUMBER
 		FROM MEMBER M JOIN BOARD B ON M.MEMBER_NUMBER = B.MEMBER_NUMBER
+		WHERE M.MEMBER_NUMBER = #{memberNumber}
 		ORDER BY BOARD_NUMBER DESC) C
 		) C
 		WHERE (C.RNUM BETWEEN #{start} AND #{end})
-		AND C.MEMBER_NUMBER = #{memberNumber}
 		ORDER BY C.BOARD_NUMBER DESC
 		
 	</select>

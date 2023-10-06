@@ -155,7 +155,7 @@
 		font-size: 30px;
 	}
 	.cardTable {
-	    min-width: 100%;
+	    min-width: 98%;
 	    margin-top: 30px;
 		table-layout: fixed;
 		background-color: #172036;
@@ -250,7 +250,6 @@
 	
 			<c:forEach var="moviesresult" items="${searchMoviesResults}">
 				<tr class="tableGroup">
-					<td>${moviesresult.movieNumber}</td>
 					<td>
 						<a href='../movie/listOne.do?movieNumber=${moviesresult.movieNumber}'>
 							<img class="listPoster" alt="포스터" src="${moviesresult.moviePoster}">			

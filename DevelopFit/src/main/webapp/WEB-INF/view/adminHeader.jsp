@@ -7,7 +7,7 @@
 	#subMenu{
 		width: 1000px;
 		display: block;
-		margin-right: 602px;
+		margin-right: auto;
 	}
 	#submenu1{
 		width: 105px;
@@ -25,15 +25,15 @@
 
 	<div id="subMenu">
 		<ul>
-			<li id="submenu1"><a href="#" class="submenu1-1">개인정보</a></li>
+			<li id="submenu1"><a href="../member/myPage.do" class="submenu1-1">개인정보</a></li>
 			<li id="submenu1"><a href="#" class="submenu1-1">장바구니</a></li>
 			<li id="submenu1"><a href="#" class="submenu1-1">주문내역</a></li>
 			<li id="submenu1"><a href="../board/myList.do" class="submenu1-1">내 게시물</a></li>
-			<li id="submenu1"><a href="#" class="submenu1-1">전체회원</a></li>
-			<li id="submenu1"><a href="#" class="submenu1-1">전체영화</a></li>
+			<li id="submenu1"><a href="../member/list.do" class="submenu1-1">전체회원</a></li>
+			<li id="submenu1"><a href="../movie/list.do" class="submenu1-1">전체영화</a></li>
 			<li id="submenu1"><a href="../board/adminList.do" class="submenu1-1">전체게시물</a></li>
 			<li id="submenu1"><a href="#" class="submenu1-1">전체주문내역</a></li>
-			<li id="submenu1"><a href="#" class="submenu1-1">전체한줄평</a></li>
+			<li id="submenu1"><a href="../movie/commentList.do" class="submenu1-1">전체한줄평</a></li>
 			</ul>
 	</div>
 

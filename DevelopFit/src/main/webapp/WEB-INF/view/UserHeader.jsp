@@ -2,29 +2,30 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <style>
-	#UserHeader{
-	}
 	#subMenu{
 		width: 1000px;
 		display: block;
-		margin-right: 315px;
+		margin:auto;
 	}
 	#submenu1{
 		width: 105px;
+		margin: auto;
 	}
 	.submenu1-1:hover{
 		color: #F24141;
 		text-decoration: underline;
+	}
+	#sub{
+		margin: auto;
+		width: 456px;
 	}
 </style>
 <script>
 	
 </script>
 
-<div id="UserHeader">
-
 	<div id="subMenu">
-		<ul>
+		<ul id="sub">
 			<li id="submenu1"><a href="#" class="submenu1-1">개인정보</a></li>
 			<li id="submenu1"><a href="#" class="submenu1-1">장바구니</a></li>
 			<li id="submenu1"><a href="#" class="submenu1-1">주문내역</a></li>
@@ -32,4 +33,3 @@
 			</ul>
 	</div>
 
-</div>

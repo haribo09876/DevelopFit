@@ -21,12 +21,12 @@
 		
 		nav>ul>li {
 			float: left;
+			width: 30px;
 		}
 		
 		nav>ul>li>a {
 			display: block;
 			text-align: center;
-			padding: 1px;
 			text-decoration: none;
 			width: 30px;
 			color: white;

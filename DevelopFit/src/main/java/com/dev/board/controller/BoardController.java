@@ -1,5 +1,6 @@
 package com.dev.board.controller;
 
+import java.lang.ProcessBuilder.Redirect;
 import java.util.HashMap;
 import java.util.List;
 
@@ -45,34 +46,34 @@ public class BoardController {
 	    // Log4j
 	    log.info("Welcome BoardController list!: {}", curPage);
 
-	    int totalCount = boardService.boardSelectTotalCount();
+	    	int totalCount = boardService.boardSelectTotalCount();
+	  	    
+	  	    Paging boardPaging = new Paging(totalCount, curPage);
+	  	    
+	  	    int start = boardPaging.getPageBegin();
+	  		int end = boardPaging.getPageEnd();
+	  	    
+	  	    // 게시글 리스트
+	  	    List<BoardDto> boardList = boardService.boardSelectList(start, end);
+	  	    
+	  	    HashMap<String, Object> pagingMap = new HashMap<>();
+	  		pagingMap.put("totalCount", totalCount);
+	  		pagingMap.put("boardPaging", boardPaging);
+	  		
+	  		MemberDto memberDto = (MemberDto)session.getAttribute("member");
+	  		
+	  		int sessionMemberNumber = memberDto.getMemberNumber();
+	  		
+	  		// 관리자인 경우 수정 및 삭제 버튼을 표시
+	  	    if (sessionMemberNumber == 0) {
+	  	        model.addAttribute("canEdit", true);
+	  	    } else {
+	  	        model.addAttribute("canEdit", false);
+	  	    }
+	  		
+	  		model.addAttribute("boardList", boardList);
+	  		model.addAttribute("pagingMap", pagingMap);
 	    
-	    Paging boardPaging = new Paging(totalCount, curPage);
-	    
-	    int start = boardPaging.getPageBegin();
-		int end = boardPaging.getPageEnd();
-	    
-	    // 게시글 리스트
-	    List<BoardDto> boardList = boardService.boardSelectList(start, end);
-	    
-	    HashMap<String, Object> pagingMap = new HashMap<>();
-		pagingMap.put("totalCount", totalCount);
-		pagingMap.put("boardPaging", boardPaging);
-		
-		MemberDto memberDto = (MemberDto)session.getAttribute("member");
-		
-		int sessionMemberNumber = memberDto.getMemberNumber();
-		
-		// 관리자인 경우 수정 및 삭제 버튼을 표시
-	    if (sessionMemberNumber == 0) {
-	        model.addAttribute("canEdit", true);
-	    } else {
-	        model.addAttribute("canEdit", false);
-	    }
-		
-		model.addAttribute("boardList", boardList);
-		model.addAttribute("pagingMap", pagingMap);
-
 	    return "board/BoardListView";
 	}
 	//게시글 상세 페이지(댓글 포함)
@@ -214,7 +215,7 @@ public class BoardController {
 			
 			int memberNumber = memberDto.getMemberNumber();
 		    
-		    int totalCount = boardService.boardSelectTotalCount();
+		    int totalCount = boardService.boardSelectMyTotalCount(memberNumber);
 		    
 		    Paging boardPaging = new Paging(totalCount, curPage);
 		    

@@ -295,7 +295,7 @@ table tr th td {
 				<jsp:param value="${pagingMap}" name="pagingMap" />
 			</jsp:include>
 
-			<form action="./list.do" id='pagingForm' method="post">
+			<form action="./myList.do" id='pagingForm' method="post">
 				<input type="hidden" id='curPage' name='curPage'
 					value="${pagingMap.boardPaging.curPage}">
 			</form>

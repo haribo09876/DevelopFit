@@ -221,7 +221,9 @@ table tr th td {
 #delete:hover {
 	opacity: .8;
 }
-
+#pagingwrap{
+	height: 100px;
+}
 </style>
 </head>
 <body>

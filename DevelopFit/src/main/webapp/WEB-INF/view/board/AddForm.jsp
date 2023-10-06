@@ -111,7 +111,7 @@
           value="${boardDto.boardTitle}" placeholder="제목" maxlength="33"><br>
          
          <textarea rows="1" cols="50" name="boardContent" id="content" maxlength="1000" 
-         placeholder="내용을 입력해주세요.">
+         placeholder="내용을 입력해주세요." style="resize: none;">
          </textarea>
          
          <div id="btnList">   

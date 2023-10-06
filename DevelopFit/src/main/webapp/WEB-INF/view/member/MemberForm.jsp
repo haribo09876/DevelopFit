@@ -4,12 +4,9 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<<<<<<< HEAD
 <title>회원 가입</title>
 <script src="https://code.jquery.com/jquery-3.7.0.min.js"></script>
-=======
 <title>회원가입</title>
->>>>>>> branch 'main' of https://github.com/haribo09876/DevelopFit.git
 <style type="text/css">
 body {
 	background-color: #101322;

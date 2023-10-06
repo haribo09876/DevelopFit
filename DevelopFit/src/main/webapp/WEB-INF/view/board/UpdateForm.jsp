@@ -77,6 +77,7 @@
  		margin-left: 120px;
  		background-color: #273061;
  		border: none;
+ 		border-radius:6px;
  		color: white;
  	}
 	#textTitle{
@@ -152,11 +153,11 @@
 			
 			<div id="textTitle">제목:		</div>
 			<input id="title" type="text" name="boardTitle" maxlength="33" 
-			value="${boardDto.boardTitle}"> 
+			value="${boardDto.boardTitle}" style="border-radius: 6px;"> 
 			
 			<div id="textContent">내용:		</div>
 			<textarea rows="1" cols="50" name="boardContent" id="content" 
-			maxlength="1000">${boardDto.boardContent}
+			maxlength="1000" style="resize: none;">${boardDto.boardContent}
 			</textarea>
 <%-- 			<input id="content" type="text" name="boardContent" value="${boardDto.boardContent}">  --%>
 			
@@ -165,10 +166,6 @@
 
 	
 </div>
-	
-		<div id="commentmenu">
-			<div>댓글</div>
-		</div>
 	
 </body>
 </html>

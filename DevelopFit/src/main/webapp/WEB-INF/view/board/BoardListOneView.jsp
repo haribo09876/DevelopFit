@@ -162,6 +162,7 @@
 		background-color: #273061;
 		color: white;
 		font-size: x-large;
+		border-radius: 6px;
 	}
 	#addButton{
 		width: 100px;
@@ -264,7 +265,7 @@
 			<input type="hidden" name='boardNumber' value="${boardDto.boardNumber}">
 			<input type="hidden" name='memberNumber' value="${member.memberNumber}">
 			<textarea rows="1" cols="20" name="commentContent" id="commentInsert" 
-			maxlength="33"></textarea>	
+			maxlength="33" style="resize: none;"></textarea>	
 			<input type="submit" id="addButton" value="등록">
 		</form>
 		

@@ -108,7 +108,7 @@
          <input type="hidden" name='memberNumber' value= '${member.memberNumber}'>
          <input type="hidden" name="boardNumber" value="${commentDto.boardNumber}">
          <textarea rows="1" cols="50" name="commentContent" id="content" maxlength="33" 
-         placeholder="${commentDto.commentContent}">${commentDto.commentContent}</textarea>
+         placeholder="${commentDto.commentContent}" style="resize: none;">${commentDto.commentContent}</textarea>
          <div id="btnList">   
          <div id="pageBack" onclick="pageBack();">취소</div>
          <input type="submit" id="submit" value="저장" />
