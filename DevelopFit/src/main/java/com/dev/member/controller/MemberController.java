@@ -203,11 +203,13 @@ public class MemberController {
 			try {
 				memberService.memberUpdateOne(memberDto);
 				session.setAttribute("member", memberDto);
+				return "redirect:/member/myPage.do";
 			} catch (Exception e) {
 				// TODO: handle exception
 				e.printStackTrace();
+				return "redirect:/auth/login.do";
 			}
-		    return "/member/myPage";
+		    
 		}
 		
 		@RequestMapping(value ="/member/updateCtr2.do", method = RequestMethod.POST)

@@ -276,8 +276,8 @@ div {
 
 				<select name="memberGender" id="input-gender">
 					<option value="" hidden="">성별</option>
-					<option value="M">M</option>
-					<option value="F">F</option>
+					<option value="M">남자</option>
+					<option value="F">여자</option>
 				</select>
 				<br>
 				<select name="favorite1" id="favorite1">

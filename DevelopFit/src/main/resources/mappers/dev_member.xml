@@ -17,6 +17,9 @@
 		<result column="MEMBER_GENDER" property="memberGender" />
 		<result column="MEMBER_CREATE_DATE" property="memberCreateDate" javaType="java.sql.Date" />
 		<result column="MEMBER_MODIFY_DATE" property="memberModifyDate" javaType="java.sql.Date" />
+		<result column="PREFER_GENRE_FIRST" property="preferGenreFirst" />
+		<result column="PREFER_GENRE_SECOND" property="preferGenreSecond" />
+		<result column="PREFER_GENRE_THIRD" property="preferGenreThird" />
 	</resultMap>
 
 	
