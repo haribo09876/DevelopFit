@@ -11,14 +11,17 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import com.dev.util.Paging;
 import com.dev.member.dto.MemberDto;
 import com.dev.member.service.MemberService;
+import com.dev.order.dto.OrderDto;
 
 @Controller
 public class MemberController {
@@ -27,7 +30,20 @@ public class MemberController {
 
 	@Autowired
 	private MemberService memberService;
-
+	
+	
+	@GetMapping(value = "/idExist.do")
+	@ResponseBody
+	public String idExist(@RequestParam("idChk") String idChk) {
+		return memberService.idExist(idChk);
+	}
+	
+	@GetMapping(value = "/emailExist.do")
+	@ResponseBody
+	public String emailExist(@RequestParam("emailChk") String emailChk) {
+		return memberService.emailExist(emailChk);
+	}
+	
 	// 로그인 페이지 이동
 	@RequestMapping(value = "/auth/login.do", method = RequestMethod.GET)
 	public String login(HttpSession session, Model model) {

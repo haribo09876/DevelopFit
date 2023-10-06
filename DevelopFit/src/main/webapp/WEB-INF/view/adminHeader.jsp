@@ -10,7 +10,7 @@
 		margin-right: 602px;
 	}
 	#submenu1{
-		width: 100px;
+		width: 105px;
 	}
 	.submenu1-1:hover{
 		color: #F24141;

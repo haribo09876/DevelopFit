@@ -4,7 +4,12 @@
 <html>
 <head>
 <meta charset="UTF-8">
+<<<<<<< HEAD
+<title>회원 가입</title>
+<script src="https://code.jquery.com/jquery-3.7.0.min.js"></script>
+=======
 <title>회원가입</title>
+>>>>>>> branch 'main' of https://github.com/haribo09876/DevelopFit.git
 <style type="text/css">
 body {
 	background-color: #101322;
@@ -246,7 +251,7 @@ div {
 					<input type="text" name="memberId" placeholder="아이디"
 						onfocus="this.placeholder=''" onblur="this.placeholder='아이디'"
 						id="signup-input-id"><br>
-					<div id="idChk">중복확인</div>
+					<div id="idChk" onclick="idChkFnc();">중복확인</div>
 				</div>
 
 				<input type="password" name="memberPassword" placeholder="비밀번호"
@@ -266,7 +271,7 @@ div {
 					<input type="email" name="memberEmail" placeholder="email"
 						onfocus="this.placeholder=''" onblur="this.placeholder='이메일'"
 						id="signup-input-email"><br>
-					<div id="emailChk">중복확인</div>
+					<div id="emailChk" onclick="emailChkFnc();">중복확인</div>
 				</div>
 
 				<select name="memberGender" id="input-gender">
@@ -349,7 +354,8 @@ div {
 				</select>
 				<br>
 				<div id="input-date">
-					생년월일 <input type="date" name="memberBirthDate" id="date-select">
+					생년월일 <input type="date" max="2010-01-01" 
+					min="1900-01-01"name="memberBirthDate" id="date-select">
 				</div>
 				<br> <input type="button" value="회원가입" id="signup-btn"
 					onclick="check();"> <input type="button" value="취소"
@@ -360,8 +366,68 @@ div {
 
 	</div>
 
+</body>
 
-	<script type="text/javascript">
+
+<script type="text/javascript">
+	
+	function idChkFnc(){
+		var inputMemberIdVal = document.getElementsByName("memberId")[0].value;
+		var result = "";
+		
+		$.ajax({
+			type: 'get',
+			url: '../idExist.do',
+			dataType: 'text',
+			data: {
+				idChk: inputMemberIdVal,
+			},
+			success: function (data) {
+				if(inputMemberIdVal != ""){
+					if(data == inputMemberIdVal){
+	                	alert("다른 아이디를 사용해주세요.")
+	                } else if(data != inputMemberIdVal){
+	                	alert("사용 가능한 아이디입니다.")
+	                }
+				} else if(inputMemberIdVal == ""){
+                	alert("아이디를 입력해 주세요.")
+                }
+                
+            },
+            error: function(request, status, error) {
+                alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
+            }
+		});
+	}
+	
+	function emailChkFnc() {
+		var inputMemberEmailVal = document.getElementsByName("memberEmail")[0].value;
+		var result = "";
+		
+		$.ajax({
+			type: 'get',
+			url: '../emailExist.do',
+			dataType: 'text',
+			data: {
+				emailChk: inputMemberEmailVal,
+			},
+			success: function (data) {
+				if(inputMemberEmailVal != ""){
+					if(data == inputMemberEmailVal){
+                	alert("다른 이메일을 사용해주세요.")
+                	} else if(data != inputMemberEmailVal){
+                		alert("사용 가능한 이메일입니다.")
+                	}
+				} else if(inputMemberEmailVal == ""){
+                	alert("이메일을 입력해 주세요.")
+                }
+            },
+            error: function(request, status, error) {
+                alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
+            }
+		});
+	}
+	
 	function pageMove(){
 		location.href = "../member/add.do";
 	}
@@ -456,5 +522,6 @@ div {
 			form.submit();
 	}
 </script>
-</body>
+
+
 </html>

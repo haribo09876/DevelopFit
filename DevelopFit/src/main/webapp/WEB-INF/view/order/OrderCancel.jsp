@@ -242,21 +242,20 @@ body {
 					<option value="단순 변심">단순 변심</option>
 					<option value="잘못 주문">잘못 주문</option>
 					<option value="서비스 불만족">서비스 불만족</option>
-					<option value="">직접 입력</option>
 				</select>
 			</div>
 
 			<div id="refundAmount" class="cDetails">
 				<h4>환불 금액</h4>
 			</div>
-			<div id="totalRefund" class="cDetails">0원</div>
+			<div id="totalRefund" class="cDetails"><a>0원</a></div>
 
 		</div>
 	</div>
 
 	<div id="selectWrap">
-		<div id="cancel" onclick="cancelFnc();">취소하기</div>
-		<div id="refund" onclick="refundFnc();">환불하기</div>
+		<div id="cancel" onclick="cancelFnc();"><a>취소하기</a></div>
+		<div id="refund" onclick="refundFnc();"><a>환불하기</a></div>
 	</div>
 
 

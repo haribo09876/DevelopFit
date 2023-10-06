@@ -102,6 +102,15 @@ input{
 	font-weight: bold;
 	font-size: 16px;
 }
+#updateMoney{
+	width: 346px;
+	height: 40px;
+	margin-top: 20px;
+	border: none;
+	border-radius: 6px;
+	background-color: #172036;
+	padding-left: 10px;
+}
 
 </style>
 <script type="text/javascript">
@@ -138,7 +147,7 @@ function check() {
 				<input type="email" name='memberEmail' id="updateEmail" value='${member.memberEmail}' readonly><br>
 				<input type='text' name='memberPhoneNumber' id="updatePhoneNumber" value='${member.memberPhoneNumber}'><br>
 				<input type='date' name='memberBirthDate' id="updateBirthDate" value='${member.memberBirthDate}'><br>
-				<input type='text' name='memberMoney' id="updateMoney" value='${member.memberMoney}' readonly><br>
+				<input type='text' name='memberMoney' id="updateMoney" value='${member.memberMoney}원' readonly><br>
 				<input type="password" name="memberPassword" id="updatePW" placeholder="비밀번호를 입력해주세요." onfocus="this.placeholder=''"
 							onblur="this.placeholder='비밀번호를 입력해주세요.'" value="" required="required"><br>
 				<input type="button" value="수정하기" id="updateBtn" onclick="check();">

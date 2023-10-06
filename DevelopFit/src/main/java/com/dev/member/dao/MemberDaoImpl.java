@@ -102,4 +102,18 @@ public class MemberDaoImpl implements MemberDao{
 	}
 
 
+	@Override
+	public String idExist(String inputId) {
+		// TODO Auto-generated method stub
+		return sqlSession.selectOne("com.dev.member.idExist", inputId);
+	}
+
+
+	@Override
+	public String emailExist(String inputEmail) {
+		// TODO Auto-generated method stub
+		return sqlSession.selectOne("com.dev.member.emailExist", inputEmail);
+	}
+
+
 }

@@ -122,7 +122,7 @@ h1 {
 #productWrap {
    width: 900px;
    height: auto;
-   margin: 30px auto 0px;
+   margin: 50px auto 0px;
 }
 
 #selectAll {
@@ -312,13 +312,23 @@ label {
 	display: block;
 }
 
-input {
+.cursorPointer {
 	cursor: pointer;
 }
 
 #agreeBox {
 	display: inline-block;
 	margin-left: 5px;
+}
+
+.movieSummary {
+	display: -webkit-box;
+	-webkit-line-clamp: 4;
+	-webkit-box-orient: vertical;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	word-break: break-word;
+	
 }
 </style>
 
@@ -339,7 +349,7 @@ input {
 
 
             <div id="selectAll" >
-               <label><input type="checkbox" name="allCheck" onclick="checkAllFnc(); sumPriceFnc();"> 전체선택</label>
+               <label><input type="checkbox" name="allCheck" onclick="checkAllFnc(); sumPriceFnc();" class="cursorPointer"> 전체선택</label>
             </div>
             
             <form id="formTag">
@@ -351,7 +361,11 @@ input {
                            </a>
                         </div>
                         <div class="productName">
+                        	<!-- 영화 제목 -->
                            <h2>${basketList.movieTitle}</h2>
+                           <br>
+                           <!-- 영화 줄거리 -->
+                           <a class="movieSummary">${basketList.movieSummary}</a>
                         </div>
                         <div class="productOtherInfo">
                            <h4>개봉일</h4>
@@ -371,7 +385,7 @@ input {
    
                         <div class="productSelect">
                            <input type="checkbox" name="product" value="${basketList.movieNumber}" 
-                              onclick="checkedFnc(); sumPriceFnc();">
+                              onclick="checkedFnc(); sumPriceFnc();" class="cursorPointer">
                            <input type="hidden" id="${basketList.movieNumber}" value="${basketList.moviePrice}">
                         </div>
                      </div>
@@ -381,7 +395,7 @@ input {
 
 
             <div id="deleteWrap">
-               <div id="deleteSelect" onclick="deleteSelectFnc();">선택삭제</div>
+               <div id="deleteSelect" onclick="deleteSelectFnc();"><a>선택삭제</a></div>
             </div>
 
 
@@ -389,20 +403,21 @@ input {
 
             <!--    구매취소버튼 -->
             <div id="selectWrap">
-               <div id="cancel" onclick="이전페이지">취소</div>
-               <div id="buy" onclick="buyFnc();">주문</div>
+               <div id="cancel" onclick="이전페이지"><a>취소</a></div>
+               <div id="buy" onclick="buyFnc();"><a>주문</a></div>
             </div>
          </c:when>
 
          <c:otherwise>
             <div id="emptyBasket">
                <div id="emptyBasketContent">
-                  장바구니가 비어있어요..<br>영화를 담아주세요!
+                 <a>장바구니가 비어있어요..<br>영화를 담아주세요!</a>
                </div>
             </div>
 
             <div id="buttonWrap">
-               <div id="movePageMovie" onclick="moveMovieListFnc();">영화페이지로
+               <div id="movePageMovie" onclick="moveMovieListFnc();">
+               	<a>영화페이지로</a>
                </div>
             </div>
          </c:otherwise>
@@ -410,10 +425,10 @@ input {
 
    </div>
    <!-- productWrap end -->
-
-
-
-   <%--    <jsp:include page="/WEB-INF/view/Footer.jsp"/> --%>
+	
+	
+	
+<%--       <jsp:include page="/WEB-INF/view/Footer.jsp"/> --%>
 
 </body>
 </html>
