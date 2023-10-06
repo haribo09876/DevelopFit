@@ -312,13 +312,23 @@ label {
 	display: block;
 }
 
-input {
+.cursorPointer {
 	cursor: pointer;
 }
 
 #agreeBox {
 	display: inline-block;
 	margin-left: 5px;
+}
+
+.movieSummary {
+	display: -webkit-box;
+	-webkit-line-clamp: 4;
+	-webkit-box-orient: vertical;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	word-break: break-word;
+	
 }
 </style>
 
@@ -339,7 +349,7 @@ input {
 
 
             <div id="selectAll" >
-               <label><input type="checkbox" name="allCheck" onclick="checkAllFnc(); sumPriceFnc();"> 전체선택</label>
+               <label><input type="checkbox" name="allCheck" onclick="checkAllFnc(); sumPriceFnc();" class="cursorPointer"> 전체선택</label>
             </div>
             
             <form id="formTag">
@@ -351,9 +361,11 @@ input {
                            </a>
                         </div>
                         <div class="productName">
+                        	<!-- 영화 제목 -->
                            <h2>${basketList.movieTitle}</h2>
                            <br>
-                           <a>${basketList.movieSummary}</a>
+                           <!-- 영화 줄거리 -->
+                           <a class="movieSummary">${basketList.movieSummary}</a>
                         </div>
                         <div class="productOtherInfo">
                            <h4>개봉일</h4>
@@ -373,7 +385,7 @@ input {
    
                         <div class="productSelect">
                            <input type="checkbox" name="product" value="${basketList.movieNumber}" 
-                              onclick="checkedFnc(); sumPriceFnc();">
+                              onclick="checkedFnc(); sumPriceFnc();" class="cursorPointer">
                            <input type="hidden" id="${basketList.movieNumber}" value="${basketList.moviePrice}">
                         </div>
                      </div>
