@@ -23,5 +23,5 @@ public interface BoardService {
 
 	int viewCount(int no);
 	
-	
+	List<BoardDto> boardSelectMyList(int start, int end, int memberNumber);
 }

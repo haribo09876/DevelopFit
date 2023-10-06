@@ -210,6 +210,10 @@ public class BoardController {
 		    // Log4j
 		    log.info("Welcome BoardController mylist!: {}", curPage);
 
+		    MemberDto memberDto = (MemberDto)session.getAttribute("member");
+			
+			int memberNumber = memberDto.getMemberNumber();
+		    
 		    int totalCount = boardService.boardSelectTotalCount();
 		    
 		    Paging boardPaging = new Paging(totalCount, curPage);
@@ -218,15 +222,11 @@ public class BoardController {
 			int end = boardPaging.getPageEnd();
 		    
 		    // 게시글 리스트
-		    List<BoardDto> boardList = boardService.boardSelectList(start, end);
+		    List<BoardDto> boardList = boardService.boardSelectMyList(start, end, memberNumber);
 		    
 		    HashMap<String, Object> pagingMap = new HashMap<>();
 			pagingMap.put("totalCount", totalCount);
 			pagingMap.put("boardPaging", boardPaging);
-			
-			MemberDto memberDto = (MemberDto)session.getAttribute("member");
-			
-			int sessionMemberNumber = memberDto.getMemberNumber();
 			
 			model.addAttribute("boardList", boardList);
 			model.addAttribute("pagingMap", pagingMap);

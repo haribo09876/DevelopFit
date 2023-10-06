@@ -16,7 +16,7 @@
 		
 <!-- 		맴버관련(+ id컬럼인 보드넘은 공통) -->
 		<result column="MEMBER_ID" property="memberId" />
-		<result column="MEMBER_NUMBER" property="memberNumber" />
+		<result column="MEMBER_NUMBER" property="memberNumber" jdbcType="INTEGER"/>
 		
 	</resultMap>
 	
@@ -173,6 +173,25 @@
     ) C
     ORDER BY C.BOARD_NUMBER DESC
 </select>
+
+<!-- 	마이 게시글 리스트		-->
+	<select id="boardSelectMyList" parameterType="map" resultMap="boardResultMap">
+		SELECT C.BOARD_NUMBER, C.BOARD_TITLE, C.BOARD_CONTENT, C.MEMBER_ID, 
+		C.BOARD_CREATE_DATE, C.BOARD_HIT, C.MEMBER_NUMBER
+		FROM(
+		SELECT ROWNUM AS RNUM, C.BOARD_NUMBER, C.BOARD_TITLE, C.BOARD_CONTENT, 
+		C.MEMBER_ID, C.BOARD_CREATE_DATE, C.BOARD_HIT, C.MEMBER_NUMBER
+		FROM(
+		SELECT B.BOARD_NUMBER, B.BOARD_TITLE, B.BOARD_CONTENT, M.MEMBER_ID, 
+		B.BOARD_CREATE_DATE, B.BOARD_HIT, M.MEMBER_NUMBER
+		FROM MEMBER M JOIN BOARD B ON M.MEMBER_NUMBER = B.MEMBER_NUMBER
+		ORDER BY BOARD_NUMBER DESC) C
+		) C
+		WHERE (C.RNUM BETWEEN #{start} AND #{end})
+		AND C.MEMBER_NUMBER = #{memberNumber}
+		ORDER BY C.BOARD_NUMBER DESC
+		
+	</select>
 
 </mapper>
 

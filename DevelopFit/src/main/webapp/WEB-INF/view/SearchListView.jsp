@@ -175,6 +175,9 @@
 	.listPoster{
 		width: 50px;
 	}
+	#noSearch{
+		margin-top: 100px;
+	}
 </style>
 </head>
 <script type="text/javascript">
@@ -184,6 +187,13 @@
 <body>
 
     <jsp:include page="/WEB-INF/view/Header.jsp" />
+    
+    <c:if test="${empty searchMoviesResults and empty searchBoardsResults}">
+	
+		<h1 id="noSearch">검색결과 없음</h1>
+	
+	</c:if>
+    
     <c:if test="${not empty searchBoardsResults}">
        <div id="headtext">
           Community
@@ -220,11 +230,11 @@
       </div>
       </div>
 	 </c:if>
-<%-- 	  <c:if test="${not empty searchBoardsResults}"> --%>
-   
+	
+   <c:if test="${not empty searchMoviesResults}">
    <table class="cardTable" id="Table">
 			<thead>
-			<c:if test="${not empty searchMoviesResults}">
+			
 				<div id="headText">Movie</div>
 				<tr class="tableHead">
 					<th>영화번호</th>
@@ -235,7 +245,7 @@
 					<th>런타임</th>
 					<th>가격</th>
 				</tr>
-			</c:if>	
+			
 			</thead>
 	
 			<c:forEach var="moviesresult" items="${searchMoviesResults}">
@@ -258,7 +268,7 @@
 				</tr>
 			</c:forEach>
 		</table>
-   
+   </c:if>	
 	
    
 <!--    <div id="pagingwrap"> -->

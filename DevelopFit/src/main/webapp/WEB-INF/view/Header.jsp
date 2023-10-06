@@ -158,7 +158,7 @@ li {
    opacity: .8;
 }
 </style>
-
+	<jsp:include page="/WEB-INF/view/adminHeader.jsp" /><br><br><br>
 <div id="header">
 
    <div id="header-content">
@@ -285,4 +285,5 @@ li {
 	      form.submit();
 	   }
 	});
+   
 </script>

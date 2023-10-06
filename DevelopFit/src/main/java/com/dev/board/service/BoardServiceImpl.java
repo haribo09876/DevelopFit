@@ -72,5 +72,10 @@ public class BoardServiceImpl implements BoardService{
 		return boardDao.viewCount(no);
 	}
 	
-	
+	@Override
+	public List<BoardDto> boardSelectMyList(int start, int end, int memberNumber) {
+		// TODO Auto-generated method stub
+		log.info("Welcome boardServiceImpl SelectList!");
+		return boardDao.boardSelectMyList(start, end, memberNumber);
+	}
 }
