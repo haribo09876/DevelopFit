@@ -233,4 +233,43 @@ public class BoardController {
 
 		    return "board/MyBoardListView";
 	  }
+	  
+	  @RequestMapping(value = "/board/adminList.do",
+				method = {RequestMethod.GET, RequestMethod.POST})
+		public String boardAdminList(@RequestParam(defaultValue = "1") int curPage, Model model
+				, HttpSession session) {
+		    // Log4j
+		    log.info("Welcome BoardController list!: {}", curPage);
+
+		    int totalCount = boardService.boardSelectTotalCount();
+		    
+		    Paging boardPaging = new Paging(totalCount, curPage);
+		    
+		    int start = boardPaging.getPageBegin();
+			int end = boardPaging.getPageEnd();
+		    
+		    // 게시글 리스트
+		    List<BoardDto> boardList = boardService.boardSelectList(start, end);
+		    
+		    HashMap<String, Object> pagingMap = new HashMap<>();
+			pagingMap.put("totalCount", totalCount);
+			pagingMap.put("boardPaging", boardPaging);
+			
+			MemberDto memberDto = (MemberDto)session.getAttribute("member");
+			
+			int sessionMemberNumber = memberDto.getMemberNumber();
+			
+			// 관리자인 경우 수정 및 삭제 버튼을 표시
+		    if (sessionMemberNumber == 0) {
+		        model.addAttribute("canEdit", true);
+		    } else {
+		        model.addAttribute("canEdit", false);
+		    }
+			
+			model.addAttribute("boardList", boardList);
+			model.addAttribute("pagingMap", pagingMap);
+
+		    return "board/BoardListAdminView";
+		}
+	  
 }

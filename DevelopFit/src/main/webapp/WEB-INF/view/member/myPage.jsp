@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -131,8 +133,16 @@ function check() {
 </head>
 <body>
 
-	<jsp:include page="/WEB-INF/view/Header.jsp" />
-
+		<jsp:include page="/WEB-INF/view/Header.jsp" />
+		
+ 		<c:if test="${sessionScope.member.memberId == 'admin'}">
+			<jsp:include page="/WEB-INF/view/adminHeader.jsp" />
+ 		</c:if>
+ 		
+ 		<c:if test="${sessionScope.member.memberId ne 'admin' and sessionScope.member.memberId ne null}">
+			<jsp:include page="/WEB-INF/view/UserHeader.jsp" />
+ 		</c:if>
+				
 	<div id="myPage">
 		<div id="title">
 			<h2>마이페이지</h2><br>

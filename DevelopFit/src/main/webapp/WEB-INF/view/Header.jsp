@@ -128,7 +128,7 @@ li {
 }
 
 #searchwrap {
-	width: 234px;
+	width: 240px;
 	height: 25px;
 	/* 	float: left; */
 	margin: 60px 0px 0px 0px;
@@ -167,8 +167,14 @@ li {
 #searchBtn:hover {
 	opacity: .8;
 }
+
+#userHeader{
+	float: left;
+	margin-left: 807px;
+}
+
 </style>
-	<jsp:include page="/WEB-INF/view/adminHeader.jsp" /><br><br><br>
+<%-- 	<jsp:include page="/WEB-INF/view/adminHeader.jsp" /><br><br><br> --%>
 <div id="header">
 
 	<div id="header-content">
@@ -232,8 +238,6 @@ li {
 						<input id="searchBtn" type="submit" value="&#128269">
 					</form>
 				</div>
-
-
 			</div>
 
 		</c:if>
@@ -259,10 +263,6 @@ li {
 	</div>
 
 </div>
-
-<c:if test="${sessionScope.member.memberId == 'admin' }">
-	<jsp:include page="/WEB-INF/view/adminHeader.jsp" />
-</c:if>
 
 <script>
 	function alertFnc() {
