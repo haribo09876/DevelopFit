@@ -76,39 +76,32 @@
 		<table id="movieListTable">
 			<tr>
 				<th>한줄평 번호</th>
-				<th>회원 아이디</th>
 				<th>영화 번호</th>
 				<th>영화 제목</th>
+				<th>회원 아이디</th>
 				<th>한줄평 내용</th>
-				<c:if test="${movieDto.memberId eq 'admin'}">
-					<th>수정 및 삭제</th>
-				</c:if>	
+				<th>수정 및 삭제</th>
 			</tr>
 
 			<c:forEach var="movieDto" items="${movieCommentList}">
 				<input type="hidden" name='movieNumber' value='${movieDto.movieNumber}'>
 				<input type="hidden" name='movieNumber' value='${movieDto.lineReviewNumber}'>
 				<tr>
-					<td>
-						<a href='./commentListOne.do?lineReviewNumber=${movieDto.lineReviewNumber}'>${movieDto.lineReviewNumber}</a>
-					</td>
-					<td>${movieDto.memberId}</td>
+					<td>${movieDto.lineReviewNumber}</td>
 					<td>${movieDto.movieNumber}</td>
 					<td>${movieDto.movieTitle}</td>
-					<td>${movieDto.lineReviewContext}</td>
-					<c:if test="${movieDto.memberId eq 'admin'}">
-						<td>
-							<a href='./commentUpdate.do?lineReviewNumber=${movieDto.lineReviewNumber}'>&#128465 수정</a>
-							<a href='./commentDelete.do?lineReviewNumber=${movieDto.lineReviewNumber}'>&#128465 삭제</a>
-<!-- 							<button> id="modifyBtn" type="button">수정</button> -->
-<!-- 							<button> id="deleteBtn" type="button">삭제</button> -->
-						<td>
-					</c:if>
+					<td>${movieDto.memberId}</td>
+					<td>
+						<a href='./commentListOne.do?lineReviewNumber=${movieDto.lineReviewNumber}'>${movieDto.lineReviewContext}</a>
+					</td>
+					<td>
+						<a href='./commentUpdate.do?lineReviewNumber=${movieDto.lineReviewNumber}'>&#128393 수정</a>
+						<a href='./commentDelete.do?lineReviewNumber=${movieDto.lineReviewNumber}'>&#128465 삭제</a>
+					<td>
 				</tr>
 			</c:forEach>
 		</table>
-	
-	
+		
 		<div id="newWrite"><a href='./commentAdd.do'>새 한줄평 등록</a></div>
 	
 		<jsp:include page="/WEB-INF/view/common/MoviePaging.jsp">

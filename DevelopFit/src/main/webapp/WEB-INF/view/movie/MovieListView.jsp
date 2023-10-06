@@ -174,8 +174,8 @@
 					<td>${movieDto.moviePrice} 원</td>
 					<c:if test="${sessionScope.member.memberId eq 'admin'}">
 						<td>
-							<a href='./update.do?movieNumber=${movieDto.movieNumber}'>&#128465 수정</a>
-							<a href='./delete.do?movieNumber=${movieDto.movieNumber}'>&#128465 삭제</a>						
+							<a href='./update.do?movieNumber=${movieDto.movieNumber}'>&#128393 수정</a>
+							<a href='./delete.do?movieNumber=${movieDto.movieNumber}'>&#128465 삭제</a>	
 						</td>
 					</c:if>
 				</tr>

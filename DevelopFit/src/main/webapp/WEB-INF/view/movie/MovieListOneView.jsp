@@ -238,7 +238,7 @@
 		<br>
 		<br>
 		
-<!-- 		<h3>지수</h3>
+<!--	<h3>지수</h3>
 		<div id="fifthSectionDiv">
 			<table id="ratingTable">
 				<tr>
@@ -252,7 +252,7 @@
       
 		<h3>출연진</h3>
 		<div id="sixthSectionDiv">
-			<span class="actor1">배우1</span>
+			<span class="actor">배우1</span>
 			<span class="actor">배우2</span>
 			<span class="actor">배우3</span>
 			<span class="actor">배우4</span>
@@ -266,30 +266,27 @@
 		<a href='./commentAdd.do?movieNumber=${movieDto.movieNumber}'>한줄평 추가</a>
 		<table id="movieListTable">
 			<tr>
-				<th>한줄평 번호</th>
-				<th>회원 아이디</th>
-				<th>영화 번호</th>
 				<th>영화 제목</th>
+				<th>아이디</th>
 				<th>한줄평 내용</th>
+				<th>수정 및 삭제</th>
 			</tr>
 
 			<c:forEach var="movieDto" items="${movieCommentList}">
 				<input type="hidden" name='movieNumber' value='${movieDto.movieNumber}'>
-				<input type="hidden" name='movieNumber' value='${movieDto.lineReviewNumber}'>
+				<input type="hidden" name='lineReviewNumber' value='${movieDto.lineReviewNumber}'>
 				<tr>
-					<td>
-						<a href='./commentListOne.do?lineReviewNumber=${movieDto.lineReviewNumber}'>${movieDto.lineReviewNumber}</a>
-					</td>
-					<td>${movieDto.memberId}</td>
-					<td>${movieDto.movieNumber}</td>
 					<td>${movieDto.movieTitle}</td>
-					<td>${movieDto.lineReviewContext}</td>
+					<td>${movieDto.memberId}</td>
 					<td>
-						<a href='./commentUpdate.do?lineReviewNumber=${movieDto.lineReviewNumber}'>&#128465 수정</a>
+						<a href='./commentListOne.do?lineReviewNumber=${movieDto.lineReviewNumber}'>${movieDto.lineReviewContext}</a>
 					</td>
-					<td>
-						<a href='./commentDelete.do?lineReviewNumber=${movieDto.lineReviewNumber}'>&#128465 삭제</a>
-					</td>
+					<c:if test="${sessionScope.member.memberId eq movieDto.memberId}">
+						<td>
+							<a href='./commentUpdate.do?lineReviewNumber=${movieDto.lineReviewNumber}'>&#128393 수정</a>
+							<a href='./commentDelete.do?lineReviewNumber=${movieDto.lineReviewNumber}'>&#128465 삭제</a>
+						</td>
+					</c:if>
 				</tr>
 			</c:forEach>
 		</table>
@@ -306,7 +303,7 @@
 
 	<div id="btnList">
 		<a href='./list.do' id="movieList">&#128281 영화목록으로</a>
-		<a href='./update.do?movieNumber=${movieDto.movieNumber}' id="movieUpdate">&#128465 수정</a>
+		<a href='./update.do?movieNumber=${movieDto.movieNumber}' id="movieUpdate">&#128393 수정</a>
 		<a href='./delete.do?movieNumber=${movieDto.movieNumber}' id="movieDelete">&#128465 삭제</a>
 	</div>
 <%--    <jsp:include page="/WEB-INF/view/Footer.jsp" /> --%>
