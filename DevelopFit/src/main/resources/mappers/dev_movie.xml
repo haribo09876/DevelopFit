@@ -102,7 +102,8 @@
 		                        ORDER BY LINE_REVIEW_NUMBER DESC
 		                    ) LINEREVIEW
 		            ) LINEREVIEW
-		WHERE LINEREVIEW.RNUM BETWEEN #{start} AND #{end}
+		WHERE	<if test="movieNumber != null">	LINEREVIEW.MOVIE_NUMBER = #{movieNumber}AND</if>
+						LINEREVIEW.RNUM BETWEEN #{start} AND #{end}
 	</select>
 
 <!-- 한줄평 상세 (R) -->
@@ -110,7 +111,7 @@
 		SELECT LR.LINE_REVIEW_NUMBER, LR.LINE_REVIEW_CONTEXT, M.MEMBER_ID, MV.MOVIE_TITLE, MV.MOVIE_NUMBER
 		FROM LINE_REVIEW LR FULL OUTER JOIN MEMBER M
 		        ON LR.MEMBER_NUMBER = M.MEMBER_NUMBER FULL OUTER JOIN MOVIE MV
-		                                                ON LR.MOVIE_NUMBER = MV.MOVIE_NUMBER
+		                                                ON LR.MOVIE_NUMBER = MV.MOVIENUMBER
 		WHERE LINE_REVIEW_NUMBER = #{lineReviewNumber}
 	</select>
 

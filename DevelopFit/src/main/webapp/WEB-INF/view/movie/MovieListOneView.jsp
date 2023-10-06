@@ -34,8 +34,8 @@
          display: block;
          margin: 0 auto;
          margin-top: 30px;
-           position: absolute;
-           left: 50%;
+         position: absolute;
+         left: 50%;
          transform: translateX(-50%);
       }
       #movieListTable {
