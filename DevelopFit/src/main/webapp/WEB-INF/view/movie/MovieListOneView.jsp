@@ -304,7 +304,7 @@
 	<div id="btnList">
 		<a href='./list.do' id="movieList">&#128281 영화목록으로</a>
 		<a href='./update.do?movieNumber=${movieDto.movieNumber}' id="movieUpdate">&#128393 수정</a>
-		<a href='./delete.do?movieNumber=${movieDto.movieNumber}' id="movieDelete">&#128465 삭제</a>
+		<a href='./delete.do?movieNumber=${movieDto.movieNumber}' id="movieDelete" style="color: #F24141;">&#128465 삭제</a>
 	</div>
 	</c:if>
 <%--    <jsp:include page="/WEB-INF/view/Footer.jsp" /> --%>

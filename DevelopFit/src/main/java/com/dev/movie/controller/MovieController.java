@@ -27,6 +27,30 @@ public class MovieController {
 	@Autowired
 	private MovieService movieService;
 
+//	 홈 페이지
+	@RequestMapping(value = "/movie/homePage.do", method = {RequestMethod.GET, RequestMethod.POST})
+	public String homePage(@RequestParam(defaultValue = "1") int curPage, Model model) {
+		log.info("Welcome MovieController list!: {}", curPage);
+
+		int totalCount = movieService.movieSelectTotalCount();
+		
+		Paging moviePaging = new Paging(totalCount, curPage); 
+		
+		int start = moviePaging.getPageBegin();
+		int end = moviePaging.getPageEnd();
+		
+		List<MovieDto> movieList = movieService.movieSelectList(start, end);
+
+		HashMap<String, Object> pagingMap = new HashMap<>();
+		pagingMap.put("totalCount", totalCount);
+		pagingMap.put("moviePaging", moviePaging);
+		
+		model.addAttribute("movieList", movieList);
+		model.addAttribute("pagingMap", pagingMap);
+		
+		return "movie/HomePage";
+	 }
+	
 //	 영화 정보 추가 페이지로 이동
 	 @RequestMapping(value = "/movie/add.do", method = RequestMethod.GET)
 	 public String movieAdd(Model model) {
@@ -72,6 +96,30 @@ public class MovieController {
 		model.addAttribute("pagingMap", pagingMap);
 		
 		return "movie/MovieListView";
+	 }
+	
+//	 관리자 페이지 영화 정보 리스트 (R)
+	@RequestMapping(value = "/movie/adminList.do", method = {RequestMethod.GET, RequestMethod.POST})
+	public String movieAdminList(@RequestParam(defaultValue = "1") int curPage, Model model) {
+		log.info("Welcome MovieController list!: {}", curPage);
+
+		int totalCount = movieService.movieSelectTotalCount();
+		
+		Paging moviePaging = new Paging(totalCount, curPage); 
+		
+		int start = moviePaging.getPageBegin();
+		int end = moviePaging.getPageEnd();
+		
+		List<MovieDto> movieList = movieService.movieSelectList(start, end);
+
+		HashMap<String, Object> pagingMap = new HashMap<>();
+		pagingMap.put("totalCount", totalCount);
+		pagingMap.put("moviePaging", moviePaging);
+		
+		model.addAttribute("movieList", movieList);
+		model.addAttribute("pagingMap", pagingMap);
+		
+		return "movie/MovieAdminListView";
 	 }
 	
 //	 영화 정보 상세 (R)

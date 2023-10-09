@@ -75,18 +75,16 @@ public class MemberController {
 			// 회원존재하면 세션에담는다
 			session.setAttribute("member", memberDto);
 			
-			viewUrl = "redirect:/movie/list.do";
+			viewUrl = "redirect:/movie/homePage.do";
 
 			if (memberDto.getMemberId().equals("admin") && memberDto.getMemberPassword().equals("admin12")) {
-//				viewUrl = "redirect:/member/list.do";
-//				viewUrl = "redirect:/board/list.do";
-				viewUrl = "redirect:/movie/list.do";
+				viewUrl = "redirect:/movie/homePage.do";
 			} else if (memberDto.getMemberId().equals("aa")) {
 				viewUrl = "redirect:/order/basket.do";
 			} else if (memberDto.getMemberId().equals("ss")) {
 				viewUrl = "redirect:/board/list.do";
 			} else if (memberDto.getMemberId().equals("dd")) {
-				viewUrl = "redirect:/movie/list.do";
+				viewUrl = "redirect:/movie/homePage.do";
 			}
 			} else {
 				viewUrl = "redirect:/auth/login.do";

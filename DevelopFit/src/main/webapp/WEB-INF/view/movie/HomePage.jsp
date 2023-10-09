@@ -32,6 +32,7 @@
 		.tableHead {
  			background-color: #172036;
     		color: #9ca3af;
+    		
 		}
 		.tableGroup {
 		    border-top-width: 1px;
@@ -75,6 +76,54 @@
 </head>
 <body>
 	<jsp:include page="/WEB-INF/view/Header.jsp"/><br><br><br>
+	
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.css"/>
+
+	<!-- Swiper -->
+	<div class="swiper mySwiper">
+		<div class="swiper-wrapper">
+    		<c:forEach var="movieDto" items="${movieList}">
+				<div class="swiper-slide">
+					<img class="swiperPoster" alt="포스터" src="${movieDto.moviePoster}">
+				</div>
+			</c:forEach>
+		</div>
+		<div class="swiper-button-next"></div>
+		<div class="swiper-button-prev"></div>
+		<div class="swiper-pagination"></div>
+		<div class="autoplay-progress">
+			<svg></svg>
+			<span style="display:none;"></span>
+		</div>
+	</div>
+
+  <!-- Initialize Swiper -->
+  <script>
+    const progressCircle = document.querySelector(".autoplay-progress svg");
+    const progressContent = document.querySelector(".autoplay-progress span");
+    var swiper = new Swiper(".mySwiper", {
+      spaceBetween: 30,
+      centeredSlides: true,
+      autoplay: {
+        delay: 2500,
+        disableOnInteraction: false
+      },
+      pagination: {
+        el: ".swiper-pagination",
+        clickable: true
+      },
+      navigation: {
+        nextEl: ".swiper-button-next",
+        prevEl: ".swiper-button-prev"
+      },
+      on: {
+        autoplayTimeLeft(s, time, progress) {
+          progressCircle.style.setProperty("--progress", 1 - progress);
+          progressContent.textContent = `${Math.ceil(time / 1000)}s`;
+        }
+      }
+    });
+  </script>
 
 	<div id="contentsAreaDiv">
 		<a class="sectionTitle">영화 목록</a>

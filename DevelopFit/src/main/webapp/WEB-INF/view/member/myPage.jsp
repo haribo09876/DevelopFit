@@ -146,7 +146,6 @@ function check() {
 </script>
 </head>
 <body>
-
 		<jsp:include page="/WEB-INF/view/Header.jsp" />
 		
  		<c:if test="${sessionScope.member.memberId == 'admin'}">
@@ -159,8 +158,7 @@ function check() {
 				
 	<div id="myPage">
 		<div id="title">
-			<h2>마이페이지</h2><br>
-			<h4 id="subTitle">정보수정</h4>
+			<h2>개인정보 수정</h2><br>
 		</div>
 		
 		<div id="memberUpdateForm">
@@ -170,19 +168,13 @@ function check() {
 				<input type='text' name='memberId' id="updateId" value='${member.memberId}' readonly><br>
 				<input type="email" name='memberEmail' id="updateEmail" value='${member.memberEmail}' readonly><br>
 				<input type='text' name='memberPhoneNumber' id="updatePhoneNumber" value='${member.memberPhoneNumber}'><br>
-<<<<<<< HEAD
 				<input type='date' name='memberBirthDate' id="updateBirthDate" value='${member.memberBirthDate}'><br>
 				<div id="container">
 					<input class="item" type='text' name='memberMoney' id="updateMoney" value='${member.memberMoney}' readonly>
 					<div class="item" id="won">원</div>
 				</div>
-				<br>
-=======
-				<input type='date' name='memberBirthDate' id="updateBirthDate" value='${member.memberBirthDate}' readonly><br>
-				<input type='text' name='memberMoney' id="updateMoney" value='${member.memberMoney}' readonly>원<br>
->>>>>>> branch 'main' of https://github.com/haribo09876/DevelopFit.git
-				<input type="password" name="memberPassword" id="updatePW" placeholder="비밀번호를 입력해주세요." onfocus="this.placeholder=''"
-							onblur="this.placeholder='비밀번호를 입력해주세요.'" value="" required="required"><br>
+				<input type="password" name="memberPassword" id="updatePW" placeholder="변경하실 비밀번호를 입력해주세요." onfocus="this.placeholder=''"
+							onblur="this.placeholder='변경하실 비밀번호를 입력해주세요.'" value="" required="required"><br>
 				<input type="button" value="수정하기" id="updateBtn" onclick="check();">
 			</form>	
 		</div>

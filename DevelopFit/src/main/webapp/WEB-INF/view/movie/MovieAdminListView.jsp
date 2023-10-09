@@ -32,6 +32,7 @@
 		.tableHead {
  			background-color: #172036;
     		color: #9ca3af;
+    		
 		}
 		.tableGroup {
 		    border-top-width: 1px;
@@ -74,40 +75,61 @@
 	</script>
 </head>
 <body>
-	<jsp:include page="/WEB-INF/view/Header.jsp"/><br><br><br>
+	<jsp:include page="/WEB-INF/view/Header.jsp" />
+	<jsp:include page="/WEB-INF/view/adminHeader.jsp" />
 
 	<div id="contentsAreaDiv">
 		<a class="sectionTitle">영화 목록</a>
 		<br>
 		<br>
+		<c:if test="${sessionScope.member.memberId eq 'admin1'}">
+			<a href='./add.do'>새 영화 등록</a>
+		</c:if>
+		<br>
+		<br>
 		<table class="cardTable">
 			<thead>
 				<tr class="tableHead">
+					<c:if test="${sessionScope.member.memberId eq 'admin'}">
+						<th>영화번호</th>
+					</c:if>
 					<th>포스터</th>
 					<th>영화명</th>
 					<th>장르</th>
 					<th>개봉일</th>
 					<th>런타임</th>
 					<th>가격</th>
+					<c:if test="${sessionScope.member.memberId eq 'admin'}">
+						<th>수정 및 삭제</th>
+					</c:if>
 				</tr>
 			</thead>
 
 			<c:forEach var="movieDto" items="${movieList}">
 				<tr class="tableGroup">
+					<c:if test="${sessionScope.member.memberId eq 'admin'}">
+						<td>${movieDto.movieNumber}</td>
+					</c:if>
 					<td>
 						<a href='./listOne.do?movieNumber=${movieDto.movieNumber}'>
 							<img class="listPoster" alt="포스터" src="${movieDto.moviePoster}">			
 						</a>
 					</td>
 					<td>
-						<div class=movieTitle>
-							<a href='./listOne.do?movieNumber=${movieDto.movieNumber}'>${movieDto.movieTitle}</a>
-						</div>
+					<div class=movieTitle>
+						<a href='./listOne.do?movieNumber=${movieDto.movieNumber}'>${movieDto.movieTitle}</a>
+					</div>
 					</td>
 					<td>${movieDto.genreName}</td>
 					<td>${movieDto.movieReleaseDate}</td>
 					<td>${movieDto.movieRuntime} 분</td>
 					<td>${movieDto.moviePrice} 원</td>
+					<c:if test="${sessionScope.member.memberId eq 'admin'}">
+						<td>
+							<a href='./update.do?movieNumber=${movieDto.movieNumber}'>&#128393 수정</a>
+							<a href='./delete.do?movieNumber=${movieDto.movieNumber}' style="color: #F24141;">&#128465 삭제</a>	
+						</td>
+					</c:if>
 				</tr>
 			</c:forEach>
 		</table>

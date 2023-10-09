@@ -226,8 +226,8 @@ table tr th td {
 </style>
 </head>
 <body>
-
-	<jsp:include page="/WEB-INF/view/Header.jsp" /><br><br><br>
+	<jsp:include page="/WEB-INF/view/Header.jsp" />
+	<jsp:include page="/WEB-INF/view/adminHeader.jsp" />
 
 	<div id="contentsAreaDiv">
 		<a class="sectionTitle">Community</a><br><br>
