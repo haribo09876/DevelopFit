@@ -181,15 +181,16 @@ li {
 		<c:if test="${sessionScope.member.memberId == null }">
 			<div id="content-left">
 				<div id="logo">
-					<a href="../auth/login.do"><span id="logo1">Movie</span><span
-						id="logo2">Market</span></a>
+					<a href="../auth/login.do">
+						<span id="logo1">Movie</span>
+						<span	id="logo2">Market</span></a>
 				</div>
 				<div id="menu">
 					<ul>
 						<li><a href="#" id="menu1" onclick="alertFnc();">홈</a></li>
-						<li><a href="#" id="menu2" onclick="alertReadyFnc();">추천영화</a></li>
-						<li><a href="#" id="menu3" onclick="alertFnc();">영화전체</a></li>
-						<li><a href="#" id="menu4" onclick="alertFnc();">커뮤니티</a></li>
+						<li><a href="#" id="menu2" onclick="alertFnc();">영화전체</a></li>
+						<li><a href="#" id="menu3" onclick="alertFnc();">커뮤니티</a></li>
+						<li><a href="#" id="menu4" onclick="alertReadyFnc();">추천영화</a></li>
 					</ul>
 				</div>
 			</div>
@@ -198,15 +199,15 @@ li {
 		<c:if test="${sessionScope.member.memberId ne null }">
 			<div id="content-left">
 				<div id="logo">
-					<a href="../movie/list.do"><span id="logo1">Movie</span><span
+					<a href="../movie/homePage.do"><span id="logo1">Movie</span><span
 						id="logo2">Market</span></a>
 				</div>
 				<div id="menu">
 					<ul>
-						<li><a href="../movie/list.do" id="menu1">홈</a></li>
-						<li><a href="#" id="menu2" onclick="alertReadyFnc();">추천영화</a></li>
-						<li><a href="#" id="menu3">영화전체</a></li>
-						<li><a href="../board/list.do" id="menu4">커뮤니티</a></li>
+						<li><a href="../movie/homePage.do" id="menu1">홈</a></li>
+						<li><a href="../movie/list.do" id="menu2">영화전체</a></li>
+						<li><a href="../board/list.do" id="menu3">커뮤니티</a></li>
+						<li><a href="#" id="menu4" onclick="alertReadyFnc();">추천영화</a></li>
 					</ul>
 				</div>
 			</div>

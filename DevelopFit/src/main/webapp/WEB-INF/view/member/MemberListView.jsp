@@ -14,31 +14,45 @@
 <style type="text/css">
 	body{
 		background-color: #101322;
-		color: white;
+		color: #FFFFFF;
 	}
-	#title{
-		width: 400px;
-		display: block;
-		margin: 0 auto;
+	table tr th td {
+	    border-collapse: collapse;
+	    border-width: 0;
+	    border-style: solid;
+	}
+	.sectionTitle{
+		color: #FFFFFF;
+		font-size: 20px;
+		font-weight: bold;
+	}
+	.cardTable {
+	    min-width: 100%;
+		table-layout: fixed;
+		background-color: #172036;
+		border-radius: 6px;
+		padding: 9px;
+	}
+	.tableHead {
+		background-color: #172036;
+   		color: #9ca3af;
+   		
+	}
+	.tableGroup {
+	    border-top-width: 1px;
+		border-color: #172036;
+		background-color: #172036;
 		text-align: center;
-		margin-bottom: 50px;
-		margin-top: 50px;
 	}
-	table{
-		width: 1000px;
-		display: block;
-		margin: 0 auto;
+	.movieTitle{
+		color: #D1D5DB;
 	}
-	tr{
-		text-align: center;
-		
-	}
-	td{
-		padding: 10px;
-	}
-	th{
-		width: 250px;
-		text-align: center;
+	#contentsAreaDiv{
+		width: 1250px;
+		margin-top: 30px;
+	  	position: absolute;
+	  	left: 50%;
+		transform: translateX(-50%);
 	}
 	#adminMenu{
 		float: left;
@@ -47,49 +61,45 @@
 </head>
 
 <body>
-
 	<jsp:include page="/WEB-INF/view/Header.jsp" />
-	<div id="title">
-		<h1>회원목록</h1>
-	</div>
+	<jsp:include page="/WEB-INF/view/adminHeader.jsp" />
 	
-	<table>
-		<tr id="tr-title">
-			<th>번호</th>
-			<th>이름</th>
-			<th>이메일</th>
-			<th>생년월일</th>
-			<th></th>
-		</tr>
-		
-		<c:forEach var="memberDto" items="${memberList}">
-			<tr id="tr-content">
-				<td>${memberDto.memberNumber}</td>
-				<td>${memberDto.memberName}</td>
-				<td>${memberDto.memberEmail}</td>
-				<td> 
-					${memberDto.memberBirthDate}
-				</td>
-				<td>
-					<a href='./listOne.do?no=${memberDto.memberNumber}' style="color: green;">[수정]</a>
-					<a href='./delete.do?no=${memberDto.memberNumber}' style="color: #F24141;">[삭제]</a>
-				</td>
+	<div id="contentsAreaDiv">
+		<div id="title">
+			<h1>회원목록</h1>
+		</div>
+	
+		<table class="cardTable">
+			<tr class="tableHead">
+				<th>번호</th>
+				<th>이름</th>
+				<th>이메일</th>
+				<th>생년월일</th>
+				<th></th>
 			</tr>
-		
-		</c:forEach>
-		
-	</table>
-		
+			
+			<c:forEach var="memberDto" items="${memberList}">
+				<tr class="tableGroup">
+					<td>${memberDto.memberNumber}</td>
+					<td>${memberDto.memberName}</td>
+					<td>${memberDto.memberEmail}</td>
+					<td>${memberDto.memberBirthDate}</td>
+					<td>
+						<a href='./listOne.do?no=${memberDto.memberNumber}'>&#128393 수정</a>
+						<a href='./delete.do?no=${memberDto.memberNumber}' style="color: #F24141;">&#128465 삭제</a>
+					</td>
+				</tr>
+			</c:forEach>
+		</table>
 
-	<jsp:include page="/WEB-INF/view/common/memberPaging.jsp">
-		<jsp:param value="${pagingMap}" name="pagingMap"/>
-	</jsp:include>
-	
-<!-- 	정보를 넘기기 위해서 폼을 만들었다 -->
-	<form action="./list.do" id="pagingForm" method="post">
-      <input type="hidden" id="curPage" name="curPage"
-         value="${pagingMap.memberPaging.curPage}">
-   </form>
-   
+		<jsp:include page="/WEB-INF/view/common/memberPaging.jsp">
+			<jsp:param value="${pagingMap}" name="pagingMap"/>
+		</jsp:include>
+		
+	<!-- 	정보를 넘기기 위해서 폼을 만들었다 -->
+		<form action="./list.do" id="pagingForm" method="post">
+	      <input type="hidden" id="curPage" name="curPage" value="${pagingMap.memberPaging.curPage}">
+	   </form>
+	</div>
 </body>
 </html>
