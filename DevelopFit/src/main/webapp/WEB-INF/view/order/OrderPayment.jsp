@@ -179,6 +179,16 @@ body {
 	float: right;
 }
 
+.movieSummary {
+	display: -webkit-box;
+	-webkit-line-clamp: 4;
+	-webkit-box-orient: vertical;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	word-break: break-word;
+	
+}
+
 </style>
 
 
@@ -204,7 +214,7 @@ body {
 			} else if (totalAmountFnc() > userMoney) {
 				if (confirm("잔액이 부족합니다. 충전하시겠습니까?") == true) {
 					var popup = window.open('./charging.do', '',
-							'width=250px,height=300px');
+							'width=500px,height=300px');
 				}
 			}
 
@@ -283,6 +293,9 @@ body {
 					<input hidden="" name="product" value="${productList.movieNumber}">
 					<div class="productTitle">
 						<h2>${productList.movieTitle}</h2>
+						<br>
+                        <!-- 영화 줄거리 -->
+                        <a class="movieSummary">${productList.movieSummary}</a>
 					</div>
 					<div class="productOtherInfo">
 						<h4>개봉일</h4>

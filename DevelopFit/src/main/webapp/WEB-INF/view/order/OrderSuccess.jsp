@@ -117,7 +117,15 @@ body {
 	float: left;
 }
 
-
+.movieSummary {
+	display: -webkit-box;
+	-webkit-line-clamp: 4;
+	-webkit-box-orient: vertical;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	word-break: break-word;
+	
+}
 </style>
 
 </head>
@@ -143,6 +151,9 @@ body {
 				
 				<div class="productName">
 					<h2>${orderHistory.movieTitle}</h2>
+					<br>
+                    <!-- 영화 줄거리 -->
+                    <a class="movieSummary">${orderHistory.movieSummary}</a>
 				</div>
 				
 				<div class="productOtherInfo">

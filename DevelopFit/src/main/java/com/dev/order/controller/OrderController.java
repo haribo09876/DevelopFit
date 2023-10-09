@@ -183,28 +183,16 @@ public class OrderController {
 	}
 	
 	
-	// 주문 전체 내역
+	// 회원 주문 전체 내역
 	@RequestMapping(value = "/order/history.do", method = {RequestMethod.GET, RequestMethod.POST})
 	public String history(HttpSession session, @RequestParam(defaultValue = "1")int curPage, Model model) {
 	    // Log4j
 	    log.info("Welcome OrderController history! memberNumber:");
 	    
-//	    MemberDto member = (MemberDto)session.getAttribute("member");
-//	    
-//	    List<Integer> historyNumber = orderService.selectOrderHistoryNumber(member.getMemberNumber());
-//	    historyNumber.sort(Comparator.reverseOrder());
-//	    
-//	    List<List<OrderDto>> historyList = new ArrayList<List<OrderDto>>();
-//	    
-//	    for(int i = 0; i < historyNumber.size(); i++) {
-//	    	historyList.add(orderService.selectAllOrderHistoryList(member.getMemberNumber(), historyNumber.get(i)));
-//	    }
-//	    
-//	    model.addAttribute("historyList2d", historyList);
 	    try {
 	    	System.out.println("curPage: " + curPage);
 		    MemberDto member = (MemberDto)session.getAttribute("member");
-			
+			System.out.println("membernumber: " + member.getMemberNumber());
 			int totalCount = orderService.selectOrderHistoryTotalCount(member.getMemberNumber());
 			
 			Paging orderHistoryPaging = new Paging(totalCount, curPage);
@@ -341,11 +329,11 @@ public class OrderController {
 		}
 		
 		
-	// 관리자 페이지
+	// 관리자 페이지 전체 주문 내역
 	@RequestMapping(value = "/admin/history.do", method = {RequestMethod.GET, RequestMethod.POST})
 	public String admin(HttpSession session, @RequestParam(defaultValue = "1") int curPage, Model model) {
 		
-		int totalCount = orderService.selectOrderHistoryTotalCount(1);
+		int totalCount = orderService.selectOrderHistoryTotalCount(); // 전체 주문 갯수
 		
 		Paging orderHistoryPaging = new Paging(totalCount, curPage);
 		
@@ -353,13 +341,12 @@ public class OrderController {
 		int end = orderHistoryPaging.getPageEnd();
 		
 		// 주문내역 리스트
-		List<Integer> historyNumber = orderService.selectOrderHistoryNumber(1, start, end);
-//	    historyNumber.sort(Comparator.reverseOrder());
-	    
+		List<Integer> historyNumber = orderService.selectOrderHistoryNumber(start, end);
+		
 	    List<List<OrderDto>> historyList = new ArrayList<List<OrderDto>>();
 	    
 	    for(int i = 0; i < historyNumber.size(); i++) {
-	    	historyList.add(orderService.selectAllOrderHistoryList(1, historyNumber.get(i)));
+	    	historyList.add(orderService.selectAllOrderHistoryList(historyNumber.get(i)));
 	    }
 	    
 	    // 페이징

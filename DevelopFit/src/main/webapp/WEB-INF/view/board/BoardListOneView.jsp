@@ -12,7 +12,7 @@
 		height: 100%;
 	}
 	body{
-		background-color: #131826;
+		background-color: #101322;
 		width: 1300px;
 		height: 1300px;
 		margin: auto;

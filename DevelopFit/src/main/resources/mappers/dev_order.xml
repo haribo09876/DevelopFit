@@ -71,10 +71,12 @@
 	
 	
 <!-- 	주문내역 갯수 -->
-	<select id="selectOrderHistoryTotalCount" parameterType="int" resultType="int">
+	<select id="selectOrderHistoryTotalCount" parameterType="java.lang.Integer" resultType="int">
 		SELECT COUNT(ORDER_HISTORY_NUMBER)
 		FROM ORDER_HISTORY
-		where member_number = #{memberNumber}
+		<if test="value != null">
+			WHERE MEMBER_NUMBER = #{memberNumber}
+		</if>
 	</select>
 	
 	
@@ -88,8 +90,10 @@
 		ON OP.ORDER_HISTORY_NUMBER = OH.ORDER_HISTORY_NUMBER
 		JOIN MOVIE MV
 		ON OP.MOVIE_NUMBER = MV.MOVIE_NUMBER
-		WHERE M.MEMBER_NUMBER = #{memberNumber}
-		AND OH.ORDER_HISTORY_NUMBER = #{orderHistoryNumber}
+		<if test="memberNumber != null">
+			WHERE M.MEMBER_NUMBER = #{memberNumber} AND
+		</if>
+		OH.ORDER_HISTORY_NUMBER = #{orderHistoryNumber}
 	</select>
 	
 <!-- 	주문번호 가져오기 -->
@@ -108,7 +112,9 @@
 		                ON OH.ORDER_HISTORY_NUMBER = OP.ORDER_HISTORY_NUMBER
 		                JOIN MEMBER M
 		                ON M.MEMBER_NUMBER = OH.MEMBER_NUMBER
-		                WHERE M.MEMBER_NUMBER = #{memberNumber}
+		                <if test="memberNumber != null">
+		                	WHERE M.MEMBER_NUMBER = #{memberNumber}
+		                </if>
 		                ORDER BY ORDER_HISTORY_NUMBER DESC))
 		WHERE RN BETWEEN #{start} AND #{end}
 	</select>
@@ -118,14 +124,18 @@
 	<select id="selectAllOrderHistoryList" parameterType="map" resultMap="orderResultMap">
 		SELECT MV.MOVIE_NUMBER, MV.MOVIE_TITLE, MV.MOVIE_PRICE, MV.MOVIE_MAIN_POSTER, MV.MOVIE_SUMMARY
 			, MV.MOVIE_RUNTIME, MV.MOVIE_RELEASE_DATE, OH.ORDER_HISTORY_TIME, OH.ORDER_HISTORY_NUMBER, OH.ORDER_HISTORY_STATE
+			, M.MEMBER_NUMBER, M.MEMBER_ID
 		FROM MEMBER M JOIN ORDER_HISTORY OH
 		ON M.MEMBER_NUMBER = OH.MEMBER_NUMBER
 		JOIN ORDER_PRODUCT OP
 		ON OP.ORDER_HISTORY_NUMBER = OH.ORDER_HISTORY_NUMBER
 		JOIN MOVIE MV
 		ON OP.MOVIE_NUMBER = MV.MOVIE_NUMBER
-		WHERE M.MEMBER_NUMBER = #{memberNumber}
-		AND OH.ORDER_HISTORY_NUMBER = #{orderHistoryNumber}
+		WHERE OH.ORDER_HISTORY_NUMBER = #{orderHistoryNumber}
+		<if test="memberNumber != null">
+			AND M.MEMBER_NUMBER = #{memberNumber} 
+		</if>
+		
 	</select>
 	
 	

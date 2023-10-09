@@ -10,10 +10,19 @@
 	function chargeFnc() {
 		var chargeBtnObj = document.getElementById("chargeBtn");
 		var formObj = document.getElementById("formTag");
+// 		var inputMoneyVal = document.getElementById("inputMoney").value;
+// 		var submitInputMoneyVal = document.getElementById("submitInputMoney").value;
 		
+// 		submitInputMoneyVal = parseInt(inputMoneyVal);
+		
+// 		if(Number.isNaN(submitInputMoneyVal)){
+// 			alert("숫자를 입력해주세요.");
+// 		} else if(submitInputMoneyVal < 10){
+// 			alert("10이상의 숫자를 입력해주세요.")
+// 		} else {
+			
+// 		}
 		formObj.submit();
-		
-		
 	}
 </script>
 
@@ -46,13 +55,17 @@
 		</h1>
 		
 		<form action="./chargingCtr.do" method="post" id="formTag">
+			<label><input type="radio" value="5000" name="chargingMoney">5000원</label>
 			<label><input type="radio" value="10000" name="chargingMoney">10000원</label>
-			<label><input type="radio" value="20000" name="chargingMoney">20000원</label><br>
+			<label><input type="radio" value="20000" name="chargingMoney">20000원</label>
+			<br>
 			<label><input type="radio" value="30000" name="chargingMoney">30000원</label>
-			<label><input type="radio" value="50000" name="chargingMoney">50000원</label><br>
-			
-			<input type="button" value="충전하기" id="chargeBtn" onclick="chargeFnc();">
+			<label><input type="radio" value="50000" name="chargingMoney">50000원</label>
+<!-- 			<label><input type="radio" value="" name="chargingMoney" id="submitInputMoney"></label> -->
 		</form>
+		
+<!-- 		<input type="text" placeholder="직접입력" value="" id="inputMoney"> -->
+		<input type="button" value="충전하기" id="chargeBtn" onclick="chargeFnc();">
 		
 		
 	</div>

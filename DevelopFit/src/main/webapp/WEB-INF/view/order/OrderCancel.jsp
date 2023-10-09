@@ -167,6 +167,11 @@ body {
 			FormObj.submit();
 		}
 	}
+	
+	function cancelFnc() {
+		location.href = "./history.do";
+		
+	}
 </script>
 
 

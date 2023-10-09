@@ -54,6 +54,10 @@
          padding: 5px;
          font-size: 14px;
       }
+      #movieContent{
+      	 width: 1200px;
+      	 height: 555px;
+      }
       #poster{
          width: 350px;
          margin: 30px;
@@ -206,7 +210,15 @@
 			<h3>영화 상세</h3>
 		</div>
 		<div id="movieContent">
-			<img id="poster" alt="영화포스터" src="${movieDto.moviePoster}" />
+			<c:choose>
+				<c:when test="${not empty movieDto.moviePoster}" >
+					<img id="poster" alt="영화포스터" src="${movieDto.moviePoster}" />
+				</c:when>
+				<c:otherwise>
+					<img id="poster" alt="영화포스터" src="http://www.myeongin.net/app/dubu_board/docs/imgs/d/d16124045780126_%EC%9D%B4%EB%AF%B8%EC%A7%80%EC%A4%80%EB%B9%84%EC%A4%91.jpg" />
+				</c:otherwise>
+			</c:choose>
+			
 			<div id="firstSectionDiv">
 				<p>영화명 : ${movieDto.movieTitle}</p>
 				<p>장르 : ${movieDto.genreName}</p>
