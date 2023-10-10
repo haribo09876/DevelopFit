@@ -142,6 +142,15 @@ body {
 	cursor: pointer;
 	float: right;
 }
+
+.movieSummary {
+	display: -webkit-box;
+	-webkit-line-clamp: 4;
+	-webkit-box-orient: vertical;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	word-break: break-word;
+}
 </style>
 
 <script type="text/javascript">
@@ -202,6 +211,8 @@ body {
 
 					<div class="productName">
 						<h2>${orderHistory.movieTitle}</h2>
+						<br>
+						<a class="movieSummary">${orderHistory.movieSummary}</a>
 					</div>
 
 					<div class="productOtherInfo">

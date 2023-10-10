@@ -119,6 +119,16 @@ body {
 #orderEmpty {
 	padding: 60px 0px 0px 300px;
 }
+
+.movieSummary {
+	display: -webkit-box;
+	-webkit-line-clamp: 4;
+	-webkit-box-orient: vertical;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	word-break: break-word;
+}
+
 </style>
 
 <script type="text/javascript">
@@ -130,7 +140,11 @@ body {
 
 	<!--    헤더 -->
 	<jsp:include page="/WEB-INF/view/Header.jsp" />
-
+	
+	<c:if test="${sessionScope.member.memberNumber == 0}">
+		<jsp:include page="/WEB-INF/view/adminHeader.jsp" />
+	</c:if>
+	
 	<c:choose>
 		<c:when test="${empty historyList2d}">
 			<div id="historyWrap">
@@ -198,6 +212,8 @@ body {
 
 								<div class="productName">
 									<h2>${historyList.movieTitle}</h2>
+									<br>
+									<a class="movieSummary">${historyList.movieSummary}</a>
 								</div>
 
 								<div class="productOtherInfo">

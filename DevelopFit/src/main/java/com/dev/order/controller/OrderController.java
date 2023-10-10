@@ -6,6 +6,7 @@ import java.util.List;
 
 import javax.servlet.http.HttpSession;
 
+import org.apache.ibatis.reflection.SystemMetaObject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -48,6 +49,11 @@ public class OrderController {
 	    	MemberDto member = (MemberDto)session.getAttribute("member");
 		    System.out.println(member.getMemberNumber());
 		    List<OrderDto> basketList = orderService.selectBasketList(member.getMemberNumber()); //장바구니 목록 가져오기
+		    
+		    for (int i = 0; i < basketList.size(); i++) {
+				basketList.get(i).setMovieSummary(basketList.get(i).getMovieSummary().replaceAll("/r/n", "<br>"));
+			}
+		    
 		    model.addAttribute("basketList", basketList);
 		    
 		    return "order/ShoppingBasket"; // 장바구니jsp
@@ -103,6 +109,7 @@ public class OrderController {
 		    
 	    	for (int i = 0; i < product.size(); i++) {
 		    	productList.add(orderService.selectProduct(Integer.parseInt(product.get(i)))); //선택한 영화 가져오기
+		    	productList.get(i).setMovieSummary(productList.get(i).getMovieSummary().replaceAll("/r/n", "<br>"));
 			}
 	    	
 		    model.addAttribute("productList", productList);
@@ -174,6 +181,10 @@ public class OrderController {
 		    orderDto.setOrderHistoryNumber(orderNumber);
 		    
 		    List<OrderDto> orderHistory = orderService.selectOrderHistory(orderDto);
+		    
+		    for (int i = 0; i < orderHistory.size(); i++) {
+		    	orderHistory.get(i).setMovieSummary(orderHistory.get(i).getMovieSummary().replaceAll("/r/n", "<br>"));
+			}
 		    model.addAttribute("orderHistory", orderHistory);
 		    
 		    return "order/OrderSuccess"; //주문성공.jsp
@@ -190,9 +201,8 @@ public class OrderController {
 	    log.info("Welcome OrderController history! memberNumber:");
 	    
 	    try {
-	    	System.out.println("curPage: " + curPage);
 		    MemberDto member = (MemberDto)session.getAttribute("member");
-			System.out.println("membernumber: " + member.getMemberNumber());
+			
 			int totalCount = orderService.selectOrderHistoryTotalCount(member.getMemberNumber());
 			
 			Paging orderHistoryPaging = new Paging(totalCount, curPage);
@@ -204,10 +214,15 @@ public class OrderController {
 			List<Integer> historyNumber = orderService.selectOrderHistoryNumber(member.getMemberNumber(), start, end);
 		    
 			// 주문내역 리스트
-		    List<List<OrderDto>> historyList = new ArrayList<List<OrderDto>>();
+			List<OrderDto> historyList = new ArrayList<OrderDto>();
+		    List<List<OrderDto>> historyList2d = new ArrayList<List<OrderDto>>();
 		    
 		    for(int i = 0; i < historyNumber.size(); i++) {
-		    	historyList.add(orderService.selectAllOrderHistoryList(member.getMemberNumber(), historyNumber.get(i)));
+		    	historyList = orderService.selectAllOrderHistoryList(member.getMemberNumber(), historyNumber.get(i));
+		    	for (int j = 0; j < historyList.size(); j++) {
+		    		historyList.get(j).setMovieSummary(historyList.get(j).getMovieSummary().replaceAll("/r/n", "<br>"));
+				}
+		    	historyList2d.add(historyList);
 		    }
 		    
 		    // 페이징
@@ -215,7 +230,7 @@ public class OrderController {
 			pagingMap.put("totalCount", totalCount);
 			pagingMap.put("orderHistoryPaging", orderHistoryPaging);
 		    
-		    model.addAttribute("historyList2d", historyList);
+		    model.addAttribute("historyList2d", historyList2d);
 		    model.addAttribute("pagingMap", pagingMap);
 		    
 		    return "order/OrderHistory";
@@ -242,6 +257,10 @@ public class OrderController {
 		    orderDto.setOrderHistoryNumber(orderNumber);
 		    
 		    List<OrderDto> orderHistory = orderService.selectOrderHistory(orderDto);
+		    
+		    for (int i = 0; i < orderHistory.size(); i++) {
+		    	orderHistory.get(i).setMovieSummary(orderHistory.get(i).getMovieSummary().replaceAll("/r/n", "<br>"));
+			}
 		    model.addAttribute("orderHistory", orderHistory);
 		    
 		    return "order/OrderCancel";
