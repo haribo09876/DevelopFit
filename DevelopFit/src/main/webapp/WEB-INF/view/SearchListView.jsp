@@ -153,10 +153,12 @@
 	#headText{
 		margin-top: 100px;
 		font-size: 30px;
+		margin-left:70px;
 	}
 	.cardTable {
 	    min-width: 98%;
 	    margin-top: 30px;
+	    margin-left:50px;
 		table-layout: fixed;
 		background-color: #172036;
 		border-radius: 6px;

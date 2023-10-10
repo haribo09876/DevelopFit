@@ -101,8 +101,7 @@
    <jsp:include page="/WEB-INF/view/Header.jsp" />
 
    <div id="container">
-      <div id="title">
-   </div>
+      <h2 id="title">글쓰기</h2>
       <form action='./addCtr.do' id="form" method='post' onsubmit="return check();">
          <input type="hidden" name='memberNumber' id ="memberNumber"
           value= '${member.memberNumber}'>
