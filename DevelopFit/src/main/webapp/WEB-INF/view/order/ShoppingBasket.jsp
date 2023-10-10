@@ -328,7 +328,6 @@ label {
 	overflow: hidden;
 	text-overflow: ellipsis;
 	word-break: break-word;
-	
 }
 </style>
 
@@ -338,7 +337,10 @@ label {
    <!--    헤더 -->
    <jsp:include page="/WEB-INF/view/Header.jsp" />
 
-
+	<c:if test="${sessionScope.member.memberNumber == 0}">
+		<jsp:include page="/WEB-INF/view/adminHeader.jsp" />
+	</c:if>
+	
    <!--    장바구니 -->
    <div id="productWrap">
       <h1>장바구니</h1>
@@ -364,7 +366,9 @@ label {
                            <h2>${basketList.movieTitle}</h2>
                            <br>
                            <!-- 영화 줄거리 -->
-                           <a class="movieSummary">${basketList.movieSummary}</a>
+                           <a class="movieSummary">
+                           	${basketList.movieSummary}
+                           </a>
                         </div>
                         <div class="productOtherInfo">
                            <h4>개봉일</h4>
@@ -402,7 +406,7 @@ label {
 
             <!--    구매취소버튼 -->
             <div id="selectWrap">
-               <div id="cancel" onclick="이전페이지"><a>취소</a></div>
+               <div id="cancel" onclick="history.back();"><a>취소</a></div>
                <div id="buy" onclick="buyFnc();"><a>주문</a></div>
             </div>
          </c:when>

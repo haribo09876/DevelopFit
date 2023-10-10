@@ -162,6 +162,13 @@ body {
 	<!--    헤더 -->
 	<jsp:include page="/WEB-INF/view/Header.jsp" />
 	
+<<<<<<< HEAD
+=======
+	<c:if test="${sessionScope.member.memberNumber == 0}">
+		<jsp:include page="/WEB-INF/view/adminHeader.jsp" />
+	</c:if>
+	
+>>>>>>> branch 'main' of https://github.com/haribo09876/DevelopFit.git
 	<c:choose>
 		<c:when test="${empty historyList2d}">
 			<div id="historyWrap">

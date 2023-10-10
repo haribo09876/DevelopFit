@@ -128,11 +128,12 @@ public class MovieController {
 		 log.debug("Welcome MovieController movieListOne! - {}", movieNumber);
 
 		 Map<String, Object> map = movieService.movieSelectOne(movieNumber);
-	
+		 
 		 MovieDto movieDto = (MovieDto)map.get("movieDto");
-		
+		 
+		 movieDto.setMovieSummary(movieDto.getMovieSummary().replaceAll("/r/n", "<br>"));
 		 List<MovieDto> movieCommentList = (List<MovieDto>) map.get("movieCommentList");
-	
+		 
 		 model.addAttribute("movieDto", movieDto);
 		 model.addAttribute("movieCommentList", movieCommentList);
 	
