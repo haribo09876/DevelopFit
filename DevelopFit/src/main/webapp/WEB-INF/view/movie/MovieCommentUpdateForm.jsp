@@ -107,7 +107,7 @@
       <input type='text' name='lineReviewContext' id='content' value='${movieDto.lineReviewContext}'><br>
       <div id="btnList">
          <div id="pageMoveList">
-            <a href='./listOne.do?movieNumber=${movieDto.movieNumber}'>한줄평 목록으로</a>
+            <a href='./listOne.do?movieNumber=${movieDto.movieNumber}'>해당 영화로</a>
          </div>
          <div id="commentDelete">
             <a href='./commentDelete.do?lineReviewNumber=${movieDto.lineReviewNumber}'>삭제하기</a>

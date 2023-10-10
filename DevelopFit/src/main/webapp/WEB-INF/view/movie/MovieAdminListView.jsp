@@ -82,7 +82,7 @@
 		<a class="sectionTitle">영화 목록</a>
 		<br>
 		<br>
-		<c:if test="${sessionScope.member.memberId eq 'admin1'}">
+		<c:if test="${sessionScope.member.memberId eq 'admin'}">
 			<a href='./add.do'>새 영화 등록</a>
 		</c:if>
 		<br>
