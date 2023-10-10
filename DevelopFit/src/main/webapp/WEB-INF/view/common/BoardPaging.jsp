@@ -15,21 +15,23 @@
 			background-color: #131826;
 			/*     width: 1000px; */ /* 넓이를 주면 고정  */
 			display: table; /* table을 주면  요소의 내용에 맞게 자동으로 크기 */
-			margin-left: auto;
-			margin-right: auto;
+/* 			margin-left: auto; */
+/* 			margin-right: auto; */
+			margin: 10px auto;
 		}
 		
 		nav>ul>li {
 			float: left;
-			width: 30px;
+			width: 40px;
 			display: white;
+			line-height: 40px;
 		}
 		
 		nav>ul>li>a {
 			display: block;
 			text-align: center;
 			text-decoration: none;
-			width: 30px;
+			width: 40px;
 			color: white;
 		}
 		
@@ -38,6 +40,7 @@
 			background-color: #5D5D5D;
 			font-weight: bold;
 		}
+		
 	</style>
 <body>
 	<script type="text/javascript">
