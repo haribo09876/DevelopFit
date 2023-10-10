@@ -299,9 +299,9 @@
 			</c:forEach>
 		</table>
    
-   		<jsp:include page="/WEB-INF/view/common/MoviePaging.jsp">
-			<jsp:param value="${pagingMap}" name="pagingMap"/>
-		</jsp:include>
+<%--    		<jsp:include page="/WEB-INF/view/common/MoviePaging.jsp"> --%>
+<%-- 			<jsp:param value="${pagingMap}" name="pagingMap"/> --%>
+<%-- 		</jsp:include> --%>
 
 		<form action="./list.do" id='pagingForm' method="post">
 			<input type="hidden" id='curPage' name='curPage' value="${pagingMap.movieCommentPaging.curPage}">
