@@ -106,11 +106,15 @@ li {
 }
 
 #login:hover {
-	border-bottom: 1px solid white;
+/* 	border-bottom: 1px solid white; */
+	color: white;
+	text-decoration: underline;
 }
 
 #logout:hover {
-	border-bottom: 1px solid white;
+/* 	border-bottom: 1px solid white; */
+	color: white;
+	text-decoration: underline;
 }
 
 #subMenu {
