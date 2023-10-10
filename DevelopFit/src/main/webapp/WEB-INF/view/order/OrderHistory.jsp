@@ -141,6 +141,9 @@ body {
 
 	<!--    헤더 -->
 	<jsp:include page="/WEB-INF/view/Header.jsp" />
+	<c:if test="${sessionScope.member.memberNumber != 0}">
+	<jsp:include page="/WEB-INF/view/UserHeader.jsp" />
+	</c:if>
 	
 	<c:if test="${sessionScope.member.memberNumber == 0}">
 		<jsp:include page="/WEB-INF/view/adminHeader.jsp" />

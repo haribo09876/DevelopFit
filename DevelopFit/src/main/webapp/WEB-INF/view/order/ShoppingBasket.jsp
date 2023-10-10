@@ -214,7 +214,7 @@ h1 {
    height: 35px;
    line-height: 35px;
    font-size: 20px;
-   background-color: #0DA66E;
+   background-color: #0E7356;
    border-radius: 5px;
    text-align: center;
    cursor: pointer;
@@ -338,7 +338,11 @@ label {
 
    <!--    헤더 -->
    <jsp:include page="/WEB-INF/view/Header.jsp" />
-
+   
+   <c:if test="${sessionScope.member.memberNumber != 0}">
+	<jsp:include page="/WEB-INF/view/UserHeader.jsp" />
+	</c:if>
+	
 	<c:if test="${sessionScope.member.memberNumber == 0}">
 		<jsp:include page="/WEB-INF/view/adminHeader.jsp" />
 	</c:if>

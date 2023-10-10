@@ -122,7 +122,7 @@ body {
 	height: 35px;
 	line-height: 35px;
 	font-size: 20px;
-	background-color: #0DA66E;
+	background-color: #0E7356;
 	border-radius: 5px;
 	text-align: center;
 	float: right;

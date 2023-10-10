@@ -227,7 +227,14 @@ table tr th td {
 </head>
 <body>
 	<jsp:include page="/WEB-INF/view/Header.jsp" />
-	<jsp:include page="/WEB-INF/view/adminHeader.jsp" />
+	
+	<c:if test="${sessionScope.member.memberNumber != 0}">
+	<jsp:include page="/WEB-INF/view/UserHeader.jsp" />
+	</c:if>
+	
+	<c:if test="${sessionScope.member.memberNumber == 0}">
+		<jsp:include page="/WEB-INF/view/adminHeader.jsp" />
+	</c:if>
 
 	<div id="contentsAreaDiv">
 		<a class="sectionTitle">Community</a><br><br>
