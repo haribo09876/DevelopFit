@@ -1,24 +1,17 @@
 package com.dev.board.service;
 
-import org.slf4j.Logger;
+import java.util.ArrayList;
+import java.util.List;
 
+import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import com.dev.board.dao.BoardDao;
 import com.dev.board.dto.BoardDto;
 import com.dev.movie.dao.MovieDao;
 import com.dev.movie.dto.MovieDto;
-
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
-import org.springframework.transaction.interceptor.TransactionAspectSupport;
-import org.springframework.web.multipart.MultipartHttpServletRequest;
-
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.ArrayList;
 
 
 @Service
