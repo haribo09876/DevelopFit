@@ -223,8 +223,8 @@
 				<p>영화명 : ${movieDto.movieTitle}</p>
 				<p>장르 : ${movieDto.genreName}</p>
 				<p>개봉일 : ${movieDto.movieReleaseDate}</p>
-				<p>상영시간 : ${movieDto.movieRuntime}분</p>
-				<p>관람가 : 00세 관람가</p>
+				<p>상영시간 : ${movieDto.movieRuntime} 분</p>
+				<p>관람가 : ${movieDto.movieRating}</p>
 				<p>가격 : ${movieDto.moviePrice} 원</p>
 			</div>
 		</div>
@@ -264,13 +264,13 @@
       
 		<h3>출연진</h3>
 		<div id="sixthSectionDiv">
-			<span class="actor">배우1</span>
-			<span class="actor">배우2</span>
-			<span class="actor">배우3</span>
-			<span class="actor">배우4</span>
-			<span class="actor">배우5</span>
-			<span class="actor">배우6</span>
-			<span class="actor">배우7</span>
+			<span class="actor">[수정필요] 배우1</span>
+			<span class="actor">[수정필요] 배우2</span>
+			<span class="actor">[수정필요] 배우3</span>
+			<span class="actor">[수정필요] 배우4</span>
+			<span class="actor">[수정필요] 배우5</span>
+			<span class="actor">[수정필요] 배우6</span>
+			<span class="actor">[수정필요] 배우7</span>
 		</div>
 
 		<h3>한줄평</h3>
