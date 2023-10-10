@@ -114,7 +114,7 @@
 				<tr class="tableGroup">
 					<td>${movieDto.lineReviewNumber}</td>
 					<td>${movieDto.movieNumber}</td>
-					<td>${movieDto.movieTitle}</td>
+					<td><a href='./listOne.do?movieNumber=${movieDto.movieNumber}'>${movieDto.movieTitle}</a></td>
 					<td>${movieDto.memberId}</td>
 					<td>
 						<a href='./commentListOne.do?lineReviewNumber=${movieDto.lineReviewNumber}'>${movieDto.lineReviewContext}</a>
