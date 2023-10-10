@@ -42,6 +42,9 @@
 		cursor: pointer;
 		border: 0px;
 	}
+	button:hover {
+	  	opacity: .8;
+	}
 </style>
 
 
@@ -65,7 +68,7 @@
 		</form>
 		
 <!-- 		<input type="text" placeholder="직접입력" value="" id="inputMoney"> -->
-		<input type="button" value="충전하기" id="chargeBtn" onclick="chargeFnc();">
+		<button type="button" id="chargeBtn" onclick="chargeFnc();">충전하기</button>
 		
 		
 	</div>

@@ -207,6 +207,8 @@ h1 {
    margin-right: 50px;
    cursor: pointer;
    float: left;
+   border: 1px solid #f24141;
+   color: white;
 }
 
 #buy {
@@ -215,6 +217,8 @@ h1 {
    line-height: 35px;
    font-size: 20px;
    background-color: #0E7356;
+   border: 1px solid #0E7356;
+   color: white;
    border-radius: 5px;
    text-align: center;
    cursor: pointer;
@@ -277,10 +281,11 @@ p {
    width: 250px;
    height: 45px;
    font-size: 25px;
-   background-color: #0DA66E;
+   background-color: #0E7356;
+   border: 1px solid #0E7356;
+   color: white;
    border-radius: 5px;
    text-align: center;
-   padding-top: 8px;
    display: inline-block;
    cursor: pointer;
    margin: 50px 0px 0px 300px;
@@ -330,6 +335,10 @@ label {
 	word-break: break-word;
 	
 	text-align: left;
+}
+
+button:hover {
+  	opacity: .8;
 }
 </style>
 
@@ -412,8 +421,8 @@ label {
 
             <!--    구매취소버튼 -->
             <div id="selectWrap">
-               <div id="cancel" onclick="history.back();"><a>취소</a></div>
-               <div id="buy" onclick="buyFnc();"><a>주문</a></div>
+               <button type="button" id="cancel" onclick="history.back();">취소</button>
+               <button type="button" id="buy" onclick="buyFnc();">주문</button>
             </div>
          </c:when>
 
@@ -425,9 +434,9 @@ label {
             </div>
 
             <div id="buttonWrap">
-               <div id="movePageMovie" onclick="moveMovieListFnc();">
-               	<a>영화페이지로</a>
-               </div>
+               <button type="button" id="movePageMovie" onclick="moveMovieListFnc();">
+               	영화페이지로
+               </button>
             </div>
          </c:otherwise>
       </c:choose>

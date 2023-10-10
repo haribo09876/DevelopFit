@@ -124,6 +124,8 @@ body {
 	line-height: 35px;
 	font-size: 20px;
 	background-color: #f24141;
+	border: 1px solid #f24141;
+	color: white;
 	border-radius: 5px;
 	text-align: center;
 	margin-right: 50px;
@@ -137,6 +139,8 @@ body {
 	line-height: 35px;
 	font-size: 20px;
 	background-color: #0E7356;
+	border: 1px solid #0E7356;
+	color: white;
 	border-radius: 5px;
 	text-align: center;
 	cursor: pointer;
@@ -150,6 +154,9 @@ body {
 	overflow: hidden;
 	text-overflow: ellipsis;
 	word-break: break-word;
+}
+button:hover {
+  	opacity: .8;
 }
 </style>
 
@@ -270,8 +277,8 @@ body {
 	</div>
 
 	<div id="selectWrap">
-		<div id="cancel" onclick="cancelFnc();"><a>취소하기</a></div>
-		<div id="refund" onclick="refundFnc();"><a>환불하기</a></div>
+		<button type="button" id="cancel" onclick="cancelFnc();">취소하기</button>
+		<button type="button" id="refund" onclick="refundFnc();">환불하기</button>
 	</div>
 
 

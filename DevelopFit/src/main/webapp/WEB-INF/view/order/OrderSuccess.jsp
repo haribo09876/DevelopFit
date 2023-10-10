@@ -97,6 +97,8 @@ body {
 	line-height: 35px;
 	font-size: 20px;
 	background-color: #0E7356;
+	border: 1px solid #0E7356;
+	color: white;
 	border-radius: 5px;
 	text-align: center;
 	cursor: pointer;
@@ -110,6 +112,8 @@ body {
 	line-height: 35px;
 	font-size: 20px;
 	background-color: #f24141;
+	border: 1px solid #f24141;
+	color: white;
 	border-radius: 5px;
 	text-align: center;
 	margin-right: 50px;
@@ -125,6 +129,9 @@ body {
 	text-overflow: ellipsis;
 	word-break: break-word;
 	text-align: left;
+}
+button:hover {
+  	opacity: .8;
 }
 </style>
 
@@ -190,8 +197,8 @@ body {
 
 
 	<div id="selectWrap">
-		<div id="orderCancel" onclick="location.href='./cancel.do?orderNumber=${orderHistory[0].orderHistoryNumber}'">주문 취소</div>
-		<div id="goOrderDetail" onclick="location.href='./history.do'">주문내역으로 이동</div>
+		<button type="button" id="orderCancel" onclick="location.href='./cancel.do?orderNumber=${orderHistory[0].orderHistoryNumber}'">주문 취소</button>
+		<button type="button" id="goOrderDetail" onclick="location.href='./history.do'">주문내역으로 이동</button>
 	</div>
 
 
