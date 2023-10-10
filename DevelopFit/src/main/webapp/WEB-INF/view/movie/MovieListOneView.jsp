@@ -264,7 +264,7 @@
       
 		<h3>출연진</h3>
 		<div id="sixthSectionDiv">
-			<span class="actor">[수정필요] 배우1</span>
+			<span class="actor">${actorList.actorName }</span>
 			<span class="actor">[수정필요] 배우2</span>
 			<span class="actor">[수정필요] 배우3</span>
 			<span class="actor">[수정필요] 배우4</span>
