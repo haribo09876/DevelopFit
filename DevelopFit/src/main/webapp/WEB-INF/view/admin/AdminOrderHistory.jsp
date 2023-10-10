@@ -162,7 +162,6 @@ body {
 	<!--    헤더 -->
 	<jsp:include page="/WEB-INF/view/Header.jsp" />
 	
-	
 	<c:choose>
 		<c:when test="${empty historyList2d}">
 			<div id="historyWrap">
