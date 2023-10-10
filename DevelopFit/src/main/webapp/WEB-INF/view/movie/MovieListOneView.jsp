@@ -264,13 +264,9 @@
       
 		<h3>출연진</h3>
 		<div id="sixthSectionDiv">
-			<span class="actor">${actorList.actorName }</span>
-			<span class="actor">[수정필요] 배우2</span>
-			<span class="actor">[수정필요] 배우3</span>
-			<span class="actor">[수정필요] 배우4</span>
-			<span class="actor">[수정필요] 배우5</span>
-			<span class="actor">[수정필요] 배우6</span>
-			<span class="actor">[수정필요] 배우7</span>
+			<c:forEach var="actorList" items="${actorList}">
+				<span class="actor">${actorList.actorName}</span>
+			</c:forEach>
 		</div>
 
 		<h3>한줄평</h3>

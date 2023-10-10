@@ -155,7 +155,7 @@
 		) MOVIE
 	</select>
 	
-	<select id="castActorList" parameterType="int" resultType="movieDto">
+	<select id="castActorList" parameterType="int" resultMap="movieResultMap">
 		SELECT A.ACTOR_NAME
 		FROM ACTOR A
 		JOIN CAST_MEMBER CM

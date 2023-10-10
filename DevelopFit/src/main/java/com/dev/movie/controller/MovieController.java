@@ -130,7 +130,7 @@ public class MovieController {
 		 Map<String, Object> map = movieService.movieSelectOne(movieNumber);
 		 
 		 MovieDto movieDto = (MovieDto)map.get("movieDto");
-		 MovieDto actorList = (MovieDto)movieService.castActorList(movieNumber);
+		 List<MovieDto> actorList = movieService.castActorList(movieNumber);
 		 
 		 movieDto.setMovieSummary(movieDto.getMovieSummary().replaceAll("/r/n", "<br>"));
 		 List<MovieDto> movieCommentList = (List<MovieDto>) map.get("movieCommentList");
