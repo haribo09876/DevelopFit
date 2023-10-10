@@ -272,17 +272,17 @@
    </c:if>	
 	
    
-<!--    <div id="pagingwrap"> -->
-<%--       <jsp:include page="/WEB-INF/view/common/BoardPaging.jsp"> --%>
-<%--          <j
-		sp:param value="${pagingMap}" name="pagingMap"/> --%>
-<%--       </jsp:include> --%>
+<!--    <div id="pagingwrap"> --> -->
+<%--        <jsp:include page="/WEB-INF/view/common/BoardPaging.jsp"> --%>
+       
+<%--        <jsp:param value="${pagingMap}" name="pagingMap"/> --%>
+<%--        </jsp:include> --%>
       
-<!--       <form action="./list.do" id='pagingForm' method="post"> -->
-<!--          <input type="hidden" id='curPage' name='curPage'  -->
-<%--             value="${pagingMap.boardPaging.curPage}"> --%>
-<!--       </form> -->
-<!--    </div> -->
+<!--        <form action="./myList.do" id='pagingForm' method="post"> -->
+<!--           <input type="hidden" id='curPage' name='curPage' -->
+<%--              value="${pagingMap.boardPaging.curPage}"> --%>
+<!--        </form>  -->
+<!--     </div> -->
    
    
    

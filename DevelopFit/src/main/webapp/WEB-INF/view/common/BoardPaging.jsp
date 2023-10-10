@@ -22,6 +22,7 @@
 		nav>ul>li {
 			float: left;
 			width: 30px;
+			display: white;
 		}
 		
 		nav>ul>li>a {
