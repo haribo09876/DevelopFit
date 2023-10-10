@@ -147,8 +147,20 @@
          margin-left: 10px;
       }
       button:hover {
-   opacity: .8;
+	   	opacity: .8;
+	   }
+	
+	#commentPost{
+		border: none;
+		border-radius: 6px;
+		background-color: #0E7356;
+		width: 90px;
+		height: 25px;
+		text-align: center;
+ 		padding-top: 5px;
+ 		font-size: 15px;
 	}
+	
 	</style>
 	<script type="text/javascript">
 		let nowUrl = window.location.href;
@@ -271,7 +283,9 @@
 
 		<h3>한줄평</h3>
 		<div id="seventhSectionDiv">
-		<a href='./commentAdd.do?movieNumber=${movieDto.movieNumber}'>한줄평 추가</a>
+		<div id="commentPost">
+			<a href='./commentAdd.do?movieNumber=${movieDto.movieNumber}'>한줄평 추가</a>
+		</div>
 		<table id="movieListTable">
 			<tr>
 				<th>영화 제목</th>
