@@ -173,18 +173,8 @@ function check() {
 					<input class="item" type='text' name='memberMoney' id="updateMoney" value='${member.memberMoney}' readonly>
 					<div class="item" id="won">원</div>
 				</div>
-<<<<<<< HEAD
-<!-- 				<br> -->
-
-<%-- 				<input type='date' name='memberBirthDate' id="updateBirthDate" value='${member.memberBirthDate}' readonly><br> --%>
-<%-- 				<input type='text' name='memberMoney' id="updateMoney" value='${member.memberMoney}' readonly>원<br> --%>
-
-				<input type="password" name="memberPassword" id="updatePW" placeholder="비밀번호를 입력해주세요." onfocus="this.placeholder=''"
-							onblur="this.placeholder='비밀번호를 입력해주세요.'" value="" required="required"><br>
-=======
 				<input type="password" name="memberPassword" id="updatePW" placeholder="변경하실 비밀번호를 입력해주세요." onfocus="this.placeholder=''"
 							onblur="this.placeholder='변경하실 비밀번호를 입력해주세요.'" value="" required="required"><br>
->>>>>>> branch 'main' of https://github.com/haribo09876/DevelopFit.git
 				<input type="button" value="수정하기" id="updateBtn" onclick="check();">
 			</form>	
 		</div>
