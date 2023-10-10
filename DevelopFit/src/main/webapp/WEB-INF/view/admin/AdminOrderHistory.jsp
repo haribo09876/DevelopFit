@@ -169,12 +169,12 @@ body {
 	<c:choose>
 		<c:when test="${empty historyList2d}">
 			<div id="historyWrap">
-				<h1>주문내역</h1>
+				<h3>주문내역</h3>
 				
 				<div class="orderNumberWrap">
 					<div class="orderUnit">
 						<div class="productDetail">
-							<h2 id="orderEmpty">주문 내역이 없습니다.</h2>
+							<h4 id="orderEmpty">주문 내역이 없습니다.</h4>
 						</div>
 					</div>
 				</div>
@@ -183,7 +183,8 @@ body {
 
 		<c:otherwise>
 			<div id="historyWrap">
-				<h1 id="historyText">주문내역</h1>
+				<h3 id="historyText">주문내역</h3>
+				<br>
 <!-- 				<div id="searchId"> -->
 <!-- 					<input type="text" placeholder="&nbsp;&nbsp;ID입력" value=""/> -->
 <!-- 					<button type="button" id="searchBtn" onclick="searchBtnFnc();">&#128269</button> -->
@@ -193,9 +194,9 @@ body {
 					varStatus="varStatus">
 					<div class="orderNumberWrap">
 						<div class="orderNumber">
-							<h3 class="info">주문번호 ${historyList1d[0].orderHistoryNumber}</h3>
-							<h3 class="info">회원번호 ${historyList1d[0].memberNumber}</h3>
-							<h3 class="info">회원ID ${historyList1d[0].memberId}</h3>
+							<h4 class="info">주문번호 ${historyList1d[0].orderHistoryNumber}</h4>
+							<h4 class="info">회원번호 ${historyList1d[0].memberNumber}</h4>
+							<h4 class="info">회원ID ${historyList1d[0].memberId}</h4>
 						</div>
 
 						<!-- 환불날짜 계산 -->
@@ -242,7 +243,7 @@ body {
 								</div>
 
 								<div class="productName">
-									<h2>${historyList.movieTitle}</h2>
+									<h3>${historyList.movieTitle}</h3>
 								</div>
 
 								<div class="productOtherInfo">

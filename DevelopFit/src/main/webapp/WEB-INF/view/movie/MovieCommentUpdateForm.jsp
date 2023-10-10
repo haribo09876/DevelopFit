@@ -116,6 +116,6 @@
       </div>
    </form>
 
-   <jsp:include page="/WEB-INF/view/Footer.jsp" />
+<%--    <jsp:include page="/WEB-INF/view/Footer.jsp" /> --%>
 </body>
 </html>

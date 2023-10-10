@@ -186,7 +186,7 @@ body {
 	overflow: hidden;
 	text-overflow: ellipsis;
 	word-break: break-word;
-	
+	text-align: left;
 }
 
 </style>
@@ -281,7 +281,7 @@ body {
 
 
 	<div id="paymentWrap">
-		<h1>주문</h1>
+		<h3>주문</h3>
 		<form id="payForm">
 			<c:forEach var="productList" items="${productList}">
 				<div class="productDetail">
@@ -292,7 +292,7 @@ body {
 					</div>
 					<input hidden="" name="product" value="${productList.movieNumber}">
 					<div class="productTitle">
-						<h2>${productList.movieTitle}</h2>
+						<h3>${productList.movieTitle}</h3>
 						<br>
                         <!-- 영화 줄거리 -->
                         <a class="movieSummary">${productList.movieSummary}</a>
@@ -322,7 +322,7 @@ body {
 
 
 	<div id="paymentWrap">
-		<h1>결제상세</h1>
+		<h3>결제상세</h3>
 
 		<div id="orderDetail">
 		

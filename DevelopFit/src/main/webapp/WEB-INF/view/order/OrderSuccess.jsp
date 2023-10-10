@@ -124,7 +124,7 @@ body {
 	overflow: hidden;
 	text-overflow: ellipsis;
 	word-break: break-word;
-	
+	text-align: left;
 }
 </style>
 
@@ -136,7 +136,7 @@ body {
 	<!-- 	주문완료 -->
 	<div id="orderWrap">
 		<div>
-			<h1>주문완료</h1>
+			<h3>주문완료</h3>
 		</div>
 
 		<c:forEach var="orderHistory" items="${orderHistory}">
@@ -150,7 +150,7 @@ body {
 				</div>
 				
 				<div class="productName">
-					<h2>${orderHistory.movieTitle}</h2>
+					<h3>${orderHistory.movieTitle}</h3>
 					<br>
                     <!-- 영화 줄거리 -->
                     <a class="movieSummary">${orderHistory.movieSummary}</a>

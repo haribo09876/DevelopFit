@@ -129,7 +129,7 @@ h1 {
    width: 83px;
    height: 20px;
    display: inline-block;
-   margin-left: 683px;
+   margin-left: 736px;
 }
 
 .productDetail {
@@ -328,6 +328,8 @@ label {
 	overflow: hidden;
 	text-overflow: ellipsis;
 	word-break: break-word;
+	
+	text-align: left;
 }
 </style>
 
@@ -343,7 +345,7 @@ label {
 	
    <!--    장바구니 -->
    <div id="productWrap">
-      <h1>장바구니</h1>
+      <h3 style="display: inline-block;">장바구니</h3>
 
       <c:choose>
          <c:when test="${not empty basketList}">
@@ -363,7 +365,7 @@ label {
                         </div>
                         <div class="productName">
                         	<!-- 영화 제목 -->
-                           <h2>${basketList.movieTitle}</h2>
+                           <h3>${basketList.movieTitle}</h3>
                            <br>
                            <!-- 영화 줄거리 -->
                            <a class="movieSummary">

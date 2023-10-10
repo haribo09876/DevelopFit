@@ -191,7 +191,7 @@ body {
 
 	<div id="productWrap">
 		<div>
-			<h1>상품정보</h1>
+			<h3>상품정보</h3>
 		</div>
 
 		<form action="./cancelCtr.do" method="post" id="form">
@@ -210,7 +210,7 @@ body {
 					</div>
 
 					<div class="productName">
-						<h2>${orderHistory.movieTitle}</h2>
+						<h4>${orderHistory.movieTitle}</h4>
 						<br>
 						<a class="movieSummary">${orderHistory.movieSummary}</a>
 					</div>
@@ -244,7 +244,7 @@ body {
 
 
 	<div id="cancelWrap">
-		<h1>취소</h1>
+		<h3>취소</h3>
 
 		<div id="cancelDetail">
 

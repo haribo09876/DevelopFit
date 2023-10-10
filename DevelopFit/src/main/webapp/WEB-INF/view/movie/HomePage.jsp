@@ -143,11 +143,22 @@
 
 			<c:forEach var="movieDto" items="${movieList}">
 				<tr class="tableGroup">
-					<td>
-						<a href='./listOne.do?movieNumber=${movieDto.movieNumber}'>
-							<img class="listPoster" alt="포스터" src="${movieDto.moviePoster}">			
-						</a>
-					</td>
+					<c:choose>
+						<c:when test="${not empty movieDto.moviePoster}">
+							<td>
+								<a href='./listOne.do?movieNumber=${movieDto.movieNumber}'>
+									<img class="listPoster" alt="포스터" src="${movieDto.moviePoster}">			
+								</a>
+							</td>
+						</c:when>
+						<c:otherwise>
+							<td>
+								<a href='./listOne.do?movieNumber=${movieDto.movieNumber}'>
+									<img class="listPoster" alt="포스터" src="http://www.myeongin.net/app/dubu_board/docs/imgs/d/d16124045780126_%EC%9D%B4%EB%AF%B8%EC%A7%80%EC%A4%80%EB%B9%84%EC%A4%91.jpg" />			
+								</a>
+							</td>
+						</c:otherwise>
+					</c:choose>
 					<td>
 						<div class=movieTitle>
 							<a href='./listOne.do?movieNumber=${movieDto.movieNumber}'>${movieDto.movieTitle}</a>

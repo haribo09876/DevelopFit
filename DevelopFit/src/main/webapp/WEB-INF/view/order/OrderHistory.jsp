@@ -127,6 +127,7 @@ body {
 	overflow: hidden;
 	text-overflow: ellipsis;
 	word-break: break-word;
+	text-align: left;
 }
 
 </style>
@@ -161,12 +162,12 @@ body {
 
 		<c:otherwise>
 			<div id="historyWrap">
-				<h1>주문내역</h1>
+				<h3>주문내역</h3>
 				<br>
 				<c:forEach var="historyList1d" items="${historyList2d}" varStatus="varStatus">
 					<div class="orderNumberWrap">
 						<div class="orderNumber">
-							<h3>주문번호 ${historyList1d[0].orderHistoryNumber}</h3>
+							<h4>주문번호 ${historyList1d[0].orderHistoryNumber}</h4>
 						</div>
 
 						<!-- 환불날짜 계산 -->
@@ -211,7 +212,7 @@ body {
 								</div>
 
 								<div class="productName">
-									<h2>${historyList.movieTitle}</h2>
+									<h3>${historyList.movieTitle}</h3>
 									<br>
 									<a class="movieSummary">${historyList.movieSummary}</a>
 								</div>
