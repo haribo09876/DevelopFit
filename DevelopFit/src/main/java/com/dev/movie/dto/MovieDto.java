@@ -34,6 +34,7 @@ public class MovieDto {
 	private int moviePrice;
 	private String moviePoster;
 	private String moviePreview;
+	private String movieRating;	
 	
 	private int orderHistoryNumber;
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
@@ -61,9 +62,9 @@ public class MovieDto {
 			String directorName, int genreNumber, String genreName, int heartNumber, String heartCheck,
 			int lineReviewNumber, String lineReviewContext, int movieNumber, String movieTitle, String movieSummary,
 			Date movieReleaseDate, String movieRuntime, int moviePrice, String moviePoster, String moviePreview,
-			int orderHistoryNumber, Date orderHistoryTime, int preferGenreNumber, String preferGenreFirst,
-			String preferGenreSecond, String preferGenreThird, int ratingNumber, int ratingGrade, int watchNumber,
-			String watchCheck, int memberNumber, String memberId) {
+			String movieRating, int orderHistoryNumber, Date orderHistoryTime, int preferGenreNumber,
+			String preferGenreFirst, String preferGenreSecond, String preferGenreThird, int ratingNumber,
+			int ratingGrade, int watchNumber, String watchCheck, int memberNumber, String memberId) {
 		super();
 		this.actorNumber = actorNumber;
 		this.actorName = actorName;
@@ -85,6 +86,7 @@ public class MovieDto {
 		this.moviePrice = moviePrice;
 		this.moviePoster = moviePoster;
 		this.moviePreview = moviePreview;
+		this.movieRating = movieRating;
 		this.orderHistoryNumber = orderHistoryNumber;
 		this.orderHistoryTime = orderHistoryTime;
 		this.preferGenreNumber = preferGenreNumber;
@@ -259,6 +261,14 @@ public class MovieDto {
 		this.moviePreview = moviePreview;
 	}
 
+	public String getMovieRating() {
+		return movieRating;
+	}
+
+	public void setMovieRating(String movieRating) {
+		this.movieRating = movieRating;
+	}
+
 	public int getOrderHistoryNumber() {
 		return orderHistoryNumber;
 	}
@@ -364,11 +374,12 @@ public class MovieDto {
 				+ ", lineReviewContext=" + lineReviewContext + ", movieNumber=" + movieNumber + ", movieTitle="
 				+ movieTitle + ", movieSummary=" + movieSummary + ", movieReleaseDate=" + movieReleaseDate
 				+ ", movieRuntime=" + movieRuntime + ", moviePrice=" + moviePrice + ", moviePoster=" + moviePoster
-				+ ", moviePreview=" + moviePreview + ", orderHistoryNumber=" + orderHistoryNumber
-				+ ", orderHistoryTime=" + orderHistoryTime + ", preferGenreNumber=" + preferGenreNumber
-				+ ", preferGenreFirst=" + preferGenreFirst + ", preferGenreSecond=" + preferGenreSecond
-				+ ", preferGenreThird=" + preferGenreThird + ", ratingNumber=" + ratingNumber + ", ratingGrade="
-				+ ratingGrade + ", watchNumber=" + watchNumber + ", watchCheck=" + watchCheck + ", memberNumber="
-				+ memberNumber + ", memberId=" + memberId + "]";
+				+ ", moviePreview=" + moviePreview + ", movieRating=" + movieRating + ", orderHistoryNumber="
+				+ orderHistoryNumber + ", orderHistoryTime=" + orderHistoryTime + ", preferGenreNumber="
+				+ preferGenreNumber + ", preferGenreFirst=" + preferGenreFirst + ", preferGenreSecond="
+				+ preferGenreSecond + ", preferGenreThird=" + preferGenreThird + ", ratingNumber=" + ratingNumber
+				+ ", ratingGrade=" + ratingGrade + ", watchNumber=" + watchNumber + ", watchCheck=" + watchCheck
+				+ ", memberNumber=" + memberNumber + ", memberId=" + memberId + "]";
 	}
+	
 }
