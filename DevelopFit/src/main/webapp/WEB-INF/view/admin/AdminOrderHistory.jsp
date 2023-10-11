@@ -148,6 +148,16 @@ body {
 #historyText {
 	display: inline-block;
 }
+
+.movieSummary {
+	display: -webkit-box;
+	-webkit-line-clamp: 4;
+	-webkit-box-orient: vertical;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	word-break: break-word;
+	text-align: left;
+}
 </style>
 
 <script type="text/javascript">
@@ -161,7 +171,11 @@ body {
 
 	<!--    헤더 -->
 	<jsp:include page="/WEB-INF/view/Header.jsp" />
+<<<<<<< HEAD
 	
+=======
+	
+>>>>>>> branch 'main' of https://github.com/haribo09876/DevelopFit.git
 	<c:if test="${sessionScope.member.memberNumber == 0}">
 		<jsp:include page="/WEB-INF/view/adminHeader.jsp" />
 	</c:if>
@@ -244,6 +258,8 @@ body {
 
 								<div class="productName">
 									<h3>${historyList.movieTitle}</h3>
+									<br>
+									<a class="movieSummary">${historyList.movieSummary}</a>
 								</div>
 
 								<div class="productOtherInfo">

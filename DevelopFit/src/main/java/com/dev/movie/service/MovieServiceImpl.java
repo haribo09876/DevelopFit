@@ -132,5 +132,11 @@ public class MovieServiceImpl implements MovieService{
 		// TODO Auto-generated method stub
 		return movieDao.movieCommentDeleteOne(lineReviewNumber);
 	}
+
+	@Override
+	public List<MovieDto> castActorList(int movieNumber) {
+		// TODO Auto-generated method stub
+		return movieDao.castActorList(movieNumber);
+	}
 	
 }

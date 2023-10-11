@@ -115,6 +115,9 @@ body {
 	margin-right: 50px;
 	float: left;
 	cursor: pointer;
+	color: white;
+	border: 1px solid #f24141;
+	
 }
 
 #payment {
@@ -122,11 +125,13 @@ body {
 	height: 35px;
 	line-height: 35px;
 	font-size: 20px;
-	background-color: #0DA66E;
+	background-color: #0E7356;
 	border-radius: 5px;
 	text-align: center;
 	float: right;
 	cursor: pointer;
+	color: white;
+	border: 1px solid #0E7356;
 }
 
 #consentOrder {
@@ -187,6 +192,9 @@ body {
 	text-overflow: ellipsis;
 	word-break: break-word;
 	text-align: left;
+}
+button:hover {
+  	opacity: .8;
 }
 
 </style>
@@ -364,8 +372,8 @@ body {
 
 	<!--    구매취소버튼 -->
 	<div id="selectWrap">
-		<div id="cancel" onclick="cancelFnc();">취소</div>
-		<div id="payment" onclick="paymentFnc();">결제</div>
+		<button type="button" id="cancel" onclick="cancelFnc();">취소</button>
+		<button type="button" id="payment" onclick="paymentFnc();">결제</button>
 	</div>
 </body>
 </html>

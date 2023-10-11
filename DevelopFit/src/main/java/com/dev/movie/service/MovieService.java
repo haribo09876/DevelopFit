@@ -21,4 +21,6 @@ public interface MovieService {
 	public int movieCommentUpdateOne(MovieDto movieDto) throws Exception;
 	public int movieCommentDeleteOne(int lineReviewNumber);
 	public int movieCommentSelectTotalCount();
+	
+	public List<MovieDto> castActorList(int movieNumber);
 }

@@ -36,11 +36,14 @@
 		height: 35px;
 		line-height: 35px;
 		font-size: 20px;
-		background-color: #0DA66E;
+		background-color: #0E7356;
 		border-radius: 5px;
 		text-align: center;
 		cursor: pointer;
 		border: 0px;
+	}
+	button:hover {
+	  	opacity: .8;
 	}
 </style>
 
@@ -65,7 +68,7 @@
 		</form>
 		
 <!-- 		<input type="text" placeholder="직접입력" value="" id="inputMoney"> -->
-		<input type="button" value="충전하기" id="chargeBtn" onclick="chargeFnc();">
+		<button type="button" id="chargeBtn" onclick="chargeFnc();">충전하기</button>
 		
 		
 	</div>

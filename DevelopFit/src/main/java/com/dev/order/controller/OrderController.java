@@ -362,10 +362,15 @@ public class OrderController {
 		// 주문내역 리스트
 		List<Integer> historyNumber = orderService.selectOrderHistoryNumber(start, end);
 		
-	    List<List<OrderDto>> historyList = new ArrayList<List<OrderDto>>();
+		List<OrderDto> historyList = new ArrayList<OrderDto>();
+	    List<List<OrderDto>> historyList2d = new ArrayList<List<OrderDto>>();
 	    
 	    for(int i = 0; i < historyNumber.size(); i++) {
-	    	historyList.add(orderService.selectAllOrderHistoryList(historyNumber.get(i)));
+	    	historyList = orderService.selectAllOrderHistoryList(historyNumber.get(i));
+	    	for (int j = 0; j < historyList.size(); j++) {
+	    		historyList.get(j).setMovieSummary(historyList.get(j).getMovieSummary().replaceAll("/r/n", "<br>"));
+			}
+	    	historyList2d.add(historyList);
 	    }
 	    
 	    // 페이징
@@ -373,7 +378,7 @@ public class OrderController {
 		pagingMap.put("totalCount", totalCount);
 		pagingMap.put("orderHistoryPaging", orderHistoryPaging);
 	    
-	    model.addAttribute("historyList2d", historyList);
+	    model.addAttribute("historyList2d", historyList2d);
 	    model.addAttribute("pagingMap", pagingMap);
 		
 		return "admin/AdminOrderHistory";

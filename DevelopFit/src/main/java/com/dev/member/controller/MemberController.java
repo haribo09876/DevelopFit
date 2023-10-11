@@ -70,13 +70,15 @@ public class MemberController {
 		MemberDto memberDto = memberService.memberExist(memberId, memberPassword);
 
 		String viewUrl = "";
-
+		
 		if (memberDto != null) {
 			// 회원존재하면 세션에담는다
 			session.setAttribute("member", memberDto);
 			
 			viewUrl = "redirect:/movie/homePage.do";
 
+		} else {
+			viewUrl = "redirect:/auth/login.do";
 		}
 		return viewUrl;
 	}

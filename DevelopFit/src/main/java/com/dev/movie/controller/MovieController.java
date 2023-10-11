@@ -130,12 +130,14 @@ public class MovieController {
 		 Map<String, Object> map = movieService.movieSelectOne(movieNumber);
 		 
 		 MovieDto movieDto = (MovieDto)map.get("movieDto");
+		 List<MovieDto> actorList = movieService.castActorList(movieNumber);
 		 
 		 movieDto.setMovieSummary(movieDto.getMovieSummary().replaceAll("/r/n", "<br>"));
 		 List<MovieDto> movieCommentList = (List<MovieDto>) map.get("movieCommentList");
 		 
 		 model.addAttribute("movieDto", movieDto);
 		 model.addAttribute("movieCommentList", movieCommentList);
+		 model.addAttribute("actorList", actorList);
 	
 		 return "movie/MovieListOneView";
 	 }
@@ -203,7 +205,7 @@ public class MovieController {
 			System.out.println("오류 처리할 거 있으면 한다");
 			e.printStackTrace();
 		}
-		return "redirect:/movie/commentList.do";
+		return "redirect:/movie/listOne.do?movieNumber=" + movieDto.getMovieNumber();
 	 }
 
 //	 한줄평 리스트 (R)
@@ -271,7 +273,7 @@ public class MovieController {
 			 // TODO: handle exception
 			 e.printStackTrace();
 		 }
-		 return "redirect:/movie/commentList.do";
+		 return "redirect:/movie/listOne.do?movieNumber=" + movieDto.getMovieNumber();
 	 }	 
 
 //	 한줄평 삭제 (D)

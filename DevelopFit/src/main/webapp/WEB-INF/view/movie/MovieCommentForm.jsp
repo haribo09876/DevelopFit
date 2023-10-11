@@ -109,7 +109,7 @@
             <input type='text' name='lineReviewContext' id='lineReviewContext' placeholder="내용을 입력해주세요." maxlength="33"><br>
             <div id="btnList">
                <div id="pageBack">
-                  <a href='./commentList.do'>뒤로가기</a>
+                  <a href='./listOne.do?movieNumber=${movieDto.movieNumber}'>뒤로가기</a>
                </div>
                <input type="button" id="addComment" value="추가" onclick="check();">
             </div>

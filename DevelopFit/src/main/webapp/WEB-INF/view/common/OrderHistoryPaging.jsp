@@ -9,27 +9,25 @@
 <style type="text/css">
 nav>ul {
 	list-style-type: none;
-	padding: 0px;
+	padding: 0;
 	overflow: hidden;
 	background-color: #131826;
-	/*     width: 1000px; */ /* 넓이를 주면 고정  */
-	display: table; /* table을 주면  요소의 내용에 맞게 자동으로 크기 */
- 	margin-left: auto;
- 	margin-right: auto;
- 	height: 30px;
+	display: table;
+	margin: 10px auto;
 }
 
 nav>ul>li {
 	float: left;
-	width: 30px;
- 	
+	width: 40px;
+ 	display: white;
+ 	line-height: 40px;
 }
 
 nav>ul>li>a {
-  	display: block; 
+	display: block;
 	text-align: center;
-	padding: 1px;
- 	text-decoration: none;
+	text-decoration: none;
+	width: 40px;
 	color: white;
 }
 

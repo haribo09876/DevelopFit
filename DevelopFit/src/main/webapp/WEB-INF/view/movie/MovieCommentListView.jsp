@@ -12,11 +12,47 @@
 			background-color: #101322;
 			color: #FFFFFF;
 		}
+		table{
+			width: 920px;
+			margin-left: 175px;
+		}
+		
+		#one{
+			width: 87px;
+		}
+		
+		#two{
+			width: 77px;
+		}
+		
+		#three{
+			width: 200px;
+		}
+		
+		#four{
+			width: 100px;
+		}
+		
+		#five{
+			width: 330px;
+		}
+		
+		#six{
+			width: 112px;
+		}
+		
 		table tr th td {
 		    border-collapse: collapse;
 		    border-width: 0;
 		    border-style: solid;
 		}
+		
+		#historyWrap {
+			width: 900px;
+			height: auto;
+			margin: 30px auto 0px;
+		}
+
 		.sectionTitle{
 			color: #FFFFFF;
 			font-size: 20px;
@@ -55,18 +91,20 @@
 	<jsp:include page="/WEB-INF/view/adminHeader.jsp" />
 	
 	<div id="contentsAreaDiv">
-		<a class="sectionTitle">영화 한줄평 목록</a>
+		<div id="historyWrap">
+			<h3>영화 한줄평 목록</h3>
+		</div>
 		<br>
 		<br>
 		<table id="cardTable">
 			<thead>
 				<tr class="tableHead">
-					<th>한줄평 번호</th>
-					<th>영화 번호</th>
-					<th>영화 제목</th>
-					<th>회원 아이디</th>
-					<th>한줄평 내용</th>
-					<th>수정 및 삭제</th>
+					<th id="one">한줄평 번호</th>
+					<th id="two">영화 번호</th>
+					<th id="three">영화 제목</th>
+					<th id="four">회원 아이디</th>
+					<th id="five">한줄평 내용</th>
+					<th id="six">수정 및 삭제</th>
 				</tr>
 			</thead>
 
@@ -76,7 +114,7 @@
 				<tr class="tableGroup">
 					<td>${movieDto.lineReviewNumber}</td>
 					<td>${movieDto.movieNumber}</td>
-					<td>${movieDto.movieTitle}</td>
+					<td><a href='./listOne.do?movieNumber=${movieDto.movieNumber}'>${movieDto.movieTitle}</a></td>
 					<td>${movieDto.memberId}</td>
 					<td>
 						<a href='./commentListOne.do?lineReviewNumber=${movieDto.lineReviewNumber}'>${movieDto.lineReviewContext}</a>

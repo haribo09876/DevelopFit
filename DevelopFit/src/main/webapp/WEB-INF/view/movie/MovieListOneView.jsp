@@ -147,8 +147,20 @@
          margin-left: 10px;
       }
       button:hover {
-   opacity: .8;
+	   	opacity: .8;
+	   }
+	
+	#commentPost{
+		border: none;
+		border-radius: 6px;
+		background-color: #0E7356;
+		width: 90px;
+		height: 25px;
+		text-align: center;
+ 		padding-top: 5px;
+ 		font-size: 15px;
 	}
+	
 	</style>
 	<script type="text/javascript">
 		let nowUrl = window.location.href;
@@ -264,18 +276,16 @@
       
 		<h3>출연진</h3>
 		<div id="sixthSectionDiv">
-			<span class="actor">[수정필요] 배우1</span>
-			<span class="actor">[수정필요] 배우2</span>
-			<span class="actor">[수정필요] 배우3</span>
-			<span class="actor">[수정필요] 배우4</span>
-			<span class="actor">[수정필요] 배우5</span>
-			<span class="actor">[수정필요] 배우6</span>
-			<span class="actor">[수정필요] 배우7</span>
+			<c:forEach var="actorList" items="${actorList}">
+				<span class="actor">${actorList.actorName}</span>
+			</c:forEach>
 		</div>
 
 		<h3>한줄평</h3>
 		<div id="seventhSectionDiv">
-		<a href='./commentAdd.do?movieNumber=${movieDto.movieNumber}'>한줄평 추가</a>
+		<div id="commentPost">
+			<a href='./commentAdd.do?movieNumber=${movieDto.movieNumber}'>한줄평 추가</a>
+		</div>
 		<table id="movieListTable">
 			<tr>
 				<th>영화 제목</th>
@@ -303,10 +313,11 @@
 			</c:forEach>
 		</table>
    
-   		<jsp:include page="/WEB-INF/view/common/MoviePaging.jsp">
-			<jsp:param value="${pagingMap}" name="pagingMap"/>
-		</jsp:include>
-
+	   	<div style="display: none;">
+	   		<jsp:include page="/WEB-INF/view/common/MoviePaging.jsp">
+				<jsp:param value="${pagingMap}" name="pagingMap"/>
+			</jsp:include>
+		</div>
 		<form action="./list.do" id='pagingForm' method="post">
 			<input type="hidden" id='curPage' name='curPage' value="${pagingMap.movieCommentPaging.curPage}">
 		</form>

@@ -116,5 +116,11 @@ public class MovieDaoImpl implements MovieDao{
 		
 		return sqlSession.selectList("com.dev.movie.searchMovies", map);
 	}
+
+	@Override
+	public List<MovieDto> castActorList(int movieNumber) {
+		// TODO Auto-generated method stub
+		return sqlSession.selectList("com.dev.movie.castActorList", movieNumber);
+	}
 	
 }
