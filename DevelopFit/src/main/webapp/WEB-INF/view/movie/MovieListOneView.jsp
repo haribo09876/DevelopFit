@@ -288,7 +288,7 @@
 		</div>
 		<table id="movieListTable">
 			<tr>
-				<th>영화 제목</th>
+<!-- 				<th>영화 제목</th> -->
 				<th>아이디</th>
 				<th>한줄평 내용</th>
 				<th>수정 및 삭제</th>
@@ -298,7 +298,7 @@
 				<input type="hidden" name='movieNumber' value='${movieDto.movieNumber}'>
 				<input type="hidden" name='lineReviewNumber' value='${movieDto.lineReviewNumber}'>
 				<tr>
-					<td>${movieDto.movieTitle}</td>
+<%-- 					<td>${movieDto.movieTitle}</td> --%>
 					<td>${movieDto.memberId}</td>
 					<td>
 						<a href='./commentListOne.do?lineReviewNumber=${movieDto.lineReviewNumber}'>${movieDto.lineReviewContext}</a>

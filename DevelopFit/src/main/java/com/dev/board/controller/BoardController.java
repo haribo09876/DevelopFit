@@ -35,12 +35,10 @@ public class BoardController {
 	private CommentService commentService;
 	
 	@Autowired
-	
 	private SearchService searchService;
 	
 	
-	@RequestMapping(value = "/board/list.do",
-			method = {RequestMethod.GET, RequestMethod.POST})
+	@RequestMapping(value = "/board/list.do", method = {RequestMethod.GET, RequestMethod.POST})
 	public String boardList(@RequestParam(defaultValue = "1") int curPage, Model model
 			, HttpSession session) {
 	    // Log4j
@@ -164,8 +162,7 @@ public class BoardController {
 	}
 	
 	//게시글검색
-	  @RequestMapping(value = "/board/searchBoardsCtr.do", 
-			  method = {RequestMethod.GET, RequestMethod.POST})
+	  @RequestMapping(value = "/board/searchBoardsCtr.do", method = {RequestMethod.GET, RequestMethod.POST})
 	  	public String searchBoards(@RequestParam("keyword") String keyword, Model model) {
 		  log.debug("Welcome searchBoards! - {}" + keyword);
 		  List<Object> searchBoardsResults = searchService.searchBoards(keyword);
@@ -188,8 +185,7 @@ public class BoardController {
 	    }
 	
 	//전체검색
-	  @RequestMapping(value = "/board/searchAllCtr.do", 
-			  method = {RequestMethod.GET, RequestMethod.POST})
+	  @RequestMapping(value = "/board/searchAllCtr.do", method = {RequestMethod.GET, RequestMethod.POST})
 	  	public String searchAll(@RequestParam("keyword") String keyword, Model model) {
 		  log.debug("Welcome searchAll! - {}" + keyword);
 		  List<Object> searchBoardsResults = searchService.searchBoards(keyword);
@@ -204,8 +200,7 @@ public class BoardController {
 	    }
 	  
 	//내 게시물
-	  @RequestMapping(value = "/board/myList.do",
-				method = {RequestMethod.GET, RequestMethod.POST})
+	  @RequestMapping(value = "/board/myList.do", method = {RequestMethod.GET, RequestMethod.POST})
 		public String boardMyList(@RequestParam(defaultValue = "1") int curPage, Model model
 				, HttpSession session) {
 		    // Log4j
@@ -235,8 +230,7 @@ public class BoardController {
 		    return "board/MyBoardListView";
 	  }
 	  
-	  @RequestMapping(value = "/board/adminList.do",
-				method = {RequestMethod.GET, RequestMethod.POST})
+	  @RequestMapping(value = "/board/adminList.do", method = {RequestMethod.GET, RequestMethod.POST})
 		public String boardAdminList(@RequestParam(defaultValue = "1") int curPage, Model model
 				, HttpSession session) {
 		    // Log4j
