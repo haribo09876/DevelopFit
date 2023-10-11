@@ -185,13 +185,17 @@ public class MemberController {
 	
 	//회원수정
 		@RequestMapping(value ="/member/updateCtr.do", method = RequestMethod.POST)
-		public String memberUpdateCtr(MemberDto memberDto, HttpSession session, Model model) {
+		public String memberUpdateCtr(HttpSession session, MemberDto memberDto, String changeMemberPassword, Model model) {
 			
 			log.info("Welcome MemberController memberUpdateCtr", memberDto);
 			
 			try {
-				memberService.memberUpdateOne(memberDto);
-				session.setAttribute("member", memberDto);
+				memberService.memberUpdateOne(memberDto, changeMemberPassword);
+				
+				MemberDto member = (MemberDto)session.getAttribute("member");
+				member.setMemberPassword(changeMemberPassword);
+				
+				session.setAttribute("member", member);
 				return "redirect:/member/myPage.do";
 			} catch (Exception e) {
 				// TODO: handle exception

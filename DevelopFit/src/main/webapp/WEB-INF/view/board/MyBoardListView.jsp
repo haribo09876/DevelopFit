@@ -228,8 +228,6 @@ table tr th td {
 <body>
 	<jsp:include page="/WEB-INF/view/Header.jsp" />
 	
-<<<<<<< HEAD
-=======
 	<c:if test="${sessionScope.member.memberNumber != 0}">
 	<jsp:include page="/WEB-INF/view/UserHeader.jsp" />
 	</c:if>
@@ -238,7 +236,6 @@ table tr th td {
 		<jsp:include page="/WEB-INF/view/adminHeader.jsp" />
 	</c:if>
 
->>>>>>> branch 'main' of https://github.com/haribo09876/DevelopFit.git
 	<div id="contentsAreaDiv">
 		<a class="sectionTitle">Community</a><br><br>
 		<table class="cardTable">

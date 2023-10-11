@@ -20,7 +20,7 @@ public interface MemberDao {
 
 	MemberDto findPw(String memberId, String memberEmail);
 
-	public int memberUpdateOne(MemberDto memberDto);
+	public int memberUpdateOne(MemberDto memberDto, String changeMemberPassword);
 	
 	public int memberSelectTotalCount();
 
