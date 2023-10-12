@@ -171,11 +171,6 @@ body {
 
 	<!--    헤더 -->
 	<jsp:include page="/WEB-INF/view/Header.jsp" />
-<<<<<<< HEAD
-	
-=======
-	
->>>>>>> branch 'main' of https://github.com/haribo09876/DevelopFit.git
 	<c:if test="${sessionScope.member.memberNumber == 0}">
 		<jsp:include page="/WEB-INF/view/adminHeader.jsp" />
 	</c:if>

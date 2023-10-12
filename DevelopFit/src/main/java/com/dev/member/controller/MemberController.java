@@ -47,51 +47,65 @@ public class MemberController {
 	// 로그인 페이지 이동
 	@RequestMapping(value = "/auth/login.do", method = RequestMethod.GET)
 	public String login(HttpSession session, Model model) {
-
 		log.info("Welcome MemberController login!");
-
-		return "/auth/LoginForm";
+		
+		try {
+			return "/auth/LoginForm";
+		} catch (Exception e) {
+			// TODO: handle exception
+			return "redirect:/auth/login.do";
+		}
+		
 	}
 
 	// 로그인 성공페이지
 	@RequestMapping(value = "/auth/loginSuccess.do", method = RequestMethod.GET)
 	public String loginSuccess(HttpSession session, Model model) {
-
 		log.info("Welcome MemberController loginSuccess!");
-
-		return "/auth/LoginSuccess";
+		
+		try {
+			return "/auth/LoginSuccess";
+		} catch (Exception e) {
+			// TODO: handle exception
+			return "redirect:/auth/login.do";
+		}
+		
 	}
 
 	// 로그인 기능 구현
 	@RequestMapping(value = "/auth/loginCtr.do", method = RequestMethod.POST)
 	public String loginCtr(String memberId, String memberPassword, HttpSession session, Model model) {
 		log.info("Welcome MemberController loginCtr!" + memberId + ", " + memberPassword);
-
-		MemberDto memberDto = memberService.memberExist(memberId, memberPassword);
-
-		String viewUrl = "";
 		
-		if (memberDto != null) {
-			// 회원존재하면 세션에담는다
+		try {
+			MemberDto memberDto = memberService.memberExist(memberId, memberPassword);
+
 			session.setAttribute("member", memberDto);
 			
-			viewUrl = "redirect:/movie/homePage.do";
-
-		} else {
-			viewUrl = "redirect:/auth/login.do";
+			return "redirect:/movie/homePage.do";
+		} catch (Exception e) {
+			// TODO: handle exception
+			return "redirect:/auth/login.do";
 		}
-		return viewUrl;
+		
+		
+		
 	}
 
 	// 로그아웃 기능구현
 	@RequestMapping(value = "/auth/logout.do", method = RequestMethod.GET)
 	public String logout(HttpSession session, Model model) {
-
 		log.info("Welcome MemberController logout!");
 
-		session.invalidate();
+		try {
+			session.invalidate();
 
-		return "redirect:/auth/login.do";
+			return "redirect:/auth/login.do";
+		} catch (Exception e) {
+			// TODO: handle exception
+			return "redirect:/auth/login.do";
+		}
+		
 	}
 
 	
@@ -185,13 +199,17 @@ public class MemberController {
 	
 	//회원수정
 		@RequestMapping(value ="/member/updateCtr.do", method = RequestMethod.POST)
-		public String memberUpdateCtr(MemberDto memberDto, HttpSession session, Model model) {
+		public String memberUpdateCtr(HttpSession session, MemberDto memberDto, String changeMemberPassword, Model model) {
 			
 			log.info("Welcome MemberController memberUpdateCtr", memberDto);
 			
 			try {
-				memberService.memberUpdateOne(memberDto);
-				session.setAttribute("member", memberDto);
+				memberService.memberUpdateOne(memberDto, changeMemberPassword);
+				
+				MemberDto member = (MemberDto)session.getAttribute("member");
+				member.setMemberPassword(changeMemberPassword);
+				
+				session.setAttribute("member", member);
 				return "redirect:/member/myPage.do";
 			} catch (Exception e) {
 				// TODO: handle exception

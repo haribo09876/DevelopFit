@@ -75,6 +75,15 @@ input{
 	background-color: #172036;
 	padding-left: 10px;
 }
+#currentPW{
+	width: 346px;
+	height: 40px;
+	margin-top: 20px;
+	border: none;
+	border-radius: 6px;
+	background-color: #172036;
+	padding-left: 10px;
+}
 #updatePW{
 	width: 346px;
 	height: 40px;
@@ -132,12 +141,12 @@ input{
 function check() {
 	var form = document.getElementById("updateForm");
 	
-	if (updatePW.value == '${member.memberPassword}') {
+	if (currentPW.value == '${member.memberPassword}') {
 		alert('수정이 완료되었습니다.');
 		form.setAttribute("action", "./updateCtr.do");
 		form.setAttribute("method", "post");
 		form.submit();
-	} else if (updatePW.value != '${member.memberPassword}') {
+	} else if (currentPW.value != '${member.memberPassword}') {
 		alert('비밀번호를 확인해주세요.');
 		return false;
 	}
@@ -166,9 +175,9 @@ function check() {
 				<input type='hidden' name='memberNumber' value='${member.memberNumber}' readonly>
 				<input type='text' name='memberName' id="updateName" value='${member.memberName}' readonly><br>
 				<input type='text' name='memberId' id="updateId" value='${member.memberId}' readonly><br>
-				<input type="email" name='memberEmail' id="updateEmail" value='${member.memberEmail}' readonly><br>
+				<input type="email" name='memberEmail' id="updateEmail" value='${member.memberEmail}' ><br>
 				<input type='text' name='memberPhoneNumber' id="updatePhoneNumber" value='${member.memberPhoneNumber}'><br>
-				<input type='date' name='memberBirthDate' id="updateBirthDate" value='${member.memberBirthDate}'><br>
+				<input type='date' name='memberBirthDate' id="updateBirthDate" value='${member.memberBirthDate}' readonly><br>
 				<div id="container">
 					<input class="item" type='text' name='memberMoney' id="updateMoney" value='${member.memberMoney}' readonly>
 					<div class="item" id="won">원</div>
@@ -178,9 +187,9 @@ function check() {
 <%-- 				<input type='date' name='memberBirthDate' id="updateBirthDate" value='${member.memberBirthDate}' readonly><br> --%>
 <%-- 				<input type='text' name='memberMoney' id="updateMoney" value='${member.memberMoney}' readonly>원<br> --%>
 
-				<input type="password" name="memberPassword" id="updatePW" placeholder="비밀번호를 입력해주세요." onfocus="this.placeholder=''"
-							onblur="this.placeholder='비밀번호를 입력해주세요.'" value="" required="required"><br>
-				<input type="password" name="memberPassword" id="updatePW" placeholder="변경하실 비밀번호를 입력해주세요." onfocus="this.placeholder=''"
+				<input type="password" name="memberPassword" id="currentPW" placeholder="현재 비밀번호를 입력해주세요." onfocus="this.placeholder=''"
+							onblur="this.placeholder='현재 비밀번호를 입력해주세요.'" value="" required="required"><br>
+				<input type="password" name="changeMemberPassword" id="updatePW" placeholder="변경하실 비밀번호를 입력해주세요." onfocus="this.placeholder=''"
 							onblur="this.placeholder='변경하실 비밀번호를 입력해주세요.'" value="" required="required"><br>
 				<input type="button" value="수정하기" id="updateBtn" onclick="check();">
 			</form>	

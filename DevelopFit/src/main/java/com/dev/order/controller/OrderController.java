@@ -6,7 +6,6 @@ import java.util.List;
 
 import javax.servlet.http.HttpSession;
 
-import org.apache.ibatis.reflection.SystemMetaObject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -78,6 +77,7 @@ public class OrderController {
 	    	// TODO: handle exception
 	    	return "redirect:/auth/login.do";
 	    }
+	    
 	}
 	
 	// 장바구니 추가
@@ -95,6 +95,7 @@ public class OrderController {
 	    	// TODO: handle exception
 	    	return "redirect:/auth/login.do";
 	    }
+	    
 	}
 	
 	
@@ -173,8 +174,8 @@ public class OrderController {
 	    // Log4j
 	    log.info("Welcome OrderController success Page!");
 	    
-	    if(session != null) {
-		    MemberDto member = (MemberDto)session.getAttribute("member");
+	    try {
+	    	MemberDto member = (MemberDto)session.getAttribute("member");
 		    OrderDto orderDto = new OrderDto();
 		    
 	    	orderDto.setMemberNumber(member.getMemberNumber());
@@ -188,9 +189,11 @@ public class OrderController {
 		    model.addAttribute("orderHistory", orderHistory);
 		    
 		    return "order/OrderSuccess"; //주문성공.jsp
-	    } else {
-	    	return "redirect:/auth/login.do";
-	    }
+		} catch (Exception e) {
+			// TODO: handle exception
+			return "redirect:/auth/login.do";
+		}
+	    
 	}
 	
 	
@@ -352,36 +355,42 @@ public class OrderController {
 	@RequestMapping(value = "/admin/history.do", method = {RequestMethod.GET, RequestMethod.POST})
 	public String admin(HttpSession session, @RequestParam(defaultValue = "1") int curPage, Model model) {
 		
-		int totalCount = orderService.selectOrderHistoryTotalCount(); // 전체 주문 갯수
+		try {
+			int totalCount = orderService.selectOrderHistoryTotalCount(); // 전체 주문 갯수
+			
+			Paging orderHistoryPaging = new Paging(totalCount, curPage);
+			
+			int start = orderHistoryPaging.getPageBegin();
+			int end = orderHistoryPaging.getPageEnd();
+			
+			// 주문내역 리스트
+			List<Integer> historyNumber = orderService.selectOrderHistoryNumber(start, end);
+			
+			List<OrderDto> historyList = new ArrayList<OrderDto>();
+		    List<List<OrderDto>> historyList2d = new ArrayList<List<OrderDto>>();
+		    
+		    for(int i = 0; i < historyNumber.size(); i++) {
+		    	historyList = orderService.selectAllOrderHistoryList(historyNumber.get(i));
+		    	for (int j = 0; j < historyList.size(); j++) {
+		    		historyList.get(j).setMovieSummary(historyList.get(j).getMovieSummary().replaceAll("/r/n", "<br>"));
+				}
+		    	historyList2d.add(historyList);
+		    }
+		    
+		    // 페이징
+		    HashMap<String, Object> pagingMap = new HashMap<>();
+			pagingMap.put("totalCount", totalCount);
+			pagingMap.put("orderHistoryPaging", orderHistoryPaging);
+		    
+		    model.addAttribute("historyList2d", historyList2d);
+		    model.addAttribute("pagingMap", pagingMap);
+			
+			return "admin/AdminOrderHistory";
+		} catch (Exception e) {
+			// TODO: handle exception
+			return "redirect:/auth/login.do";
+		}
 		
-		Paging orderHistoryPaging = new Paging(totalCount, curPage);
-		
-		int start = orderHistoryPaging.getPageBegin();
-		int end = orderHistoryPaging.getPageEnd();
-		
-		// 주문내역 리스트
-		List<Integer> historyNumber = orderService.selectOrderHistoryNumber(start, end);
-		
-		List<OrderDto> historyList = new ArrayList<OrderDto>();
-	    List<List<OrderDto>> historyList2d = new ArrayList<List<OrderDto>>();
-	    
-	    for(int i = 0; i < historyNumber.size(); i++) {
-	    	historyList = orderService.selectAllOrderHistoryList(historyNumber.get(i));
-	    	for (int j = 0; j < historyList.size(); j++) {
-	    		historyList.get(j).setMovieSummary(historyList.get(j).getMovieSummary().replaceAll("/r/n", "<br>"));
-			}
-	    	historyList2d.add(historyList);
-	    }
-	    
-	    // 페이징
-	    HashMap<String, Object> pagingMap = new HashMap<>();
-		pagingMap.put("totalCount", totalCount);
-		pagingMap.put("orderHistoryPaging", orderHistoryPaging);
-	    
-	    model.addAttribute("historyList2d", historyList2d);
-	    model.addAttribute("pagingMap", pagingMap);
-		
-		return "admin/AdminOrderHistory";
 	}
 	
 }

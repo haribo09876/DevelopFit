@@ -21,7 +21,7 @@ public interface MemberService {
 
 	public MemberDto findPw(String memberId, String memberEmail);
 
-	public void memberUpdateOne(MemberDto memberDto);
+	public void memberUpdateOne(MemberDto memberDto, String changeMemberPassword);
 
 	public int memberSelectTotalCount();
 

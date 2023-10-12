@@ -55,9 +55,16 @@ public class MemberDaoImpl implements MemberDao{
 
 
 	@Override
-	public int memberUpdateOne(MemberDto memberDto) {
-		// TODO Auto-generated method stub
-		return sqlSession.update("com.dev.member.memberUpdateOne", memberDto);
+	public int memberUpdateOne(MemberDto memberDto, String changeMemberPassword) {
+//		 TODO Auto-generated method stub
+		Map<String, Object> map = new HashMap<String, Object>();
+//		map.put("memberDto", memberDto);
+		map.put("memberEmail", memberDto.getMemberEmail());
+		map.put("memberPhoneNumber", memberDto.getMemberPhoneNumber());
+		map.put("memberNumber", memberDto.getMemberNumber());
+		map.put("changeMemberPassword", changeMemberPassword);
+		
+		return sqlSession.update("com.dev.member.memberUpdateOne", map);
 	}
 
 
