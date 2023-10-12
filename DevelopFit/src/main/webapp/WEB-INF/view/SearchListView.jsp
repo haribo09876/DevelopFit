@@ -272,7 +272,7 @@
    </c:if>	
 	
    
-<!--    <div id="pagingwrap"> --> -->
+<!--    <div id="pagingwrap"> -->
 <%--        <jsp:include page="/WEB-INF/view/common/BoardPaging.jsp"> --%>
        
 <%--        <jsp:param value="${pagingMap}" name="pagingMap"/> --%>
